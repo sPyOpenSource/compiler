@@ -114,7 +114,7 @@ class java/io/DataOutputStream {
  
  method writeFloat(F)V {
   +START:   #1
-        vR0.writeInt@extra(floatToIntBits@special(vl1));   [  i iR] 
+        vR0.writeInt@this(floatToIntBits@special(vl1));   [  i iR] 
         return;   
   +END:   #1
  }
@@ -122,7 +122,7 @@ class java/io/DataOutputStream {
  
  method writeDouble(D)V {
   +START:   #1
-        vR0.writeLong@extra(doubleToLongBits@special(vd1));   [   ??R] 
+        vR0.writeLong@this(doubleToLongBits@special(vd1));   [   ??R] 
         return;   
   +END:   #1
  }
@@ -131,12 +131,12 @@ class java/io/DataOutputStream {
  method writeBytes(Ljava/lang/String;)V {
   +START:   #1
         vR2 = vR0.out;    
-        vi3 = vR1.length@extra();    [R   R] 
+        vi3 = vR1.length();    [R   R] 
         vi4 = 0;    
   +B13:   #1
         if vi4>=vi3 goto B36;   
   +B19:   #1
-        vR2.write((byte)vR1.charAt@extra(vi4));   [Rii  i iR] 
+        vR2.write((byte)vR1.charAt(vi4));   [Rii  i iR] 
         vi4++;   
         goto +B13;   [Rii  i ..]
   +B36:   #1
@@ -149,12 +149,12 @@ class java/io/DataOutputStream {
  method writeChars(Ljava/lang/String;)V {
   +START:   #1
         vR2 = vR0.out;    
-        vi3 = vR1.length@extra();    [R   R] 
+        vi3 = vR1.length();    [R   R] 
         vi4 = 0;    
   +B13:   #1
         if vi4>=vi3 goto B58;   
   +B19:   #1
-        vi5 = vR1.charAt@extra(vi4);    [Rii   iR] 
+        vi5 = vR1.charAt(vi4);    [Rii   iR] 
         vR2.write(((vi5 >>> 8) & 255));   [Riii  i iR] 
         vR2.write(((vi5 >>> 0) & 255));   [Riii  ii iR] 
         vi4++;   
@@ -169,13 +169,13 @@ class java/io/DataOutputStream {
  method writeUTF(Ljava/lang/String;)V {
   +START:   #1
         vR2 = vR0.out;    
-        vi3 = vR1.length@extra();    [R R  R] 
+        vi3 = vR1.length();    [R R  R] 
         vi4 = 0;    
         vi5 = 0;    
   +B16:   #1
         if vi5>=vi3 goto B72;   
   +B22:   #1
-        vi6 = vR1.charAt@extra(vi5);    [Riii R  iR] 
+        vi6 = vR1.charAt(vi5);    [Riii R  iR] 
         if vi6<1 goto B49;   
   +B36:   #1
         if vi6>127 goto B49;   
@@ -195,7 +195,8 @@ class java/io/DataOutputStream {
   +B72:   #1
         if vi4<=65535 goto B87;   
   -B79:   #1
-        throw new java/io/UTFDataFormatException();   
+        b0 = new java/io/UTFDataFormatException();    [ R  i.][ R  iR]
+        throw b0;   
   +B87:   #1
         vR2.write(((vi4 >>> 8) & 255));   [Riiii R i iR] 
         vR2.write(((vi4 >>> 0) & 255));   [Riiii R ii iR] 
@@ -203,7 +204,7 @@ class java/io/DataOutputStream {
   +B115:   #1
         if vi5>=vi3 goto B266;   
   +B121:   #1
-        vi6 = vR1.charAt@extra(vi5);    [Riiii R .. iR] 
+        vi6 = vR1.charAt(vi5);    [Riiii R .. iR] 
         if vi6<1 goto B151;   
   +B135:   #1
         if vi6>127 goto B151;   
@@ -230,7 +231,7 @@ class java/io/DataOutputStream {
         return;   
   +END:   #1
  }
-// Register: rd 42/42 wr 19 swaps 7 any 14 found 0 writeUTF
+// Register: rd 43/43 wr 20 swaps 7 any 14 found 0 writeUTF
  
  method size()I {
   +START:   #1

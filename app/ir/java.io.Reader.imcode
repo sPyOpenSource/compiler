@@ -32,7 +32,7 @@ class java/io/Reader {
         if vi2<=0 goto B22;   
   +B16:   #1
         b0 = vR1[0];    
-        goto +B23b0;   forward return[Ri c  ....]
+        goto +B23b0;   [Ri c  ....]
   +B22:   #1
         b0 = -1;    
   +B23b0:   #1 int
@@ -50,17 +50,19 @@ class java/io/Reader {
  
  method mark(I)V {
   -START:   #1
-        throw new java/io/IOException("mark not supported");   
+        b0 = new java/io/IOException("mark not supported");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 mark
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 mark
  
  method reset()V {
   -START:   #1
-        throw new java/io/IOException("reset not supported");   
+        b0 = new java/io/IOException("reset not supported");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 reset
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 reset
  
  method ready()Z {
   +START:   #1

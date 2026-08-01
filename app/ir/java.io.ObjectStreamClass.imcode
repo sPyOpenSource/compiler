@@ -10,78 +10,89 @@ class java/io/ObjectStreamClass {
  
  method lookup(Ljava/lang/Class;)Ljava/lang/Object; {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 lookup
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 lookup
  
  method getObjectStreamClasses(Ljava/lang/Class;)[Ljava/io/ObjectStreamClass; {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getObjectStreamClasses
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 getObjectStreamClasses
  
  method getName()Ljava/lang/String; {
   -START:   #1
-        throw new java/lang/Error("NOT IMPLEMENTED");   
+        b0 = new java/lang/Error("NOT IMPLEMENTED");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getName
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 getName
  
  method getSerialVersionUID()J {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getSerialVersionUID
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 getSerialVersionUID
  
  method getFlags()I {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getFlags
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 getFlags
  
  method isExternalizable()Z {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 isExternalizable
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 isExternalizable
  
  method forClass()Ljava/lang/Class; {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 forClass
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 forClass
  
  method isSerializable()Z {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 isSerializable
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 isSerializable
  
  method getSuper()Ljava/lang/Object; {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getSuper
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 getSuper
  
  method hasWriteMethod()Z {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 hasWriteMethod
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 hasWriteMethod
  
  method getField(Ljava/lang/String;)Ljava/io/ObjectStreamField; {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getField
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 getField
 }

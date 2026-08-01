@@ -21,7 +21,7 @@ class java/io/PrintStream {
   +START:   #2
         vR0.out.close();   [   R] 
   +B7:   #1
-        goto +B16;   forward return[   .]
+        goto +B16;   [   .]
   +H10<caught exception>:   #1 reference
         vR1 = <caught exception>;    
         vR0.error = 1;   
@@ -37,7 +37,7 @@ EXCEPTIONHANDLER-TABLE:
   +START:   #2
         vR0.out.flush();   [   R] 
   +B7:   #1
-        goto +B16;   forward return[   .]
+        goto +B16;   [   .]
   +H10<caught exception>:   #1 reference
         vR1 = <caught exception>;    
         vR0.error = 1;   
@@ -87,7 +87,7 @@ EXCEPTIONHANDLER-TABLE:
         goto +B49;   [i   ....]
   +B42:   #1
         vR0.flush@this();   [i   R...] 
-        goto +B55;   forward return[i   ....]
+        goto +B55;   [i   ....]
   +B49:   #1
         vi4++;   
         goto +B23;   [i   ....]
@@ -116,9 +116,9 @@ EXCEPTIONHANDLER-TABLE:
  
  method print(Ljava/lang/String;)V {
   +START:   #1
-        vi2 = vR1.length@extra();    [   R] 
+        vi2 = vR1.length();    [   R] 
         vR3 = new byte[vi2];    
-        vR1.getBytes@extra(0,vi2,vR3,0);   [iR   iRiiR] 
+        vR1.getBytes(0,vi2,vR3,0);   [iR   iRiiR] 
         vR0.write@this(vR3,0,vi2);   [iR   iiRR.] 
         return;   
   +END:   #1

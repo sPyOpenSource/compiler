@@ -20,19 +20,21 @@ class java/io/DataInputStream {
   +START:   #1
         if (vi0 & 192)==128 goto B19;   
   -B11:   #1
-        throw new java/io/UTFDataFormatException();   
+        b0 = new java/io/UTFDataFormatException();    [ R  i][ R  iR]
+        throw b0;   
   +B19:   #1
         return (vi0 & 63);   
   +END:   #1
  }
-// Register: rd 2/2 wr 0 swaps 0 any 1 found 0 UTFBits
+// Register: rd 3/3 wr 1 swaps 0 any 1 found 0 UTFBits
  
  method readUTF(Ljava/io/DataInput;)Ljava/lang/String; {
   +START:   #1
         vi1 = vR0.readUnsignedShort();    [ Ri  R] 
         vR2 = new byte[vi1];    
         vR0.readFully(vR2);   [iR Ri  RR] 
-        vR3 = new java/lang/StringBuilder(vi1);    [ Ri  i.][ Ri . iiR]
+        b0 = new java/lang/StringBuilder(vi1);    [ Ri  i.][ Ri . iiR]
+        vR3 = b0;    
         vi5 = 0;    
   +B30:   #1
         if vi5>=vi1 goto B275;   
@@ -45,11 +47,13 @@ class java/io/DataInputStream {
         vi4 = vi6;    
         goto +B264;   [iRRiii Ri . ...]
   -B139:   #4
-        throw new java/io/UTFDataFormatException();   
+        b0 = new java/io/UTFDataFormatException();    [ Ri . i..][ Ri . iR.]
+        throw b0;   
   +B147:   #2
         if vi5<vi1 goto B161;   
   -B153:   #1
-        throw new java/io/UTFDataFormatException();   
+        b0 = new java/io/UTFDataFormatException();    [ Ri . i..][ Ri . iR.]
+        throw b0;   
   +B161:   #1
         b1 = vi5;    
         vi5++;   
@@ -59,7 +63,8 @@ class java/io/DataInputStream {
   +B189:   #1
         if vi1>=2 goto B202;   
   -B194:   #1
-        throw new java/io/UTFDataFormatException();   
+        b0 = new java/io/UTFDataFormatException();    [ Ri . i..][ Ri . iR.]
+        throw b0;   
   +B202:   #1
         b1 = vi5;    
         vi5++;   
@@ -70,17 +75,19 @@ class java/io/DataInputStream {
         vi4 = ((((vi6 & 15) << 12)+(vi8 << 6))+vi9);    
         goto +B264;   [iRRiiiiii Ri bb ...]
   -B248:   #1
-        throw new java/io/UTFDataFormatException();   
+        b0 = new java/io/UTFDataFormatException();    [ Ri .. i..][ Ri .. iR.]
+        throw b0;   
   -B256:   #1
-        throw new java/io/UTFDataFormatException();   
+        b0 = new java/io/UTFDataFormatException();    [ Ri .. i..][ Ri .. iR.]
+        throw b0;   
   +B264:   #3
-        vR3.append@extra((char)vi4);   [iRRiii Ri i. iR.] 
+        vR3.append((char)vi4);   [iRRiii Ri i. iR.] 
         goto +B30;   [iRRiii Ri i. ...]
   +B275:   #1
-        return vR3.toString@extra();   
+        return vR3.toString();   
   +END:   #1
  }
-// Register: rd 36/36 wr 24 swaps 1 any 15 found 0 readUTF
+// Register: rd 42/42 wr 30 swaps 1 any 16 found 0 readUTF
  
  method unread0()V {
   +START:   #1
@@ -95,13 +102,14 @@ class java/io/DataInputStream {
         vi1 = vR0.read@special();    [ R  R] 
         if vi1>=0 goto B17;   
   -B9:   #1
-        throw new java/io/EOFException();   
+        b0 = new java/io/EOFException();    [ R  i][ R  iR]
+        throw b0;   
   +B17:   #1
         last = vi1;   
         return vi1;   
   +END:   #1
  }
-// Register: rd 5/5 wr 1 swaps 0 any 1 found 1 read0
+// Register: rd 6/6 wr 2 swaps 0 any 1 found 1 read0
  
  method read([B)I {
   +START:   #1
@@ -119,7 +127,7 @@ class java/io/DataInputStream {
  
  method readFully([B)V {
   +START:   #1
-        vR0.readFully@extra(vR1,0,vR1.length);   [  i iiRR] 
+        vR0.readFully@this(vR1,0,vR1.length);   [  i iiRR] 
         return;   
   +END:   #1
  }
@@ -129,10 +137,11 @@ class java/io/DataInputStream {
   +START:   #2
         if vi3<=0 goto B39;   
   +B4:   #1
-        vi4 = vR0.read@extra(vR1,vi2,vi3);    [ R  iiRR] 
+        vi4 = vR0.read@this(vR1,vi2,vi3);    [ R  iiRR] 
         if vi4>=0 goto B26;   
   -B18:   #1
-        throw new java/io/EOFException();   
+        b0 = new java/io/EOFException();    [ R  i...][ R  iR..]
+        throw b0;   
   +B26:   #1
         vi2 = (vi2+vi4);    
         vi3 = (vi3-vi4);    
@@ -141,14 +150,14 @@ class java/io/DataInputStream {
         return;   
   +END:   #1
  }
-// Register: rd 7/7 wr 3 swaps 0 any 4 found 0 readFully
+// Register: rd 8/8 wr 4 swaps 0 any 4 found 0 readFully
  
  method readBoolean()Z {
   +START:   #1
         if vR0.read0@special()==0 goto B11;   
   +B7:   #1
         b0 = 1;    
-        goto +B12b0;   forward return[ i  .]
+        goto +B12b0;   [ i  .]
   +B11:   #1
         b0 = 0;    
   +B12b0:   #1 int
@@ -239,7 +248,7 @@ class java/io/DataInputStream {
  
  method readFloat()F {
   +START:   #1
-        vi1 = vR0.readInt@extra();    [   R] 
+        vi1 = vR0.readInt@this();    [   R] 
         return intBitsToFloat@special(vi1);   
   +END:   #1
  }
@@ -247,19 +256,21 @@ class java/io/DataInputStream {
  
  method readDouble()D {
   -START:   #1
-        throw new java/io/IOException("not implemented");   
+        b0 = new java/io/IOException("not implemented");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 readDouble
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 readDouble
  
  method readLine()Ljava/lang/String; {
   +START:   #1
-        vR1 = new java/lang/StringBuilder();    [ R  i][ R  iR]
+        b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
+        vR1 = b0;    
   +B8:   #1
         vi2 = vR0.read0@special();    [R R  R.] 
         if vi2!=10 goto B22;   
   +B19:   #1
-        goto +B56;   forward return[Ri R  ..]
+        goto +B56;   [Ri R  ..]
   +B22:   #1
         if vi2!=13 goto B46;   
   +B28:   #1
@@ -267,15 +278,15 @@ class java/io/DataInputStream {
         if vi2==10 goto B56;   
   +B39:   #1
         vR0.unread0@special();   [Ri R  R.] 
-        goto +B56;   forward return[Ri R  ..]
+        goto +B56;   [Ri R  ..]
   +B46:   #1
-        vR1.append@extra((char)vi2);   [Ri R i iR] 
+        vR1.append((char)vi2);   [Ri R i iR] 
         goto +B8;   [Ri R i ..]
   +B56:   #3
-        return vR1.toString@extra();   
+        return vR1.toString();   
   +END:   #1
  }
-// Register: rd 9/9 wr 4 swaps 1 any 3 found 0 readLine
+// Register: rd 10/10 wr 5 swaps 1 any 4 found 0 readLine
  
  method readUTF()Ljava/lang/String; {
   +START:   #1

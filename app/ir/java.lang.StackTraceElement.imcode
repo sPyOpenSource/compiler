@@ -11,7 +11,7 @@ class java/lang/StackTraceElement {
  method toString()Ljava/lang/String; {
   +START:   #1
         b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
-        return b0.append@extra(vR0.className).append@extra(".").append@extra(vR0.methodName).append@extra(", bytecode ").append@extra(vR0.bytecode).append@extra(", line ").append@extra(vR0.line).toString@extra();   
+        return b0.append(vR0.className).append(".").append(vR0.methodName).append(", bytecode ").append(vR0.bytecode).append(", line ").append(vR0.line).toString();   
   +END:   #1
  }
 // Register: rd 5/5 wr 15 swaps 10 any 0 found 0 toString

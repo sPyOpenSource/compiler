@@ -2,10 +2,11 @@ class java/lang/Float {
  
  method toString(F)Ljava/lang/String; {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 toString
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 toString
  
  method <init>(F)V {
   +START:   #1
@@ -69,36 +70,41 @@ class java/lang/Float {
  
  method valueOf(Ljava/lang/String;)Ljava/lang/Float; {
   -START:   #1
-        throw new java/lang/Error("NOT IMPLEMENTED");   
+        b0 = new java/lang/Error("NOT IMPLEMENTED");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 valueOf
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 valueOf
  
  method floatToIntBits(F)I {
   -START:   #1
-        throw new java/lang/Error();   
+        b0 = new java/lang/Error();    [ R  i][ R  iR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 floatToIntBits
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 floatToIntBits
  
  method intBitsToFloat(I)F {
   -START:   #1
-        throw new java/lang/Error();   
+        b0 = new java/lang/Error();    [ R  i][ R  iR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 intBitsToFloat
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 intBitsToFloat
  
  method parseFloat(Ljava/lang/String;)F {
   -START:   #1
-        throw new java/lang/Error();   
+        b0 = new java/lang/Error();    [ R  i][ R  iR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 parseFloat
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 parseFloat
  
  method compare(FF)I {
   -START:   #1
-        throw new java/lang/Error();   
+        b0 = new java/lang/Error();    [ R  i][ R  iR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 compare
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 compare
 }

@@ -19,7 +19,7 @@ class java/lang/ArrayIndexOutOfBoundsException {
  method <init>(I)V {
   +START:   #1
         b1 = new java/lang/StringBuilder();    [ ?R  i][ ?R  iR]
-        vR0.<init>@special(b1.append@extra("Array index out of bounds: ").append@extra(vi1).toString@extra());   [ ?R ii. RR.] 
+        vR0.<init>@special(b1.append("Array index out of bounds: ").append(vi1).toString());   [ ?R ii. RR.] 
         return;   
   +END:   #1
  }

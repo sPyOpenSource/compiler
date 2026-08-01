@@ -27,7 +27,7 @@ class java/security/Permission {
  method toString()Ljava/lang/String; {
   +START:   #1
         b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
-        return b0.append@extra("'"").append@extra(vR0.getClass@this().getName@extra()).append@extra("" "").append@extra(vR0.getName@this()).append@extra("" "").append@extra(vR0.getActions@this()).append@extra("")'").toString@extra();   
+        return b0.append("'"").append(vR0.getClass@this().getName()).append("" "").append(vR0.getName@this()).append("" "").append(vR0.getActions@this()).append("")'").toString();   
   +END:   #1
  }
 // Register: rd 4/4 wr 16 swaps 7 any 0 found 0 toString

@@ -50,9 +50,9 @@ class jx/net/xdr/Format {
  
  method writeString(Ljx/net/xdr/XDRBuffer;Ljava/lang/String;)V {
   +START:   #1
-        vR2 = vR1.getBytes@extra();    [   R] 
+        vR2 = vR1.getBytes();    [   R] 
         writeByteArray@special(vR0,vR2);   [R   RR]
-        vi3 = vR1.length@extra();    [R   R.] 
+        vi3 = vR1.length();    [R   R.] 
         if (vi3%4)==0 goto B32;   
   +B21:   #1
         vR0.advance((4-(vi3%4)));   [Ri  i iR] 
@@ -168,7 +168,7 @@ class jx/net/xdr/Format {
         if vi1==0 goto B13;   
   +B9:   #1
         b0 = 1;    
-        goto +B14b0;   forward return[i i  .]
+        goto +B14b0;   [i i  .]
   +B13:   #1
         b0 = 0;    
   +B14b0:   #1 int
@@ -250,7 +250,8 @@ class jx/net/xdr/Format {
         vi1 = readInt@special(vR0);    [ R  R]
         if vi1<=1024 goto B22;   
   -B12:   #1
-        throw new java/lang/Error("String too large");   
+        b0 = new java/lang/Error("String too large");    [ R  i][ R . iRR]
+        throw b0;   
   +B22:   #1
         vR2 = new byte[vi1];    
         vi3 = 0;    
@@ -263,11 +264,12 @@ class jx/net/xdr/Format {
   +B48:   #1
         vR0.advance(vi1);   [iRi R . iR.] 
         vR0.advance(((4-(vi1%4))%4));   [iRi R i iR.] 
-        vR3 = new java/lang/String(vR2);    [ R i i..][ R i. iRR]
+        b0 = new java/lang/String(vR2);    [ R i i..][ R i. iRR]
+        vR3 = b0;    
         return vR3;   
   +END:   #1
  }
-// Register: rd 15/15 wr 9 swaps 2 any 3 found 0 readString
+// Register: rd 17/17 wr 11 swaps 2 any 4 found 0 readString
  
  method lengthByte(B)I {
   +START:   #1
@@ -321,7 +323,7 @@ class jx/net/xdr/Format {
  method lengthString(Ljava/lang/String;)I {
   +START:   #1
         vi1 = 4;    
-        vi2 = vR0.length@extra();    [i   R] 
+        vi2 = vR0.length@this();    [i   R] 
         vi1 = (vi1+vi2);    
         if (vi2%4)==0 goto B25;   
   +B17:   #1
@@ -338,7 +340,7 @@ class jx/net/xdr/Format {
         if vi2>=0 goto B20;   
   +B12:   #1
         b0 = (vi2+256);    
-        goto +B21b0;   forward return[i i  ..]
+        goto +B21b0;   [i i  ..]
   +B20:   #1
         b0 = vi2;    
   +B21b0:   #1 int

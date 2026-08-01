@@ -38,7 +38,7 @@ class java/io/Writer {
  
  method write(Ljava/lang/String;)V {
   +START:   #1
-        vR0.write@this(vR1,0,vR1.length@extra());   [  i iiRR] 
+        vR0.write@this(vR1,0,vR1.length());   [  i iiRR] 
         return;   
   +END:   #1
  }
@@ -47,7 +47,7 @@ class java/io/Writer {
  method write(Ljava/lang/String;II)V {
   +START:   #1
         vR4 = new char[vi3];    
-        vR1.getChars@extra(vi2,(vi2+vi3),vR4,0);   [R  i iRiiR] 
+        vR1.getChars(vi2,(vi2+vi3),vR4,0);   [R  i iRiiR] 
         vR0.write@this(vR4,0,vR4.length);   [R  ii iiRR.] 
         return;   
   +END:   #1

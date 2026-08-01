@@ -195,17 +195,18 @@ class java/lang/Thread {
   +B6:   #1
         if vi1>=1 goto B19;   
   -B11:   #1
-        throw new java/lang/IllegalArgumentException();   
+        b0 = new java/lang/IllegalArgumentException();    [ R  i][ R  iR]
+        throw b0;   
   +B19:   #1
-        if vi1<=vR0.group.getMaxPriority@extra() goto B38;   
+        if vi1<=vR0.group.getMaxPriority() goto B38;   
   +B30:   #1
-        vi1 = vR0.group.getMaxPriority@extra();    [ R  R.] 
+        vi1 = vR0.group.getMaxPriority();    [ R  R.] 
   +B38:   #1
         vR0.priority = vi1;   
         return;   
   +END:   #1
  }
-// Register: rd 8/8 wr 1 swaps 0 any 3 found 1 setPriority
+// Register: rd 9/9 wr 2 swaps 0 any 3 found 1 setPriority
  
  method getPriority()I {
   +START:   #1
@@ -238,14 +239,14 @@ class java/lang/Thread {
  
  method activeCount()I {
   +START:   #1
-        return currentThread@special().getThreadGroup@extra().activeCount();   
+        return currentThread@special().getThreadGroup().activeCount();   
   +END:   #1
  }
 // Register: rd 0/0 wr 2 swaps 0 any 0 found 0 activeCount
  
  method enumerate([Ljava/lang/Thread;)I {
   +START:   #1
-        return currentThread@special().getThreadGroup@extra().enumerate(vR0);   
+        return currentThread@special().getThreadGroup().enumerate(vR0);   
   +END:   #1
  }
 // Register: rd 0/0 wr 2 swaps 0 any 0 found 0 enumerate
@@ -263,21 +264,22 @@ class java/lang/Thread {
         vl5 = 0;    
         if compare(vl1,0)>=0 goto B23;   
   -B13:   #1
-        throw new java/lang/IllegalArgumentException("timeout value is negative");   
+        b0 = new java/lang/IllegalArgumentException("timeout value is negative");    [ R  i][ R . iRR]
+        throw b0;   
   +B23:   #1
         if compare(vl1,0)!=0 goto B42;   
   +B29:   #1
-        if vR0.isAlive@extra()==0 goto B81;   
+        if vR0.isAlive@this()==0 goto B81;   
   +B36:   #1
         yield@special();   [?l?l R . ...]
         goto +B29;   [?l?l R . ...]
   +B42:   #2
-        if vR0.isAlive@extra()==0 goto B81;   
+        if vR0.isAlive@this()==0 goto B81;   
   +B49:   #1
         vl7 = (vl1-vl5);    
         if compare(vl7,0)> 0 goto B65;   
   +B62:   #1
-        goto +B81;   forward return[?l?l?l R . ...]
+        goto +B81;   [?l?l?l R . ...]
   +B65:   #1
         vR0.wait@this(vl7);   [?l?l?l R . ??R] 
         vl5 = (currentTimeMillis@special()-vl3);    
@@ -286,19 +288,21 @@ class java/lang/Thread {
         return;   
   +END:   #1
  }
-// Register: rd 4/4 wr 1 swaps 0 any 0 found 0 join
+// Register: rd 5/5 wr 2 swaps 0 any 0 found 0 join
  
  method join(JI)V {
   +START:   #1
         if compare(vl1,0)>=0 goto B16;   
   -B6:   #1
-        throw new java/lang/IllegalArgumentException("timeout value is negative");   
+        b0 = new java/lang/IllegalArgumentException("timeout value is negative");    [ R  i][ R . iRR]
+        throw b0;   
   +B16:   #1
         if vi3< 0 goto B26;   
   +B20:   #1
         if vi3<=999999 goto B36;   
   -B26:   #1
-        throw new java/lang/IllegalArgumentException("nanosecond timeout value out of range");   
+        b0 = new java/lang/IllegalArgumentException("nanosecond timeout value out of range");    [ R . i..][ R . iRR]
+        throw b0;   
   +B36:   #1
         if vi3>=500000 goto B52;   
   +B42:   #1
@@ -308,15 +312,15 @@ class java/lang/Thread {
   +B52:   #1
         vl1 = (vl1+1);    
   +B56:   #2
-        vR0.join@extra(vl1);   [i R . ??R] 
+        vR0.join@this(vl1);   [i R . ??R] 
         return;   
   +END:   #1
  }
-// Register: rd 7/7 wr 2 swaps 0 any 4 found 0 join
+// Register: rd 9/9 wr 4 swaps 0 any 4 found 0 join
  
  method join()V {
   +START:   #2
-        if vR0.isAlive@extra()==0 goto B13;   
+        if vR0.isAlive@this()==0 goto B13;   
   +B7:   #1
         yield@special();   [   .]
         goto +START;   [   .]
@@ -337,15 +341,16 @@ class java/lang/Thread {
  
  method setDaemon(Z)V {
   +START:   #1
-        if vR0.isAlive@extra()==0 goto B15;   
+        if vR0.isAlive@this()==0 goto B15;   
   -B7:   #1
-        throw new java/lang/IllegalThreadStateException();   
+        b0 = new java/lang/IllegalThreadStateException();    [ R  i][ R  iR]
+        throw b0;   
   +B15:   #1
         vR0.daemon = vi1;   
         return;   
   +END:   #1
  }
-// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 setDaemon
+// Register: rd 4/4 wr 1 swaps 0 any 0 found 0 setDaemon
  
  method isDaemon()Z {
   +START:   #1
@@ -356,23 +361,24 @@ class java/lang/Thread {
  
  method toString()Ljava/lang/String; {
   +START:   #1
-        if vR0.getThreadGroup@extra()==null goto B62;   
+        if vR0.getThreadGroup@this()==null goto B62;   
   +B7:   #1
         b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
-        return b0.append@extra("Thread[").append@extra(vR0.getName@extra()).append@extra(",").append@extra(vR0.getPriority@extra()).append@extra(",").append@extra(vR0.getThreadGroup@extra().getName@extra()).append@extra("]").toString@extra();   
+        return b0.append("Thread[").append(vR0.getName@this()).append(",").append(vR0.getPriority@this()).append(",").append(vR0.getThreadGroup@this().getName()).append("]").toString();   
   +B62:   #1
         b0 = new java/lang/StringBuilder();    [ R .............. i.......][ R .............. iR......]
-        return b0.append@extra("Thread[").append@extra(vR0.getName@extra()).append@extra(",").append@extra(vR0.getPriority@extra()).append@extra(",]").toString@extra();   
+        return b0.append("Thread[").append(vR0.getName@this()).append(",").append(vR0.getPriority@this()).append(",]").toString();   
   +END:   #1
  }
 // Register: rd 8/8 wr 27 swaps 12 any 0 found 0 toString
  
  method getContextClassLoader()Ljava/lang/ClassLoader; {
   -START:   #1
-        throw new java/lang/Error("NOT IMPLEMENTED");   
+        b0 = new java/lang/Error("NOT IMPLEMENTED");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getContextClassLoader
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 getContextClassLoader
  
  method access$000(Ljava/lang/Thread;)Ljava/lang/String; {
   +START:   #1

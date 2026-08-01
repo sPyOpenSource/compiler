@@ -19,14 +19,15 @@ class jx/zero/verifier/JVMOPStackElement {
         if vR0.prev!=null goto B15;   
   +B7:   #1
         vR0.prev = vR1;   
-        goto +B25;   forward return[ R  ]
+        goto +B25;   [ R  ]
   -B15:   #1
-        throw new java/lang/Error("Internal Error: trying to change prev Element of JVMOPStackElement that is not null!");   
+        b0 = new java/lang/Error("Internal Error: trying to change prev Element of JVMOPStackElement that is not null!");    [ R  i][ R . iRR]
+        throw b0;   
   +B25:   #1
         return;   
   +END:   #1
  }
-// Register: rd 4/4 wr 1 swaps 0 any 0 found 0 setPrev
+// Register: rd 5/5 wr 2 swaps 0 any 0 found 0 setPrev
  
  method <init>(Ljx/zero/verifier/JVMOPStackElement;)V {
   +START:   #1
@@ -51,13 +52,13 @@ class jx/zero/verifier/JVMOPStackElement {
         tswitch (vR0.bcAddr) B44 B38 B32 : B50;   
   +B32:   #1
         vR1 = "init";    
-        goto +B58;   forward return[R   ]
+        goto +B58;   [R   ]
   +B38:   #1
         vR1 = "exception";    
-        goto +B58;   forward return[R   ]
+        goto +B58;   [R   ]
   +B44:   #1
         vR1 = "merge";    
-        goto +B58;   forward return[R   ]
+        goto +B58;   [R   ]
   +B50:   #1
         vR1 = toHexString@special(vR0.bcAddr);    [  i i]
   +B58:   #3
@@ -71,11 +72,11 @@ class jx/zero/verifier/JVMOPStackElement {
         if vR0.prev==null goto B47;   
   +B7:   #1
         b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
-        b0 = b0.append@extra(vR0.prev.toString()).append@extra(": (").append@extra(vR0.addressString@this()).append@extra(")").toString@extra();    [ R i..ii..i R....] [ R iR.ii..i RR...] [ R iRRii..i RRR..] [ R iRRiiR.i RRRR.] [ R iRRiiRRi RRRRR] 
-        goto +B74b0;   forward return[ R i..ii..i .....]
+        b0 = b0.append(vR0.prev.toString()).append(": (").append(vR0.addressString@this()).append(")").toString();    [ R i..ii..i R....] [ R iR.ii..i RR...] [ R iRRii..i RRR..] [ R iRRiiR.i RRRR.] [ R iRRiiRRi RRRRR] 
+        goto +B74b0;   [ R i..ii..i .....]
   +B47:   #1
         b0 = new java/lang/StringBuilder();    [ R ........ i....][ R ........ iR...]
-        b0 = b0.append@extra("(").append@extra(vR0.addressString@this()).append@extra(")").toString@extra();    [ R i..ii... R....] [ R iR.ii... RR...] [ R iRRii... RRR..] [ R iRRiiR.. RRRR.] 
+        b0 = b0.append("(").append(vR0.addressString@this()).append(")").toString();    [ R i..ii... R....] [ R iR.ii... RR...] [ R iRRii... RRR..] [ R iRRiiR.. RRRR.] 
   +B74b0:   #1 reference
         return b0;   
   +END:   #1

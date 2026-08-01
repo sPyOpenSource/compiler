@@ -2,10 +2,11 @@ class java/util/stream/IntStream {
  
  method builder()Ljava/util/stream/IntStream$Builder; {
   +START:   #1
-        return new java/util/stream/Streams$IntStreamBuilderImpl();   
+        b0 = new java/util/stream/Streams$IntStreamBuilderImpl();    [ R  i][ R  iR]
+        return b0;   
   +END:   #1
  }
-// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 builder
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 builder
  
  method empty()Ljava/util/stream/IntStream; {
   +START:   #1
@@ -16,10 +17,11 @@ class java/util/stream/IntStream {
  
  method of(I)Ljava/util/stream/IntStream; {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 of
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 of
  
  method of([I)Ljava/util/stream/IntStream; {
   +START:   #1
@@ -31,40 +33,45 @@ class java/util/stream/IntStream {
  method iterate(ILjava/util/function/IntUnaryOperator;)Ljava/util/stream/IntStream; {
   +START:   #1
         requireNonNull@special(vR1);   [ R  R]
-        vR2 = new java/util/stream/IntStream$1(vi0,vR1);    [ R  i][ R . iRiR]
+        b0 = new java/util/stream/IntStream$1(vi0,vR1);    [ R  i][ R . iRiR]
+        vR2 = b0;    
         return intStream@special(spliteratorUnknownSize@special(vR2,1296),0);   
   +END:   #1
  }
-// Register: rd 3/3 wr 3 swaps 0 any 0 found 0 iterate
+// Register: rd 4/4 wr 4 swaps 0 any 1 found 0 iterate
  
  method generate(Ljava/util/function/IntSupplier;)Ljava/util/stream/IntStream; {
   -START:   #1
         requireNonNull@special(vR0);   [ R  R]
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 generate
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 generate
  
  method range(II)Ljava/util/stream/IntStream; {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 range
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 range
  
  method rangeClosed(II)Ljava/util/stream/IntStream; {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 rangeClosed
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 rangeClosed
  
  method concat(Ljava/util/stream/IntStream;Ljava/util/stream/IntStream;)Ljava/util/stream/IntStream; {
   -START:   #1
         requireNonNull@special(vR0);   [ R  R]
         requireNonNull@special(vR1);   [ R  R]
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 concat
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 concat
 }

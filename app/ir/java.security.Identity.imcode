@@ -89,17 +89,18 @@ class java/security/Identity {
   +B8:   #1
         vR2.checkSecurityAccess("addIdentityCertificate");   [R R i RR] 
   +B14:   #1
-        if vR0.certificates.isEmpty@extra()!=0 goto B56;   
+        if vR0.certificates.isEmpty()!=0 goto B56;   
   +B24:   #1
-        if (java/security/Certificate)(vR0.certificates.firstElement@extra()).getPublicKey()==vR0.publicKey goto B56;   
+        if (java/security/Certificate)(vR0.certificates.firstElement()).getPublicKey()==vR0.publicKey goto B56;   
   -B46:   #1
-        throw new java/security/KeyManagementException("Public key does not match");   
+        b0 = new java/security/KeyManagementException("Public key does not match");    [ R . i.][ R . iRR]
+        throw b0;   
   +B56:   #2
-        vR0.certificates.addElement@extra(vR1);   [R R . RR.] 
+        vR0.certificates.addElement(vR1);   [R R . RR.] 
         return;   
   +END:   #1
  }
-// Register: rd 8/8 wr 5 swaps 1 any 1 found 0 addCertificate
+// Register: rd 9/9 wr 6 swaps 1 any 1 found 0 addCertificate
  
  method removeCertificate(Ljava/security/Certificate;)V {
   +START:   #1
@@ -108,20 +109,21 @@ class java/security/Identity {
   +B8:   #1
         vR2.checkSecurityAccess("removeIdentityCertificate");   [R R i RR] 
   +B14:   #1
-        if vR0.certificates.contains@extra(vR1)!=0 goto B35;   
+        if vR0.certificates.contains(vR1)!=0 goto B35;   
   -B25:   #1
-        throw new java/security/KeyManagementException("Certificate not found");   
+        b0 = new java/security/KeyManagementException("Certificate not found");    [ R . i.][ R . iRR]
+        throw b0;   
   +B35:   #1
-        vR0.certificates.removeElement@extra(vR1);   [R R . RR.] 
+        vR0.certificates.removeElement(vR1);   [R R . RR.] 
         return;   
   +END:   #1
  }
-// Register: rd 5/5 wr 3 swaps 1 any 1 found 0 removeCertificate
+// Register: rd 6/6 wr 4 swaps 1 any 1 found 0 removeCertificate
  
  method certificates()[Ljava/security/Certificate; {
   +START:   #1
-        vR1 = new java/security/Certificate()[vR0.certificates.size@extra()];    
-        vi2 = vR0.certificates.size@extra();    [R   R.] 
+        vR1 = new java/security/Certificate()[vR0.certificates.size()];    
+        vi2 = vR0.certificates.size();    [R   R.] 
         vi3 = 0;    
   +B21:   #1
         if vi3>=vi2 goto B46;   
@@ -143,15 +145,15 @@ class java/security/Identity {
   +B12:   #1
         return 1;   
   +B14:   #1
-        if (java/security/Identity)(vR1).getName@extra()!=null goto B34;   
+        if (java/security/Identity)(vR1).getName()!=null goto B34;   
   +B24:   #1
         if vR0.name!=null goto B67;   
   +B31:   #1
         goto +B51;   [   ..]
   +B34:   #1
-        if (java/security/Identity)(vR1).getName@extra().equals@extra(vR0.name)==0 goto B67;   
+        if (java/security/Identity)(vR1).getName().equals(vR0.name)==0 goto B67;   
   +B51:   #1
-        if (java/security/Identity)(vR1).getScope@extra()!=vR0.scope goto B67;   
+        if (java/security/Identity)(vR1).getScope()!=vR0.scope goto B67;   
   +B65:   #1
         return 1;   
   +B67:   #3
@@ -164,18 +166,18 @@ class java/security/Identity {
  
  method identityEquals(Ljava/security/Identity;)Z {
   +START:   #1
-        if vR1.getName@extra()!=null goto B17;   
+        if vR1.getName()!=null goto B17;   
   +B7:   #1
         if vR0.name!=null goto B46;   
   +B14:   #1
         goto +B31;   [ i  .]
   +B17:   #1
-        if vR1.getName@extra().equals@extra(vR0.name)==0 goto B46;   
+        if vR1.getName().equals(vR0.name)==0 goto B46;   
   +B31:   #1
         if vR1.getPublicKey()!=vR0.publicKey goto B46;   
   +B42:   #1
         b0 = 1;    
-        goto +B47b0;   forward return[ i .. ..]
+        goto +B47b0;   [ i .. ..]
   +B46:   #3
         b0 = 0;    
   +B47b0:   #1 int
@@ -192,7 +194,7 @@ class java/security/Identity {
         vR1.checkSecurityAccess("printIdentity");   [R R i RR] 
   +B14:   #1
         b0 = new java/lang/StringBuilder();    [ R . i.][ R . iR]
-        return b0.append@extra(vR0.name).append@extra(":@").append@extra(vR0.scope).append@extra(" Public Key: ").append@extra(vR0.publicKey).toString@extra();   
+        return b0.append(vR0.name).append(":@").append(vR0.scope).append(" Public Key: ").append(vR0.publicKey).toString();   
   +END:   #1
  }
 // Register: rd 6/6 wr 13 swaps 7 any 1 found 0 toString
@@ -207,33 +209,33 @@ class java/security/Identity {
         if vi1==0 goto B60;   
   +B18:   #1
         b0 = new java/lang/StringBuilder();    [ R . i.][ R . iR]
-        return b0.append@extra(vR0.name).append@extra(":@").append@extra(vR0.scope).append@extra(" Public Key: ").append@extra(vR0.publicKey).toString@extra();   
+        return b0.append(vR0.name).append(":@").append(vR0.scope).append(" Public Key: ").append(vR0.publicKey).toString();   
   +B60:   #1
         b0 = new java/lang/StringBuilder();    [ R .......... i.....][ R .......... iR....]
-        return b0.append@extra(vR0.name).append@extra(":@").append@extra(vR0.scope).append@extra(" Public Key: ").append@extra(vR0.publicKey).toString@extra();   
+        return b0.append(vR0.name).append(":@").append(vR0.scope).append(" Public Key: ").append(vR0.publicKey).toString();   
   +END:   #1
  }
 // Register: rd 11/11 wr 24 swaps 13 any 2 found 0 toString
  
  method hashCode()I {
   +START:   #1
-        vi1 = vR0.name.hashCode@extra();    [   R] 
-        if vR0.publicKey==null goto B27;   
+        vi1 = vR0.name.hashCode();    [   R] 
+        if vR0.publicKey==null goto B25;   
   +B15:   #1
         vi1 = (vi1 | vR0.publicKey.hashCode());    
-  +B27:   #1
-        if vR0.scope==null goto B44;   
-  +B34:   #1
+  +B25:   #1
+        if vR0.scope==null goto B42;   
+  +B32:   #1
         vi1 = (vi1 | vR0.scope.hashCode());    
-  +B44:   #1
-        if vR0.info==null goto B61;   
-  +B51:   #1
-        vi1 = (vi1 | vR0.info.hashCode@extra());    
-  +B61:   #1
-        if vR0.certificates==null goto B78;   
-  +B68:   #1
+  +B42:   #1
+        if vR0.info==null goto B59;   
+  +B49:   #1
+        vi1 = (vi1 | vR0.info.hashCode());    
+  +B59:   #1
+        if vR0.certificates==null goto B76;   
+  +B66:   #1
         vi1 = (vi1 | vR0.certificates.hashCode());    
-  +B78:   #1
+  +B76:   #1
         return vi1;   
   +END:   #1
  }

@@ -10,29 +10,33 @@ class java/lang/Process {
  
  method getErrorStream()Ljava/io/InputStream; {
   -START:   #1
-        throw new java/lang/Error("NOT IMPLEMENTED");   
+        b0 = new java/lang/Error("NOT IMPLEMENTED");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getErrorStream
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 getErrorStream
  
  method waitFor()I {
   -START:   #1
-        throw new java/lang/Error("NOT IMPLEMENTED");   
+        b0 = new java/lang/Error("NOT IMPLEMENTED");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 waitFor
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 waitFor
  
  method exitValue()I {
   -START:   #1
-        throw new java/lang/Error("NOT IMPLEMENTED");   
+        b0 = new java/lang/Error("NOT IMPLEMENTED");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 exitValue
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 exitValue
  
  method destroy()V {
   -START:   #1
-        throw new java/lang/Error("NOT IMPLEMENTED");   
+        b0 = new java/lang/Error("NOT IMPLEMENTED");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 destroy
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 destroy
 }

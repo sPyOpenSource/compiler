@@ -11,22 +11,23 @@ class gnu/java/io/EncodingManager {
  method findDecoderConstructor(Ljava/lang/String;Z)Ljava/lang/reflect/Constructor; {
   +START:   #1
         b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
-        vR2 = getProperty@special(b0.append@extra("gnu.java.io.encoding_scheme_alias.").append@extra(vR0).toString@extra());    [ R iR. R..]
+        vR2 = getProperty@special(b0.append("gnu.java.io.encoding_scheme_alias.").append(vR0).toString());    [ R iR. R..]
         if vR2==null goto B29;   
   +B27:   #1
         vR0 = vR2;    
   +B29:   #1
-        vR3 = new java/util/StringTokenizer(encoding_path,":");    [ R ... i..][ R ... iRRR]
+        b0 = new java/util/StringTokenizer(encoding_path,":");    [ R ... i..][ R ... iRRR]
+        vR3 = b0;    
   +B42:   #1
         if vR3.hasMoreTokens()==0 goto B130;   
   +B49:   #1
         b0 = new java/lang/StringBuilder();    [ R ... i...][ R ... iR..]
-        vR4 = b0.append@extra(vR3.nextToken()).append@extra(".decode.Decoder").append@extra(vR0).toString@extra();    [RR R i...i R...] [RR R iR..i RR..] [RR R iRR.i RRR.] [RR R iRRRi RRRR] 
+        vR4 = b0.append(vR3.nextToken()).append(".decode.Decoder").append(vR0).toString();    [RR R i...i R...] [RR R iR..i RR..] [RR R iRR.i RRR.] [RR R iRRRi RRRR] 
   +B77:   #1
         vR5 = forName@special(vR4);    [RRR R ..... R...]
         vR6 = new java/lang/Class()[1];    
         vR6[0] = forName@special("java.io.InputStream");   
-        vR7 = vR5.getConstructor@extra(vR6);    [RRRRR R R.... RR..] 
+        vR7 = vR5.getConstructor(vR6);    [RRRRR R R.... RR..] 
         if vi1==0 goto B122;   
   +B112:   #1
         decoder_cons.put(vR0,vR7);   [RRRRRR R ..... RRR.] 
@@ -38,32 +39,34 @@ class gnu/java/io/EncodingManager {
         vR5 = <caught exception>;    
         goto +B42;   [RRRRRR R ..... ....]
   -B130:   #1
-        throw new java/io/UnsupportedEncodingException(vR0);   
+        b0 = new java/io/UnsupportedEncodingException(vR0);    [ R ..... i...][ R ..... iRR.]
+        throw b0;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
 77 - 124 handler 125 type 70
  }
-// Register: rd 14/14 wr 24 swaps 3 any 4 found 0 findDecoderConstructor
+// Register: rd 16/16 wr 26 swaps 3 any 5 found 0 findDecoderConstructor
  
  method findEncoderConstructor(Ljava/lang/String;Z)Ljava/lang/reflect/Constructor; {
   +START:   #1
         b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
-        vR2 = getProperty@special(b0.append@extra("gnu.java.io.encoding_scheme_alias.").append@extra(vR0).toString@extra());    [ R iR. R..]
+        vR2 = getProperty@special(b0.append("gnu.java.io.encoding_scheme_alias.").append(vR0).toString());    [ R iR. R..]
         if vR2==null goto B29;   
   +B27:   #1
         vR0 = vR2;    
   +B29:   #1
-        vR3 = new java/util/StringTokenizer(encoding_path,":");    [ R ... i..][ R ... iRRR]
+        b0 = new java/util/StringTokenizer(encoding_path,":");    [ R ... i..][ R ... iRRR]
+        vR3 = b0;    
   +B42:   #1
         if vR3.hasMoreTokens()==0 goto B130;   
   +B49:   #1
         b0 = new java/lang/StringBuilder();    [ R ... i...][ R ... iR..]
-        vR4 = b0.append@extra(vR3.nextToken()).append@extra(".encode.Encoder").append@extra(vR0).toString@extra();    [RR R i...i R...] [RR R iR..i RR..] [RR R iRR.i RRR.] [RR R iRRRi RRRR] 
+        vR4 = b0.append(vR3.nextToken()).append(".encode.Encoder").append(vR0).toString();    [RR R i...i R...] [RR R iR..i RR..] [RR R iRR.i RRR.] [RR R iRRRi RRRR] 
   +B77:   #1
         vR5 = forName@special(vR4);    [RRR R ..... R...]
         vR6 = new java/lang/Class()[1];    
         vR6[0] = forName@special("java.io.OutputStream");   
-        vR7 = vR5.getConstructor@extra(vR6);    [RRRRR R R.... RR..] 
+        vR7 = vR5.getConstructor(vR6);    [RRRRR R R.... RR..] 
         if vi1==0 goto B122;   
   +B112:   #1
         encoder_cons.put(vR0,vR7);   [RRRRRR R ..... RRR.] 
@@ -75,12 +78,13 @@ EXCEPTIONHANDLER-TABLE:
         vR5 = <caught exception>;    
         goto +B42;   [RRRRRR R ..... ....]
   -B130:   #1
-        throw new java/io/UnsupportedEncodingException(vR0);   
+        b0 = new java/io/UnsupportedEncodingException(vR0);    [ R ..... i...][ R ..... iRR.]
+        throw b0;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
 77 - 124 handler 125 type 70
  }
-// Register: rd 14/14 wr 24 swaps 3 any 4 found 0 findEncoderConstructor
+// Register: rd 16/16 wr 26 swaps 3 any 5 found 0 findEncoderConstructor
  
  method getDecoder()Lgnu/java/io/decode/Decoder; {
   +START:   #1

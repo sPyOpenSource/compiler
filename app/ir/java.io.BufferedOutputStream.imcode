@@ -49,7 +49,7 @@ class java/io/BufferedOutputStream {
   +B14:   #1
         arraycopy@special(vR1,vi2,vR0.buf,vR0.count,vi3);   [  Ri iiRiR]
         vR0.count = (vR0.count+vi3);   
-        goto +B55;   forward return[  Ri .....]
+        goto +B55;   [  Ri .....]
   +B41:   #1
         vR0.flush@this();   [  .. R....] 
         vR0.out.write(vR1,vi2,vi3);   [  .. iiRR.] 

@@ -138,13 +138,13 @@ class gnu/java/math/MPN {
   +B38:   #1
         vl3 = (vl0/(long)vi2);    
         vl5 = (vl0%(long)vi2);    
-        goto +B309;   forward return[il?l?l?l   .]
+        goto +B309;   [il?l?l?l   .]
   +B52:   #1
         vl11 = (vl0-((long)vi2 << 31));    
         vl3 = (vl11/(long)vi2);    
         vl5 = (vl11%(long)vi2);    
         vl3 = (vl3+-2147483648);    
-        goto +B309;   forward return[il?l?l?l?l   .]
+        goto +B309;   [il?l?l?l?l   .]
   +B83:   #1
         vl11 = (long)(vi2 >>> 1);    
         vl13 = (vl0 >>> 1);    
@@ -170,23 +170,23 @@ class gnu/java/math/MPN {
         if compare(vl5,vl3)< 0 goto B217;   
   +B208:   #1
         vl5 = (vl5-vl3);    
-        goto +B309;   forward return[il?l?l?l?l?l   .]
+        goto +B309;   [il?l?l?l?l?l   .]
   +B217:   #1
         if compare((vl3-vl5),((long)vi2 & 4294967295))> 0 goto B247;   
   +B231:   #1
         vl5 = ((vl5-vl3)+(long)vi2);    
         vl3 = (vl3-1);    
-        goto +B309;   forward return[il?l?l?l?l?l   .]
+        goto +B309;   [il?l?l?l?l?l   .]
   +B247:   #1
         vl5 = (((vl5-vl3)+(long)vi2)+(long)vi2);    
         vl3 = (vl3-2);    
-        goto +B309;   forward return[il?l?l?l?l?l   .]
+        goto +B309;   [il?l?l?l?l?l   .]
   +B268:   #1
         if compare(vl9,((long)-vi2 & 4294967295))< 0 goto B295;   
   +B281:   #1
         vl3 = -1;    
         vl5 = (vl9+(long)vi2);    
-        goto +B309;   forward return[il?l?l?l?l?l   .]
+        goto +B309;   [il?l?l?l?l?l   .]
   +B295:   #1
         vl3 = -2;    
         vl5 = ((vl9+(long)vi2)+(long)vi2);    
@@ -417,7 +417,7 @@ class gnu/java/math/MPN {
         vi4++;   
         vR0[b1] = vi7;   
   +B119:   #1
-        goto +B251;   forward return[iiiiii iii  ]
+        goto +B251;   [iiiiii iii  ]
   +B122:   #1
         vi5 = chars_per_word@special(vi3);    [iiiiii iii  i]
         vi6 = 0;    
@@ -477,7 +477,7 @@ class gnu/java/math/MPN {
         if (vi3 ^ -2147483648)<=(vi4 ^ -2147483648) goto B38;   
   +B34:   #1
         b0 = 1;    
-        goto +B39b0;   forward return[ii i  ]
+        goto +B39b0;   [ii i  ]
   +B38:   #1
         b0 = -1;    
   +B39b0:   #1 int
@@ -495,12 +495,12 @@ class gnu/java/math/MPN {
         if vi1<=vi3 goto B9;   
   +B5:   #1
         b0 = 1;    
-        goto +B24b0;   forward return[ i  ]
+        goto +B24b0;   [ i  ]
   +B9:   #1
         if vi1>=vi3 goto B18;   
   +B14:   #1
         b0 = -1;    
-        goto +B24b0;   forward return[ i  ]
+        goto +B24b0;   [ i  ]
   +B18:   #1
         b0 = cmp@special(vR0,vR2,vi1);    [ i  iRR]
   +B24b0:   #2 int
@@ -535,7 +535,7 @@ class gnu/java/math/MPN {
         if vi4<=0 goto B18;   
   +B5:   #1
         rshift@special(vR0,vR1,vi2,vi3,vi4);   [   iiiRR]
-        goto +B43;   forward return[   .....]
+        goto +B43;   [   .....]
   +B18:   #1
         vi5 = 0;    
   +B21:   #1
@@ -776,7 +776,7 @@ class gnu/java/math/MPN {
         if vi0>=0 goto B12;   
   +B6b0:   #1 int
         b1 = (vi0 ^ -1);    
-        goto +B13b0b1;   forward return[ ii  ]
+        goto +B13b0b1;   [ ii  ]
   +B12b0:   #1 int
         b1 = vi0;    
   +B13b0b1:   #1 int int

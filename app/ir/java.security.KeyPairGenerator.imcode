@@ -26,7 +26,7 @@ class java/security/KeyPairGenerator {
   +B12:   #1
         b0 = vR1[vi2];    
         b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
-        vR3 = b0.getProperty(b1.append@extra("KeyPairGenerator.").append@extra(vR0).toString@extra());    [Ri RR ii. RR.] 
+        vR3 = b0.getProperty(b1.append("KeyPairGenerator.").append(vR0).toString());    [Ri RR ii. RR.] 
         if vR3==null goto B51;   
   +B42:   #1
         return getInstance@special(vR3,vR0,vR1[vi2]);   
@@ -34,27 +34,29 @@ class java/security/KeyPairGenerator {
         vi2++;   
         goto +B6;   [RiR RR ... ...]
   -B57:   #1
-        throw new java/security/NoSuchAlgorithmException(vR0);   
+        b0 = new java/security/NoSuchAlgorithmException(vR0);    [ RR ... i..][ RR ... iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 12/12 wr 12 swaps 2 any 3 found 0 getInstance
+// Register: rd 13/13 wr 13 swaps 2 any 3 found 0 getInstance
  
  method getInstance(Ljava/lang/String;Ljava/lang/String;)Ljava/security/KeyPairGenerator; {
   +START:   #1
         vR2 = getProvider@special(vR1);    [ RR  R]
         if vR2!=null goto B17;   
   -B9:   #1
-        throw new java/security/NoSuchProviderException();   
+        b0 = new java/security/NoSuchProviderException();    [ RR  i][ RR  iR]
+        throw b0;   
   +B17:   #1
         b1 = new java/lang/StringBuilder();    [ RR  i.][ RR  iR]
-        return getInstance@special(vR2.getProperty(b1.append@extra("KeyPairGenerator.").append@extra(vR0).toString@extra()),vR0,vR2);   
+        return getInstance@special(vR2.getProperty(b1.append("KeyPairGenerator.").append(vR0).toString()),vR0,vR2);   
   +END:   #1
  }
-// Register: rd 3/3 wr 7 swaps 2 any 1 found 0 getInstance
+// Register: rd 4/4 wr 8 swaps 2 any 1 found 0 getInstance
  
  method getInstance(Ljava/lang/String;Ljava/lang/String;Ljava/security/Provider;)Ljava/security/KeyPairGenerator; {
   +START:   #4
-        vR3 = forName@special(vR0).newInstance@extra();    [ R . R] [ R R R]
+        vR3 = forName@special(vR0).newInstance();    [ R . R] [ R R R]
         vR4 = (java/security/KeyPairGenerator)(vR3);    
         vR4.algorithm = vR1;   
         vR4.provider = vR2;   
@@ -63,20 +65,23 @@ class java/security/KeyPairGenerator {
         return b0;   
   -H29<caught exception>:   #1 reference
         vR3 = <caught exception>;    
-        throw new java/security/NoSuchAlgorithmException("Class not found");   
+        b0 = new java/security/NoSuchAlgorithmException("Class not found");    [ R . i.][ R . iRR]
+        throw b0;   
   -H40<caught exception>:   #1 reference
         vR3 = <caught exception>;    
-        throw new java/security/NoSuchAlgorithmException("Class instantiation failed");   
+        b0 = new java/security/NoSuchAlgorithmException("Class instantiation failed");    [ R . i..][ R . iRR]
+        throw b0;   
   -H51<caught exception>:   #1 reference
         vR3 = <caught exception>;    
-        throw new java/security/NoSuchAlgorithmException("Illegal Access");   
+        b0 = new java/security/NoSuchAlgorithmException("Illegal Access");    [ R . i..][ R . iRR]
+        throw b0;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-0 - 28 handler 29 type 68
-0 - 28 handler 40 type 72
-0 - 28 handler 51 type 76
+0 - 28 handler 29 type 20
+0 - 28 handler 40 type 22
+0 - 28 handler 51 type 24
  }
-// Register: rd 11/11 wr 10 swaps 0 any 2 found 1 getInstance
+// Register: rd 14/14 wr 13 swaps 0 any 2 found 1 getInstance
  
  method getProvider()Ljava/security/Provider; {
   +START:   #1
@@ -128,12 +133,12 @@ EXCEPTIONHANDLER-TABLE:
         vR1 = <caught exception>;    
         b0 = err;    
         b1 = new java/lang/StringBuilder();    [ RR ... i.][ RR ... iR]
-        b0.println(b1.append@extra("genKeyPair failed: ").append@extra(vR1).toString@extra());   [R RR ii. RR.] 
+        b0.println(b1.append("genKeyPair failed: ").append(vR1).toString());   [R RR ii. RR.] 
         vR1.printStackTrace();   [R RR ii. R..] 
         return 0;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-0 - 10 handler 11 type 102
+0 - 10 handler 11 type 35
  }
 // Register: rd 4/4 wr 11 swaps 2 any 0 found 0 genKeyPair
  

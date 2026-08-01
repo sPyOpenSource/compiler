@@ -16,34 +16,34 @@ class jx/zero/classfile/datatypes/BCIntegerDatatype {
         tswitch (vi1) B80 B89 B98 B107 B116 B179 B125 B135 B145 B155 B164 B173 : B179;   
   +B80:   #1
         vl7 = (vl3+vl5);    
-        goto +B179;   forward return[l?l?l   ]
+        goto +B179;   [l?l?l   ]
   +B89:   #1
         vl7 = (vl3-vl5);    
-        goto +B179;   forward return[l?l?l   ]
+        goto +B179;   [l?l?l   ]
   +B98:   #1
         vl7 = (vl3*vl5);    
-        goto +B179;   forward return[l?l?l   ]
+        goto +B179;   [l?l?l   ]
   +B107:   #1
         vl7 = (vl3/vl5);    
-        goto +B179;   forward return[l?l?l   ]
+        goto +B179;   [l?l?l   ]
   +B116:   #1
         vl7 = (vl3%vl5);    
-        goto +B179;   forward return[l?l?l   ]
+        goto +B179;   [l?l?l   ]
   +B125:   #1
         vl7 = (vl3 << (int)vl5);    
-        goto +B179;   forward return[l?l?l   ]
+        goto +B179;   [l?l?l   ]
   +B135:   #1
         vl7 = (vl3 >> (int)vl5);    
-        goto +B179;   forward return[l?l?l   ]
+        goto +B179;   [l?l?l   ]
   +B145:   #1
         vl7 = (vl3 >>> (int)vl5);    
-        goto +B179;   forward return[l?l?l   ]
+        goto +B179;   [l?l?l   ]
   +B155:   #1
         vl7 = (vl3 & vl5);    
-        goto +B179;   forward return[l?l?l   ]
+        goto +B179;   [l?l?l   ]
   +B164:   #1
         vl7 = (vl3 | vl5);    
-        goto +B179;   forward return[l?l?l   ]
+        goto +B179;   [l?l?l   ]
   +B173:   #1
         vl7 = (vl3 ^ vl5);    
   +B179:   #12

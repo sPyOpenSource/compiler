@@ -60,7 +60,7 @@ class java/util/AbstractSet {
         vi2 = (vi2 | vR0.remove@this(vR3.next()));    
         goto +B27;   [iR  i ..]
   +B52:   #1
-        goto +B72;   forward return[iR  . ..]
+        goto +B72;   [iR  . ..]
   +B55:   #1
         vR3 = vR0.iterator@this();    [iR  . R.] 
   +B60:   #1

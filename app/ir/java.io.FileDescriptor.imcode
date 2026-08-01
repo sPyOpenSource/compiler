@@ -24,7 +24,7 @@ class java/io/FileDescriptor {
         if vR0.fd< 0 goto B11;   
   +B7:   #1
         b0 = 1;    
-        goto +B12b0;   forward return[ i  ]
+        goto +B12b0;   [ i  ]
   +B11:   #1
         b0 = 0;    
   +B12b0:   #1 int

@@ -3,27 +3,27 @@ class java/io/File {
  method <init>(Ljava/lang/String;)V {
   +START:   #1
         vR0.<init>@special();   [   R] 
-        vi2 = vR1.lastIndexOf@extra(47);    [   iR] 
+        vi2 = vR1.lastIndexOf(47);    [   iR] 
         if vi2>=0 goto B29;   
   +B15:   #1
         vR0.fileName = vR1;   
         vR0.pathName = "";   
         goto +B63;   [i   ..]
   +B29:   #1
-        vR0.fileName = vR1.substring@extra((vi2+1));   
+        vR0.fileName = vR1.substring((vi2+1));   
         if vi2!=0 goto B53;   
   +B44:   #1
         vR0.pathName = "/";   
         goto +B63;   [i  . ..]
   +B53:   #1
-        vR0.pathName = vR1.substring@extra(0,vi2);   
+        vR0.pathName = vR1.substring(0,vi2);   
   +B63:   #2
         vR0.name = vR1;   
         vR0.fs = (jx/fs/FS)(getInitialNaming@special().lookup("FS"));   
   +B85:   #1
         vR0.fsobj = vR0.fs.lookup("/index.html");   
   +B100:   #1
-        goto +B109;   forward return[i  .. ...]
+        goto +B109;   [i  .. ...]
   +H103<caught exception>:   #1 reference
         vR3 = <caught exception>;    
         vR0.fsobj = 0;   
@@ -50,7 +50,7 @@ EXCEPTIONHANDLER-TABLE:
         vR0.fileName = vR2;   
         vR0.name = vR0.fileName;   
         b1 = new java/lang/StringBuilder();    [ ?R  i][ ?R  iR]
-        vR0.pathName = b1.append@extra(vR1.getPath@extra()).append@extra("/").append@extra(vR2).toString@extra();   
+        vR0.pathName = b1.append(vR1.getPath()).append("/").append(vR2).toString();   
         return;   
   +END:   #1
  }
@@ -72,7 +72,7 @@ EXCEPTIONHANDLER-TABLE:
  
  method getCanonicalPath()Ljava/lang/String; {
   +START:   #1
-        return vR0.getAbsolutePath@extra();   
+        return vR0.getAbsolutePath@this();   
   +END:   #1
  }
 // Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getCanonicalPath
@@ -89,7 +89,7 @@ EXCEPTIONHANDLER-TABLE:
         if vR0.fsobj==null goto B11;   
   +B7:   #1
         b0 = 1;    
-        goto +B12b0;   forward return[ i  ]
+        goto +B12b0;   [ i  ]
   +B11:   #1
         b0 = 0;    
   +B12b0:   #1 int
@@ -100,17 +100,19 @@ EXCEPTIONHANDLER-TABLE:
  
  method canWrite()Z {
   -START:   #1
-        throw new java/lang/Error("not implemented");   
+        b0 = new java/lang/Error("not implemented");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 canWrite
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 canWrite
  
  method canRead()Z {
   -START:   #1
-        throw new java/lang/Error("not implemented");   
+        b0 = new java/lang/Error("not implemented");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 canRead
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 canRead
  
  method isFile()Z {
   +START:   #1
@@ -135,16 +137,16 @@ EXCEPTIONHANDLER-TABLE:
  
  method isAbsolute()Z {
   +START:   #1
-        if vR0.name.charAt@extra(0)==47 goto B53;   
+        if vR0.name.charAt(0)==47 goto B53;   
   +B13:   #1
-        if isLetter@special(vR0.name.charAt@extra(0))==0 goto B57;   
+        if isLetter@special(vR0.name.charAt(0))==0 goto B57;   
   +B27:   #1
-        if vR0.name.charAt@extra(1)!=58 goto B57;   
+        if vR0.name.charAt(1)!=58 goto B57;   
   +B40:   #1
-        if vR0.name.charAt@extra(2)!=92 goto B57;   
+        if vR0.name.charAt(2)!=92 goto B57;   
   +B53:   #1
         b0 = 1;    
-        goto +B58b0;   forward return[ i . ..]
+        goto +B58b0;   [ i . ..]
   +B57:   #3
         b0 = 0;    
   +B58b0:   #1 int
@@ -155,13 +157,13 @@ EXCEPTIONHANDLER-TABLE:
  
  method getAbsolutePath()Ljava/lang/String; {
   +START:   #1
-        if vR0.isAbsolute@extra()==0 goto B14;   
+        if vR0.isAbsolute@this()==0 goto B14;   
   +B7:   #1
         b0 = vR0.name;    
-        goto +B44b0;   forward return[ R  .]
+        goto +B44b0;   [ R  .]
   +B14:   #1
         b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
-        b0 = b0.append@extra(getProperty@special("user.dir")).append@extra("/").append@extra(vR0.name).toString@extra();    [ R ii...Ri R...] [ R iiR..Ri RR..] [ R iiRR.Ri RRR.] [ R iiRRRRi RRRR] 
+        b0 = b0.append(getProperty@special("user.dir")).append("/").append(vR0.name).toString();    [ R ii...Ri R...] [ R iiR..Ri RR..] [ R iiRR.Ri RRR.] [ R iiRRRRi RRRR] 
   +B44b0:   #1 reference
         return b0;   
   +END:   #1

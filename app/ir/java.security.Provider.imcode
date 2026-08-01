@@ -57,7 +57,7 @@ class java/security/Provider {
  method toString()Ljava/lang/String; {
   +START:   #1
         b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
-        return b0.append@extra(vR0.getClass@this().getName@extra()).append@extra(": name=").append@extra(vR0.getName@this()).append@extra(" version=").append@extra(vR0.version).toString@extra();   
+        return b0.append(vR0.getClass@this().getName()).append(": name=").append(vR0.getName@this()).append(" version=").append(vR0.version).toString();   
   +END:   #1
  }
 // Register: rd 3/3 wr 11 swaps 4 any 0 found 0 toString

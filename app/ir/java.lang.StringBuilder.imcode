@@ -18,8 +18,8 @@ class java/lang/StringBuilder {
  
  method <init>(Ljava/lang/String;)V {
   +START:   #1
-        vR0.<init>@special((vR1.length@extra()+16));   [  i iR] 
-        vR0.append@extra(vR1);   [  i RR] 
+        vR0.<init>@special((vR1.length()+16));   [  i iR] 
+        vR0.append@this(vR1);   [  i RR] 
         return;   
   +END:   #1
  }
@@ -35,7 +35,7 @@ class java/lang/StringBuilder {
  
  method append(Ljava/lang/Object;)Ljava/lang/StringBuilder; {
   +START:   #1
-        return vR0.append@extra(valueOf@special(vR1));   
+        return vR0.append@this(valueOf@special(vR1));   
   +END:   #1
  }
 // Register: rd 1/1 wr 1 swaps 1 any 0 found 0 append
@@ -98,10 +98,11 @@ class java/lang/StringBuilder {
  
  method toString()Ljava/lang/String; {
   +START:   #1
-        return new java/lang/String(vR0.value,0,vR0.count);   
+        b0 = new java/lang/String(vR0.value,0,vR0.count);    [ R  i][ R . iiiRR]
+        return b0;   
   +END:   #1
  }
-// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 toString
+// Register: rd 4/4 wr 2 swaps 0 any 0 found 0 toString
  
  method reverse()Ljava/lang/AbstractStringBuilder; {
   +START:   #1
@@ -203,7 +204,7 @@ class java/lang/StringBuilder {
  
  method insert(ILjava/lang/String;)Ljava/lang/AbstractStringBuilder; {
   +START:   #1
-        return vR0.insert@extra(vi1,vR2);   
+        return vR0.insert@this(vi1,vR2);   
   +END:   #1
  }
 // Register: rd 1/1 wr 0 swaps 0 any 0 found 0 insert
@@ -273,42 +274,42 @@ class java/lang/StringBuilder {
  
  method append(D)Ljava/lang/AbstractStringBuilder; {
   +START:   #1
-        return vR0.append@extra(vd1);   
+        return vR0.append@this(vd1);   
   +END:   #1
  }
 // Register: rd 1/1 wr 0 swaps 0 any 0 found 0 append
  
  method append(F)Ljava/lang/AbstractStringBuilder; {
   +START:   #1
-        return vR0.append@extra(vl1);   
+        return vR0.append@this(vl1);   
   +END:   #1
  }
 // Register: rd 1/1 wr 0 swaps 0 any 0 found 0 append
  
  method append(J)Ljava/lang/AbstractStringBuilder; {
   +START:   #1
-        return vR0.append@extra(vl1);   
+        return vR0.append@this(vl1);   
   +END:   #1
  }
 // Register: rd 1/1 wr 0 swaps 0 any 0 found 0 append
  
  method append(I)Ljava/lang/AbstractStringBuilder; {
   +START:   #1
-        return vR0.append@extra(vi1);   
+        return vR0.append@this(vi1);   
   +END:   #1
  }
 // Register: rd 1/1 wr 0 swaps 0 any 0 found 0 append
  
  method append(C)Ljava/lang/AbstractStringBuilder; {
   +START:   #1
-        return vR0.append@extra(vi1);   
+        return vR0.append@this(vi1);   
   +END:   #1
  }
 // Register: rd 1/1 wr 0 swaps 0 any 0 found 0 append
  
  method append(Z)Ljava/lang/AbstractStringBuilder; {
   +START:   #1
-        return vR0.append@extra(vi1);   
+        return vR0.append@this(vi1);   
   +END:   #1
  }
 // Register: rd 1/1 wr 0 swaps 0 any 0 found 0 append
@@ -350,14 +351,14 @@ class java/lang/StringBuilder {
  
  method append(Ljava/lang/String;)Ljava/lang/AbstractStringBuilder; {
   +START:   #1
-        return vR0.append@extra(vR1);   
+        return vR0.append@this(vR1);   
   +END:   #1
  }
 // Register: rd 1/1 wr 0 swaps 0 any 0 found 0 append
  
  method append(Ljava/lang/Object;)Ljava/lang/AbstractStringBuilder; {
   +START:   #1
-        return vR0.append@extra(vR1);   
+        return vR0.append@this(vR1);   
   +END:   #1
  }
 // Register: rd 1/1 wr 0 swaps 0 any 0 found 0 append
@@ -453,7 +454,7 @@ class java/lang/StringBuilder {
  
  method append(C)Ljava/lang/Appendable; {
   +START:   #1
-        return vR0.append@extra(vi1);   
+        return vR0.append@this(vi1);   
   +END:   #1
  }
 // Register: rd 1/1 wr 0 swaps 0 any 0 found 0 append

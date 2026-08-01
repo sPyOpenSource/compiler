@@ -6,7 +6,7 @@ class java/io/PushbackInputStream {
         if vR0.pushBack< 0 goto B15;   
   +B11b0:   #1 int
         b1 = 1;    
-        goto +B16b0b1;   forward return[ ii  .]
+        goto +B16b0b1;   [ ii  .]
   +B15b0:   #1 int
         b1 = 0;    
   +B16b0b1:   #1 int int
@@ -28,7 +28,7 @@ class java/io/PushbackInputStream {
   +B7:   #1
         vi1 = vR0.pushBack;    
         vR0.pushBack = -1;   
-        goto +B25;   forward return[i   ]
+        goto +B25;   [i   ]
   +B20:   #1
         vi1 = vR0.read@special();    [i   R] 
   +B25:   #1
@@ -55,13 +55,14 @@ class java/io/PushbackInputStream {
   +START:   #1
         if vR0.pushBack< 0 goto B15;   
   -B7:   #1
-        throw new java/io/IOException();   
+        b0 = new java/io/IOException();    [ R  i][ R  iR]
+        throw b0;   
   +B15:   #1
         vR0.pushBack = vi1;   
         return;   
   +END:   #1
  }
-// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 unread
+// Register: rd 4/4 wr 1 swaps 0 any 0 found 0 unread
  
  method <init>(Ljava/io/InputStream;)V {
   +START:   #1

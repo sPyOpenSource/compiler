@@ -2,10 +2,10 @@ class jx/fs/FS {
  
  method isPath(Ljava/lang/String;)Z {
   +START:   #1
-        if vR1.lastIndexOf@extra(47)==-1 goto B14;   
+        if vR1.lastIndexOf(47)==-1 goto B14;   
   +B10:   #1
         b0 = 1;    
-        goto +B15b0;   forward return[ i  ..]
+        goto +B15b0;   [ i  ..]
   +B14:   #1
         b0 = 0;    
   +B15b0:   #1 int
@@ -16,10 +16,10 @@ class jx/fs/FS {
  
  method isAbsolute(Ljava/lang/String;)Z {
   +START:   #1
-        if vR1.charAt@extra(0)!=47 goto B14;   
+        if vR1.charAt(0)!=47 goto B14;   
   +B10:   #1
         b0 = 1;    
-        goto +B15b0;   forward return[ i  ..]
+        goto +B15b0;   [ i  ..]
   +B14:   #1
         b0 = 0;    
   +B15b0:   #1 int

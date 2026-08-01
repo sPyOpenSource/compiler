@@ -88,7 +88,7 @@ class java/lang/Integer {
         if vR0.value!=(java/lang/Integer)(vR1).value goto B37;   
   +B33:   #1
         b0 = 1;    
-        goto +B38b0;   forward return[ i .. ..]
+        goto +B38b0;   [ i .. ..]
   +B37:   #1
         b0 = 0;    
   +B38b0:   #1 int
@@ -122,17 +122,19 @@ class java/lang/Integer {
  
  method floatValue()F {
   -START:   #1
-        throw new java/lang/Error();   
+        b0 = new java/lang/Error();    [ R  i][ R  iR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 floatValue
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 floatValue
  
  method doubleValue()D {
   -START:   #1
-        throw new java/lang/Error();   
+        b0 = new java/lang/Error();    [ R  i][ R  iR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 doubleValue
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 doubleValue
  
  method toString(I)Ljava/lang/String; {
   +START:   #1
@@ -143,11 +145,12 @@ class java/lang/Integer {
  
  method toString(II)Ljava/lang/String; {
   +START:   #1
-        vR2 = new java/lang/StringBuilder(10);    [ R  i][ R . iiR]
+        b0 = new java/lang/StringBuilder(10);    [ R  i][ R . iiR]
+        vR2 = b0;    
         if vi0!=0 goto B26;   
   +B14:   #1
-        vR2.append@extra(48);   [R R . iR.] 
-        return vR2.toString@extra();   
+        vR2.append(48);   [R R . iR.] 
+        return vR2.toString();   
   +B26:   #1
         vi3 = 0;    
         if vi0>=0 goto B37;   
@@ -157,19 +160,19 @@ class java/lang/Integer {
   +B37:   #2
         if vi0<=0 goto B60;   
   +B41:   #1
-        vR2.append@extra(forDigit@special((vi0%vi1),vi1));   [Ri R ii cR.] 
+        vR2.append(forDigit@special((vi0%vi1),vi1));   [Ri R ii cR.] 
         vi0 = (vi0/vi1);    
         goto +B37;   [Ri R ii ...]
   +B60:   #1
         if vi3==0 goto B71;   
   +B64:   #1
-        vR2.append@extra(45);   [Ri R .. iR.] 
+        vR2.append(45);   [Ri R .. iR.] 
   +B71:   #1
-        vR2.reverse@extra();   [Ri R .. R..] 
-        return vR2.toString@extra();   
+        vR2.reverse();   [Ri R .. R..] 
+        return vR2.toString();   
   +END:   #1
  }
-// Register: rd 16/16 wr 7 swaps 1 any 5 found 0 toString
+// Register: rd 17/17 wr 8 swaps 1 any 6 found 0 toString
  
  method toUnsignedString(II)Ljava/lang/String; {
   +START:   #1
@@ -184,7 +187,7 @@ class java/lang/Integer {
         if vi0==0 goto B56;   
   +B23:   #1
         b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
-        vR2 = b0.append@extra(forDigit@special((vi0 & vi4),vi3)).append@extra(vR2).toString@extra();    [Rii R ..ii R..] [Rii R R.ii RR.] [Rii R RRii RcR] 
+        vR2 = b0.append(forDigit@special((vi0 & vi4),vi3)).append(vR2).toString();    [Rii R ..ii R..] [Rii R R.ii RR.] [Rii R RRii RcR] 
         vi0 = (vi0 >>> vi1);    
         goto +B19;   [Rii R ..ii ...]
   +B56:   #1
@@ -225,52 +228,56 @@ class java/lang/Integer {
   +START:   #1
         if vR0==null goto B13;   
   +B4:   #1
-        if vR0.equals@extra("")==0 goto B21;   
+        if vR0.equals@this("")==0 goto B21;   
   -B13:   #1
-        throw new java/lang/NumberFormatException();   
+        b0 = new java/lang/NumberFormatException();    [ R . i.][ R . iR]
+        throw b0;   
   +B21:   #1
         if vi1<2 goto B32;   
   +B26:   #1
         if vi1<=36 goto B40;   
   -B32:   #1
-        throw new java/lang/NumberFormatException();   
+        b0 = new java/lang/NumberFormatException();    [ R . i.][ R . iR]
+        throw b0;   
   +B40:   #1
         vi2 = 0;    
         vi3 = 0;    
         vi4 = 0;    
-        if vR0.charAt@extra(vi2)!=45 goto B63;   
+        if vR0.charAt@this(vi2)!=45 goto B63;   
   +B57:   #1
         vi4 = 1;    
         vi2++;   
   +B63:   #2
-        if vi2>=vR0.length@extra() goto B108;   
+        if vi2>=vR0.length@this() goto B108;   
   +B71:   #1
-        vi5 = digit@special(vR0.charAt@extra(vi2),vi1);    [iii i c ic]
+        vi5 = digit@special(vR0.charAt@this(vi2),vi1);    [iii R c ic]
         if vi5>=0 goto B95;   
   -B87:   #1
-        throw new java/lang/NumberFormatException();   
+        b0 = new java/lang/NumberFormatException();    [ R . i.][ R . iR]
+        throw b0;   
   +B95:   #1
         vi3 = ((vi3*vi1)-vi5);    
         vi2++;   
-        goto +B63;   [iiii i . ..]
+        goto +B63;   [iiii R . ..]
   +B108:   #1
         if vi4!=0 goto B127;   
   +B113:   #1
         if vi3>=-2147483647 goto B127;   
   -B119:   #1
-        throw new java/lang/NumberFormatException();   
+        b0 = new java/lang/NumberFormatException();    [ R . i.][ R . iR]
+        throw b0;   
   +B127:   #2
         if vi4==0 goto B136;   
   +B132:   #1
         b0 = vi3;    
-        goto +B138b0;   forward return[iiii i . ..]
+        goto +B138b0;   [iiii i . ..]
   +B136:   #1
         b0 = -vi3;    
   +B138b0:   #1 int
         return b0;   
   +END:   #1
  }
-// Register: rd 21/21 wr 11 swaps 1 any 13 found 1 parseInt
+// Register: rd 25/25 wr 15 swaps 1 any 13 found 1 parseInt
  
  method decode(Ljava/lang/String;)Ljava/lang/Integer; {
   +START:   #1
@@ -281,17 +288,19 @@ class java/lang/Integer {
  
  method valueOf(Ljava/lang/String;)Ljava/lang/Integer; {
   +START:   #1
-        return new java/lang/Integer(parseInt@special(vR0));   
+        b0 = new java/lang/Integer(parseInt@special(vR0));    [ R  i][ R . iiR]
+        return b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 valueOf
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 valueOf
  
  method valueOf(Ljava/lang/String;I)Ljava/lang/Integer; {
   +START:   #1
-        return new java/lang/Integer(parseInt@special(vR0,vi1));   
+        b0 = new java/lang/Integer(parseInt@special(vR0,vi1));    [ R  i][ R . iiR]
+        return b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 valueOf
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 valueOf
  
  method getInteger(Ljava/lang/String;)Ljava/lang/Integer; {
   +START:   #1
@@ -306,7 +315,7 @@ class java/lang/Integer {
         if vR2!=null goto B21;   
   +B10:   #1
         b0 = new java/lang/Integer(vi1);    [ R  i.][ R . iiR]
-        goto +B22b0;   forward return[R R . ...]
+        goto +B22b0;   [R R . ...]
   +B21:   #1
         b0 = vR2;    
   +B22b0:   #1 reference
@@ -322,17 +331,17 @@ class java/lang/Integer {
   +B9:   #1
         return vR1;   
   +B11:   #1
-        if vR2.startsWith@extra("0x")==0 goto B31;   
+        if vR2.startsWith("0x")==0 goto B31;   
   +B20:   #1
-        return valueOf@special(vR2.substring@extra(2),16);   
+        return valueOf@special(vR2.substring(2),16);   
   +B31:   #1
-        if vR2.startsWith@extra("#")==0 goto B51;   
+        if vR2.startsWith("#")==0 goto B51;   
   +B40:   #1
-        return valueOf@special(vR2.substring@extra(1),16);   
+        return valueOf@special(vR2.substring(1),16);   
   +B51:   #1
-        if vR2.startsWith@extra("0")==0 goto B71;   
+        if vR2.startsWith("0")==0 goto B71;   
   +B60:   #1
-        return valueOf@special(vR2.substring@extra(1),8);   
+        return valueOf@special(vR2.substring(1),8);   
   +B71:   #2
         b0 = valueOf@special(vR2,10);    [R R . iR]
   +B77b0:   #1 reference

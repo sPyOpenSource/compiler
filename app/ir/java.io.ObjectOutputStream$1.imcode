@@ -53,7 +53,7 @@ class java/io/ObjectOutputStream$1 {
         return;   
   +END:   #1
  }
-// Register: rd 12/12 wr 7 swaps 0 any 2 found 0 put
+// Register: rd 12/12 wr 8 swaps 1 any 2 found 0 put
  
  method put(Ljava/lang/String;D)V {
   +START:   #1
@@ -93,7 +93,7 @@ class java/io/ObjectOutputStream$1 {
         return;   
   +END:   #1
  }
-// Register: rd 40/40 wr 33 swaps 0 any 14 found 0 put
+// Register: rd 40/40 wr 40 swaps 7 any 14 found 0 put
  
  method put(Ljava/lang/String;F)V {
   +START:   #1
@@ -117,7 +117,7 @@ class java/io/ObjectOutputStream$1 {
         return;   
   +END:   #1
  }
-// Register: rd 24/24 wr 14 swaps 0 any 6 found 0 put
+// Register: rd 24/24 wr 17 swaps 3 any 6 found 0 put
  
  method put(Ljava/lang/String;I)V {
   +START:   #1
@@ -140,7 +140,7 @@ class java/io/ObjectOutputStream$1 {
         return;   
   +END:   #1
  }
-// Register: rd 24/24 wr 13 swaps 0 any 6 found 0 put
+// Register: rd 24/24 wr 16 swaps 3 any 6 found 0 put
  
  method put(Ljava/lang/String;J)V {
   +START:   #1
@@ -179,7 +179,7 @@ class java/io/ObjectOutputStream$1 {
         return;   
   +END:   #1
  }
-// Register: rd 40/40 wr 33 swaps 0 any 14 found 0 put
+// Register: rd 40/40 wr 40 swaps 7 any 14 found 0 put
  
  method put(Ljava/lang/String;S)V {
   +START:   #1
@@ -194,22 +194,23 @@ class java/io/ObjectOutputStream$1 {
         return;   
   +END:   #1
  }
-// Register: rd 12/12 wr 7 swaps 0 any 2 found 0 put
+// Register: rd 12/12 wr 8 swaps 1 any 2 found 0 put
  
  method put(Ljava/lang/String;Ljava/lang/Object;)V {
   +START:   #1
         vR3 = access$000@special(vR0.this$0).getField(vR1);    [ R .R RR] [ R RR RR]
         if vR2==null goto B38;   
   +B16:   #1
-        if vR3.getType().isAssignableFrom@extra(vR2.getClass())!=0 goto B38;   
+        if vR3.getType().isAssignableFrom(vR2.getClass())!=0 goto B38;   
   -B30:   #1
-        throw new java/lang/IllegalArgumentException();   
+        b0 = new java/lang/IllegalArgumentException();    [ R .. i.][ R .. iR]
+        throw b0;   
   +B38:   #2
         vR0.objs[vR3.getOffset()] = vR2;   
         return;   
   +END:   #1
  }
-// Register: rd 9/9 wr 6 swaps 1 any 2 found 1 put
+// Register: rd 10/10 wr 7 swaps 1 any 2 found 1 put
  
  method write(Ljava/io/ObjectOutput;)V {
   +START:   #1

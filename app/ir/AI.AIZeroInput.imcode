@@ -16,12 +16,12 @@ class AI/AIZeroInput {
         b2 = new java/io/FileReader;    
         b3 = b2;    
         b4 = new java/lang/StringBuilder();    [ RRRRR  i][ RRRRR  iR]
-        b3.<init>@special(b4.append@extra(vR0.mem.getLogPath()).append@extra("LOG.TXT").toString@extra());   [ RRRRR ii.i RR.] 
+        b3.<init>@special(b4.append(vR0.mem.getLogPath()).append("LOG.TXT").toString());   [ RRRRR ii.i RR.] 
         b1.<init>@special(b2);   [ RRRRR ii.i RR.] 
         vR1 = b0;    
         vR2 = vR1.readLine();    [R RRRRR ii.i R..] 
   +B45:   #1
-        goto +B49;   forward return[RR RRRRR .... ...]
+        goto +B49;   [RR RRRRR .... ...]
   +H48<caught exception>:   #1 reference
         vR1 = <caught exception>;    
   +B49:   #1
@@ -39,7 +39,7 @@ EXCEPTIONHANDLER-TABLE:
         b2 = new java/io/FileReader;    
         b3 = b2;    
         b4 = new java/lang/StringBuilder();    [ RRRRR  i][ RRRRR  iR]
-        b3.<init>@special(b4.append@extra(vR0.mem.getLogPath()).append@extra("LOG.TXT").toString@extra());   [ RRRRR ii.i RR.] 
+        b3.<init>@special(b4.append(vR0.mem.getLogPath()).append("LOG.TXT").toString());   [ RRRRR ii.i RR.] 
         b1.<init>@special(b2);   [ RRRRR ii.i RR.] 
         vR2 = b0;    
   +B40:   #1
@@ -55,7 +55,7 @@ EXCEPTIONHANDLER-TABLE:
         goto -B68;   [RRR RRRRR .... ...]
   +H60<caught exception>:   #1 reference
         vR4 = <caught exception>;    
-        vR3.addSuppressed@extra(vR4);   [RRRR RRRRR .... RR.] 
+        vR3.addSuppressed(vR4);   [RRRR RRRRR .... RR.] 
   -B68:   #1
         throw vR3;   
   +B70:   #1
@@ -63,9 +63,9 @@ EXCEPTIONHANDLER-TABLE:
   +B74:   #1
         b0 = vR0.mem;    
         b1 = new java/lang/StringBuilder();    [ RRRRR .... i..][ RRRRR .... iR.]
-        b0.ImportBackup(b1.append@extra(vR0.mem.getLogPath()).append@extra(vR1).toString@extra());   [RR RRRRR i.i. RR.] 
+        b0.ImportBackup(b1.append(vR0.mem.getLogPath()).append(vR1).toString());   [RR RRRRR i.i. RR.] 
   +B105:   #2
-        goto +B113;   forward return[RR RRRRR .... ...]
+        goto +B113;   [RR RRRRR .... ...]
   +H108<caught exception>:   #1 reference
         vR1 = <caught exception>;    
         vR0.ImportBackupMemory@special();   [RRRR RRRRR .... R..] 

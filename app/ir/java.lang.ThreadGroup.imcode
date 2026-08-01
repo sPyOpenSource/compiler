@@ -317,7 +317,7 @@ EXCEPTIONHANDLER-TABLE:
   +START:   #1
         if vR0.stopOrSuspend@special(0)==0 goto B14;   
   +B8:   #1
-        currentThread@special().stop@extra();   [  . R.] [  R ..]
+        currentThread@special().stop();   [  . R.] [  R ..]
   +B14:   #1
         return;   
   +END:   #1
@@ -328,7 +328,7 @@ EXCEPTIONHANDLER-TABLE:
   +START:   #1
         if vR0.stopOrSuspend@special(1)==0 goto B14;   
   +B8:   #1
-        currentThread@special().suspend@extra();   [  . R.] [  R ..]
+        currentThread@special().suspend();   [  . R.] [  R ..]
   +B14:   #1
         return;   
   +END:   #1
@@ -353,10 +353,10 @@ EXCEPTIONHANDLER-TABLE:
   +B42:   #1
         if vi1==0 goto B59;   
   +B46:   #1
-        vR0.threads[vi7].suspend@extra();   [iR?RRi i  R] 
+        vR0.threads[vi7].suspend();   [iR?RRi i  R] 
         goto +B69;   [iR?RRi i  .]
   +B59:   #1
-        vR0.threads[vi7].stop@extra();   [iR?RRi i  R] 
+        vR0.threads[vi7].stop();   [iR?RRi i  R] 
   +B69:   #2
         vi7++;   
         goto +B17;   [iR?RRi i  .]
@@ -408,7 +408,7 @@ EXCEPTIONHANDLER-TABLE:
   +B7:   #1
         if vi4>=vR0.nthreads goto B32;   
   +B16:   #1
-        vR0.threads[vi4].resume@extra();   [??Ri   R] 
+        vR0.threads[vi4].resume();   [??Ri   R] 
         vi4++;   
         goto +B7;   [??Ri   .]
   +B32:   #1
@@ -433,7 +433,7 @@ EXCEPTIONHANDLER-TABLE:
   +B79:   #1
         if vi3>=vi1 goto B96;   
   +B84:   #1
-        vR2[vi3].resume@extra();   [iRii  . R....] 
+        vR2[vi3].resume();   [iRii  . R....] 
         vi3++;   
         goto +B79;   [iRii  . .....]
   +B96:   #1
@@ -453,7 +453,8 @@ EXCEPTIONHANDLER-TABLE:
   +B11:   #1
         if vR0.nthreads<=0 goto B26;   
   -B18:   #1
-        throw new java/lang/IllegalThreadStateException();   
+        b0 = new java/lang/IllegalThreadStateException();    [ R  i][ R  iR]
+        throw b0;   
   +B26:   #1
         vi1 = vR0.ngroups;    
         if vR0.groups==null goto B57;   
@@ -484,7 +485,7 @@ EXCEPTIONHANDLER-TABLE:
   +B105:   #1
         if vi3>=vi1 goto B122;   
   +B110:   #1
-        vR2[vi3].destroy@extra();   [iRi R . R....] 
+        vR2[vi3].destroy();   [iRi R . R....] 
         vi3++;   
         goto +B105;   [iRi R . .....]
   +B122:   #1
@@ -498,7 +499,7 @@ EXCEPTIONHANDLER-TABLE:
 4 - 93 handler 96 type 0
 96 - 100 handler 96 type 0
  }
-// Register: rd 21/21 wr 8 swaps 0 any 3 found 0 destroy
+// Register: rd 22/22 wr 9 swaps 0 any 3 found 0 destroy
  
  method add(Ljava/lang/ThreadGroup;)V {
   +START:   #1
@@ -506,7 +507,8 @@ EXCEPTIONHANDLER-TABLE:
         vR0.enter();   
         if vR0.destroyed==0 goto B19;   
   -B11:   #1
-        throw new java/lang/IllegalThreadStateException();   
+        b0 = new java/lang/IllegalThreadStateException();    [ R  i][ R  iR]
+        throw b0;   
   +B19:   #1
         if vR0.groups!=null goto B37;   
   +B26:   #1
@@ -522,7 +524,7 @@ EXCEPTIONHANDLER-TABLE:
         vR0.groups[vR0.ngroups] = vR1;   
         vR0.ngroups = (vR0.ngroups+1);   
         vR2.leave();   
-        goto +B110;   forward return[R R .. .....]
+        goto +B110;   [R R .. .....]
   +H103<caught exception>:   #2 reference
         vR4 = <caught exception>;    
         vR2.leave();   
@@ -535,7 +537,7 @@ EXCEPTIONHANDLER-TABLE:
 4 - 100 handler 103 type 0
 103 - 107 handler 103 type 0
  }
-// Register: rd 17/17 wr 5 swaps 0 any 2 found 0 add
+// Register: rd 18/18 wr 6 swaps 0 any 2 found 0 add
  
  method remove(Ljava/lang/ThreadGroup;)V {
   +START:   #1
@@ -570,10 +572,10 @@ EXCEPTIONHANDLER-TABLE:
   +B109:   #1
         if vR0.ngroups!=0 goto B120;   
   +B116:   #1
-        vR0.destroy@extra();   [Ri  .... R....] 
+        vR0.destroy@this();   [Ri  .... R....] 
   +B120:   #3
         vR2.leave();   
-        goto +B132;   forward return[Ri  .... .....]
+        goto +B132;   [Ri  .... .....]
   +H125<caught exception>:   #2 reference
         vR4 = <caught exception>;    
         vR2.leave();   
@@ -595,7 +597,8 @@ EXCEPTIONHANDLER-TABLE:
         vR0.enter();   
         if vR0.destroyed==0 goto B19;   
   -B11:   #1
-        throw new java/lang/IllegalThreadStateException();   
+        b0 = new java/lang/IllegalThreadStateException();    [ R  i][ R  iR]
+        throw b0;   
   +B19:   #1
         if vR0.threads!=null goto B37;   
   +B26:   #1
@@ -611,7 +614,7 @@ EXCEPTIONHANDLER-TABLE:
         vR0.threads[vR0.nthreads] = vR1;   
         vR0.nthreads = (vR0.nthreads+1);   
         vR2.leave();   
-        goto +B110;   forward return[R R .. .....]
+        goto +B110;   [R R .. .....]
   +H103<caught exception>:   #2 reference
         vR4 = <caught exception>;    
         vR2.leave();   
@@ -624,7 +627,7 @@ EXCEPTIONHANDLER-TABLE:
 4 - 100 handler 103 type 0
 103 - 107 handler 103 type 0
  }
-// Register: rd 17/17 wr 5 swaps 0 any 2 found 0 add
+// Register: rd 18/18 wr 6 swaps 0 any 2 found 0 add
  
  method remove(Ljava/lang/Thread;)V {
   +START:   #1
@@ -664,10 +667,10 @@ EXCEPTIONHANDLER-TABLE:
   +B106:   #1
         if vR0.ngroups!=0 goto B117;   
   +B113:   #1
-        vR0.destroy@extra();   [Ri RiR?ii . R....] 
+        vR0.destroy@this();   [Ri RiR?ii . R....] 
   +B117:   #3
         vR2.leave();   
-        goto +B129;   forward return[Ri RiR?ii . .....]
+        goto +B129;   [Ri RiR?ii . .....]
   +H122<caught exception>:   #2 reference
         vR4 = <caught exception>;    
         vR2.leave();   
@@ -759,7 +762,7 @@ EXCEPTIONHANDLER-TABLE:
         if vR0.parent==null goto B19;   
   +B7:   #1
         vR0.parent.uncaughtException(vR1,vR2);   [   RRR] 
-        goto +B33;   forward return[   ...]
+        goto +B33;   [   ...]
   +B19:   #1
         if (vR2 instanceof java/lang/ThreadDeath)!=0 goto B33;   
   +B26:   #1
@@ -780,7 +783,7 @@ EXCEPTIONHANDLER-TABLE:
  method toString()Ljava/lang/String; {
   +START:   #1
         b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
-        return b0.append@extra(vR0.getClass@this().getName@extra()).append@extra("[name=").append@extra(vR0.getName@extra()).append@extra(",maxpri=").append@extra(vR0.maxPriority).append@extra("]").toString@extra();   
+        return b0.append(vR0.getClass@this().getName()).append("[name=").append(vR0.getName@this()).append(",maxpri=").append(vR0.maxPriority).append("]").toString();   
   +END:   #1
  }
 // Register: rd 4/4 wr 14 swaps 6 any 0 found 0 toString

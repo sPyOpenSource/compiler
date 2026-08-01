@@ -15,34 +15,37 @@ class java/lang/Class {
         vR1 = cpuManager.getClass(vR0);    [ R . RR] 
         if vR1!=null goto B22;   
   -B14:   #1
-        throw new java/lang/ClassNotFoundException();   
+        b0 = new java/lang/ClassNotFoundException();    [ R . i.][ R . iR]
+        throw b0;   
   +B22:   #1
-        return new java/lang/Class(vR1);   
+        b0 = new java/lang/Class(vR1);    [ R . i.][ R . iRR]
+        return b0;   
   +END:   #1
  }
-// Register: rd 3/3 wr 3 swaps 0 any 1 found 0 forName
+// Register: rd 5/5 wr 5 swaps 0 any 1 found 0 forName
  
  method toString()Ljava/lang/String; {
   +START:   #1
         b0 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
-        if vR0.isInterface@extra()==0 goto B19;   
+        if vR0.isInterface@this()==0 goto B19;   
   +B14b0:   #1 reference
         b1 = "interface ";    
-        goto +B21b0b1;   forward return[ RR  ..]
+        goto +B21b0b1;   [ RR  ..]
   +B19b0:   #1 reference
         b1 = "class ";    
   +B21b0b1:   #1 reference reference
-        return b0.append@extra(b1).append@extra(vR0.getName@extra()).toString@extra();   
+        return b0.append(b1).append(vR0.getName@this()).toString();   
   +END:   #1
  }
 // Register: rd 4/4 wr 6 swaps 1 any 0 found 0 toString
  
  method getComponentType()Ljava/lang/Class; {
   -START:   #1
-        throw new java/lang/Error();   
+        b0 = new java/lang/Error();    [ R  i][ R  iR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getComponentType
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getComponentType
  
  method getName()Ljava/lang/String; {
   +START:   #1
@@ -60,17 +63,19 @@ class java/lang/Class {
  
  method isInstance(Ljava/lang/Object;)Z {
   -START:   #1
-        throw new java/lang/Error("NOT IMPLEMENTED");   
+        b0 = new java/lang/Error("NOT IMPLEMENTED");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 isInstance
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 isInstance
  
  method getDeclaredMethods()[Ljava/lang/reflect/Method; {
   -START:   #1
-        throw new java/lang/Error("NOT IMPLEMENTED");   
+        b0 = new java/lang/Error("NOT IMPLEMENTED");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getDeclaredMethods
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 getDeclaredMethods
  
  method getSuperclass()Ljava/lang/Class; {
   +START:   #1
@@ -109,59 +114,67 @@ class java/lang/Class {
  
  method isAssignableFrom(Ljava/lang/Class;)Z {
   -START:   #1
-        throw new java/lang/Error("NOT IMPLEMENTED");   
+        b0 = new java/lang/Error("NOT IMPLEMENTED");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 isAssignableFrom
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 isAssignableFrom
  
  method getConstructor([Ljava/lang/Class;)Ljava/lang/reflect/Constructor; {
   +START:   #1
-        return new java/lang/reflect/Constructor(vR0,vR1);   
+        b0 = new java/lang/reflect/Constructor(vR0,vR1);    [ R  i][ R . iRRR]
+        return b0;   
   +END:   #1
  }
-// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 getConstructor
+// Register: rd 4/4 wr 2 swaps 0 any 0 found 0 getConstructor
  
  method getDeclaredMethod(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method; {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getDeclaredMethod
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 getDeclaredMethod
  
  method isArray()Z {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 isArray
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 isArray
  
  method isPrimitive()Z {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 isPrimitive
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 isPrimitive
  
  method getMethod(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method; {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getMethod
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 getMethod
  
  method getFields()[Ljava/lang/reflect/Field; {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getFields
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 getFields
  
  method getField(Ljava/lang/String;)Ljava/lang/reflect/Field; {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getField
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 getField
  
  method desiredAssertionStatus()Z {
   +START:   #1
@@ -172,77 +185,87 @@ class java/lang/Class {
  
  method cast(Ljava/lang/Object;)Ljava/lang/Object; {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 cast
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 cast
  
  method getModifiers()I {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getModifiers
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 getModifiers
  
  method getDeclaredField(Ljava/lang/String;)Ljava/lang/reflect/Field; {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getDeclaredField
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 getDeclaredField
  
  method getDeclaredClasses()Ljava/lang/Iterable; {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getDeclaredClasses
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 getDeclaredClasses
  
  method asSubclass(Ljava/lang/Class;)Ljava/lang/Class; {
   +START:   #1
-        if vR1.isAssignableFrom@extra(vR0)==0 goto B10;   
+        if vR1.isAssignableFrom(vR0)==0 goto B10;   
   +B8:   #1
         return vR0;   
   -B10:   #1
-        throw new java/lang/ClassCastException(vR0.toString@extra());   
+        b0 = new java/lang/ClassCastException(vR0.toString@this());    [ R  i.][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 4/4 wr 1 swaps 0 any 0 found 0 asSubclass
+// Register: rd 5/5 wr 2 swaps 0 any 0 found 0 asSubclass
  
  method getDeclaredMethod(Ljava/lang/String;Ljava/lang/Class;Ljava/lang/Class;)Ljava/lang/invoke/MethodHandle; {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getDeclaredMethod
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 getDeclaredMethod
  
  method getDeclaredMethod(Ljava/lang/String;Ljava/lang/Class;Ljava/lang/Class;Ljava/lang/Class;Ljava/lang/Class;)Ljava/lang/invoke/MethodHandle; {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getDeclaredMethod
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 getDeclaredMethod
  
  method getSimpleName()Ljava/lang/String; {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getSimpleName
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 getSimpleName
  
  method enumConstantDirectory()Ljava/lang/Object; {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 enumConstantDirectory
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 enumConstantDirectory
  
  method getCanonicalName()Ljava/lang/String; {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getCanonicalName
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 getCanonicalName
  
  method <clinit>()V {
   +START:   #1

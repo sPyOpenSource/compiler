@@ -64,7 +64,8 @@ class java/lang/AbstractStringBuilder {
   +B22:   #1
         if vi1>=0 goto B34;   
   -B26:   #1
-        throw new java/lang/OutOfMemoryError();   
+        b0 = new java/lang/OutOfMemoryError();    [ R  i][ R  iR]
+        throw b0;   
   +B34:   #1
         vi2 = 2147483647;    
   +B37:   #1
@@ -72,7 +73,7 @@ class java/lang/AbstractStringBuilder {
         return;   
   +END:   #1
  }
-// Register: rd 8/8 wr 3 swaps 0 any 4 found 0 expandCapacity
+// Register: rd 9/9 wr 4 swaps 0 any 4 found 0 expandCapacity
  
  method trimToSize()V {
   +START:   #1
@@ -87,7 +88,8 @@ class java/lang/AbstractStringBuilder {
   +START:   #1
         if vi1>=0 goto B13;   
   -B4:   #1
-        throw new java/lang/StringIndexOutOfBoundsException(vi1);   
+        b0 = new java/lang/StringIndexOutOfBoundsException(vi1);    [ R  i][ R . iiR]
+        throw b0;   
   +B13:   #1
         vR0.ensureCapacityInternal@special(vi1);   [ R . iR.] 
         if vR0.count>=vi1 goto B57;   
@@ -103,7 +105,7 @@ class java/lang/AbstractStringBuilder {
         return;   
   +END:   #1
  }
-// Register: rd 14/14 wr 1 swaps 0 any 1 found 0 setLength
+// Register: rd 15/15 wr 2 swaps 0 any 1 found 0 setLength
  
  method charAt(I)C {
   +START:   #1
@@ -111,12 +113,13 @@ class java/lang/AbstractStringBuilder {
   +B4:   #1
         if vi1<vR0.count goto B21;   
   -B12:   #1
-        throw new java/lang/StringIndexOutOfBoundsException(vi1);   
+        b0 = new java/lang/StringIndexOutOfBoundsException(vi1);    [ R  i][ R . iiR]
+        throw b0;   
   +B21:   #1
         return vR0.value[vi1];   
   +END:   #1
  }
-// Register: rd 7/7 wr 1 swaps 0 any 2 found 0 charAt
+// Register: rd 8/8 wr 2 swaps 0 any 2 found 0 charAt
  
  method codePointAt(I)I {
   +START:   #1
@@ -124,12 +127,13 @@ class java/lang/AbstractStringBuilder {
   +B4:   #1
         if vi1<vR0.count goto B21;   
   -B12:   #1
-        throw new java/lang/StringIndexOutOfBoundsException(vi1);   
+        b0 = new java/lang/StringIndexOutOfBoundsException(vi1);    [ R  i][ R . iiR]
+        throw b0;   
   +B21:   #1
         return codePointAt@special(vR0.value,vi1);   
   +END:   #1
  }
-// Register: rd 6/6 wr 2 swaps 0 any 2 found 0 codePointAt
+// Register: rd 7/7 wr 3 swaps 0 any 2 found 0 codePointAt
  
  method codePointBefore(I)I {
   +START:   #1
@@ -138,12 +142,13 @@ class java/lang/AbstractStringBuilder {
   +B8:   #1
         if vi2<vR0.count goto B25;   
   -B16:   #1
-        throw new java/lang/StringIndexOutOfBoundsException(vi1);   
+        b0 = new java/lang/StringIndexOutOfBoundsException(vi1);    [ R  i][ R . iiR]
+        throw b0;   
   +B25:   #1
         return codePointBefore@special(vR0.value,vi1);   
   +END:   #1
  }
-// Register: rd 7/7 wr 3 swaps 0 any 3 found 0 codePointBefore
+// Register: rd 8/8 wr 4 swaps 0 any 3 found 0 codePointBefore
  
  method codePointCount(II)I {
   +START:   #1
@@ -153,12 +158,13 @@ class java/lang/AbstractStringBuilder {
   +B12:   #1
         if vi1<=vi2 goto B25;   
   -B17:   #2
-        throw new java/lang/IndexOutOfBoundsException();   
+        b0 = new java/lang/IndexOutOfBoundsException();    [ R  i][ R  iR]
+        throw b0;   
   +B25:   #1
         return codePointCountImpl@special(vR0.value,vi1,(vi2-vi1));   
   +END:   #1
  }
-// Register: rd 8/8 wr 2 swaps 0 any 3 found 0 codePointCount
+// Register: rd 9/9 wr 3 swaps 0 any 3 found 0 codePointCount
  
  method offsetByCodePoints(II)I {
   +START:   #1
@@ -166,34 +172,38 @@ class java/lang/AbstractStringBuilder {
   +B4:   #1
         if vi1<=vR0.count goto B20;   
   -B12:   #1
-        throw new java/lang/IndexOutOfBoundsException();   
+        b0 = new java/lang/IndexOutOfBoundsException();    [ R  i][ R  iR]
+        throw b0;   
   +B20:   #1
         return offsetByCodePointsImpl@special(vR0.value,0,vR0.count,vi1,vi2);   
   +END:   #1
  }
-// Register: rd 5/5 wr 2 swaps 0 any 2 found 0 offsetByCodePoints
+// Register: rd 6/6 wr 3 swaps 0 any 2 found 0 offsetByCodePoints
  
  method getChars(II[CI)V {
   +START:   #1
         if vi1>=0 goto B13;   
   -B4:   #1
-        throw new java/lang/StringIndexOutOfBoundsException(vi1);   
+        b0 = new java/lang/StringIndexOutOfBoundsException(vi1);    [ R  i][ R . iiR]
+        throw b0;   
   +B13:   #1
         if vi2< 0 goto B25;   
   +B17:   #1
         if vi2<=vR0.count goto B34;   
   -B25:   #1
-        throw new java/lang/StringIndexOutOfBoundsException(vi2);   
+        b0 = new java/lang/StringIndexOutOfBoundsException(vi2);    [ R . i..][ R . iiR]
+        throw b0;   
   +B34:   #1
         if vi1<=vi2 goto B49;   
   -B39:   #1
-        throw new java/lang/StringIndexOutOfBoundsException("srcBegin > srcEnd");   
+        b0 = new java/lang/StringIndexOutOfBoundsException("srcBegin > srcEnd");    [ R . i..][ R . iRR]
+        throw b0;   
   +B49:   #1
         arraycopy@special(vR0.value,vi1,vR3,vi4,(vi2-vi1));   [ R Ri iiRiR]
         return;   
   +END:   #1
  }
-// Register: rd 14/14 wr 5 swaps 0 any 4 found 0 getChars
+// Register: rd 17/17 wr 8 swaps 0 any 4 found 0 getChars
  
  method setCharAt(IC)V {
   +START:   #1
@@ -201,13 +211,14 @@ class java/lang/AbstractStringBuilder {
   +B4:   #1
         if vi1<vR0.count goto B21;   
   -B12:   #1
-        throw new java/lang/StringIndexOutOfBoundsException(vi1);   
+        b0 = new java/lang/StringIndexOutOfBoundsException(vi1);    [ R  i][ R . iiR]
+        throw b0;   
   +B21:   #1
         vR0.value[vi1] = vi2;   
         return;   
   +END:   #1
  }
-// Register: rd 8/8 wr 1 swaps 0 any 3 found 0 setCharAt
+// Register: rd 9/9 wr 2 swaps 0 any 3 found 0 setCharAt
  
  method append(Ljava/lang/Object;)Ljava/lang/AbstractStringBuilder; {
   +START:   #1
@@ -222,9 +233,9 @@ class java/lang/AbstractStringBuilder {
   +B4:   #1
         vR1 = "null";    
   +B7:   #1
-        vi2 = vR1.length@extra();    [   R] 
+        vi2 = vR1.length();    [   R] 
         vR0.ensureCapacityInternal@special((vR0.count+vi2));   [i  i iR] 
-        vR1.getChars@extra(0,vi2,vR0.value,vR0.count);   [i  iii iRiiR] 
+        vR1.getChars(0,vi2,vR0.value,vR0.count);   [i  iii iRiiR] 
         vR0.count = (vR0.count+vi2);   
         return vR0;   
   +END:   #1
@@ -280,7 +291,7 @@ class java/lang/AbstractStringBuilder {
         b0 = new java/lang/IndexOutOfBoundsException;    
         b1 = b0;    
         b2 = new java/lang/StringBuilder();    [ RRR  i][ RRR  iR]
-        b1.<init>@special(b2.append@extra("start ").append@extra(vi2).append@extra(", end ").append@extra(vi3).append@extra(", s.length() ").append@extra(vR1.length()).toString@extra());   [ RRR iiiii..... RR.....] 
+        b1.<init>@special(b2.append("start ").append(vi2).append(", end ").append(vi3).append(", s.length() ").append(vR1.length()).toString());   [ RRR iiiii..... RR.....] 
         throw b0;   
   +B76:   #1
         vi4 = (vi3-vi2);    
@@ -350,7 +361,7 @@ class java/lang/AbstractStringBuilder {
         b1 = b2;    
         vR0.count = (b2+1);   
         b0[b1] = 101;   
-        goto +B189;   forward return[ Rii i ..]
+        goto +B189;   [ Rii i ..]
   +B89:   #1
         vR0.ensureCapacityInternal@special((vR0.count+5));   [ Rii i iR] 
         b0 = vR0.value;    
@@ -463,7 +474,8 @@ class java/lang/AbstractStringBuilder {
   +START:   #1
         if vi1>=0 goto B13;   
   -B4:   #1
-        throw new java/lang/StringIndexOutOfBoundsException(vi1);   
+        b0 = new java/lang/StringIndexOutOfBoundsException(vi1);    [ R  i][ R . iiR]
+        throw b0;   
   +B13:   #1
         if vi2<=vR0.count goto B26;   
   +B21:   #1
@@ -471,7 +483,8 @@ class java/lang/AbstractStringBuilder {
   +B26:   #1
         if vi1<=vi2 goto B39;   
   -B31:   #1
-        throw new java/lang/StringIndexOutOfBoundsException();   
+        b0 = new java/lang/StringIndexOutOfBoundsException();    [ R . i..][ R . iR.]
+        throw b0;   
   +B39:   #1
         vi3 = (vi2-vi1);    
         if vi3<=0 goto B78;   
@@ -482,7 +495,7 @@ class java/lang/AbstractStringBuilder {
         return vR0;   
   +END:   #1
  }
-// Register: rd 21/21 wr 7 swaps 0 any 5 found 0 delete
+// Register: rd 23/23 wr 9 swaps 0 any 5 found 0 delete
  
  method appendCodePoint(I)Ljava/lang/AbstractStringBuilder; {
   +START:   #1
@@ -492,21 +505,22 @@ class java/lang/AbstractStringBuilder {
         vR0.ensureCapacityInternal@special((vi2+1));   [i R i iR] 
         vR0.value[vi2] = (char)vi1;   
         vR0.count = (vi2+1);   
-        goto +B78;   forward return[i R i ..]
+        goto +B78;   [i R i ..]
   +B37:   #1
         if isValidCodePoint@special(vi1)==0 goto B70;   
   +B44:   #1
         vR0.ensureCapacityInternal@special((vi2+2));   [i R i iR] 
         toSurrogates@special(vi1,vR0.value,vi2);   [i R iR iRi]
         vR0.count = (vi2+2);   
-        goto +B78;   forward return[i R iR ...]
+        goto +B78;   [i R iR ...]
   -B70:   #1
-        throw new java/lang/IllegalArgumentException();   
+        b0 = new java/lang/IllegalArgumentException();    [ R .. i..][ R .. iR.]
+        throw b0;   
   +B78:   #2
         return vR0;   
   +END:   #1
  }
-// Register: rd 14/14 wr 4 swaps 2 any 1 found 0 appendCodePoint
+// Register: rd 15/15 wr 5 swaps 2 any 1 found 0 appendCodePoint
  
  method deleteCharAt(I)Ljava/lang/AbstractStringBuilder; {
   +START:   #1
@@ -514,43 +528,47 @@ class java/lang/AbstractStringBuilder {
   +B4:   #1
         if vi1<vR0.count goto B21;   
   -B12:   #1
-        throw new java/lang/StringIndexOutOfBoundsException(vi1);   
+        b0 = new java/lang/StringIndexOutOfBoundsException(vi1);    [ R  i][ R . iiR]
+        throw b0;   
   +B21:   #1
         arraycopy@special(vR0.value,(vi1+1),vR0.value,vi1,((vR0.count-vi1)-1));   [ R RiRi iiRiR]
         vR0.count = (vR0.count-1);   
         return vR0;   
   +END:   #1
  }
-// Register: rd 13/13 wr 5 swaps 0 any 2 found 0 deleteCharAt
+// Register: rd 14/14 wr 6 swaps 0 any 2 found 0 deleteCharAt
  
  method replace(IILjava/lang/String;)Ljava/lang/AbstractStringBuilder; {
   +START:   #1
         if vi1>=0 goto B13;   
   -B4:   #1
-        throw new java/lang/StringIndexOutOfBoundsException(vi1);   
+        b0 = new java/lang/StringIndexOutOfBoundsException(vi1);    [ R  i][ R . iiR]
+        throw b0;   
   +B13:   #1
         if vi1<=vR0.count goto B31;   
   -B21:   #1
-        throw new java/lang/StringIndexOutOfBoundsException("start > length()");   
+        b0 = new java/lang/StringIndexOutOfBoundsException("start > length()");    [ R . i..][ R . iRR]
+        throw b0;   
   +B31:   #1
         if vi1<=vi2 goto B46;   
   -B36:   #1
-        throw new java/lang/StringIndexOutOfBoundsException("start > end");   
+        b0 = new java/lang/StringIndexOutOfBoundsException("start > end");    [ R . i..][ R . iRR]
+        throw b0;   
   +B46:   #1
         if vi2<=vR0.count goto B59;   
   +B54:   #1
         vi2 = vR0.count;    
   +B59:   #1
-        vi4 = vR3.length@extra();    [ R . R..] 
+        vi4 = vR3.length();    [ R . R..] 
         vi5 = ((vR0.count+vi4)-(vi2-vi1));    
         vR0.ensureCapacityInternal@special(vi5);   [ii R . iR.] 
         arraycopy@special(vR0.value,vi2,vR0.value,(vi1+vi4),(vR0.count-vi2));   [ii R RRii iiRiR]
-        vR3.getChars@extra(vR0.value,vi1);   [ii R RRiii iRR..] 
+        vR3.getChars(vR0.value,vi1);   [ii R RRiii iRR..] 
         vR0.count = vi5;   
         return vR0;   
   +END:   #1
  }
-// Register: rd 29/29 wr 11 swaps 1 any 4 found 0 replace
+// Register: rd 32/32 wr 14 swaps 1 any 4 found 0 replace
  
  method substring(I)Ljava/lang/String; {
   +START:   #1
@@ -570,20 +588,24 @@ class java/lang/AbstractStringBuilder {
   +START:   #1
         if vi1>=0 goto B13;   
   -B4:   #1
-        throw new java/lang/StringIndexOutOfBoundsException(vi1);   
+        b0 = new java/lang/StringIndexOutOfBoundsException(vi1);    [ R  i][ R . iiR]
+        throw b0;   
   +B13:   #1
         if vi2<=vR0.count goto B30;   
   -B21:   #1
-        throw new java/lang/StringIndexOutOfBoundsException(vi2);   
+        b0 = new java/lang/StringIndexOutOfBoundsException(vi2);    [ R . i..][ R . iiR]
+        throw b0;   
   +B30:   #1
         if vi1<=vi2 goto B46;   
   -B35:   #1
-        throw new java/lang/StringIndexOutOfBoundsException((vi2-vi1));   
+        b0 = new java/lang/StringIndexOutOfBoundsException((vi2-vi1));    [ R . i..][ R . iiR]
+        throw b0;   
   +B46:   #1
-        return new java/lang/String(vR0.value,vi1,(vi2-vi1));   
+        b0 = new java/lang/String(vR0.value,vi1,(vi2-vi1));    [ R . i..][ R . iiiRR]
+        return b0;   
   +END:   #1
  }
-// Register: rd 17/17 wr 4 swaps 0 any 3 found 0 substring
+// Register: rd 21/21 wr 8 swaps 0 any 3 found 0 substring
  
  method insert(I[CII)Ljava/lang/AbstractStringBuilder; {
   +START:   #1
@@ -591,7 +613,8 @@ class java/lang/AbstractStringBuilder {
   +B4:   #1
         if vi1<=vR0.length@this() goto B21;   
   -B12:   #1
-        throw new java/lang/StringIndexOutOfBoundsException(vi1);   
+        b0 = new java/lang/StringIndexOutOfBoundsException(vi1);    [ RRR  i][ RRR . iiR]
+        throw b0;   
   +B21:   #1
         if vi3< 0 goto B39;   
   +B25:   #1
@@ -602,7 +625,7 @@ class java/lang/AbstractStringBuilder {
         b0 = new java/lang/StringIndexOutOfBoundsException;    
         b1 = b0;    
         b2 = new java/lang/StringBuilder();    [ RRR . i..][ RRR . iR.]
-        b1.<init>@special(b2.append@extra("offset ").append@extra(vi3).append@extra(", len ").append@extra(vi4).append@extra(", str.length ").append@extra(vR2.length).toString@extra());   [ RRR iiiii..... RR.....] 
+        b1.<init>@special(b2.append("offset ").append(vi3).append(", len ").append(vi4).append(", str.length ").append(vR2.length).toString());   [ RRR iiiii..... RR.....] 
         throw b0;   
   +B86:   #1
         vR0.ensureCapacityInternal@special((vR0.count+vi4));   [ RRR i......... iR.....] 
@@ -612,7 +635,7 @@ class java/lang/AbstractStringBuilder {
         return vR0;   
   +END:   #1
  }
-// Register: rd 30/30 wr 21 swaps 7 any 6 found 1 insert
+// Register: rd 31/31 wr 22 swaps 7 any 6 found 1 insert
  
  method insert(ILjava/lang/Object;)Ljava/lang/AbstractStringBuilder; {
   +START:   #1
@@ -627,21 +650,22 @@ class java/lang/AbstractStringBuilder {
   +B4:   #1
         if vi1<=vR0.length@this() goto B21;   
   -B12:   #1
-        throw new java/lang/StringIndexOutOfBoundsException(vi1);   
+        b0 = new java/lang/StringIndexOutOfBoundsException(vi1);    [ R  i][ R . iiR]
+        throw b0;   
   +B21:   #1
         if vR2!=null goto B28;   
   +B25:   #1
         vR2 = "null";    
   +B28:   #1
-        vi3 = vR2.length@extra();    [ R . R..] 
+        vi3 = vR2.length();    [ R . R..] 
         vR0.ensureCapacityInternal@special((vR0.count+vi3));   [i R i iR.] 
         arraycopy@special(vR0.value,vi1,vR0.value,(vi1+vi3),(vR0.count-vi1));   [i R iRRii iiRiR]
-        vR2.getChars@extra(vR0.value,vi1);   [i R iRRiii iRR..] 
+        vR2.getChars(vR0.value,vi1);   [i R iRRiii iRR..] 
         vR0.count = (vR0.count+vi3);   
         return vR0;   
   +END:   #1
  }
-// Register: rd 23/23 wr 9 swaps 2 any 3 found 1 insert
+// Register: rd 24/24 wr 10 swaps 2 any 3 found 1 insert
  
  method insert(I[C)Ljava/lang/AbstractStringBuilder; {
   +START:   #1
@@ -649,7 +673,8 @@ class java/lang/AbstractStringBuilder {
   +B4:   #1
         if vi1<=vR0.length@this() goto B21;   
   -B12:   #1
-        throw new java/lang/StringIndexOutOfBoundsException(vi1);   
+        b0 = new java/lang/StringIndexOutOfBoundsException(vi1);    [ R  i][ R . iiR]
+        throw b0;   
   +B21:   #1
         vi3 = vR2.length;    
         vR0.ensureCapacityInternal@special((vR0.count+vi3));   [i R i iR.] 
@@ -659,7 +684,7 @@ class java/lang/AbstractStringBuilder {
         return vR0;   
   +END:   #1
  }
-// Register: rd 21/21 wr 8 swaps 1 any 2 found 1 insert
+// Register: rd 22/22 wr 9 swaps 1 any 2 found 1 insert
  
  method insert(ILjava/lang/CharSequence;)Ljava/lang/AbstractStringBuilder; {
   +START:   #1
@@ -677,7 +702,7 @@ class java/lang/AbstractStringBuilder {
         b0 = new java/lang/IndexOutOfBoundsException;    
         b1 = b0;    
         b2 = new java/lang/StringBuilder();    [ RRR  i][ RRR  iR]
-        b1.<init>@special(b2.append@extra("dstOffset ").append@extra(vi1).toString@extra());   [ RRR ii. RR.] 
+        b1.<init>@special(b2.append("dstOffset ").append(vi1).toString());   [ RRR ii. RR.] 
         throw b0;   
   +B39:   #1
         if vi3< 0 goto B65;   
@@ -691,7 +716,7 @@ class java/lang/AbstractStringBuilder {
         b0 = new java/lang/IndexOutOfBoundsException;    
         b1 = b0;    
         b2 = new java/lang/StringBuilder();    [ RRR ... i..][ RRR ... iR.]
-        b1.<init>@special(b2.append@extra("start ").append@extra(vi3).append@extra(", end ").append@extra(vi4).append@extra(", s.length() ").append@extra(vR2.length()).toString@extra());   [ RRR iiiii..... RR.....] 
+        b1.<init>@special(b2.append("start ").append(vi3).append(", end ").append(vi4).append(", s.length() ").append(vR2.length()).toString());   [ RRR iiiii..... RR.....] 
         throw b0;   
   +B116:   #1
         vi5 = (vi4-vi3);    
@@ -769,7 +794,7 @@ class java/lang/AbstractStringBuilder {
  
  method indexOf(Ljava/lang/String;I)I {
   +START:   #1
-        return indexOf@special(vR0.value,0,vR0.count,vR1.toCharArray@extra(),0,vR1.length@extra(),vi2);   
+        return indexOf@special(vR0.value,0,vR0.count,vR1.toCharArray(),0,vR1.length(),vi2);   
   +END:   #1
  }
 // Register: rd 7/7 wr 7 swaps 1 any 0 found 0 indexOf
@@ -783,7 +808,7 @@ class java/lang/AbstractStringBuilder {
  
  method lastIndexOf(Ljava/lang/String;I)I {
   +START:   #1
-        return lastIndexOf@special(vR0.value,0,vR0.count,vR1.toCharArray@extra(),0,vR1.length@extra(),vi2);   
+        return lastIndexOf@special(vR0.value,0,vR0.count,vR1.toCharArray(),0,vR1.length(),vi2);   
   +END:   #1
  }
 // Register: rd 7/7 wr 7 swaps 1 any 0 found 0 lastIndexOf

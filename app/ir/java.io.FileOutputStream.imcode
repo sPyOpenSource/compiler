@@ -22,23 +22,25 @@ class java/io/FileOutputStream {
   +START:   #1
         if vR0.fd!=null goto B15;   
   -B7:   #1
-        throw new java/io/IOException();   
+        b0 = new java/io/IOException();    [ R  i][ R  iR]
+        throw b0;   
   +B15:   #1
         return vR0.fd;   
   +END:   #1
  }
-// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 getFD
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 getFD
  
  method write([BII)V {
   +START:   #1
         if vR0.fd!=null goto B15;   
   -B7:   #1
-        throw new java/io/IOException();   
+        b0 = new java/io/IOException();    [ R  i][ R  iR]
+        throw b0;   
   +B15:   #1
         return;   
   +END:   #1
  }
-// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 write
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 write
  
  method write([B)V {
   +START:   #1
@@ -52,29 +54,30 @@ class java/io/FileOutputStream {
   +START:   #1
         vR2 = new byte[1];    
         vR2[0] = (byte)(vi1 & 255);   
-        vR0.write@this(vR2);   [R   RR] 
+        vR0.write@this(vR2);   [R  ? RR] 
         return;   
   +END:   #1
  }
-// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 write
+// Register: rd 3/3 wr 2 swaps 0 any 0 found 0 write
  
  method <init>(Ljava/lang/String;)V {
   +START:   #1
         vR0.<init>@special();   [ RR  R] 
         b1 = new java/io/FileDescriptor();    [ RR  i][ RR  iR]
         vR0.fd = b1;   
-        if vR0.fd.valid@extra()!=0 goto B33;   
+        if vR0.fd.valid()!=0 goto B33;   
   -B25:   #1
-        throw new java/io/IOException();   
+        b0 = new java/io/IOException();    [ RR  i.][ RR  iR]
+        throw b0;   
   +B33:   #1
         return;   
   +END:   #1
  }
-// Register: rd 4/4 wr 1 swaps 0 any 0 found 0 <init>
+// Register: rd 5/5 wr 2 swaps 0 any 0 found 0 <init>
  
  method <init>(Ljava/io/File;)V {
   +START:   #1
-        vR0.<init>@special(vR1.getPath@extra());   [  i RR] 
+        vR0.<init>@special(vR1.getPath());   [  i RR] 
         return;   
   +END:   #1
  }

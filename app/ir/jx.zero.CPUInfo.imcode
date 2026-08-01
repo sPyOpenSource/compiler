@@ -29,7 +29,7 @@ class jx/zero/CPUInfo {
         if (vR0.features & 4096)==0 goto B15;   
   +B11:   #1
         b0 = 1;    
-        goto +B16b0;   forward return[ i  ]
+        goto +B16b0;   [ i  ]
   +B15:   #1
         b0 = 0;    
   +B16b0:   #1 int

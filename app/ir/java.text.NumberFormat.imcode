@@ -181,43 +181,48 @@ class java/text/NumberFormat {
  
  method format(J)Ljava/lang/String; {
   +START:   #1
-        vR3 = new java/lang/StringBuffer("");    [ R??R  i][ R??R . iRR]
+        b0 = new java/lang/StringBuffer("");    [ R??R  i][ R??R . iRR]
+        vR3 = b0;    
         b3 = new java/text/FieldPosition(0);    [ R??R . i..][ R??R . iiR]
         vR0.format@this(vl1,vR3,b3);   [?R R??R . RR??R] 
         return vR3.toString();   
   +END:   #1
  }
-// Register: rd 5/5 wr 4 swaps 0 any 0 found 0 format
+// Register: rd 6/6 wr 5 swaps 0 any 1 found 0 format
  
  method format(D)Ljava/lang/String; {
   +START:   #1
-        vR3 = new java/lang/StringBuffer("");    [ R??R  i][ R??R . iRR]
+        b0 = new java/lang/StringBuffer("");    [ R??R  i][ R??R . iRR]
+        vR3 = b0;    
         b3 = new java/text/FieldPosition(1);    [ R??R . i..][ R??R . iiR]
         vR0.format@this(vd1,vR3,b3);   [?R R??R . RR??R] 
         return vR3.toString();   
   +END:   #1
  }
-// Register: rd 5/5 wr 4 swaps 0 any 0 found 0 format
+// Register: rd 6/6 wr 5 swaps 0 any 1 found 0 format
  
  method format(Ljava/lang/Object;Ljava/lang/StringBuffer;Ljava/text/FieldPosition;)Ljava/lang/StringBuffer; {
   -START:   #1
-        throw new java/lang/Error("NOT IMPLEMENTED");   
+        b0 = new java/lang/Error("NOT IMPLEMENTED");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 format
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 format
  
  method parse(Ljava/lang/String;)Ljava/lang/Number; {
   +START:   #1
-        vR2 = new java/text/ParsePosition(0);    [ R  i][ R . iiR]
+        b0 = new java/text/ParsePosition(0);    [ R  i][ R . iiR]
+        vR2 = b0;    
         vR3 = vR0.parse@this(vR1,vR2);    [R R . RRR] 
         if vR2.getIndex()!=0 goto B34;   
   -B23:   #1
-        throw new java/text/ParseException("Unable to parse string into Number",0);   
+        b0 = new java/text/ParseException("Unable to parse string into Number",0);    [ R . i..][ R . iiRR]
+        throw b0;   
   +B34:   #1
         return vR3;   
   +END:   #1
  }
-// Register: rd 5/5 wr 4 swaps 0 any 0 found 0 parse
+// Register: rd 7/7 wr 6 swaps 0 any 1 found 0 parse
  
  method parseObject(Ljava/lang/String;Ljava/text/ParsePosition;)Ljava/lang/Object; {
   +START:   #1

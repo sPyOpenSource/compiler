@@ -30,7 +30,7 @@ class java/util/AbstractMap {
   +B49:   #1
         if vR2!=null goto B66;   
   +B53:   #1
-        goto +B64;   forward return[RRRii  . ..]
+        goto +B64;   [RRRii  . ..]
   +B56:   #1
         if vR1.equals(vR2)==0 goto B66;   
   +B64:   #1
@@ -58,7 +58,7 @@ class java/util/AbstractMap {
   +B49:   #1
         if vR2!=null goto B66;   
   +B53:   #1
-        goto +B64;   forward return[RRRii  . ..]
+        goto +B64;   [RRRii  . ..]
   +B56:   #1
         if vR1.equals(vR2)==0 goto B66;   
   +B64:   #1
@@ -121,7 +121,7 @@ class java/util/AbstractMap {
   +B52:   #1
         if vR7!=null goto B77;   
   +B57:   #1
-        goto +B69;   forward return[RRiiRR  . ..]
+        goto +B69;   [RRiiRR  . ..]
   +B60:   #1
         if vR1.equals(vR7)==0 goto B77;   
   +B69:   #1
@@ -158,7 +158,7 @@ class java/util/AbstractMap {
         if vR0.size@this()!=0 goto B11;   
   +B7:   #1
         b0 = 1;    
-        goto +B12b0;   forward return[ i  .]
+        goto +B12b0;   [ i  .]
   +B11:   #1
         b0 = 0;    
   +B12b0:   #1 int
@@ -176,10 +176,11 @@ class java/util/AbstractMap {
  
  method put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object; {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException();   
+        b0 = new java/lang/UnsupportedOperationException();    [ R  i][ R  iR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 put
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 put
  
  method putAll(Ljava/util/Map;)V {
   +START:   #1
@@ -246,17 +247,17 @@ class java/util/AbstractMap {
         if vi4>=vi2 goto B85;   
   +B27:   #1
         b0 = new java/lang/StringBuilder();    [ R . i][ R . iR]
-        vR3 = b0.append@extra(vR3).append@extra(vR1.next()).toString@extra();    [RiRi R .i. R..] [RiRi R Ri. RR.] [RiRi R RiR RRR] 
+        vR3 = b0.append(vR3).append(vR1.next()).toString();    [RiRi R .i. R..] [RiRi R Ri. RR.] [RiRi R RiR RRR] 
         if vi4>=(vi2-1) goto B79;   
   +B59:   #1
         b0 = new java/lang/StringBuilder();    [ R ... i..][ R ... iR.]
-        vR3 = b0.append@extra(vR3).append@extra(", ").toString@extra();    [RiRi R i.. R..] [RiRi R iR. RR.] [RiRi R iRR RRR] 
+        vR3 = b0.append(vR3).append(", ").toString();    [RiRi R i.. R..] [RiRi R iR. RR.] [RiRi R iRR RRR] 
   +B79:   #1
         vi4++;   
         goto +B21;   [RiRi R ... ...]
   +B85:   #1
         b0 = new java/lang/StringBuilder();    [ R ... i..][ R ... iR.]
-        vR3 = b0.append@extra(vR3).append@extra("}").toString@extra();    [RiRi R i.. R..] [RiRi R iR. RR.] [RiRi R iRR RRR] 
+        vR3 = b0.append(vR3).append("}").toString();    [RiRi R i.. R..] [RiRi R iR. RR.] [RiRi R iRR RRR] 
         return vR3;   
   +END:   #1
  }

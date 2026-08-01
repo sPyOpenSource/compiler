@@ -46,36 +46,39 @@ class java/security/Signer {
   +B8:   #1
         vR2.checkSecurityAccess("setSignerKeyPair");   [R R i RR] 
   +B14:   #2
-        if vR1.getPublic@extra()==null goto B32;   
+        if vR1.getPublic()==null goto B32;   
   +B21:   #1
-        vR0.setPublicKey@this(vR1.getPublic@extra());   [R R i RR] 
+        vR0.setPublicKey@this(vR1.getPublic());   [R R i RR] 
         goto +B40;   [R R i ..]
   -B32:   #1
-        throw new java/security/InvalidParameterException();   
+        b0 = new java/security/InvalidParameterException();    [ R . i.][ R . iR]
+        throw b0;   
   +B40:   #2
         goto +B52;   [R R . ..]
   -H43<caught exception>:   #1 reference
         vR3 = <caught exception>;    
-        throw new java/security/KeyException();   
+        b0 = new java/security/KeyException();    [ R . i.][ R . iR]
+        throw b0;   
   +B52:   #1
-        if vR1.getPrivate@extra()==null goto B70;   
+        if vR1.getPrivate()==null goto B70;   
   +B59:   #1
-        vR0.privateKey = vR1.getPrivate@extra();   
-        goto +B78;   forward return[R R . ..]
+        vR0.privateKey = vR1.getPrivate();   
+        goto +B78;   [R R . ..]
   -B70:   #1
-        throw new java/security/InvalidParameterException();   
+        b0 = new java/security/InvalidParameterException();    [ R . i.][ R . iR]
+        throw b0;   
   +B78:   #1
         return;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-14 - 40 handler 43 type 47
+14 - 40 handler 43 type 13
  }
-// Register: rd 8/8 wr 4 swaps 2 any 1 found 0 setKeyPair
+// Register: rd 11/11 wr 7 swaps 2 any 1 found 0 setKeyPair
  
  method toString()Ljava/lang/String; {
   +START:   #1
         b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
-        return b0.append@extra(vR0.getName@this()).append@extra(": ").append@extra(vR0.privateKey).toString@extra();   
+        return b0.append(vR0.getName@this()).append(": ").append(vR0.privateKey).toString();   
   +END:   #1
  }
 // Register: rd 3/3 wr 7 swaps 3 any 0 found 0 toString

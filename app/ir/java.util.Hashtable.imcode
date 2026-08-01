@@ -31,7 +31,8 @@ class java/util/Hashtable {
  
  method toString()Ljava/lang/String; {
   +START:   #1
-        vR1 = new java/lang/StringBuffer("{");    [ R  i][ R . iRR]
+        b0 = new java/lang/StringBuffer("{");    [ R  i][ R . iRR]
+        vR1 = b0;    
         vi2 = 1;    
         vi3 = 0;    
   +B14:   #1
@@ -57,7 +58,7 @@ class java/util/Hashtable {
         return vR1.toString();   
   +END:   #1
  }
-// Register: rd 17/17 wr 12 swaps 5 any 3 found 0 toString
+// Register: rd 18/18 wr 13 swaps 5 any 4 found 0 toString
  
  method clear()V {
   +START:   #1
@@ -82,7 +83,8 @@ class java/util/Hashtable {
   +START:   #1
         if vR1!=null goto B12;   
   -B4:   #1
-        throw new java/lang/NullPointerException();   
+        b0 = new java/lang/NullPointerException();    [ R  i][ R  iR]
+        throw b0;   
   +B12:   #1
         vi2 = (vR1.hashCode() & vR0.mask);    
         vi3 = 0;    
@@ -126,7 +128,7 @@ class java/util/Hashtable {
         return 0;   
   +END:   #1
  }
-// Register: rd 43/43 wr 9 swaps 0 any 10 found 0 get
+// Register: rd 44/44 wr 10 swaps 0 any 10 found 0 get
  
  method put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object; {
   +START:   #1
@@ -138,7 +140,8 @@ class java/util/Hashtable {
   +B27:   #1
         if vR2!=null goto B39;   
   -B31:   #1
-        throw new java/lang/NullPointerException();   
+        b0 = new java/lang/NullPointerException();    [ R  i][ R  iR]
+        throw b0;   
   +B39:   #1
         vi3 = (vR1.hashCode() & vR0.mask);    
         vi4 = 0;    
@@ -186,7 +189,7 @@ class java/util/Hashtable {
         return 0;   
   +END:   #1
  }
-// Register: rd 55/55 wr 9 swaps 0 any 13 found 0 put
+// Register: rd 56/56 wr 10 swaps 0 any 13 found 0 put
  
  method remove(Ljava/lang/Object;)Ljava/lang/Object; {
   +START:   #1
@@ -218,17 +221,19 @@ class java/util/Hashtable {
  
  method keys()Ljava/util/Enumeration; {
   +START:   #1
-        return new java/util/HashtableEnumeration(vR0.keys);   
+        b0 = new java/util/HashtableEnumeration(vR0.keys);    [ R  i][ R . iRR]
+        return b0;   
   +END:   #1
  }
-// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 keys
+// Register: rd 3/3 wr 2 swaps 0 any 0 found 0 keys
  
  method elements()Ljava/util/Enumeration; {
   +START:   #1
-        return new java/util/HashtableEnumeration(vR0.values);   
+        b0 = new java/util/HashtableEnumeration(vR0.values);    [ R  i][ R . iRR]
+        return b0;   
   +END:   #1
  }
-// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 elements
+// Register: rd 3/3 wr 2 swaps 0 any 0 found 0 elements
  
  method size()I {
   +START:   #1
@@ -242,7 +247,7 @@ class java/util/Hashtable {
         if vR0.size!=0 goto B11;   
   +B7:   #1
         b0 = 1;    
-        goto +B12b0;   forward return[ i  ]
+        goto +B12b0;   [ i  ]
   +B11:   #1
         b0 = 0;    
   +B12b0:   #1 int

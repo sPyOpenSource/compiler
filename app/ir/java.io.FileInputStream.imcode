@@ -15,35 +15,38 @@ class java/io/FileInputStream {
   +START:   #1
         if vR0.fd!=null goto B15;   
   -B7:   #1
-        throw new java/io/IOException();   
+        b0 = new java/io/IOException();    [ R  i][ R  iR]
+        throw b0;   
   +B15:   #1
         vR0.fd = 0;   
         return;   
   +END:   #1
  }
-// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 close
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 close
  
  method getFD()Ljava/io/FileDescriptor; {
   +START:   #1
         if vR0.fd!=null goto B15;   
   -B7:   #1
-        throw new java/io/IOException();   
+        b0 = new java/io/IOException();    [ R  i][ R  iR]
+        throw b0;   
   +B15:   #1
         return vR0.fd;   
   +END:   #1
  }
-// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 getFD
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 getFD
  
  method available()I {
   +START:   #1
         if vR0.fd!=null goto B15;   
   -B7:   #1
-        throw new java/io/IOException();   
+        b0 = new java/io/IOException();    [ R  i][ R  iR]
+        throw b0;   
   +B15:   #1
         return 0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 available
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 available
  
  method read()I {
   +START:   #1

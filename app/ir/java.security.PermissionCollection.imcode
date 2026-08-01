@@ -25,9 +25,10 @@ class java/security/PermissionCollection {
  
  method toString()Ljava/lang/String; {
   +START:   #1
-        vR1 = new java/lang/StringBuffer("");    [ RR  i][ RR . iRR]
+        b0 = new java/lang/StringBuffer("");    [ RR  i][ RR . iRR]
+        vR1 = b0;    
         b1 = new java/lang/StringBuilder();    [ RR . i..][ RR . iR.]
-        vR1.append(b1.append@extra(vR0.toString@special()).append@extra(" (").append@extra(linesep).toString@extra());   [R RR iii..i RR..] 
+        vR1.append(b1.append(vR0.toString@special()).append(" (").append(linesep).toString());   [R RR iii..i RR..] 
         vR2 = vR0.elements@this();    [R RR iii..i R...] 
   +B48:   #1
         if vR2.hasMoreElements()==0 goto B105;   
@@ -36,16 +37,16 @@ class java/security/PermissionCollection {
         if (vR3 instanceof java/security/Permission)==0 goto B102;   
   +B71:   #1
         b1 = new java/lang/StringBuilder();    [ RR ...... i...][ RR ...... iR..]
-        vR1.append(b1.append@extra((java/security/Permission)(vR3).toString()).append@extra(linesep).toString@extra());   [RRR RR ii.i.. RR..] 
+        vR1.append(b1.append((java/security/Permission)(vR3).toString()).append(linesep).toString());   [RRR RR ii.i.. RR..] 
   +B102:   #1
         goto +B48;   [RRR RR ...... ....]
   +B105:   #1
         b1 = new java/lang/StringBuilder();    [ RR ...... i...][ RR ...... iR..]
-        vR1.append(b1.append@extra(")").append@extra(linesep).toString@extra());   [RRR RR iii... RR..] 
+        vR1.append(b1.append(")").append(linesep).toString());   [RRR RR iii... RR..] 
         return vR1.toString();   
   +END:   #1
  }
-// Register: rd 15/15 wr 24 swaps 10 any 0 found 1 toString
+// Register: rd 16/16 wr 25 swaps 10 any 1 found 1 toString
  
  method <clinit>()V {
   +START:   #1

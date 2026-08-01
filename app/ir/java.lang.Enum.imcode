@@ -36,7 +36,7 @@ class java/lang/Enum {
         if vR0!=vR1 goto B9;   
   +B5:   #1
         b0 = 1;    
-        goto +B10b0;   forward return[ i  ]
+        goto +B10b0;   [ i  ]
   +B9:   #1
         b0 = 0;    
   +B10b0:   #1 int
@@ -54,10 +54,11 @@ class java/lang/Enum {
  
  method clone()Ljava/lang/Object; {
   -START:   #1
-        throw new java/lang/CloneNotSupportedException();   
+        b0 = new java/lang/CloneNotSupportedException();    [ R  i][ R  iR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 clone
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 clone
  
  method compareTo(Ljava/lang/Enum;)I {
   +START:   #1
@@ -65,23 +66,24 @@ class java/lang/Enum {
         vR3 = vR0;    
         if vR3.getClass()==vR2.getClass() goto B34;   
   +B15:   #1
-        if vR3.getDeclaringClass@extra()==vR2.getDeclaringClass@extra() goto B34;   
+        if vR3.getDeclaringClass()==vR2.getDeclaringClass() goto B34;   
   -B26:   #1
-        throw new java/lang/ClassCastException();   
+        b0 = new java/lang/ClassCastException();    [ R . i][ R . iR]
+        throw b0;   
   +B34:   #2
         return (vR3.ordinal-vR2.ordinal);   
   +END:   #1
  }
-// Register: rd 10/10 wr 4 swaps 0 any 2 found 0 compareTo
+// Register: rd 11/11 wr 5 swaps 0 any 2 found 0 compareTo
  
  method getDeclaringClass()Ljava/lang/Class; {
   +START:   #1
         vR1 = vR0.getClass@this();    [ R  R] 
-        vR2 = vR1.getSuperclass@extra();    [R R  R] 
+        vR2 = vR1.getSuperclass();    [R R  R] 
         if vR2!=java/lang/Enum goto B20;   
   +B16:   #1
         b0 = vR1;    
-        goto +B21b0;   forward return[RR R  .]
+        goto +B21b0;   [RR R  .]
   +B20:   #1
         b0 = vR2;    
   +B21b0:   #1 reference
@@ -94,16 +96,17 @@ class java/lang/Enum {
   +START:   #1
         if vR1!=null goto B14;   
   -B4:   #1
-        throw new java/lang/NullPointerException("Name is null");   
+        b0 = new java/lang/NullPointerException("Name is null");    [ RRR  i][ RRR . iRR]
+        throw b0;   
   -B14:   #1
         b0 = new java/lang/IllegalArgumentException;    
         b1 = b0;    
         b2 = new java/lang/StringBuilder();    [ RRR . i..][ RRR . iR.]
-        b1.<init>@special(b2.append@extra("No enum constant ").append@extra(vR0.getCanonicalName@extra()).append@extra(".").append@extra(vR1).toString@extra());   [ RRR ii..ii. RR...] 
+        b1.<init>@special(b2.append("No enum constant ").append(vR0.getCanonicalName@this()).append(".").append(vR1).toString());   [ RRR ii..ii. RR...] 
         throw b0;   
   +END:   #1
  }
-// Register: rd 7/7 wr 12 swaps 4 any 2 found 0 valueOf
+// Register: rd 8/8 wr 13 swaps 4 any 2 found 0 valueOf
  
  method finalize()V {
   +START:   #1
@@ -114,21 +117,23 @@ class java/lang/Enum {
  
  method readObject(Ljava/io/ObjectInputStream;)V {
   -START:   #1
-        throw new java/io/InvalidObjectException("can't deserialize enum");   
+        b0 = new java/io/InvalidObjectException("can't deserialize enum");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 readObject
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 readObject
  
  method readObjectNoData()V {
   -START:   #1
-        throw new java/io/InvalidObjectException("can't deserialize enum");   
+        b0 = new java/io/InvalidObjectException("can't deserialize enum");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 readObjectNoData
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 readObjectNoData
  
  method compareTo(Ljava/lang/Object;)I {
   +START:   #1
-        return vR0.compareTo@extra((java/lang/Enum)(vR1));   
+        return vR0.compareTo@this((java/lang/Enum)(vR1));   
   +END:   #1
  }
 // Register: rd 3/3 wr 0 swaps 0 any 0 found 1 compareTo

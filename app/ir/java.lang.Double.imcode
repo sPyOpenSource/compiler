@@ -2,10 +2,11 @@ class java/lang/Double {
  
  method toHexString(D)Ljava/lang/Object; {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 toHexString
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 toHexString
  
  method <init>(D)V {
   +START:   #1
@@ -67,17 +68,18 @@ class java/lang/Double {
  
  method valueOf(Ljava/lang/String;)Ljava/lang/Double; {
   +START:   #1
-        return new java/lang/Double(valueOf0@special(vR0));   
+        b0 = new java/lang/Double(valueOf0@special(vR0));    [ R  i][ R . idR]
+        return b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 valueOf
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 valueOf
  
  method isNaN(D)Z {
   +START:   #1
         if compare(vd0,vd0)==0 goto B10;   
   +B6:   #1
         b0 = 1;    
-        goto +B11b0;   forward return[ i  .]
+        goto +B11b0;   [ i  .]
   +B10:   #1
         b0 = 0;    
   +B11b0:   #1 int
@@ -88,12 +90,12 @@ class java/lang/Double {
  
  method isInfinite(D)Z {
   +START:   #1
-        if compare(vd0,jx.classfile.datatypes.BCDouble@1ae8bcbc)==0 goto B16;   
+        if compare(vd0,jx.classfile.datatypes.BCDouble@5d12a356)==0 goto B16;   
   +B8:   #1
-        if compare(vd0,jx.classfile.datatypes.BCDouble@6cdba6dc)!=0 goto B20;   
+        if compare(vd0,jx.classfile.datatypes.BCDouble@134d26af)!=0 goto B20;   
   +B16:   #1
         b0 = 1;    
-        goto +B21b0;   forward return[ i  .]
+        goto +B21b0;   [ i  .]
   +B20:   #1
         b0 = 0;    
   +B21b0:   #1 int
@@ -104,7 +106,7 @@ class java/lang/Double {
  
  method <init>(Ljava/lang/String;)V {
   +START:   #1
-        vR0.<init>@special(valueOf@special(vR1).doubleValue@extra());   [   ??R] 
+        vR0.<init>@special(valueOf@special(vR1).doubleValue());   [   ??R] 
         return;   
   +END:   #1
  }
@@ -148,7 +150,7 @@ class java/lang/Double {
         if compare(doubleToLongBits@special((java/lang/Double)(vR1).value),doubleToLongBits@special(vR0.value))!=0 goto B36;   
   +B32:   #1
         b0 = 1;    
-        goto +B37b0;   forward return[ i  ..]
+        goto +B37b0;   [ i  ..]
   +B36:   #3
         b0 = 0;    
   +B37b0:   #1 int
@@ -159,36 +161,41 @@ class java/lang/Double {
  
  method longBitsToDouble(J)D {
   -START:   #1
-        throw new java/lang/Error();   
+        b0 = new java/lang/Error();    [ R  i][ R  iR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 longBitsToDouble
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 longBitsToDouble
  
  method valueOf0(Ljava/lang/String;)D {
   -START:   #1
-        throw new java/lang/Error();   
+        b0 = new java/lang/Error();    [ R  i][ R  iR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 valueOf0
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 valueOf0
  
  method doubleToLongBits(D)J {
   -START:   #1
-        throw new java/lang/Error();   
+        b0 = new java/lang/Error();    [ R  i][ R  iR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 doubleToLongBits
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 doubleToLongBits
  
  method parseDouble(Ljava/lang/String;)D {
   -START:   #1
-        throw new java/lang/Error();   
+        b0 = new java/lang/Error();    [ R  i][ R  iR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 parseDouble
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 parseDouble
  
  method compare(DD)I {
   -START:   #1
-        throw new java/lang/Error();   
+        b0 = new java/lang/Error();    [ R  i][ R  iR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 compare
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 compare
 }

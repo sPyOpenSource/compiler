@@ -41,24 +41,27 @@ class java/util/AbstractList {
  
  method add(ILjava/lang/Object;)V {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException();   
+        b0 = new java/lang/UnsupportedOperationException();    [ R  i][ R  iR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 add
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 add
  
  method iterator()Ljava/util/Iterator; {
   -START:   #1
-        throw new java/lang/Error("ITERATOR");   
+        b0 = new java/lang/Error("ITERATOR");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 iterator
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 iterator
  
  method remove(I)Ljava/lang/Object; {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException();   
+        b0 = new java/lang/UnsupportedOperationException();    [ R  i][ R  iR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 remove
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 remove
  
  method listIterator()Ljava/util/ListIterator; {
   +START:   #1
@@ -69,10 +72,11 @@ class java/util/AbstractList {
  
  method listIterator(I)Ljava/util/ListIterator; {
   -START:   #1
-        throw new java/lang/Error("Object method not implemented");   
+        b0 = new java/lang/Error("Object method not implemented");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 listIterator
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 listIterator
  
  method indexOf(Ljava/lang/Object;)I {
   +START:   #1
@@ -120,15 +124,17 @@ class java/util/AbstractList {
  
  method set(ILjava/lang/Object;)Ljava/lang/Object; {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException();   
+        b0 = new java/lang/UnsupportedOperationException();    [ R  i][ R  iR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 set
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 set
  
  method subList(II)Ljava/util/List; {
   -START:   #1
-        throw new java/lang/Error("Object method not implemented");   
+        b0 = new java/lang/Error("Object method not implemented");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 subList
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 subList
 }

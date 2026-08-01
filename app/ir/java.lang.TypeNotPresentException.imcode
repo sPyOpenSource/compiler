@@ -3,7 +3,7 @@ class java/lang/TypeNotPresentException {
  method <init>(Ljava/lang/String;Ljava/lang/Throwable;)V {
   +START:   #1
         b1 = new java/lang/StringBuilder();    [ ?R  i][ ?R  iR]
-        vR0.<init>@special(b1.append@extra("Type ").append@extra(vR1).append@extra(" not present").toString@extra(),vR2);   [ ?R iii.. RRR.] 
+        vR0.<init>@special(b1.append("Type ").append(vR1).append(" not present").toString(),vR2);   [ ?R iii.. RRR.] 
         vR0.typeName = vR1;   
         return;   
   +END:   #1

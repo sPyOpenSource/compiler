@@ -10,19 +10,20 @@ class jx/zero/CycleTime {
  
  method subtract(Ljx/zero/CycleTime;)Ljx/zero/CycleTime; {
   +START:   #1
-        vR2 = new jx/zero/CycleTime();    [ R  i][ R  iR]
+        b0 = new jx/zero/CycleTime();    [ R  i][ R  iR]
+        vR2 = b0;    
         vi3 = (vR0.low >>> 1);    
         vi3 = (vi3-(vR1.low >>> 1));    
         vR2.low = (vi3 << 1);   
         if vi3< 0 goto B51;   
   +B35:   #1
         vR2.high = (vR0.high-vR1.high);   
-        goto +B66;   forward return[Ri R  ..]
+        goto +B66;   [Ri R  ..]
   +B51:   #1
         vR2.high = ((vR0.high-vR1.high)-1);   
   +B66:   #1
         return vR2;   
   +END:   #1
  }
-// Register: rd 13/13 wr 3 swaps 0 any 2 found 0 subtract
+// Register: rd 14/14 wr 4 swaps 0 any 3 found 0 subtract
 }

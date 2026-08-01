@@ -10,14 +10,14 @@ class java/util/ResourceBundle {
  
  method getString(Ljava/lang/String;)Ljava/lang/String; {
   +START:   #1
-        return (java/lang/String)(vR0.getObject@extra(vR1));   
+        return (java/lang/String)(vR0.getObject@this(vR1));   
   +END:   #1
  }
 // Register: rd 2/2 wr 1 swaps 0 any 0 found 0 getString
  
  method getStringArray(Ljava/lang/String;)[Ljava/lang/String; {
   +START:   #1
-        return ([Ljava/lang/String;)(vR0.getObject@extra(vR1));   
+        return ([Ljava/lang/String;)(vR0.getObject@this(vR1));   
   +END:   #1
  }
 // Register: rd 2/2 wr 1 swaps 0 any 0 found 0 getStringArray
@@ -42,33 +42,36 @@ class java/util/ResourceBundle {
         vR2 = vR2.parent;    
         goto +B2;   [RR R  ..]
   -B30:   #1
-        throw new java/util/MissingResourceException("Key not found",vR0.getClass@this().getName@extra(),vR1);   
+        b0 = new java/util/MissingResourceException("Key not found",vR0.getClass@this().getName(),vR1);    [ R  i.][ R .. iRRRR]
+        throw b0;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-6 - 17 handler 21 type 20
+6 - 17 handler 21 type 6
  }
-// Register: rd 10/10 wr 7 swaps 0 any 4 found 0 getObject
+// Register: rd 11/11 wr 8 swaps 0 any 4 found 0 getObject
  
  method getClassContext()[Ljava/lang/Class; {
   -START:   #1
-        throw new java/lang/Error("not implemented");   
+        b0 = new java/lang/Error("not implemented");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getClassContext
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 getClassContext
  
  method getBundle(Ljava/lang/String;)Ljava/util/ResourceBundle; {
   -START:   #1
-        throw new java/lang/Error("not implemented");   
+        b0 = new java/lang/Error("not implemented");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getBundle
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 getBundle
  
  method getBundle(Ljava/lang/String;Ljava/util/Locale;)Ljava/util/ResourceBundle; {
   -START:   #1
         b0 = new java/util/MissingResourceException;    
         b1 = b0;    
         b2 = new java/lang/StringBuilder();    [ RRR  i][ RRR  iR]
-        b1.<init>@special(b2.append@extra("resource boundles not supported (").append@extra(vR0).append@extra(")").toString@extra(),vR0,"");   [ RRR iiiR. RRRR] 
+        b1.<init>@special(b2.append("resource boundles not supported (").append(vR0).append(")").toString(),vR0,"");   [ RRR iiiR. RRRR] 
         throw b0;   
   +END:   #1
  }
@@ -76,10 +79,11 @@ EXCEPTIONHANDLER-TABLE:
  
  method getBundle(Ljava/lang/String;Ljava/util/Locale;Ljava/lang/ClassLoader;)Ljava/util/ResourceBundle; {
   -START:   #1
-        throw new java/lang/Error("not implemented");   
+        b0 = new java/lang/Error("not implemented");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getBundle
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 getBundle
  
  method getLocale()Ljava/util/Locale; {
   +START:   #1

@@ -36,10 +36,11 @@ class java/util/AbstractMap$SimpleImmutableEntry {
  
  method setValue(Ljava/lang/Object;)Ljava/lang/Object; {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException();   
+        b0 = new java/lang/UnsupportedOperationException();    [ R  i][ R  iR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 setValue
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 setValue
  
  method hashCode()I {
   +START:   #1
@@ -53,7 +54,7 @@ class java/util/AbstractMap$SimpleImmutableEntry {
         if vR0.value!=null goto B29;   
   +B25b0:   #1 int
         b1 = 0;    
-        goto +B36b0b1;   forward return[ ii  .]
+        goto +B36b0b1;   [ ii  .]
   +B29b0:   #1 int
         b1 = vR0.value.hashCode();    [ ii  R] 
   +B36b0b1:   #1 int int
@@ -65,7 +66,7 @@ class java/util/AbstractMap$SimpleImmutableEntry {
  method toString()Ljava/lang/String; {
   +START:   #1
         b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
-        return b0.append@extra(vR0.key).append@extra("=").append@extra(vR0.value).toString@extra();   
+        return b0.append(vR0.key).append("=").append(vR0.value).toString();   
   +END:   #1
  }
 // Register: rd 3/3 wr 7 swaps 3 any 0 found 0 toString

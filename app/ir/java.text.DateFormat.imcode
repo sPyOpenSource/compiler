@@ -20,7 +20,7 @@ class java/text/DateFormat {
         if vR0.numberFormat.equals(vR2.numberFormat)==0 goto B46;   
   +B42:   #1
         b0 = 1;    
-        goto +B47b0;   forward return[R i . ..]
+        goto +B47b0;   [R i . ..]
   +B46:   #2
         b0 = 0;    
   +B47b0:   #1 int
@@ -40,22 +40,24 @@ class java/text/DateFormat {
   +START:   #1
         if (vR1 instanceof java/lang/Number)==0 goto B22;   
   +B7:   #1
-        vR1 = new java/util/Date((java/lang/Number)(vR1).longValue());    [ R  i.][ R . ilR]
+        b0 = new java/util/Date((java/lang/Number)(vR1).longValue());    [ R  i.][ R . ilR]
+        vR1 = b0;    
   +B22:   #1
         return vR0.format@this((java/util/Date)(vR1),vR2,vR3);   
   +END:   #1
  }
-// Register: rd 7/7 wr 2 swaps 0 any 0 found 2 format
+// Register: rd 8/8 wr 3 swaps 0 any 1 found 2 format
  
  method format(Ljava/util/Date;)Ljava/lang/String; {
   +START:   #1
-        vR2 = new java/lang/StringBuffer();    [ R??R  i][ R??R  iR]
+        b0 = new java/lang/StringBuffer();    [ R??R  i][ R??R  iR]
+        vR2 = b0;    
         b3 = new java/text/FieldPosition(2);    [ R??R  i.][ R??R . iiR]
         vR0.format@this(vR1,vR2,b3);   [R R??R . RRRR] 
         return vR2.toString();   
   +END:   #1
  }
-// Register: rd 4/4 wr 3 swaps 0 any 0 found 0 format
+// Register: rd 5/5 wr 4 swaps 0 any 1 found 0 format
  
  method getAvailableLocales()[Ljava/util/Locale; {
   +START:   #1
@@ -110,14 +112,15 @@ class java/text/DateFormat {
         vR8 = "M/d/yy";    
         goto +B108;   [RRRRR R . ..]
   -B100:   #1
-        throw new java/lang/IllegalArgumentException();   
+        b0 = new java/lang/IllegalArgumentException();    [ R . i.][ R . iR]
+        throw b0;   
   +B108:   #5
         if vR5!=null goto B118;   
   +B113:   #1
         b0 = vR8;    
         goto +B125b0;   [RRRR R . ..]
   +B118:   #1
-        b0 = vR5.getString@extra(vR7);    [RRRRR R . RR] 
+        b0 = vR5.getString(vR7);    [RRRRR R . RR] 
   +B125b0:   #1 reference
         vR6 = b0;    
   +B127:   #1
@@ -134,7 +137,7 @@ class java/text/DateFormat {
         goto +B175;   [RRRR R . ..]
   +B153:   #1
         b0 = new java/lang/StringBuilder();    [ R . i.][ R . iR]
-        vR6 = b0.append@extra(vR6).append@extra(" ").toString@extra();    [RRRRR R i.. R..] [RRRRR R iR. RR.] [RRRRR R iRR RRR] 
+        vR6 = b0.append(vR6).append(" ").toString();    [RRRRR R i.. R..] [RRRRR R iR. RR.] [RRRRR R iRR RRR] 
   +B175:   #1
         tswitch (vi1) B208 B219 B230 B241 : B252;   
   +B208:   #1
@@ -154,14 +157,15 @@ class java/text/DateFormat {
         vR8 = "h:mm a";    
         goto +B260;   [RRRRR R ... ...]
   -B252:   #1
-        throw new java/lang/IllegalArgumentException();   
+        b0 = new java/lang/IllegalArgumentException();    [ R ... i..][ R ... iR.]
+        throw b0;   
   +B260:   #5
         if vR5!=null goto B270;   
   +B265:   #1
         b0 = vR8;    
         goto +B277b0;   [RRRR R ... ...]
   +B270:   #1
-        b0 = vR5.getString@extra(vR7);    [RRRRR R ... RR.] 
+        b0 = vR5.getString(vR7);    [RRRRR R ... RR.] 
   +B277b0:   #1 reference
         vR9 = b0;    
   +B279:   #1
@@ -171,16 +175,17 @@ class java/text/DateFormat {
         vR9 = vR8;    
   +B288:   #1
         b0 = new java/lang/StringBuilder();    [ R ... i..][ R ... iR.]
-        vR6 = b0.append@extra(vR6).append@extra(vR9).toString@extra();    [RRRRR R ... R..] [RRRRR R R.. RR.] [RRRRR R RR. RRR] 
+        vR6 = b0.append(vR6).append(vR9).toString();    [RRRRR R ... R..] [RRRRR R R.. RR.] [RRRRR R RR. RRR] 
   +B310:   #1
-        return new java/text/SimpleDateFormat(vR6,vR2);   
+        b0 = new java/text/SimpleDateFormat(vR6,vR2);    [ R ... i..][ R ... iRRR]
+        return b0;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-0 - 8 handler 11 type 75
-108 - 127 handler 130 type 75
-260 - 279 handler 282 type 75
+0 - 8 handler 11 type 23
+108 - 127 handler 130 type 23
+260 - 279 handler 282 type 23
  }
-// Register: rd 20/20 wr 42 swaps 1 any 13 found 0 computeInstance
+// Register: rd 23/23 wr 45 swaps 1 any 13 found 0 computeInstance
  
  method getDateInstance()Ljava/text/DateFormat; {
   +START:   #1
@@ -287,7 +292,8 @@ EXCEPTIONHANDLER-TABLE:
  
  method parse(Ljava/lang/String;)Ljava/util/Date; {
   +START:   #1
-        vR2 = new java/text/ParsePosition(0);    [ R  i][ R . iiR]
+        b0 = new java/text/ParsePosition(0);    [ R  i][ R . iiR]
+        vR2 = b0;    
         vR3 = vR0.parse@this(vR1,vR2);    [R R . RRR] 
         if vR3!=null goto B49;   
   +B20:   #1
@@ -296,12 +302,13 @@ EXCEPTIONHANDLER-TABLE:
   +B31:   #1
         vi4 = vR2.getIndex();    [RRi R . R..] 
   -B37:   #1
-        throw new java/text/ParseException("invalid Date syntax",vi4);   
+        b0 = new java/text/ParseException("invalid Date syntax",vi4);    [ R . i..][ R . iiRR]
+        throw b0;   
   +B49:   #1
         return vR3;   
   +END:   #1
  }
-// Register: rd 9/9 wr 6 swaps 0 any 2 found 0 parse
+// Register: rd 11/11 wr 8 swaps 0 any 3 found 0 parse
  
  method parseObject(Ljava/lang/String;Ljava/text/ParsePosition;)Ljava/lang/Object; {
   +START:   #1

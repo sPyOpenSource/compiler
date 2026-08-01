@@ -16,11 +16,12 @@ class java/security/BasicPermission$1 {
   +START:   #1
         if vR0.isReadOnly@this()==0 goto B17;   
   -B7:   #1
-        throw new java/lang/IllegalStateException("readonly");   
+        b0 = new java/lang/IllegalStateException("readonly");    [ R  i][ R . iRR]
+        throw b0;   
   +B17:   #1
         vR2 = (java/security/BasicPermission)(vR1);    
         vR3 = vR2.getName();    [R R . R..] 
-        if vR3.equals@extra("*")==0 goto B41;   
+        if vR3.equals("*")==0 goto B41;   
   +B36:   #1
         vR0.allAllowed = 1;   
   +B41:   #1
@@ -28,7 +29,7 @@ class java/security/BasicPermission$1 {
         return;   
   +END:   #1
  }
-// Register: rd 8/8 wr 4 swaps 1 any 1 found 1 add
+// Register: rd 9/9 wr 5 swaps 1 any 1 found 1 add
  
  method implies(Ljava/security/Permission;)Z {
   +START:   #1
@@ -42,12 +43,12 @@ class java/security/BasicPermission$1 {
   +B18:   #1
         vR2 = (java/security/BasicPermission)(vR1);    
         vR3 = vR2.getName();    [R R  R.] 
-        if vR3.equals@extra("*")==0 goto B39;   
+        if vR3.equals("*")==0 goto B39;   
   +B37:   #1
         return 0;   
   +B39:   #1
-        vi4 = vR3.length@extra();    [RR R . R.] 
-        if vR3.endsWith@extra("*")==0 goto B57;   
+        vi4 = vR3.length();    [RR R . R.] 
+        if vR3.endsWith("*")==0 goto B57;   
   +B54:   #1
         vi4+=-2;   
   +B57:   #2
@@ -55,13 +56,13 @@ class java/security/BasicPermission$1 {
   +B68:   #1
         return 1;   
   +B70:   #1
-        vi4 = vR3.lastIndexOf@extra(46,vi4);    [RRi R . iiR] 
+        vi4 = vR3.lastIndexOf(46,vi4);    [RRi R . iiR] 
         if vi4>=0 goto B87;   
   +B85:   #1
         return 0;   
   +B87:   #1
         b0 = new java/lang/StringBuilder();    [ R . i..][ R . iR.]
-        vR3 = b0.append@extra(vR3.substring@extra(0,(vi4+1))).append@extra(42).toString@extra();    [RRi R i..i R...] [RRi R iR.i iR..] [RRi R iRRi iRR.] 
+        vR3 = b0.append(vR3.substring(0,(vi4+1))).append(42).toString();    [RRi R i..i R...] [RRi R iR.i iR..] [RRi R iRRi iRR.] 
         goto +B57;   [RRi R i..i ....]
   +END:   #1
  }

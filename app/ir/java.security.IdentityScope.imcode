@@ -56,7 +56,7 @@ class java/security/IdentityScope {
  method toString()Ljava/lang/String; {
   +START:   #1
         b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
-        return b0.append@extra(vR0.getName@special()).append@extra(" ").append@extra(vR0.getScope@special().getName()).append@extra(" ").append@extra(vR0.size@this()).toString@extra();   
+        return b0.append(vR0.getName@special()).append(" ").append(vR0.getScope@special().getName()).append(" ").append(vR0.size@this()).toString();   
   +END:   #1
  }
 // Register: rd 4/4 wr 12 swaps 5 any 0 found 0 toString

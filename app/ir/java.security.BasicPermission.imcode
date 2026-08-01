@@ -3,24 +3,24 @@ class java/security/BasicPermission {
  method <init>(Ljava/lang/String;)V {
   +START:   #1
         vR0.<init>@special(vR1);   [ RRR  RR] 
-        if vR1.indexOf@extra("*")==-1 goto B102;   
+        if vR1.indexOf("*")==-1 goto B102;   
   +B15:   #1
-        if vR1.endsWith@extra(".*")!=0 goto B60;   
+        if vR1.endsWith(".*")!=0 goto B60;   
   +B24:   #1
-        if vR1.equals@extra("*")!=0 goto B60;   
+        if vR1.equals("*")!=0 goto B60;   
   -B33:   #1
         b0 = new java/lang/IllegalArgumentException;    
         b1 = b0;    
         b2 = new java/lang/StringBuilder();    [ RRR . i.][ RRR . iR]
-        b1.<init>@special(b2.append@extra("Bad wildcard: ").append@extra(vR1).toString@extra());   [ RRR ii. RR.] 
+        b1.<init>@special(b2.append("Bad wildcard: ").append(vR1).toString());   [ RRR ii. RR.] 
         throw b0;   
   +B60:   #2
-        if vR1.indexOf@extra("*")==vR1.lastIndexOf@extra("*") goto B102;   
+        if vR1.indexOf("*")==vR1.lastIndexOf("*") goto B102;   
   -B75:   #1
         b0 = new java/lang/IllegalArgumentException;    
         b1 = b0;    
         b2 = new java/lang/StringBuilder();    [ RRR ... i..][ RRR ... iR.]
-        b1.<init>@special(b2.append@extra("Bad wildcard: ").append@extra(vR1).toString@extra());   [ RRR ii. RR.] 
+        b1.<init>@special(b2.append("Bad wildcard: ").append(vR1).toString());   [ RRR ii. RR.] 
         throw b0;   
   +B102:   #2
         return;   
@@ -44,14 +44,14 @@ class java/security/BasicPermission {
   +B9:   #1
         vR2 = vR1.getName();    [   R.] 
         vR3 = vR0.getName@this();    [R   R.] 
-        if vR3.equals@extra(vR2)==0 goto B29;   
+        if vR3.equals(vR2)==0 goto B29;   
   +B27:   #1
         return 1;   
   +B29:   #1
-        vi4 = (vR3.length@extra()-1);    
-        if vR3.charAt@extra(vi4)!=42 goto B64;   
+        vi4 = (vR3.length()-1);    
+        if vR3.charAt(vi4)!=42 goto B64;   
   +B48:   #1
-        if vR2.startsWith@extra(vR3.substring@extra(0,vi4))==0 goto B64;   
+        if vR2.startsWith(vR3.substring(0,vi4))==0 goto B64;   
   +B62:   #1
         return 1;   
   +B64:   #2
@@ -66,7 +66,7 @@ class java/security/BasicPermission {
   +B7:   #1
         return 0;   
   +B9:   #1
-        if vR0.getName@this().equals@extra((java/security/BasicPermission)(vR1).getName())!=0 goto B28;   
+        if vR0.getName@this().equals((java/security/BasicPermission)(vR1).getName())!=0 goto B28;   
   +B26:   #1
         return 0;   
   +B28:   #1
@@ -77,7 +77,7 @@ class java/security/BasicPermission {
  
  method hashCode()I {
   +START:   #1
-        return vR0.getName@this().hashCode@extra();   
+        return vR0.getName@this().hashCode();   
   +END:   #1
  }
 // Register: rd 1/1 wr 1 swaps 0 any 0 found 0 hashCode
@@ -91,8 +91,9 @@ class java/security/BasicPermission {
  
  method newPermissionCollection()Ljava/security/PermissionCollection; {
   +START:   #1
-        return new java/security/BasicPermission$1(vR0);   
+        b0 = new java/security/BasicPermission$1(vR0);    [ R  i][ R . iRR]
+        return b0;   
   +END:   #1
  }
-// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 newPermissionCollection
+// Register: rd 3/3 wr 2 swaps 0 any 0 found 0 newPermissionCollection
 }

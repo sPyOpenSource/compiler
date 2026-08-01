@@ -39,7 +39,7 @@ public class CompileNative {
 	String jlnname = libdir + "zero.jln";
         
         CompilerOptions opts = getCompilerOptions(null, jlns, null, jlnname, jllname, "JC_CONFIG");
-        //compile("zero", opts);
+        compile("zero", opts);
         
 	jllname = libdir + "jdk0.jll";
         jlnname = libdir + "jdk0.jln";
@@ -50,7 +50,7 @@ public class CompileNative {
             jlns.add(libdir + neededLib + ".jln");
         }
         opts = getCompilerOptions(null, jlns, null, jlnname, jllname, "JC_CONFIG");
-	//compile("os", opts);
+	compile("os", opts);
         
 	jllname = libdir + "init2.jll";
         jlnname = libdir + "init2.jln";
@@ -61,7 +61,7 @@ public class CompileNative {
             jlns.add(libdir + neededLib + ".jln");
         }
         opts = getCompilerOptions(null, jlns, null, jlnname, jllname, "JC_CONFIG");
-	//compile("init2", opts);
+	compile("init2", opts);
         
         jllname = libdir + "wm.jll";
         jlnname = libdir + "wm.jln";
@@ -72,7 +72,7 @@ public class CompileNative {
             jlns.add(libdir + neededLib + ".jln");
         }
         opts = getCompilerOptions(null, jlns, null, jlnname, jllname, "JC_CONFIG");
-	//compile("wm", opts);
+	compile("wm", opts);
         
         createISO();
     }

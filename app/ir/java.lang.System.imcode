@@ -32,7 +32,7 @@ class java/lang/System {
         vi7++;   
         goto +B49;   [RRi R  ..]
   +B76:   #1
-        goto +B675;   forward return[RRi R  ..]
+        goto +B675;   [RRi R  ..]
   +B79:   #2
         if (vR0 instanceof [C)==0 goto B148;   
   +B86:   #1
@@ -52,7 +52,7 @@ class java/lang/System {
         vi7++;   
         goto +B118;   [RRi R  ..]
   +B145:   #1
-        goto +B675;   forward return[RRi R  ..]
+        goto +B675;   [RRi R  ..]
   +B148:   #2
         if (vR0 instanceof [I)==0 goto B217;   
   +B155:   #1
@@ -72,7 +72,7 @@ class java/lang/System {
         vi7++;   
         goto +B187;   [RRi R  ..]
   +B214:   #1
-        goto +B675;   forward return[RRi R  ..]
+        goto +B675;   [RRi R  ..]
   +B217:   #2
         vR5 = ([Ljava/lang/Object;)(vR0);    
         vR6 = ([Ljava/lang/Object;)(vR2);    
@@ -88,7 +88,7 @@ class java/lang/System {
         vi7++;   
         goto +B242;   [RRi R  ..]
   +B269:   #1
-        goto +B675;   forward return[RRi R  ..]
+        goto +B675;   [RRi R  ..]
   +B272:   #2
         if (vR0 instanceof [B)==0 goto B367;   
   +B279:   #1
@@ -98,11 +98,13 @@ class java/lang/System {
         vR6 = ([B)(vR2);    
         if (vi3+vi4)<=vR6.length goto B316;   
   -B308:   #1
-        throw new java/lang/Error();   
+        b0 = new java/lang/Error();    [ R  i.][ R  iR]
+        throw b0;   
   +B316:   #1
         if (vi1+vi4)<=vR5.length goto B334;   
   -B326:   #1
-        throw new java/lang/Error();   
+        b0 = new java/lang/Error();    [ R  i.][ R  iR]
+        throw b0;   
   +B334:   #1
         vi7 = 0;    
   +B337:   #1
@@ -112,7 +114,7 @@ class java/lang/System {
         vi7++;   
         goto +B337;   [RRi R  ..]
   +B364:   #1
-        goto +B675;   forward return[RRi R  ..]
+        goto +B675;   [RRi R  ..]
   +B367:   #2
         if (vR0 instanceof [C)==0 goto B462;   
   +B374:   #1
@@ -122,11 +124,13 @@ class java/lang/System {
         vR6 = ([C)(vR2);    
         if (vi3+vi4)<=vR6.length goto B411;   
   -B403:   #1
-        throw new java/lang/Error();   
+        b0 = new java/lang/Error();    [ R  i.][ R  iR]
+        throw b0;   
   +B411:   #1
         if (vi1+vi4)<=vR5.length goto B429;   
   -B421:   #1
-        throw new java/lang/Error();   
+        b0 = new java/lang/Error();    [ R  i.][ R  iR]
+        throw b0;   
   +B429:   #1
         vi7 = 0;    
   +B432:   #1
@@ -136,7 +140,7 @@ class java/lang/System {
         vi7++;   
         goto +B432;   [RRi R  ..]
   +B459:   #1
-        goto +B675;   forward return[RRi R  ..]
+        goto +B675;   [RRi R  ..]
   +B462:   #2
         if (vR0 instanceof [I)==0 goto B557;   
   +B469:   #1
@@ -146,11 +150,13 @@ class java/lang/System {
         vR6 = ([I)(vR2);    
         if (vi3+vi4)<=vR6.length goto B506;   
   -B498:   #1
-        throw new java/lang/Error();   
+        b0 = new java/lang/Error();    [ R  i.][ R  iR]
+        throw b0;   
   +B506:   #1
         if (vi1+vi4)<=vR5.length goto B524;   
   -B516:   #1
-        throw new java/lang/Error();   
+        b0 = new java/lang/Error();    [ R  i.][ R  iR]
+        throw b0;   
   +B524:   #1
         vi7 = 0;    
   +B527:   #1
@@ -160,23 +166,26 @@ class java/lang/System {
         vi7++;   
         goto +B527;   [RRi R  ..]
   +B554:   #1
-        goto +B675;   forward return[RRi R  ..]
+        goto +B675;   [RRi R  ..]
   +B557:   #2
-        if vR0.getClass@this().getName@extra().equals@extra("[[B")==0 goto B597;   
+        if vR0.getClass@this().getName().equals("[[B")==0 goto B597;   
   +B572:   #1
-        if vR2.getClass().getName@extra().equals@extra("[B")==0 goto B597;   
+        if vR2.getClass().getName().equals("[B")==0 goto B597;   
   -B587:   #1
-        throw new java/lang/Error("CAST");   
+        b0 = new java/lang/Error("CAST");    [ R ... i.][ R ... iRR]
+        throw b0;   
   +B597:   #2
         vR5 = ([Ljava/lang/Object;)(vR0);    
         vR6 = ([Ljava/lang/Object;)(vR2);    
         if (vi3+vi4)<=vR6.length goto B627;   
   -B619:   #1
-        throw new java/lang/Error();   
+        b0 = new java/lang/Error();    [ R ... i..][ R ... iR.]
+        throw b0;   
   +B627:   #1
         if (vi1+vi4)<=vR5.length goto B645;   
   -B637:   #1
-        throw new java/lang/Error();   
+        b0 = new java/lang/Error();    [ R ... i..][ R ... iR.]
+        throw b0;   
   +B645:   #1
         vi7 = 0;    
   +B648:   #1
@@ -189,7 +198,7 @@ class java/lang/System {
         return;   
   +END:   #1
  }
-// Register: rd 163/163 wr 55 swaps 2 any 58 found 16 arraycopy
+// Register: rd 172/172 wr 64 swaps 2 any 58 found 16 arraycopy
  
  method setProperties(Ljava/util/Properties;)V {
   +START:   #1
@@ -312,17 +321,19 @@ class java/lang/System {
  
  method getSecurityManager()Ljava/lang/SecurityManager; {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getSecurityManager
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 getSecurityManager
  
  method nanoTime()J {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 nanoTime
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 nanoTime
  
  method <clinit>()V {
   +START:   #1

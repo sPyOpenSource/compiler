@@ -1,6 +1,6 @@
 package com.ebsee.classparser;
 
-import jCPU.JavaVM.vm.Attribute;
+import jCPU.JVM.vm.Attribute;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.util.ArrayList;

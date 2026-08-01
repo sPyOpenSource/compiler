@@ -79,7 +79,7 @@ class jx/net/xdr/FormatMem {
  
  method writeString(ILjava/lang/String;)V {
   +START:   #1
-        vR3 = vR2.getBytes@extra();    [   R] 
+        vR3 = vR2.getBytes();    [   R] 
         vR0.writeByteArray@this(vi1,vR3);   [R   RiR] 
         return;   
   +END:   #1
@@ -239,7 +239,7 @@ class jx/net/xdr/FormatMem {
  method lengthString(Ljava/lang/String;)I {
   +START:   #1
         vi1 = 4;    
-        vi2 = vR0.length@extra();    [i   R] 
+        vi2 = vR0.length@this();    [i   R] 
         vi1 = (vi1+vi2);    
         if (vi2%4)==0 goto B25;   
   +B17:   #1

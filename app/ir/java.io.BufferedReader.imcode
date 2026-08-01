@@ -74,7 +74,7 @@ class java/io/BufferedReader {
   +B23:   #1
         if vi3!=13 goto B32;   
   +B29:   #1
-        goto +B38;   forward return[ii   ]
+        goto +B38;   [ii   ]
   +B32:   #1
         vi2++;   
         goto +B5;   [ii   ]
@@ -101,7 +101,8 @@ class java/io/BufferedReader {
         vi1 = vR0.lineEnd@special(vR0.limit);    [i R i iR] 
         if vi1>=vR0.limit goto B136;   
   +B59:   #1
-        vR2 = new java/lang/String(vR0.buffer,vR0.pos,(vi1-vR0.pos));    [ R . i.][ R . iiiRR]
+        b0 = new java/lang/String(vR0.buffer,vR0.pos,(vi1-vR0.pos));    [ R . i.][ R . iiiRR]
+        vR2 = b0;    
         vR0.pos = (vi1+1);   
         if vR0.buffer[vi1]!=13 goto B134;   
   +B99:   #1
@@ -113,7 +114,8 @@ class java/io/BufferedReader {
   +B134:   #2
         return vR2;   
   +B136:   #1
-        vR2 = new java/lang/StringBuilder(200);    [ R . i....][ R . iiR..]
+        b0 = new java/lang/StringBuilder(200);    [ R . i....][ R . iiR..]
+        vR2 = b0;    
         vR0.pos = vi1;   
         vi3 = 0;    
   +B154:   #1
@@ -140,19 +142,19 @@ class java/io/BufferedReader {
         vR0.pos = vi1;   
         goto +B154;   [iRii R i .....]
   +B246:   #4
-        if vR2.length@extra()!=0 goto B261;   
+        if vR2.length()!=0 goto B261;   
   +B253:   #1
         if vi3==0 goto B261;   
   +B257:   #1
         b0 = 0;    
-        goto +B265b0;   forward return[iRii R . .....]
+        goto +B265b0;   [iRii R . .....]
   +B261:   #2
-        b0 = vR2.toString@extra();    [iRii R . R....] 
+        b0 = vR2.toString();    [iRii R . R....] 
   +B265b0:   #1 reference
         return b0;   
   +END:   #1
  }
-// Register: rd 50/50 wr 13 swaps 2 any 8 found 0 readLine
+// Register: rd 52/52 wr 15 swaps 2 any 10 found 0 readLine
  
  method skip(J)J {
   +START:   #1
@@ -227,19 +229,21 @@ EXCEPTIONHANDLER-TABLE:
   +START:   #1
         if vR0.in!=null goto B17;   
   -B7:   #1
-        throw new java/io/IOException("Stream closed");   
+        b0 = new java/io/IOException("Stream closed");    [ R  i][ R . iRR]
+        throw b0;   
   +B17:   #1
         return;   
   +END:   #1
  }
-// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 checkStatus
+// Register: rd 3/3 wr 2 swaps 0 any 0 found 0 checkStatus
  
  method close()V {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 close
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 close
  
  method read([CII)I {
   +START:   #2
@@ -250,7 +254,7 @@ EXCEPTIONHANDLER-TABLE:
         vi8 = vR7.getLength();    [RRRR iR iRi R.] 
         b0 = out;    
         b1 = new java/lang/StringBuilder();    [ RR iRi i.][ RR iRi iR]
-        b0.println(b1.append@extra("l: ").append@extra(vi8).append@extra(" count: ").append@extra(vi3).toString@extra());   [RRRRi RR iRiiii... RR...] 
+        b0.println(b1.append("l: ").append(vi8).append(" count: ").append(vi3).toString());   [RRRRi RR iRiiii... RR...] 
         vR7.read(vR5,0,vi8);   [RRRRi RR iRiiii... iiRR.] 
         vR9 = new byte[vi8];    
         vR5.copyToByteArray(vR9,0,0,512);   [RRRRiR RR iRiiii... iiiRR] 

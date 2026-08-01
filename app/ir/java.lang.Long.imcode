@@ -54,24 +54,27 @@ class java/lang/Long {
  
  method stringSize(J)I {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 stringSize
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 stringSize
  
  method lowestOneBit(J)J {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 lowestOneBit
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 lowestOneBit
  
  method numberOfTrailingZeros(J)I {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 numberOfTrailingZeros
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 numberOfTrailingZeros
  
  method toUnsignedString(JI)Ljava/lang/String; {
   +START:   #1
@@ -86,7 +89,7 @@ class java/lang/Long {
         if compare(vl0,0)==0 goto B65;   
   +B29:   #1
         b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
-        vR3 = b0.append@extra(forDigit@special((int)(vl0 & (long)vi5),vi4)).append@extra(vR3).toString@extra();    [iRii R ..ii R..] [iRii R R.ii RR.] [iRii R RRii RcR] 
+        vR3 = b0.append(forDigit@special((int)(vl0 & (long)vi5),vi4)).append(vR3).toString();    [iRii R ..ii R..] [iRii R R.ii RR.] [iRii R RRii RcR] 
         vl0 = (vl0 >>> vi2);    
         goto +B23;   [iRii R ..ii ...]
   +B65:   #1
@@ -119,15 +122,15 @@ class java/lang/Long {
         if compare(vl0,0)<=0 goto B69;   
   +B32:   #1
         b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
-        vR4 = b0.append@extra(forDigit@special((int)(vl0%(long)vi2),vi2)).append@extra(vR4).toString@extra();    [iiR R ..ii R..] [iiR R R.ii RR.] [iiR R RRii RcR] 
+        vR4 = b0.append(forDigit@special((int)(vl0%(long)vi2),vi2)).append(vR4).toString();    [iiR R ..ii R..] [iiR R R.ii RR.] [iiR R RRii RcR] 
         vl0 = (vl0/(long)vi2);    
         goto +B26;   [iiR R ..ii ...]
   +B69:   #1
         if vi3==0 goto B96;   
   +B73:   #1
         b0 = new java/lang/StringBuilder();    [ R .... i..][ R .... iR.]
-        b0 = b0.append@extra("-").append@extra(vR4).toString@extra();    [iiR R i... R..] [iiR R iR.. RR.] [iiR R iRR. RRR] 
-        goto +B98b0;   forward return[iiR R i... ...]
+        b0 = b0.append("-").append(vR4).toString();    [iiR R i... R..] [iiR R iR.. RR.] [iiR R iRR. RRR] 
+        goto +B98b0;   [iiR R i... ...]
   +B96:   #1
         b0 = vR4;    
   +B98b0:   #1 reference
@@ -175,52 +178,56 @@ class java/lang/Long {
   +START:   #1
         if vR0==null goto B13;   
   +B4:   #1
-        if vR0.equals@extra("")==0 goto B21;   
+        if vR0.equals@this("")==0 goto B21;   
   -B13:   #1
-        throw new java/lang/NumberFormatException();   
+        b0 = new java/lang/NumberFormatException();    [ R . i.][ R . iR]
+        throw b0;   
   +B21:   #1
         if vi1<2 goto B32;   
   +B26:   #1
         if vi1<=36 goto B40;   
   -B32:   #1
-        throw new java/lang/NumberFormatException();   
+        b0 = new java/lang/NumberFormatException();    [ R . i.][ R . iR]
+        throw b0;   
   +B40:   #1
         vi2 = 0;    
         vl3 = 0;    
         vi5 = 0;    
-        if vR0.charAt@extra(vi2)!=45 goto B63;   
+        if vR0.charAt@this(vi2)!=45 goto B63;   
   +B57:   #1
         vi5 = 1;    
         vi2++;   
   +B63:   #2
-        if vi2>=vR0.length@extra() goto B110;   
+        if vi2>=vR0.length@this() goto B110;   
   +B71:   #1
-        vi6 = digit@special(vR0.charAt@extra(vi2),vi1);    [il?i l c ic]
+        vi6 = digit@special(vR0.charAt@this(vi2),vi1);    [il?i R c ic]
         if vi6>=0 goto B95;   
   -B87:   #1
-        throw new java/lang/NumberFormatException();   
+        b0 = new java/lang/NumberFormatException();    [ R . i.][ R . iR]
+        throw b0;   
   +B95:   #1
         vl3 = ((vl3*(long)vi1)-(long)vi6);    
         vi2++;   
-        goto +B63;   [il?ii l . ..]
+        goto +B63;   [il?ii R . ..]
   +B110:   #1
         if vi5!=0 goto B131;   
   +B115:   #1
         if compare(vl3,-9223372036854775807)>=0 goto B131;   
   -B123:   #1
-        throw new java/lang/NumberFormatException();   
+        b0 = new java/lang/NumberFormatException();    [ R . i.][ R . iR]
+        throw b0;   
   +B131:   #2
         if vi5==0 goto B140;   
   +B136:   #1
         b0 = vl3;    
-        goto +B142b0;   forward return[il?ii l . ..]
+        goto +B142b0;   [il?ii R . ..]
   +B140:   #1
         b0 = -vl3;    
   +B142b0:   #1 long
         return b0;   
   +END:   #1
  }
-// Register: rd 14/14 wr 7 swaps 1 any 9 found 1 parseLong
+// Register: rd 18/18 wr 11 swaps 1 any 9 found 1 parseLong
  
  method valueOf(J)Ljava/lang/Long; {
   +START:   #1
@@ -231,24 +238,27 @@ class java/lang/Long {
   +B20:   #1
         return cache[((int)vl0+128)];   
   +B31:   #2
-        return new java/lang/Long(vl0);   
+        b0 = new java/lang/Long(vl0);    [ R .. i][ R .. il_R]
+        return b0;   
   +END:   #1
  }
-// Register: rd 4/4 wr 3 swaps 0 any 0 found 0 valueOf
+// Register: rd 5/5 wr 4 swaps 0 any 0 found 0 valueOf
  
  method valueOf(Ljava/lang/String;)Ljava/lang/Long; {
   +START:   #1
-        return new java/lang/Long(parseLong@special(vR0));   
+        b0 = new java/lang/Long(parseLong@special(vR0));    [ R  i][ R . ilR]
+        return b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 valueOf
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 valueOf
  
  method valueOf(Ljava/lang/String;I)Ljava/lang/Long; {
   +START:   #1
-        return new java/lang/Long(parseLong@special(vR0,vi1));   
+        b0 = new java/lang/Long(parseLong@special(vR0,vi1));    [ R  i][ R . ilR]
+        return b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 valueOf
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 valueOf
  
  method getLong(Ljava/lang/String;)Ljava/lang/Long; {
   +START:   #1
@@ -263,7 +273,7 @@ class java/lang/Long {
         if vR3!=null goto B21;   
   +B10:   #1
         b0 = new java/lang/Long(vl1);    [ R  i.][ R . ilR]
-        goto +B22b0;   forward return[?R R . ...]
+        goto +B22b0;   [?R R . ...]
   +B21:   #1
         b0 = vR3;    
   +B22b0:   #1 reference
@@ -279,17 +289,17 @@ class java/lang/Long {
   +B9:   #1
         return vR1;   
   +B11:   #1
-        if vR2.startsWith@extra("0x")==0 goto B31;   
+        if vR2.startsWith("0x")==0 goto B31;   
   +B20:   #1
-        return valueOf@special(vR2.substring@extra(2),16);   
+        return valueOf@special(vR2.substring(2),16);   
   +B31:   #1
-        if vR2.startsWith@extra("#")==0 goto B51;   
+        if vR2.startsWith("#")==0 goto B51;   
   +B40:   #1
-        return valueOf@special(vR2.substring@extra(1),16);   
+        return valueOf@special(vR2.substring(1),16);   
   +B51:   #1
-        if vR2.startsWith@extra("0")==0 goto B71;   
+        if vR2.startsWith("0")==0 goto B71;   
   +B60:   #1
-        return valueOf@special(vR2.substring@extra(1),8);   
+        return valueOf@special(vR2.substring(1),8);   
   +B71:   #2
         b0 = valueOf@special(vR2,10);    [R R . iR]
   +B77b0:   #1 reference
@@ -317,10 +327,10 @@ EXCEPTIONHANDLER-TABLE:
         return 0;   
   +B15:   #1
         vR2 = (java/lang/Long)(vR1);    
-        if compare(vR0.value,vR2.longValue@extra())!=0 goto B36;   
+        if compare(vR0.value,vR2.longValue())!=0 goto B36;   
   +B32:   #1
         b0 = 1;    
-        goto +B37b0;   forward return[R i  ..]
+        goto +B37b0;   [R i  ..]
   +B36:   #1
         b0 = 0;    
   +B37b0:   #1 int
@@ -352,17 +362,19 @@ EXCEPTIONHANDLER-TABLE:
  
  method floatValue()F {
   -START:   #1
-        throw new java/lang/Error();   
+        b0 = new java/lang/Error();    [ R  i][ R  iR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 floatValue
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 floatValue
  
  method doubleValue()D {
   -START:   #1
-        throw new java/lang/Error();   
+        b0 = new java/lang/Error();    [ R  i][ R  iR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 doubleValue
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 doubleValue
  
  method <init>(J)V {
   +START:   #1
@@ -376,7 +388,7 @@ EXCEPTIONHANDLER-TABLE:
  method <init>(Ljava/lang/String;)V {
   +START:   #1
         vR0.<init>@special();   [   R] 
-        vR0.value = valueOf@special(vR1).longValue@extra();   
+        vR0.value = valueOf@special(vR1).longValue();   
         return;   
   +END:   #1
  }

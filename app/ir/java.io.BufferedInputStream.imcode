@@ -88,14 +88,15 @@ class java/io/BufferedInputStream {
   +START:   #1
         if vR0.markpos!=-1 goto B18;   
   -B8:   #1
-        throw new java/io/IOException("Stream not marked");   
+        b0 = new java/io/IOException("Stream not marked");    [ R  i][ R . iRR]
+        throw b0;   
   +B18:   #1
         vR0.doing_reset = 0;   
         if vR0.markbuf!=null goto B46;   
   +B30:   #1
         vR0.pos = vR0.markpos;   
         vR0.markpos = -1;   
-        goto +B140;   forward return[ R . ...]
+        goto +B140;   [ R . ...]
   +B46:   #1
         vR0.markpos = -1;   
         if vR0.in.markSupported()==0 goto B115;   
@@ -107,7 +108,7 @@ class java/io/BufferedInputStream {
         vR0.pos = 0;   
         vR0.count = vR0.markbuf.length;   
         vR0.markbuf = 0;   
-        goto +B140;   forward return[ R RRi .....]
+        goto +B140;   [ R RRi .....]
   +B115:   #1
         vR0.pos = 0;   
         vR0.count = 0;   
@@ -118,7 +119,7 @@ class java/io/BufferedInputStream {
         return;   
   +END:   #1
  }
-// Register: rd 23/23 wr 4 swaps 0 any 0 found 0 reset
+// Register: rd 24/24 wr 5 swaps 0 any 0 found 0 reset
  
  method available()I {
   +START:   #1
@@ -207,7 +208,7 @@ class java/io/BufferedInputStream {
         vR0.pos = (vR0.pos+(vR0.count-vR0.pos));   
         goto +B38;   [ii  Riii .....]
   +B205:   #2
-        goto +B213;   forward return[ii  .... .....]
+        goto +B213;   [ii  .... .....]
   +H208<caught exception>:   #1 reference
         vR6 = <caught exception>;    
         return vi5;   

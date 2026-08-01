@@ -110,18 +110,20 @@ class java/util/Spliterators$IteratorSpliterator {
   +B153:   #1
         vR0.est = (vR0.est-(long)vi6);   
   +B165:   #1
-        return new java/util/Spliterators$ArraySpliterator(vR5,0,vi6,vR0.characteristics);   
+        b0 = new java/util/Spliterators$ArraySpliterator(vR5,0,vi6,vR0.characteristics);    [ RR . i.][ RR . iiiiRR]
+        return b0;   
   +B182:   #2
         return 0;   
   +END:   #1
  }
-// Register: rd 25/25 wr 12 swaps 0 any 7 found 0 trySplit
+// Register: rd 26/26 wr 13 swaps 0 any 7 found 0 trySplit
  
  method forEachRemaining(Ljava/util/function/Consumer;)V {
   +START:   #1
         if vR1!=null goto B12;   
   -B4:   #1
-        throw new java/lang/NullPointerException();   
+        b0 = new java/lang/NullPointerException();    [ RR  i][ RR  iR]
+        throw b0;   
   +B12:   #1
         b0 = vR0.it;    
         vR2 = b0;    
@@ -136,13 +138,14 @@ class java/util/Spliterators$IteratorSpliterator {
         return;   
   +END:   #1
  }
-// Register: rd 9/9 wr 5 swaps 0 any 5 found 0 forEachRemaining
+// Register: rd 10/10 wr 6 swaps 0 any 5 found 0 forEachRemaining
  
  method tryAdvance(Ljava/util/function/Consumer;)Z {
   +START:   #1
         if vR1!=null goto B12;   
   -B4:   #1
-        throw new java/lang/NullPointerException();   
+        b0 = new java/lang/NullPointerException();    [ R  i][ R  iR]
+        throw b0;   
   +B12:   #1
         if vR0.it!=null goto B46;   
   +B19:   #1
@@ -157,7 +160,7 @@ class java/util/Spliterators$IteratorSpliterator {
         return 0;   
   +END:   #1
  }
-// Register: rd 7/7 wr 1 swaps 1 any 1 found 0 tryAdvance
+// Register: rd 8/8 wr 2 swaps 1 any 1 found 0 tryAdvance
  
  method estimateSize()J {
   +START:   #1
@@ -187,8 +190,9 @@ class java/util/Spliterators$IteratorSpliterator {
   +B8:   #1
         return 0;   
   -B10:   #1
-        throw new java/lang/IllegalStateException();   
+        b0 = new java/lang/IllegalStateException();    [ R  i.][ R  iR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getComparator
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 getComparator
 }

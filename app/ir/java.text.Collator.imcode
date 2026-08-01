@@ -15,7 +15,7 @@ class java/text/Collator {
         return (java/text/Collator)(vR1);   
   +B20:   #2
         vR3 = getBundle@special("gnu/java/locale/LocaleInformation",vR0);    [R RRR R. RR]
-        vR2 = vR3.getString@extra("collation_rules");    [R?R RRR Ri RR] 
+        vR2 = vR3.getString("collation_rules");    [R?R RRR Ri RR] 
   +B34:   #1
         goto +B68;   [RRR RRR .. ..]
   -H37<caught exception>:   #1 reference
@@ -23,10 +23,11 @@ class java/text/Collator {
         b0 = new java/lang/RuntimeException;    
         b1 = b0;    
         b2 = new java/lang/StringBuilder();    [ RRR .. i.][ RRR .. iR]
-        b1.<init>@special(b2.append@extra("Cannot find collation rules: ").append@extra(vR3.getMessage()).toString@extra());   [RRR RRR iii. RR.] 
+        b1.<init>@special(b2.append("Cannot find collation rules: ").append(vR3.getMessage()).toString());   [RRR RRR iii. RR.] 
         throw b0;   
   +B68:   #2
-        vR3 = new java/text/RuleBasedCollator(vR2);    [ RRR .... i..][ RRR .... iRR]
+        b0 = new java/text/RuleBasedCollator(vR2);    [ RRR .... i..][ RRR .... iRR]
+        vR3 = b0;    
         collator_cache.put(vR0.getDisplayName@this(),vR3);   [RRR RRR i... RRR] 
         b0 = vR3;    
   +B90b0:   #1 reference
@@ -36,14 +37,14 @@ class java/text/Collator {
         b0 = new java/lang/RuntimeException;    
         b1 = b0;    
         b2 = new java/lang/StringBuilder();    [ RRR .... i..][ RRR .... iR.]
-        b1.<init>@special(b2.append@extra("Cannot load collation rules: ").append@extra(vR3.getMessage()).toString@extra());   [RRR RRR iii. RR.] 
+        b1.<init>@special(b2.append("Cannot load collation rules: ").append(vR3.getMessage()).toString());   [RRR RRR iii. RR.] 
         throw b0;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-20 - 34 handler 37 type 43
-68 - 90 handler 91 type 75
+20 - 34 handler 37 type 11
+68 - 90 handler 91 type 23
  }
-// Register: rd 20/20 wr 30 swaps 9 any 4 found 1 getInstance
+// Register: rd 21/21 wr 31 swaps 9 any 5 found 1 getInstance
  
  method getAvailableLocales()[Ljava/util/Locale; {
   +START:   #1
@@ -84,7 +85,7 @@ EXCEPTIONHANDLER-TABLE:
         b0 = new java/lang/IllegalArgumentException;    
         b1 = b0;    
         b2 = new java/lang/StringBuilder();    [ RRR  i][ RRR  iR]
-        b1.<init>@special(b2.append@extra("Invalid strength setting: ").append@extra(vi1).toString@extra());   [ RRR ii. RR.] 
+        b1.<init>@special(b2.append("Invalid strength setting: ").append(vi1).toString());   [ RRR ii. RR.] 
         throw b0;   
   +B46:   #4
         vR0.strength = vi1;   
@@ -111,7 +112,7 @@ EXCEPTIONHANDLER-TABLE:
         b0 = new java/lang/IllegalArgumentException;    
         b1 = b0;    
         b2 = new java/lang/StringBuilder();    [ RRR  i][ RRR  iR]
-        b1.<init>@special(b2.append@extra("Invalid decomposition setting: ").append@extra(vi1).toString@extra());   [ RRR ii. RR.] 
+        b1.<init>@special(b2.append("Invalid decomposition setting: ").append(vi1).toString());   [ RRR ii. RR.] 
         throw b0;   
   +B41:   #3
         vR0.decmp = vi1;   

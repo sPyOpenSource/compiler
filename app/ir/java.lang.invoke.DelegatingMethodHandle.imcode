@@ -47,17 +47,18 @@ class java/lang/invoke/DelegatingMethodHandle {
  
  method copyWith(Ljava/lang/invoke/MethodType;Ljava/lang/invoke/LambdaForm;)Ljava/lang/invoke/MethodHandle; {
   -START:   #1
-        throw new java/lang/Error("NOT IMPLEMENTED");   
+        b0 = new java/lang/Error("NOT IMPLEMENTED");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 copyWith
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 copyWith
  
  method internalProperties()Ljava/lang/String; {
   +START:   #1
         b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
-        return b0.append@extra("
-& Class=").append@extra(vR0.getClass@this().getSimpleName@extra()).append@extra("
-& Target=").append@extra(vR0.getTarget@this().debugString()).toString@extra();   
+        return b0.append("
+& Class=").append(vR0.getClass@this().getSimpleName()).append("
+& Target=").append(vR0.getTarget@this().debugString()).toString();   
   +END:   #1
  }
 // Register: rd 3/3 wr 11 swaps 4 any 0 found 0 internalProperties
@@ -91,7 +92,7 @@ class java/lang/invoke/DelegatingMethodHandle {
  
  method makeReinvokerForm(Ljava/lang/invoke/MethodHandle;ILjava/lang/Object;Ljava/lang/String;ZLjava/lang/invoke/LambdaForm$NamedFunction;Ljava/lang/invoke/LambdaForm$NamedFunction;)Ljava/lang/invoke/LambdaForm; {
   +START:   #1
-        vR7 = vR0.type@this().basicType@extra();    [ i . R] [ i R R] 
+        vR7 = vR0.type@this().basicType();    [ i . R] [ i R R] 
         vi8 = 0;    
         if vR6==null goto B21;   
   +B17:   #1
@@ -110,7 +111,7 @@ class java/lang/invoke/DelegatingMethodHandle {
   +B40:   #2
         vi11 = 0;    
         vi12 = 1;    
-        vi13 = (vR7.parameterCount@extra()+1);    
+        vi13 = (vR7.parameterCount()+1);    
         vi14 = vi13;    
         if vi9==0 goto B72;   
   +B64:   #1
@@ -133,12 +134,13 @@ class java/lang/invoke/DelegatingMethodHandle {
         b0 = vi14;    
         vi14++;   
         vi17 = b0;    
-        vR18 = arguments@special((vi14-vi13),vR7.invokerType@extra());    [RiiRiiiiiii i Ri Ri]
+        vR18 = arguments@special((vi14-vi13),vR7.invokerType());    [RiiRiiiiiii i Ri Ri]
         vR18[0] = vR18[0].withConstraint(vR2);   
-        throw new java/lang/Error("Object method not implemented");   
+        b0 = new java/lang/Error("Object method not implemented");    [ R Ri i.][ R Ri. iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 26/26 wr 23 swaps 0 any 16 found 0 makeReinvokerForm
+// Register: rd 27/27 wr 24 swaps 0 any 16 found 0 makeReinvokerForm
  
  method <clinit>()V {
   +START:   #1

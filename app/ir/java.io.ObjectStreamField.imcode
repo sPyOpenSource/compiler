@@ -14,7 +14,8 @@ class java/io/ObjectStreamField {
         vR0.offset = 0;   
         if vR1!=null goto B21;   
   -B13:   #1
-        throw new java/lang/NullPointerException();   
+        b0 = new java/lang/NullPointerException();    [ R  i][ R  iR]
+        throw b0;   
   +B21:   #1
         vR0.name = vR1;   
         vR0.type = vR2;   
@@ -24,7 +25,7 @@ class java/io/ObjectStreamField {
         return;   
   +END:   #1
  }
-// Register: rd 11/11 wr 0 swaps 0 any 1 found 0 <init>
+// Register: rd 12/12 wr 1 swaps 0 any 1 found 0 <init>
  
  method <init>(Ljava/lang/String;Ljava/lang/String;Z)V {
   +START:   #1
@@ -32,44 +33,46 @@ class java/io/ObjectStreamField {
         vR0.offset = 0;   
         if vR1!=null goto B21;   
   -B13:   #1
-        throw new java/lang/NullPointerException();   
+        b0 = new java/lang/NullPointerException();    [ R  i][ R  iR]
+        throw b0;   
   +B21:   #1
         vR0.name = vR1;   
-        vR0.signature = vR2.intern@extra();   
+        vR0.signature = vR2.intern();   
         vR0.unshared = vi3;   
         vR0.field = 0;   
-        tswitch (vR2.charAt@extra(0)) B174 B184 B234 B244 B224 B244 B244 B204 B214 B244 B244 B244 B244 B244 B244 B244 B244 B194 B244 B244 B244 B244 B244 B244 B164 : B244;   
+        tswitch (vR2.charAt(0)) B174 B184 B234 B244 B224 B244 B244 B204 B214 B244 B244 B244 B244 B244 B244 B244 B244 B194 B244 B244 B244 B244 B244 B244 B164 : B244;   
   +B164:   #1
         vR0.type = TYPE;   
-        goto +B254;   forward return[ R  ..]
+        goto +B254;   [ R  ..]
   +B174:   #1
         vR0.type = TYPE;   
-        goto +B254;   forward return[ R  ..]
+        goto +B254;   [ R  ..]
   +B184:   #1
         vR0.type = TYPE;   
-        goto +B254;   forward return[ R  ..]
+        goto +B254;   [ R  ..]
   +B194:   #1
         vR0.type = TYPE;   
-        goto +B254;   forward return[ R  ..]
+        goto +B254;   [ R  ..]
   +B204:   #1
         vR0.type = TYPE;   
-        goto +B254;   forward return[ R  ..]
+        goto +B254;   [ R  ..]
   +B214:   #1
         vR0.type = TYPE;   
-        goto +B254;   forward return[ R  ..]
+        goto +B254;   [ R  ..]
   +B224:   #1
         vR0.type = TYPE;   
-        goto +B254;   forward return[ R  ..]
+        goto +B254;   [ R  ..]
   +B234:   #1
         vR0.type = TYPE;   
-        goto +B254;   forward return[ R  ..]
+        goto +B254;   [ R  ..]
   -B244:   #18
-        throw new java/lang/IllegalArgumentException("illegal signature");   
+        b0 = new java/lang/IllegalArgumentException("illegal signature");    [ R  i.][ R . iRR]
+        throw b0;   
   +B254:   #8
         return;   
   +END:   #1
  }
-// Register: rd 20/20 wr 1 swaps 0 any 1 found 0 <init>
+// Register: rd 22/22 wr 3 swaps 0 any 1 found 0 <init>
  
  method getName()Ljava/lang/String; {
   +START:   #1
@@ -80,7 +83,7 @@ class java/io/ObjectStreamField {
  
  method getTypeCode()C {
   +START:   #1
-        return vR0.signature.charAt@extra(0);   
+        return vR0.signature.charAt(0);   
   +END:   #1
  }
 // Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getTypeCode
@@ -90,7 +93,7 @@ class java/io/ObjectStreamField {
         if vR0.isPrimitive@this()==0 goto B11;   
   +B7:   #1
         b0 = 0;    
-        goto +B15b0;   forward return[ R  .]
+        goto +B15b0;   [ R  .]
   +B11:   #1
         b0 = vR0.signature;    
   +B15b0:   #1 reference
@@ -116,13 +119,13 @@ class java/io/ObjectStreamField {
  
  method isPrimitive()Z {
   +START:   #1
-        vi1 = vR0.signature.charAt@extra(0);    [ i  iR] 
+        vi1 = vR0.signature.charAt(0);    [ i  iR] 
         if vi1==76 goto B25;   
   +B15:   #1
         if vi1==91 goto B25;   
   +B21:   #1
         b0 = 1;    
-        goto +B26b0;   forward return[i i  ..]
+        goto +B26b0;   [i i  ..]
   +B25:   #2
         b0 = 0;    
   +B26b0:   #1 int
@@ -147,13 +150,13 @@ class java/io/ObjectStreamField {
         if vi3==0 goto B26;   
   +B22:   #1
         b0 = -1;    
-        goto +B27b0;   forward return[Ri i  ..]
+        goto +B27b0;   [Ri i  ..]
   +B26:   #1
         b0 = 1;    
   +B27b0:   #1 int
         return b0;   
   +B28:   #1
-        return vR0.name.compareTo@extra(vR2.name);   
+        return vR0.name.compareTo(vR2.name);   
   +END:   #1
  }
 // Register: rd 10/10 wr 3 swaps 1 any 3 found 2 compareTo
@@ -161,7 +164,7 @@ class java/io/ObjectStreamField {
  method toString()Ljava/lang/String; {
   +START:   #1
         b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
-        return b0.append@extra(vR0.signature).append@extra(32).append@extra(vR0.name).toString@extra();   
+        return b0.append(vR0.signature).append(32).append(vR0.name).toString();   
   +END:   #1
  }
 // Register: rd 3/3 wr 6 swaps 2 any 0 found 0 toString
@@ -182,74 +185,77 @@ class java/io/ObjectStreamField {
  
  method getType()Ljava/lang/Class; {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getType
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 getType
  
  method getClassSignature(Ljava/lang/Class;)Ljava/lang/String; {
   +START:   #1
-        vR1 = new java/lang/StringBuilder();    [ R  i][ R  iR]
+        b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
+        vR1 = b0;    
   +B8:   #1
-        if vR0.isArray@extra()==0 goto B30;   
+        if vR0.isArray@this()==0 goto B30;   
   +B15:   #1
-        vR1.append@extra(91);   [R R  iR] 
-        vR0 = vR0.getComponentType@extra();    [R R  R.] 
+        vR1.append(91);   [R R  iR] 
+        vR0 = vR0.getComponentType@this();    [R R  R.] 
         goto +B8;   [R R  ..]
   +B30:   #1
-        if vR0.isPrimitive@extra()==0 goto B198;   
+        if vR0.isPrimitive@this()==0 goto B198;   
   +B37:   #1
         if vR0!=TYPE goto B54;   
   +B44:   #1
-        vR1.append@extra(73);   [R R  iR] 
-        goto +B224;   forward return[R R  ..]
+        vR1.append(73);   [R R  iR] 
+        goto +B224;   [R R  ..]
   +B54:   #1
         if vR0!=TYPE goto B71;   
   +B61:   #1
-        vR1.append@extra(66);   [R R  iR] 
-        goto +B224;   forward return[R R  ..]
+        vR1.append(66);   [R R  iR] 
+        goto +B224;   [R R  ..]
   +B71:   #1
         if vR0!=TYPE goto B88;   
   +B78:   #1
-        vR1.append@extra(74);   [R R  iR] 
-        goto +B224;   forward return[R R  ..]
+        vR1.append(74);   [R R  iR] 
+        goto +B224;   [R R  ..]
   +B88:   #1
         if vR0!=TYPE goto B105;   
   +B95:   #1
-        vR1.append@extra(70);   [R R  iR] 
-        goto +B224;   forward return[R R  ..]
+        vR1.append(70);   [R R  iR] 
+        goto +B224;   [R R  ..]
   +B105:   #1
         if vR0!=TYPE goto B122;   
   +B112:   #1
-        vR1.append@extra(68);   [R R  iR] 
-        goto +B224;   forward return[R R  ..]
+        vR1.append(68);   [R R  iR] 
+        goto +B224;   [R R  ..]
   +B122:   #1
         if vR0!=TYPE goto B139;   
   +B129:   #1
-        vR1.append@extra(83);   [R R  iR] 
-        goto +B224;   forward return[R R  ..]
+        vR1.append(83);   [R R  iR] 
+        goto +B224;   [R R  ..]
   +B139:   #1
         if vR0!=TYPE goto B156;   
   +B146:   #1
-        vR1.append@extra(67);   [R R  iR] 
-        goto +B224;   forward return[R R  ..]
+        vR1.append(67);   [R R  iR] 
+        goto +B224;   [R R  ..]
   +B156:   #1
         if vR0!=TYPE goto B173;   
   +B163:   #1
-        vR1.append@extra(90);   [R R  iR] 
-        goto +B224;   forward return[R R  ..]
+        vR1.append(90);   [R R  iR] 
+        goto +B224;   [R R  ..]
   +B173:   #1
         if vR0!=TYPE goto B190;   
   +B180:   #1
-        vR1.append@extra(86);   [R R  iR] 
-        goto +B224;   forward return[R R  ..]
+        vR1.append(86);   [R R  iR] 
+        goto +B224;   [R R  ..]
   -B190:   #1
-        throw new java/lang/InternalError();   
+        b0 = new java/lang/InternalError();    [ R  i.][ R  iR]
+        throw b0;   
   +B198:   #1
-        vR1.append@extra(76).append@extra(vR0.getName@extra().replace@extra(46,47)).append@extra(59);   [R R .i. iR..] [R R Ri. iRR.] [R R RiR iRiR] 
+        vR1.append(76).append(vR0.getName@this().replace(46,47)).append(59);   [R R .i. iR..] [R R Ri. iRR.] [R R RiR iRiR] 
   +B224:   #9
-        return vR1.toString@extra();   
+        return vR1.toString();   
   +END:   #1
  }
-// Register: rd 34/34 wr 6 swaps 1 any 9 found 9 getClassSignature
+// Register: rd 36/36 wr 8 swaps 1 any 10 found 9 getClassSignature
 }

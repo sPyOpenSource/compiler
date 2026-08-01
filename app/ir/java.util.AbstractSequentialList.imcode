@@ -25,7 +25,7 @@ class java/util/AbstractSequentialList {
         if vi4<=0 goto B21;   
   +B17:   #1
         b0 = 1;    
-        goto +B22b0;   forward return[iiR i  ..]
+        goto +B22b0;   [iiR i  ..]
   +B21:   #1
         b0 = 0;    
   +B22b0:   #1 int
@@ -51,7 +51,7 @@ class java/util/AbstractSequentialList {
         b0 = new java/lang/IndexOutOfBoundsException;    
         b1 = b0;    
         b2 = new java/lang/StringBuilder();    [ RRR  i.][ RRR  iR]
-        b1.<init>@special(b2.append@extra("Index: ").append@extra(vi1).append@extra(", Size:").append@extra(vR0.size@this()).toString@extra());   [R RRR iiii... RR...] 
+        b1.<init>@special(b2.append("Index: ").append(vi1).append(", Size:").append(vR0.size@this()).toString());   [R RRR iiii... RR...] 
         throw b0;   
   +B57:   #1
         vR4 = vR3.next();    [R RRR ....... R....] 

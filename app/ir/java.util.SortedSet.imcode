@@ -2,8 +2,9 @@ class java/util/SortedSet {
  
  method spliterator()Ljava/util/Spliterator; {
   +START:   #1
-        return new java/util/SortedSet$1(vR0,vR0,21);   
+        b0 = new java/util/SortedSet$1(vR0,vR0,21);    [ R  i][ R . iiRRR]
+        return b0;   
   +END:   #1
  }
-// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 spliterator
+// Register: rd 4/4 wr 2 swaps 0 any 0 found 0 spliterator
 }

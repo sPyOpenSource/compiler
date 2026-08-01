@@ -68,27 +68,29 @@ EXCEPTIONHANDLER-TABLE:
   +START:   #1
         if vR0.closed==0 goto B17;   
   -B7:   #1
-        throw new java/lang/SecurityException("Cannot add to a closed queue.");   
+        b0 = new java/lang/SecurityException("Cannot add to a closed queue.");    [ R  i][ R . iRR]
+        throw b0;   
   +B17:   #1
         vR0.queue.add(vR1);   [ R . RR.] 
         vR0.notifyAll@this();   [ R . ...] 
         return 1;   
   +END:   #1
  }
-// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 add
+// Register: rd 4/4 wr 2 swaps 0 any 0 found 0 add
  
  method remove(Ljava/lang/Object;)Z {
   +START:   #1
         if vR0.closed==0 goto B17;   
   -B7:   #1
-        throw new java/lang/SecurityException("Cannot remove from a closed queue.");   
+        b0 = new java/lang/SecurityException("Cannot remove from a closed queue.");    [ R  i][ R . iRR]
+        throw b0;   
   +B17:   #1
         vR0.queue.remove(vR1);   [ R . RR.] 
         vR0.notifyAll@this();   [ R . ...] 
         return 1;   
   +END:   #1
  }
-// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 remove
+// Register: rd 4/4 wr 2 swaps 0 any 0 found 0 remove
  
  method contains(Ljava/lang/Object;)Z {
   +START:   #1
@@ -129,17 +131,19 @@ EXCEPTIONHANDLER-TABLE:
  
  method offer(Ljava/lang/Object;)Z {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 offer
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 offer
  
  method remove()Ljava/lang/Object; {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 remove
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 remove
  
  method poll()Ljava/lang/Object; {
   +START:   #1
@@ -150,71 +154,81 @@ EXCEPTIONHANDLER-TABLE:
  
  method element()Ljava/lang/Object; {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 element
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 element
  
  method peek()Ljava/lang/Object; {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 peek
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 peek
  
  method iterator()Ljava/util/Iterator; {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 iterator
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 iterator
  
  method toArray()[Ljava/lang/Object; {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 toArray
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 toArray
  
  method toArray([Ljava/lang/Object;)[Ljava/lang/Object; {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 toArray
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 toArray
  
  method containsAll(Ljava/util/Collection;)Z {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 containsAll
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 containsAll
  
  method addAll(Ljava/util/Collection;)Z {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 addAll
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 addAll
  
  method removeAll(Ljava/util/Collection;)Z {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 removeAll
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 removeAll
  
  method retainAll(Ljava/util/Collection;)Z {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 retainAll
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 retainAll
  
  method clear()V {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 clear
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 clear
 }

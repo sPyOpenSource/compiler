@@ -56,7 +56,7 @@ class gnu/java/io/encode/EncoderEightBitLookup {
         b0 = new java/io/CharConversionException;    
         b1 = b0;    
         b2 = new java/lang/StringBuilder();    [ RRR  i][ RRR  iR]
-        b1.<init>@special(b2.append@extra("Encountered unencodable character: ").append@extra(vR1[(vi2+vi6)]).toString@extra());   [i RRR iii. RR.] 
+        b1.<init>@special(b2.append("Encountered unencodable character: ").append(vR1[(vi2+vi6)]).toString());   [i RRR iii. RR.] 
         throw b0;   
   +B116:   #1
         vR4[(vi5+vi6)] = (byte)(encoding_table[vR1[(vi2+vi6)]] & 255);   

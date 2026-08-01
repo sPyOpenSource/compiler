@@ -4,7 +4,7 @@ class java/io/StringReader {
   +START:   #1
         vR0.<init>@special();   [   R] 
         vR0.buf = vR1;   
-        vR0.count = vR1.length@extra();   
+        vR0.count = vR1.length();   
         vR0.pos = 0;   
         vR0.markedPos = 0;   
         return;   
@@ -19,7 +19,7 @@ class java/io/StringReader {
         b0.enter();   
         vR0.buf = 0;   
         vR1.leave();   
-        goto +B22;   forward return[R R  ]
+        goto +B22;   [R R  ]
   +H17<caught exception>:   #2 reference
         vR2 = <caught exception>;    
         vR1.leave();   
@@ -41,11 +41,12 @@ EXCEPTIONHANDLER-TABLE:
         b0.enter();   
         if vR0.buf!=null goto B24;   
   -B14:   #1
-        throw new java/io/IOException("Stream closed");   
+        b0 = new java/io/IOException("Stream closed");    [ R  i][ R . iRR]
+        throw b0;   
   +B24:   #1
         vR0.markedPos = vR0.pos;   
         vR2.leave();   
-        goto +B42;   forward return[R R . ...]
+        goto +B42;   [R R . ...]
   +H37<caught exception>:   #2 reference
         vR3 = <caught exception>;    
         vR2.leave();   
@@ -58,7 +59,7 @@ EXCEPTIONHANDLER-TABLE:
 7 - 34 handler 37 type 0
 37 - 40 handler 37 type 0
  }
-// Register: rd 7/7 wr 4 swaps 0 any 1 found 0 mark
+// Register: rd 8/8 wr 5 swaps 0 any 1 found 0 mark
  
  method markSupported()Z {
   +START:   #1
@@ -74,7 +75,8 @@ EXCEPTIONHANDLER-TABLE:
         b0.enter();   
         if vR0.buf!=null goto B24;   
   -B14:   #1
-        throw new java/io/IOException("Stream closed");   
+        b0 = new java/io/IOException("Stream closed");    [ Rii  i][ Rii . iRR]
+        throw b0;   
   +B24:   #1
         if vR0.pos>=vR0.count goto B59;   
   +B35:   #1
@@ -82,7 +84,7 @@ EXCEPTIONHANDLER-TABLE:
         b2 = vR0.pos;    
         b1 = b2;    
         vR0.pos = (b2+1);   
-        b0 = (b0.charAt@extra(b1) & 65535);    
+        b0 = (b0.charAt(b1) & 65535);    
         vR1.leave();   
         return b0;   
   +B59:   #1
@@ -99,7 +101,7 @@ EXCEPTIONHANDLER-TABLE:
 59 - 62 handler 63 type 0
 63 - 66 handler 63 type 0
  }
-// Register: rd 15/15 wr 8 swaps 0 any 2 found 0 read
+// Register: rd 16/16 wr 9 swaps 0 any 2 found 0 read
  
  method read([CII)I {
   +START:   #1
@@ -108,7 +110,8 @@ EXCEPTIONHANDLER-TABLE:
         b0.enter();   
         if vR0.buf!=null goto B25;   
   -B15:   #1
-        throw new java/io/IOException("Stream closed");   
+        b0 = new java/io/IOException("Stream closed");    [ R  i][ R . iRR]
+        throw b0;   
   +B25:   #1
         if vi2< 0 goto B41;   
   +B29:   #1
@@ -116,7 +119,8 @@ EXCEPTIONHANDLER-TABLE:
   +B33:   #1
         if (vi2+vi3)<=vR1.length goto B49;   
   -B41:   #2
-        throw new java/lang/ArrayIndexOutOfBoundsException();   
+        b0 = new java/lang/ArrayIndexOutOfBoundsException();    [ R . i..][ R . iR.]
+        throw b0;   
   +B49:   #1
         if vR0.pos<vR0.count goto B65;   
   +B60:   #1
@@ -124,7 +128,7 @@ EXCEPTIONHANDLER-TABLE:
         return -1;   
   +B65:   #1
         vi5 = min@special(vR0.count,(vR0.pos+vi3));    [R R ii ii.]
-        vR0.buf.getChars@extra(vR0.pos,vi5,vR1,vi2);   [Ri R iii iRiiR] 
+        vR0.buf.getChars(vR0.pos,vi5,vR1,vi2);   [Ri R iii iRiiR] 
         vi6 = (vi5-vR0.pos);    
         vR0.pos = vi5;   
         vR4.leave();   
@@ -140,18 +144,19 @@ EXCEPTIONHANDLER-TABLE:
 65 - 115 handler 116 type 0
 116 - 121 handler 116 type 0
  }
-// Register: rd 22/22 wr 9 swaps 1 any 5 found 0 read
+// Register: rd 24/24 wr 11 swaps 1 any 5 found 0 read
  
  method ready()Z {
   +START:   #1
         if vR0.buf!=null goto B17;   
   -B7:   #1
-        throw new java/io/IOException("Stream closed");   
+        b0 = new java/io/IOException("Stream closed");    [ R  i][ R . iRR]
+        throw b0;   
   +B17:   #1
         return 1;   
   +END:   #1
  }
-// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 ready
+// Register: rd 3/3 wr 2 swaps 0 any 0 found 0 ready
  
  method reset()V {
   +START:   #1
@@ -160,11 +165,12 @@ EXCEPTIONHANDLER-TABLE:
         b0.enter();   
         if vR0.buf!=null goto B24;   
   -B14:   #1
-        throw new java/io/IOException("Stream closed");   
+        b0 = new java/io/IOException("Stream closed");    [ R  i][ R . iRR]
+        throw b0;   
   +B24:   #1
         vR0.pos = vR0.markedPos;   
         vR1.leave();   
-        goto +B42;   forward return[R R . ...]
+        goto +B42;   [R R . ...]
   +H37<caught exception>:   #2 reference
         vR2 = <caught exception>;    
         vR1.leave();   
@@ -177,7 +183,7 @@ EXCEPTIONHANDLER-TABLE:
 7 - 34 handler 37 type 0
 37 - 40 handler 37 type 0
  }
-// Register: rd 7/7 wr 4 swaps 0 any 1 found 0 reset
+// Register: rd 8/8 wr 5 swaps 0 any 1 found 0 reset
  
  method skip(J)J {
   +START:   #1
@@ -186,7 +192,8 @@ EXCEPTIONHANDLER-TABLE:
         b0.enter();   
         if vR0.buf!=null goto B24;   
   -B14:   #1
-        throw new java/io/IOException("Stream closed");   
+        b0 = new java/io/IOException("Stream closed");    [ Rl_  i][ Rl_ . iRR]
+        throw b0;   
   +B24:   #1
         b0 = (long)(vR0.count-vR0.pos);    
         if compare(vl1,0)>=0 goto B44;   
@@ -210,5 +217,5 @@ EXCEPTIONHANDLER-TABLE:
 7 - 67 handler 68 type 0
 68 - 72 handler 68 type 0
  }
-// Register: rd 7/7 wr 5 swaps 0 any 1 found 0 skip
+// Register: rd 8/8 wr 6 swaps 0 any 1 found 0 skip
 }

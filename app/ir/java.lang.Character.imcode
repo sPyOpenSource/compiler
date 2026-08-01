@@ -2,66 +2,75 @@ class java/lang/Character {
  
  method codePointAt([CI)I {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 codePointAt
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 codePointAt
  
  method codePointCountImpl([CII)I {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 codePointCountImpl
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 codePointCountImpl
  
  method codePointBefore([CI)I {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 codePointBefore
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 codePointBefore
  
  method offsetByCodePointsImpl([CIIII)I {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 offsetByCodePointsImpl
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 offsetByCodePointsImpl
  
  method isBmpCodePoint(I)Z {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 isBmpCodePoint
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 isBmpCodePoint
  
  method isValidCodePoint(I)Z {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 isValidCodePoint
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 isValidCodePoint
  
  method toSurrogates(I[CI)V {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 toSurrogates
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 toSurrogates
  
  method isLowSurrogate(C)Z {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 isLowSurrogate
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 isLowSurrogate
  
  method isHighSurrogate(C)Z {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 isHighSurrogate
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 isHighSurrogate
  
  method <init>(C)V {
   +START:   #1
@@ -91,7 +100,7 @@ class java/lang/Character {
         if (java/lang/Character)(vR1).value!=vR0.value goto B31;   
   +B27:   #1
         b0 = 1;    
-        goto +B32b0;   forward return[ i  ..]
+        goto +B32b0;   [ i  ..]
   +B31:   #1
         b0 = 0;    
   +B32b0:   #1 int
@@ -123,10 +132,11 @@ class java/lang/Character {
  
  method isWhitespace(C)Z {
   -START:   #1
-        throw new java/lang/Error("NOT IMPLEMENTED");   
+        b0 = new java/lang/Error("NOT IMPLEMENTED");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 isWhitespace
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 isWhitespace
  
  method isLowerCase(C)Z {
   +START:   #1
@@ -169,7 +179,7 @@ class java/lang/Character {
         vi1++;   
         goto +B75;   [i   .]
   +B113:   #1
-        goto +B156;   forward return[i   .]
+        goto +B156;   [i   .]
   +B116:   #1
         vi1 = 0;    
   +B118:   #1
@@ -230,7 +240,7 @@ class java/lang/Character {
         vi1++;   
         goto +B75;   [i   .]
   +B113:   #1
-        goto +B156;   forward return[i   .]
+        goto +B156;   [i   .]
   +B116:   #1
         vi1 = 0;    
   +B118:   #1
@@ -298,7 +308,7 @@ class java/lang/Character {
         if isDigit@special(vi0)!=0 goto B18;   
   +B14:   #1
         b0 = 1;    
-        goto +B19b0;   forward return[ i  .]
+        goto +B19b0;   [ i  .]
   +B18:   #2
         b0 = 0;    
   +B19b0:   #1 int
@@ -347,7 +357,7 @@ class java/lang/Character {
         if isLetter@special(vi0)==0 goto B23;   
   +B19:   #2
         b0 = 1;    
-        goto +B24b0;   forward return[ i  .]
+        goto +B24b0;   [ i  .]
   +B23:   #1
         b0 = 0;    
   +B24b0:   #1 int
@@ -365,7 +375,7 @@ class java/lang/Character {
         if isLetterOrDigit@special(vi0)==0 goto B23;   
   +B19:   #2
         b0 = 1;    
-        goto +B24b0;   forward return[ i  .]
+        goto +B24b0;   [ i  .]
   +B23:   #1
         b0 = 0;    
   +B24b0:   #1 int
@@ -395,7 +405,7 @@ class java/lang/Character {
         if vi2>=vi1 goto B34;   
   +B30:   #1
         b0 = vi2;    
-        goto +B35b0;   forward return[i i  .]
+        goto +B35b0;   [i i  .]
   +B34:   #1
         b0 = -1;    
   +B35b0:   #1 int

@@ -12,28 +12,28 @@ class java/lang/invoke/InfoFromMemberName {
  
  method getDeclaringClass()Ljava/lang/Class; {
   +START:   #1
-        return vR0.member.getDeclaringClass@extra();   
+        return vR0.member.getDeclaringClass();   
   +END:   #1
  }
 // Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getDeclaringClass
  
  method getName()Ljava/lang/String; {
   +START:   #1
-        return vR0.member.getName@extra();   
+        return vR0.member.getName();   
   +END:   #1
  }
 // Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getName
  
  method getMethodType()Ljava/lang/invoke/MethodType; {
   +START:   #1
-        return vR0.member.getMethodOrFieldType@extra();   
+        return vR0.member.getMethodOrFieldType();   
   +END:   #1
  }
 // Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getMethodType
  
  method getModifiers()I {
   +START:   #1
-        return vR0.member.getModifiers@extra();   
+        return vR0.member.getModifiers();   
   +END:   #1
  }
 // Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getModifiers
@@ -54,47 +54,26 @@ class java/lang/invoke/InfoFromMemberName {
  
  method reflectAs(Ljava/lang/Class;Ljava/lang/invoke/MethodHandles$Lookup;)Ljava/lang/reflect/Member; {
   +START:   #1
-        if vR0.member.isMethodHandleInvoke@extra()==0 goto B30;   
+        if vR0.member.isMethodHandleInvoke()==0 goto B30;   
   +B10:   #1
-        if vR0.member.isVarargs@extra()!=0 goto B30;   
+        if vR0.member.isVarargs()!=0 goto B30;   
   -B20:   #1
-        throw new java/lang/IllegalArgumentException("cannot reflect signature polymorphic method");   
+        b0 = new java/lang/IllegalArgumentException("cannot reflect signature polymorphic method");    [ R  i][ R . iRR]
+        throw b0;   
   -B30:   #2
-        throw new java/lang/Error("NOT IMPLEMENTED");   
+        b0 = new java/lang/Error("NOT IMPLEMENTED");    [ R . i..][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 4/4 wr 2 swaps 0 any 0 found 0 reflectAs
+// Register: rd 6/6 wr 4 swaps 0 any 0 found 0 reflectAs
  
  method reflectUnchecked()Ljava/lang/reflect/Member; {
   -START:   #1
-        vi1 = (byte)vR0.getReferenceKind@extra();    
-        vR2 = vR0.getDeclaringClass@extra();    [i R  R] 
-        vi3 = isPublic@special(vR0.getModifiers@extra());    [iR R i i]
-        throw new java/lang/Error("NOT IMPLEMENTED");   
+        vi1 = (byte)vR0.getReferenceKind@this();    
+        vR2 = vR0.getDeclaringClass@this();    [i R  R] 
+        vi3 = isPublic@special(vR0.getModifiers@this());    [iR R i i]
+        b0 = new java/lang/Error("NOT IMPLEMENTED");    [ R i i][ R i. iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 4/4 wr 5 swaps 0 any 0 found 0 reflectUnchecked
- 
- method convertToMemberName(BLjava/lang/reflect/Member;)Ljava/lang/invoke/MemberName; {
-  +START:   #1
-        if (vR1 instanceof java/lang/reflect/Method)==0 goto B32;   
-  +B7:   #1
-        if vi0!=7 goto B17;   
-  +B13:   #1
-        b0 = 1;    
-        goto +B18b0;   [ i  ..]
-  +B17:   #1
-        b0 = 0;    
-  +B18b0:   #1 int
-        vi2 = b0;    
-        return new java/lang/invoke/MemberName((java/lang/reflect/Method)(vR1),vi2);   
-  +B32:   #1
-        if (vR1 instanceof java/lang/reflect/Constructor)==0 goto B51;   
-  +B39:   #1
-        return new java/lang/invoke/MemberName((java/lang/reflect/Constructor)(vR1));   
-  -B51:   #1
-        throw new java/lang/InternalError(vR1.getClass().getName@extra());   
-  +END:   #1
- }
-// Register: rd 13/13 wr 6 swaps 0 any 2 found 2 convertToMemberName
-}
+// Register: rd 5/5 wr 6 swaps 0 any 0 found 0 reflectUnchecked

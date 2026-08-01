@@ -14,10 +14,11 @@ class java/util/AbstractQueue {
   +B8:   #1
         return 1;   
   -B10:   #1
-        throw new java/lang/IllegalStateException("Queue full");   
+        b0 = new java/lang/IllegalStateException("Queue full");    [ R  i.][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 add
+// Register: rd 3/3 wr 2 swaps 0 any 0 found 0 add
  
  method offer(Ljava/lang/Object;)Z {
   +START:   #1
@@ -47,10 +48,11 @@ class java/util/AbstractQueue {
   +B9:   #1
         return vR1;   
   -B11:   #1
-        throw new java/util/NoSuchElementException();   
+        b0 = new java/util/NoSuchElementException();    [ R  i][ R  iR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 3/3 wr 1 swaps 0 any 1 found 0 remove
+// Register: rd 4/4 wr 2 swaps 0 any 1 found 0 remove
  
  method element()Ljava/lang/Object; {
   +START:   #1
@@ -59,10 +61,11 @@ class java/util/AbstractQueue {
   +B9:   #1
         return vR1;   
   -B11:   #1
-        throw new java/util/NoSuchElementException();   
+        b0 = new java/util/NoSuchElementException();    [ R  i][ R  iR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 3/3 wr 1 swaps 0 any 1 found 0 element
+// Register: rd 4/4 wr 2 swaps 0 any 1 found 0 element
  
  method clear()V {
   +START:   #2
@@ -79,11 +82,13 @@ class java/util/AbstractQueue {
   +START:   #1
         if vR1!=null goto B12;   
   -B4:   #1
-        throw new java/lang/NullPointerException();   
+        b0 = new java/lang/NullPointerException();    [ R  i][ R  iR]
+        throw b0;   
   +B12:   #1
         if vR1!=vR0 goto B25;   
   -B17:   #1
-        throw new java/lang/IllegalArgumentException();   
+        b0 = new java/lang/IllegalArgumentException();    [ R  i.][ R  iR]
+        throw b0;   
   +B25:   #1
         vi2 = 0;    
         vR3 = vR1.iterator();    [i R  R.] 
@@ -100,5 +105,5 @@ class java/util/AbstractQueue {
         return vi2;   
   +END:   #1
  }
-// Register: rd 8/8 wr 3 swaps 0 any 2 found 0 addAll
+// Register: rd 10/10 wr 5 swaps 0 any 2 found 0 addAll
 }

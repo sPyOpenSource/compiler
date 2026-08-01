@@ -7,26 +7,29 @@ class java/lang/invoke/BoundMethodHandle {
   +B12:   #1
         if vR0.speciesData@this()==speciesData@special(vR2) goto B31;   
   -B23:   #1
-        throw new java/lang/AssertionError();   
+        b0 = new java/lang/AssertionError();    [ R . i..][ R . iR.]
+        throw b0;   
   +B31:   #2
         return;   
   +END:   #1
  }
-// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 <init>
+// Register: rd 4/4 wr 2 swaps 0 any 0 found 0 <init>
  
  method bindSingle(Ljava/lang/invoke/MethodType;Ljava/lang/invoke/LambdaForm;Ljava/lang/invoke/LambdaForm$BasicType;Ljava/lang/Object;)Ljava/lang/invoke/BoundMethodHandle; {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 bindSingle
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 bindSingle
  
  method editor()Ljava/lang/invoke/LambdaFormEditor; {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 editor
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 editor
  
  method bindSingle(Ljava/lang/invoke/MethodType;Ljava/lang/invoke/LambdaForm;Ljava/lang/Object;)Ljava/lang/invoke/BoundMethodHandle; {
   +START:   #1
@@ -83,17 +86,19 @@ class java/lang/invoke/BoundMethodHandle {
  
  method tooComplex()Z {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 tooComplex
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 tooComplex
  
  method makeReinvoker(Ljava/lang/invoke/MethodHandle;)Ljava/lang/invoke/BoundMethodHandle; {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 makeReinvoker
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 makeReinvoker
  
  method speciesData(Ljava/lang/invoke/LambdaForm;)Ljava/lang/invoke/BoundMethodHandle$SpeciesData; {
   +START:   #1
@@ -105,8 +110,8 @@ class java/lang/invoke/BoundMethodHandle {
  method internalProperties()Ljava/lang/Object; {
   +START:   #1
         b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
-        return b0.append@extra("
-& BMH=").append@extra(vR0.internalValues@extra()).toString@extra();   
+        return b0.append("
+& BMH=").append(vR0.internalValues@this()).toString();   
   +END:   #1
  }
 // Register: rd 2/2 wr 5 swaps 2 any 0 found 0 internalProperties
@@ -118,7 +123,7 @@ class java/lang/invoke/BoundMethodHandle {
   +B13:   #1
         if vi2>=vR1.length goto B33;   
   +B19:   #1
-        vR1[vi2] = vR0.arg@extra(vi2);   
+        vR1[vi2] = vR0.arg@this(vi2);   
         vi2++;   
         goto +B13;   [Ri  . ..]
   +B33:   #1
@@ -132,7 +137,7 @@ class java/lang/invoke/BoundMethodHandle {
         b0 = new java/lang/InternalError;    
         b1 = b0;    
         b2 = new java/lang/StringBuilder();    [ RRR  i][ RRR  iR]
-        b1.<init>@special(b2.append@extra("unexpected type: ").append@extra(access$200@special(vR0.speciesData@this())).append@extra(".").append@extra(vi1).toString@extra());   [ RRR ii..Rii. RR...] 
+        b1.<init>@special(b2.append("unexpected type: ").append(access$200@special(vR0.speciesData@this())).append(".").append(vi1).toString());   [ RRR ii..Rii. RR...] 
         throw b0;   
   +END:   #1
  }
@@ -191,7 +196,7 @@ class java/lang/invoke/BoundMethodHandle {
  
  method <clinit>()V {
   +START:   #1
-        if java/lang/invoke/BoundMethodHandle.desiredAssertionStatus@extra()!=0 goto B12;   
+        if java/lang/invoke/BoundMethodHandle.desiredAssertionStatus()!=0 goto B12;   
   +B8:   #1
         b0 = 1;    
         goto +B13b0;   [ i  .]

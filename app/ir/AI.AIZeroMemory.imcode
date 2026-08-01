@@ -87,7 +87,7 @@ class AI/AIZeroMemory {
  
  method addEmotion()V {
   +START:   #1
-        vR0.emotion = (vR0.emotion+jx.classfile.datatypes.BCDouble@3212a8d7);   
+        vR0.emotion = (vR0.emotion+jx.classfile.datatypes.BCDouble@16414e40);   
         return;   
   +END:   #1
  }
@@ -95,7 +95,7 @@ class AI/AIZeroMemory {
  
  method minEmotion()V {
   +START:   #1
-        vR0.emotion = (vR0.emotion-jx.classfile.datatypes.BCDouble@3212a8d7);   
+        vR0.emotion = (vR0.emotion-jx.classfile.datatypes.BCDouble@16414e40);   
         return;   
   +END:   #1
  }
@@ -114,12 +114,13 @@ class AI/AIZeroMemory {
   +B11:   #1
         return (java/util/List)(vR0.dict.get(vR1));   
   +B23:   #1
-        vR2 = new java/util/ArrayList();    [ R . i.][ R . iR]
+        b0 = new java/util/ArrayList();    [ R . i.][ R . iR]
+        vR2 = b0;    
         vR0.dict.put(vR1,vR2);   [R R . RRR] 
         return vR2;   
   +END:   #1
  }
-// Register: rd 5/5 wr 2 swaps 0 any 0 found 0 searchZero
+// Register: rd 6/6 wr 3 swaps 0 any 1 found 0 searchZero
  
  method setLogPath(Ljava/lang/String;)V {
   +START:   #1
@@ -139,11 +140,12 @@ class AI/AIZeroMemory {
  method ReceiveFromNetwork(I)V {
   +START:   #1
         vR2 = new byte[vi1];    
-        vR3 = new java/net/DatagramPacket(vR2,vi1);    [ R  i.][ R . iiRR]
+        b0 = new java/net/DatagramPacket(vR2,vi1);    [ R  i.][ R . iiRR]
+        vR3 = b0;    
         return;   
   +END:   #1
  }
-// Register: rd 4/4 wr 3 swaps 0 any 0 found 0 ReceiveFromNetwork
+// Register: rd 5/5 wr 4 swaps 0 any 1 found 0 ReceiveFromNetwork
  
  method AddWebsocketClient()V {
   +START:   #1
@@ -180,7 +182,7 @@ class AI/AIZeroMemory {
         b2 = new java/io/FileReader;    
         b3 = b2;    
         b4 = new java/lang/StringBuilder();    [ RRRRR  i][ RRRRR  iR]
-        b3.<init>@special(b4.append@extra(vR1).append@extra(".txt").toString@extra());   [ RRRRR ii. RR.] 
+        b3.<init>@special(b4.append(vR1).append(".txt").toString());   [ RRRRR ii. RR.] 
         b1.<init>@special(b2);   [ RRRRR ii. RR.] 
         vR2 = b0;    
   +B34:   #1
@@ -188,7 +190,7 @@ class AI/AIZeroMemory {
         vR3 = b0;    
         if b0==null goto B104;   
   +B43:   #1
-        vR4 = vR3.split@extra("::");    [RR RRRRR i.. RR.] 
+        vR4 = vR3.split("::");    [RR RRRRR i.. RR.] 
         if vR4.length!=2 goto B80;   
   +B58:   #1
         b1 = new AI/Models/InfoZero(vR4[1]);    [ RRRRR ... i..][ RRRRR ... iRR]
@@ -201,7 +203,7 @@ class AI/AIZeroMemory {
         vR2.close();   [RRR RRRRR ... R..] 
         goto +B34;   [RRR RRRRR ... ...]
   +B104:   #2
-        goto +B108;   forward return[RRR RRRRR ... ...]
+        goto +B108;   [RRR RRRRR ... ...]
   +H107<caught exception>:   #1 reference
         vR2 = <caught exception>;    
   +B108:   #1

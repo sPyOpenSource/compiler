@@ -73,7 +73,7 @@ class jx/zero/classfile/datatypes/BCBasicDatatype {
         if vi0!=3 goto B14;   
   +B10:   #1
         b0 = 1;    
-        goto +B15b0;   forward return[ i  ]
+        goto +B15b0;   [ i  ]
   +B14:   #1
         b0 = 0;    
   +B15b0:   #1 int

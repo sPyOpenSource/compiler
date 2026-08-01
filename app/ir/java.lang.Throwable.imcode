@@ -56,7 +56,7 @@ class java/lang/Throwable {
  method toString()Ljava/lang/String; {
   +START:   #1
         b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
-        return b0.append@extra(vR0.getClass@this().getName@extra()).append@extra(": ").append@extra(vR0.message).toString@extra();   
+        return b0.append(vR0.getClass@this().getName()).append(": ").append(vR0.message).toString();   
   +END:   #1
  }
 // Register: rd 3/3 wr 8 swaps 3 any 0 found 0 toString
@@ -96,7 +96,7 @@ class java/lang/Throwable {
         if err==null goto B16;   
   +B6:   #1
         vR0.printStackTrace@this(err);   [  i RR] 
-        goto +B29;   forward return[  i ..]
+        goto +B29;   [  i ..]
   +B16:   #1
         if out==null goto B29;   
   +B22:   #1
@@ -118,7 +118,7 @@ class java/lang/Throwable {
         if vi2>=vR0.backtrace.length goto B64;   
   +B26:   #1
         b1 = new java/lang/StringBuilder();    [ ?R . i.][ ?R . iR]
-        vR1.println(b1.append@extra(vi2).append@extra(" ").append@extra(vR0.backtrace[vi2]).toString@extra());   [i ?R iii.. RR..] 
+        vR1.println(b1.append(vi2).append(" ").append(vR0.backtrace[vi2]).toString());   [i ?R iii.. RR..] 
         vi2++;   
         goto +B17;   [i ?R iii.. ....]
   +B64:   #1
@@ -141,28 +141,31 @@ class java/lang/Throwable {
         b0 = new java/lang/IllegalStateException;    
         b1 = b0;    
         b2 = new java/lang/StringBuilder();    [ RRR  i][ RRR  iR]
-        b1.<init>@special(b2.append@extra("Can't overwrite cause with ").append@extra(toString@special(vR1,"a null")).toString@extra(),vR0);   [ RRR iRii. RRR] 
+        b1.<init>@special(b2.append("Can't overwrite cause with ").append(toString@special(vR1,"a null")).toString(),vR0);   [ RRR iRii. RRR] 
         throw b0;   
   +B41:   #1
         if vR1!=vR0 goto B57;   
   -B46:   #1
-        throw new java/lang/IllegalArgumentException("Self-causation not permitted",vR0);   
+        b0 = new java/lang/IllegalArgumentException("Self-causation not permitted",vR0);    [ RRR ..... i..][ RRR ..... iRRR]
+        throw b0;   
   +B57:   #1
         vR0.cause = vR1;   
         return vR0;   
   +END:   #1
  }
-// Register: rd 13/13 wr 10 swaps 3 any 2 found 0 initCause
+// Register: rd 14/14 wr 11 swaps 3 any 2 found 0 initCause
  
  method addSuppressed(Ljava/lang/Throwable;)V {
   +START:   #1
         if vR1!=vR0 goto B16;   
   -B5:   #1
-        throw new java/lang/IllegalArgumentException("Self-suppression not permitted",vR1);   
+        b0 = new java/lang/IllegalArgumentException("Self-suppression not permitted",vR1);    [ RR  i][ RR . iRRR]
+        throw b0;   
   +B16:   #1
         if vR1!=null goto B30;   
   -B20:   #1
-        throw new java/lang/NullPointerException("Cannot suppress a null exception.");   
+        b0 = new java/lang/NullPointerException("Cannot suppress a null exception.");    [ RR . i...][ RR . iRR.]
+        throw b0;   
   +B30:   #1
         if vR0.suppressedExceptions!=null goto B38;   
   +B37:   #1
@@ -177,7 +180,7 @@ class java/lang/Throwable {
         return;   
   +END:   #1
  }
-// Register: rd 13/13 wr 5 swaps 0 any 2 found 0 addSuppressed
+// Register: rd 15/15 wr 7 swaps 0 any 2 found 0 addSuppressed
  
  method getStackTrace()[Ljava/lang/StackTraceElement; {
   +START:   #1

@@ -30,7 +30,7 @@ class AI/Models/Vector {
         if equals@special(vR1.z,vR0.z)==0 goto B46;   
   +B42:   #1
         b0 = 1;    
-        goto +B47b0;   forward return[ i .. ..]
+        goto +B47b0;   [ i .. ..]
   +B46:   #3
         b0 = 0;    
   +B47b0:   #1 int

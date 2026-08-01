@@ -2,17 +2,19 @@ class java/lang/invoke/CallSite {
  
  method makeSite(Ljava/lang/invoke/MethodHandle;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/Object;Ljava/lang/Class;)Ljava/lang/invoke/CallSite; {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 makeSite
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 makeSite
  
  method dynamicInvoker()Ljava/lang/Object; {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 dynamicInvoker
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 dynamicInvoker
  
  method <init>(Ljava/lang/invoke/MethodType;)V {
   +START:   #1
@@ -46,8 +48,9 @@ class java/lang/invoke/CallSite {
  
  method checkTargetChange(Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodHandle;)V {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 checkTargetChange
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 checkTargetChange
 }

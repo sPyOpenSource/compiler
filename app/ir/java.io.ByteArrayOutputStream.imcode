@@ -83,22 +83,25 @@ class java/io/ByteArrayOutputStream {
  
  method toString()Ljava/lang/String; {
   +START:   #1
-        return new java/lang/String(vR0.buffer,0,vR0.count);   
+        b0 = new java/lang/String(vR0.buffer,0,vR0.count);    [ R  i][ R . iiiRR]
+        return b0;   
   +END:   #1
  }
-// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 toString
+// Register: rd 4/4 wr 2 swaps 0 any 0 found 0 toString
  
  method toString(Ljava/lang/String;)Ljava/lang/String; {
   +START:   #1
-        return new java/lang/String(vR0.buffer,0,vR0.count,vR1);   
+        b0 = new java/lang/String(vR0.buffer,0,vR0.count,vR1);    [ R  i][ R . iRiiRR]
+        return b0;   
   +END:   #1
  }
-// Register: rd 4/4 wr 1 swaps 0 any 0 found 0 toString
+// Register: rd 5/5 wr 2 swaps 0 any 0 found 0 toString
  
  method toString(I)Ljava/lang/String; {
   +START:   #1
-        return new java/lang/String(vR0.buffer,vi1,0,vR0.count);   
+        b0 = new java/lang/String(vR0.buffer,vi1,0,vR0.count);    [ R  i][ R . iiiiRR]
+        return b0;   
   +END:   #1
  }
-// Register: rd 4/4 wr 1 swaps 0 any 0 found 0 toString
+// Register: rd 5/5 wr 2 swaps 0 any 0 found 0 toString
 }

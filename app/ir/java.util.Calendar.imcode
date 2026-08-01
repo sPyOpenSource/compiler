@@ -48,16 +48,16 @@ class java/util/Calendar {
   +START:   #1
         vR2 = 0;    
         vR3 = getBundle@special("gnu.java.locale.Calendar",vR1);    [R RR R RR]
-        vR2 = vR3.getString@extra("calendarClass");    [RR RR Ri RR] 
+        vR2 = vR3.getString("calendarClass");    [RR RR Ri RR] 
         if vR2==null goto B84;   
   +B20:   #2
         vR4 = forName@special(vR2);    [RR RR .. R.]
-        if java/util/Calendar.isAssignableFrom@extra(vR4)==0 goto B74;   
+        if java/util/Calendar.isAssignableFrom(vR4)==0 goto B74;   
   +B36:   #1
         b1 = new java/lang/Class()[2];    
         b1[0] = java/util/TimeZone;   
         b1[1] = java/util/Locale;   
-        b0 = vR4.getConstructor@extra(b1);    [RRR RR .. RR] 
+        b0 = vR4.getConstructor(b1);    [RRR RR .. RR] 
         b1 = new java/lang/Object()[2];    
         b1[0] = vR0;   
         b1[1] = vR1;   
@@ -72,24 +72,25 @@ class java/util/Calendar {
   +H82<caught exception>:   #1 reference
         vR4 = <caught exception>;    
   +B84:   #3
-        return new java/util/GregorianCalendar(vR0,vR1);   
+        b0 = new java/util/GregorianCalendar(vR0,vR1);    [ RR .. i.][ RR .. iRRR]
+        return b0;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-20 - 73 handler 77 type 87
-20 - 73 handler 77 type 89
-20 - 73 handler 82 type 91
-20 - 73 handler 82 type 93
-20 - 73 handler 82 type 95
-20 - 73 handler 82 type 97
+20 - 73 handler 77 type 26
+20 - 73 handler 77 type 27
+20 - 73 handler 82 type 28
+20 - 73 handler 82 type 29
+20 - 73 handler 82 type 30
+20 - 73 handler 82 type 31
  }
-// Register: rd 17/17 wr 14 swaps 1 any 3 found 0 getInstance
+// Register: rd 18/18 wr 15 swaps 1 any 3 found 0 getInstance
  
  method getAvailableLocales()[Ljava/util/Locale; {
   +START:   #1
         b0 = "gnu.java.locale.Calendar";    
         b1 = new java/util/Locale("","");    [ RR  i][ RR . iRRR]
         vR0 = getBundle@special(b0,b1);    [ RR . RR..]
-        return ([Ljava/util/Locale;)(vR0.getObject@extra("availableLocales"));   
+        return ([Ljava/util/Locale;)(vR0.getObject@this("availableLocales"));   
   +END:   #1
  }
 // Register: rd 5/5 wr 6 swaps 1 any 0 found 0 getAvailableLocales
@@ -100,10 +101,11 @@ EXCEPTIONHANDLER-TABLE:
   +B7:   #1
         vR0.computeTime@this();   [ R  R] 
   +B11:   #1
-        return new java/util/Date(vR0.time);   
+        b0 = new java/util/Date(vR0.time);    [ R  i][ R . il_R]
+        return b0;   
   +END:   #1
  }
-// Register: rd 4/4 wr 1 swaps 0 any 0 found 0 getTime
+// Register: rd 5/5 wr 2 swaps 0 any 0 found 0 getTime
  
  method setTime(Ljava/util/Date;)V {
   +START:   #1
@@ -182,11 +184,11 @@ EXCEPTIONHANDLER-TABLE:
         return;   
   +END:   #1
  }
-// Register: rd 15/15 wr 3 swaps 0 any 3 found 0 set
+// Register: rd 15/15 wr 5 swaps 2 any 3 found 0 set
  
  method set(IIIII)V {
   +START:   #1
-        vR0.set@extra(vi1,vi2,vi3);   [ R?R  iiiR] 
+        vR0.set@this(vi1,vi2,vi3);   [ R?R  iiiR] 
         vR0.fields[11] = vi4;   
         vR0.fields[12] = vi5;   
         b0 = vR0.isSet;    
@@ -196,11 +198,11 @@ EXCEPTIONHANDLER-TABLE:
         return;   
   +END:   #1
  }
-// Register: rd 9/9 wr 2 swaps 0 any 2 found 0 set
+// Register: rd 9/9 wr 3 swaps 1 any 2 found 0 set
  
  method set(IIIIII)V {
   +START:   #1
-        vR0.set@extra(vi1,vi2,vi3,vi4,vi5);   [   iiiiiR] 
+        vR0.set@this(vi1,vi2,vi3,vi4,vi5);   [   iiiiiR] 
         vR0.fields[13] = vi6;   
         vR0.isSet[13] = 1;   
         return;   
@@ -264,7 +266,7 @@ EXCEPTIONHANDLER-TABLE:
         if compare(vR0.getTimeInMillis@this(),(java/util/Calendar)(vR1).getTimeInMillis())!=0 goto B26;   
   +B22:   #1
         b0 = 1;    
-        goto +B27b0;   forward return[ i  ..]
+        goto +B27b0;   [ i  ..]
   +B26:   #2
         b0 = 0;    
   +B27b0:   #1 int
@@ -286,7 +288,7 @@ EXCEPTIONHANDLER-TABLE:
         if compare(vR0.getTimeInMillis@this(),(java/util/Calendar)(vR1).getTimeInMillis())>=0 goto B19;   
   +B15:   #1
         b0 = 1;    
-        goto +B20b0;   forward return[ i  .]
+        goto +B20b0;   [ i  .]
   +B19:   #1
         b0 = 0;    
   +B20b0:   #1 int
@@ -300,7 +302,7 @@ EXCEPTIONHANDLER-TABLE:
         if compare(vR0.getTimeInMillis@this(),(java/util/Calendar)(vR1).getTimeInMillis())<=0 goto B19;   
   +B15:   #1
         b0 = 1;    
-        goto +B20b0;   forward return[ i  .]
+        goto +B20b0;   [ i  .]
   +B19:   #1
         b0 = 0;    
   +B20b0:   #1 int
@@ -401,14 +403,15 @@ EXCEPTIONHANDLER-TABLE:
         return 0;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-0 - 37 handler 38 type 170
+0 - 37 handler 38 type 60
  }
 // Register: rd 10/10 wr 6 swaps 0 any 1 found 0 clone
  
  method toString()Ljava/lang/String; {
   +START:   #1
-        vR1 = new java/lang/StringBuffer();    [ RR  i][ RR  iR]
-        vR1.append(vR0.getClass@this().getName@extra()).append(91);   [R RR .i iR.] [R RR Ri iRR] 
+        b0 = new java/lang/StringBuffer();    [ RR  i][ RR  iR]
+        vR1 = b0;    
+        vR1.append(vR0.getClass@this().getName()).append(91);   [R RR .i iR.] [R RR Ri iRR] 
         vR1.append("time=");   [R RR ii RR.] 
         if vR0.isTimeSet==0 goto B51;   
   +B39:   #1
@@ -418,9 +421,9 @@ EXCEPTIONHANDLER-TABLE:
         vR1.append("?");   [Ri RR i. RR.] 
   +B58:   #1
         b1 = new java/lang/StringBuilder();    [ RR .. i..][ RR .. iR.]
-        vR1.append(b1.append@extra(",zone=").append@extra(vR0.zone).toString@extra());   [R RR iii. RR.] 
+        vR1.append(b1.append(",zone=").append(vR0.zone).toString());   [R RR iii. RR.] 
         b1 = new java/lang/StringBuilder();    [ RR iii. i..][ RR iii. iR.]
-        vR1.append(b1.append@extra(",areFieldsSet=").append@extra(vR0.areFieldsSet).toString@extra());   [R RR iiiiii. RR.] 
+        vR1.append(b1.append(",areFieldsSet=").append(vR0.areFieldsSet).toString());   [R RR iiiiii. RR.] 
         vi2 = 0;    
   +B114:   #1
         if vi2>=17 goto B166;   
@@ -443,7 +446,7 @@ EXCEPTIONHANDLER-TABLE:
         return vR1.toString();   
   +END:   #1
  }
-// Register: rd 30/30 wr 33 swaps 19 any 2 found 0 toString
+// Register: rd 31/31 wr 34 swaps 19 any 3 found 0 toString
  
  method writeObject(Ljava/io/ObjectOutputStream;)V {
   +START:   #1

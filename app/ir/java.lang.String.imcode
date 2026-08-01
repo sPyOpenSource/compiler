@@ -2,24 +2,27 @@ class java/lang/String {
  
  method lastIndexOf([CII[CIII)I {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 lastIndexOf
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 lastIndexOf
  
  method indexOf([CII[CIII)I {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 indexOf
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 indexOf
  
  method format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String; {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 format
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 format
  
  method <init>()V {
   +START:   #1
@@ -108,9 +111,9 @@ class java/lang/String {
  method <init>(Ljava/lang/String;)V {
   +START:   #1
         vR0.<init>@special();   [   R] 
-        vi2 = vR1.length@extra();    [   R] 
+        vi2 = vR1.length();    [   R] 
         vR0.value = new char[vi2];   
-        vR1.getChars@extra(0,vi2,vR0.value,0);   [i  i iRiiR] 
+        vR1.getChars(0,vi2,vR0.value,0);   [i  i iRiiR] 
         vR0.hash = vR1.hash;   
         return;   
   +END:   #1
@@ -133,7 +136,8 @@ class java/lang/String {
         vR0.<init>@special();   [ RR  R] 
         if vR4!=null goto B19;   
   -B9:   #1
-        throw new java/lang/NullPointerException("charsetName");   
+        b0 = new java/lang/NullPointerException("charsetName");    [ RR  i][ RR . iRR]
+        throw b0;   
   +B19:   #1
         checkBounds@special(vR1,vi2,vi3);   [ RR . iiR]
         b1 = new char[10];    
@@ -151,7 +155,7 @@ class java/lang/String {
         return;   
   +END:   #1
  }
-// Register: rd 15/15 wr 2 swaps 0 any 1 found 0 <init>
+// Register: rd 16/16 wr 3 swaps 0 any 1 found 0 <init>
  
  method toString()Ljava/lang/String; {
   +START:   #1
@@ -207,19 +211,20 @@ class java/lang/String {
   +B18:   #1
         if vR3.length>=((vi2-vi1)+vi4) goto B37;   
   -B29:   #3
-        throw new java/lang/StringIndexOutOfBoundsException();   
+        b0 = new java/lang/StringIndexOutOfBoundsException();    [ R  i][ R  iR]
+        throw b0;   
   +B37:   #1
         charArrayCopy@special(vR0.value,vi1,vR3,vi4,(vi2-vi1));   [ R Ri iiRiR]
         return;   
   +END:   #1
  }
-// Register: rd 12/12 wr 2 swaps 0 any 3 found 0 getChars
+// Register: rd 13/13 wr 3 swaps 0 any 3 found 0 getChars
  
  method getBytes()[B {
   +START:   #1
-        vi1 = vR0.length@extra();    [   R] 
+        vi1 = vR0.length@this();    [   R] 
         vR2 = new byte[vi1];    
-        vR0.getBytes@extra(0,vi1,vR2,0);   [iR   iRiiR] 
+        vR0.getBytes@this(0,vi1,vR2,0);   [iR   iRiiR] 
         return vR2;   
   +END:   #1
  }
@@ -227,7 +232,7 @@ class java/lang/String {
  
  method getBytes(Ljava/lang/String;)[B {
   +START:   #1
-        return vR0.getBytes@extra();   
+        return vR0.getBytes@this();   
   +END:   #1
  }
 // Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getBytes
@@ -240,7 +245,8 @@ class java/lang/String {
   +B13:   #1
         if vi2>=vi1 goto B26;   
   -B18:   #2
-        throw new java/lang/StringIndexOutOfBoundsException();   
+        b0 = new java/lang/StringIndexOutOfBoundsException();    [ R  i][ R  iR]
+        throw b0;   
   +B26:   #1
         vi5 = (vi2-vi1);    
         vi6 = 0;    
@@ -254,7 +260,7 @@ class java/lang/String {
         return;   
   +END:   #1
  }
-// Register: rd 16/16 wr 3 swaps 0 any 6 found 0 getBytes
+// Register: rd 17/17 wr 4 swaps 0 any 6 found 0 getBytes
  
  method toCharArray()[C {
   +START:   #1
@@ -272,12 +278,14 @@ class java/lang/String {
   +B4:   #1
         if vi1<=vR0.value.length goto B21;   
   -B13:   #1
-        throw new java/lang/StringIndexOutOfBoundsException();   
+        b0 = new java/lang/StringIndexOutOfBoundsException();    [ R  i][ R  iR]
+        throw b0;   
   +B21:   #1
-        return new java/lang/String(vR0.value,vi1,(vR0.value.length-vi1));   
+        b0 = new java/lang/String(vR0.value,vi1,(vR0.value.length-vi1));    [ R  i.][ R . iiiRR]
+        return b0;   
   +END:   #1
  }
-// Register: rd 8/8 wr 1 swaps 0 any 2 found 0 substring
+// Register: rd 10/10 wr 3 swaps 0 any 2 found 0 substring
  
  method substring(II)Ljava/lang/String; {
   +START:   #1
@@ -287,12 +295,14 @@ class java/lang/String {
   +B13:   #1
         if vi2>=vi1 goto B26;   
   -B18:   #2
-        throw new java/lang/StringIndexOutOfBoundsException();   
+        b0 = new java/lang/StringIndexOutOfBoundsException();    [ R  i][ R  iR]
+        throw b0;   
   +B26:   #1
-        return new java/lang/String(vR0.value,vi1,(vi2-vi1));   
+        b0 = new java/lang/String(vR0.value,vi1,(vi2-vi1));    [ R  i.][ R . iiiRR]
+        return b0;   
   +END:   #1
  }
-// Register: rd 10/10 wr 1 swaps 0 any 3 found 0 substring
+// Register: rd 12/12 wr 3 swaps 0 any 3 found 0 substring
  
  method equals(Ljava/lang/Object;)Z {
   +START:   #1
@@ -305,7 +315,7 @@ class java/lang/String {
         return 0;   
   +B15:   #1
         vR2 = (java/lang/String)(vR1);    
-        if vR2.length@extra()==vR0.value.length goto B34;   
+        if vR2.length()==vR0.value.length goto B34;   
   +B32:   #1
         return 0;   
   +B34:   #1
@@ -331,7 +341,7 @@ class java/lang/String {
   +B4:   #1
         return 0;   
   +B6:   #1
-        if vR1.length@extra()==vR0.value.length goto B20;   
+        if vR1.length()==vR0.value.length goto B20;   
   +B18:   #1
         return 0;   
   +B20:   #1
@@ -339,7 +349,7 @@ class java/lang/String {
   +B22:   #1
         if vi2>=vR0.value.length goto B92;   
   +B31:   #1
-        vi3 = vR1.charAt@extra(vi2);    [i   iR] 
+        vi3 = vR1.charAt(vi2);    [i   iR] 
         vi4 = vR0.value[vi2];    
         if vi3!=vi4 goto B54;   
   +B51:   #1
@@ -365,16 +375,16 @@ class java/lang/String {
  
  method compareTo(Ljava/lang/String;)I {
   +START:   #1
-        vi2 = min@special(vR0.value.length,vR1.length@extra());    [  ii ii]
+        vi2 = min@special(vR0.value.length,vR1.length());    [  ii ii]
         vi3 = 0;    
   +B15:   #1
         if vi3>=vi2 goto B58;   
   +B20:   #1
-        if vR0.value[vi3]<=vR1.charAt@extra(vi3) goto B36;   
+        if vR0.value[vi3]<=vR1.charAt(vi3) goto B36;   
   +B34:   #1
         return 1;   
   +B36:   #1
-        if vR0.value[vi3]>=vR1.charAt@extra(vi3) goto B52;   
+        if vR0.value[vi3]>=vR1.charAt(vi3) goto B52;   
   +B50:   #1
         return -1;   
   +B52:   #1
@@ -385,7 +395,7 @@ class java/lang/String {
   +B67:   #1
         return 1;   
   +B69:   #1
-        if vR1.length@extra()<=vi2 goto B79;   
+        if vR1.length()<=vi2 goto B79;   
   +B77:   #1
         return -1;   
   +B79:   #1
@@ -404,7 +414,7 @@ class java/lang/String {
   +B18:   #1
         if vi4< 0 goto B35;   
   +B23:   #1
-        if (vi4+vi5)<=vR3.length@extra() goto B37;   
+        if (vi4+vi5)<=vR3.length() goto B37;   
   +B35:   #1
         return 0;   
   +B37:   #1
@@ -435,7 +445,7 @@ class java/lang/String {
   +B124:   #1
         return 1;   
   +B126:   #1
-        return vR0.regionMatches@extra(vi2,vR3,vi4,vi5);   
+        return vR0.regionMatches@this(vi2,vR3,vi4,vi5);   
   +END:   #1
  }
 // Register: rd 24/24 wr 7 swaps 0 any 8 found 0 regionMatches
@@ -450,7 +460,7 @@ class java/lang/String {
   +B18:   #1
         if vi3< 0 goto B33;   
   +B22:   #1
-        if (vi3+vi4)<=vR2.length@extra() goto B35;   
+        if (vi3+vi4)<=vR2.length() goto B35;   
   +B33:   #1
         return 0;   
   +B35:   #1
@@ -472,43 +482,44 @@ class java/lang/String {
  
  method startsWith(Ljava/lang/String;)Z {
   +START:   #1
-        vi2 = vR1.length@extra();    [   R] 
-        return vR0.regionMatches@extra(0,vR1,0,vi2);   
+        vi2 = vR1.length();    [   R] 
+        return vR0.regionMatches@this(0,vR1,0,vi2);   
   +END:   #1
  }
 // Register: rd 2/2 wr 1 swaps 0 any 0 found 0 startsWith
  
  method startsWith(Ljava/lang/String;I)Z {
   +START:   #1
-        vi3 = vR1.length@extra();    [   R] 
-        return vR0.regionMatches@extra(vi2,vR1,0,vi3);   
+        vi3 = vR1.length();    [   R] 
+        return vR0.regionMatches@this(vi2,vR1,0,vi3);   
   +END:   #1
  }
 // Register: rd 2/2 wr 1 swaps 0 any 0 found 0 startsWith
  
  method endsWith(Ljava/lang/String;)Z {
   +START:   #1
-        vi2 = vR1.length@extra();    [   R] 
-        return vR0.regionMatches@extra((vR0.value.length-vi2),vR1,0,vi2);   
+        vi2 = vR1.length();    [   R] 
+        return vR0.regionMatches@this((vR0.value.length-vi2),vR1,0,vi2);   
   +END:   #1
  }
 // Register: rd 4/4 wr 2 swaps 1 any 0 found 0 endsWith
  
  method concat(Ljava/lang/String;)Ljava/lang/String; {
   +START:   #1
-        vi2 = vR1.length@extra();    [ R  R] 
+        vi2 = vR1.length();    [ R  R] 
         if vi2!=0 goto B11;   
   +B9:   #1
         return vR0;   
   +B11:   #1
         vi3 = vR0.value.length;    
         vR4 = new char[(vi3+vi2)];    
-        vR0.getChars@extra(0,vi3,vR4,0);   [iiR R  iRiiR] 
-        vR1.getChars@extra(0,vi2,vR4,vi3);   [iiR R  iRiiR] 
-        return new java/lang/String(vR4);   
+        vR0.getChars@this(0,vi3,vR4,0);   [iiR R  iRiiR] 
+        vR1.getChars(0,vi2,vR4,vi3);   [iiR R  iRiiR] 
+        b0 = new java/lang/String(vR4);    [ R  i....][ R . iRR..]
+        return b0;   
   +END:   #1
  }
-// Register: rd 10/10 wr 4 swaps 0 any 1 found 0 concat
+// Register: rd 11/11 wr 5 swaps 0 any 1 found 0 concat
  
  method replace(CC)Ljava/lang/String; {
   +START:   #1
@@ -533,7 +544,7 @@ class java/lang/String {
         if vi4==0 goto B78;   
   +B67:   #1
         b0 = new java/lang/String(vR3);    [ R  i.][ R . iRR]
-        goto +B79b0;   forward return[Riii R . ...]
+        goto +B79b0;   [Riii R . ...]
   +B78:   #1
         b0 = vR0;    
   +B79b0:   #1 reference
@@ -553,10 +564,11 @@ class java/lang/String {
         vi2++;   
         goto +B10;   [Ri R c ..]
   +B37:   #1
-        return new java/lang/String(vR1);   
+        b0 = new java/lang/String(vR1);    [ R . i.][ R . iRR]
+        return b0;   
   +END:   #1
  }
-// Register: rd 10/10 wr 5 swaps 0 any 2 found 0 toLowerCase
+// Register: rd 11/11 wr 6 swaps 0 any 2 found 0 toLowerCase
  
  method toUpperCase()Ljava/lang/String; {
   +START:   #1
@@ -569,10 +581,11 @@ class java/lang/String {
         vi2++;   
         goto +B10;   [Ri R c ..]
   +B37:   #1
-        return new java/lang/String(vR1);   
+        b0 = new java/lang/String(vR1);    [ R . i.][ R . iRR]
+        return b0;   
   +END:   #1
  }
-// Register: rd 10/10 wr 5 swaps 0 any 2 found 0 toUpperCase
+// Register: rd 11/11 wr 6 swaps 0 any 2 found 0 toUpperCase
  
  method trim()Ljava/lang/String; {
   +START:   #1
@@ -601,10 +614,11 @@ class java/lang/String {
         vi3 = ((vi2-vi1)+1);    
         vR4 = new char[vi3];    
         charArrayCopy@special(vR0.value,vi1,vR4,0,vi3);   [iiiR R R iiRiR]
-        return new java/lang/String(vR4);   
+        b0 = new java/lang/String(vR4);    [ R R i....][ R R. iRR..]
+        return b0;   
   +END:   #1
  }
-// Register: rd 17/17 wr 8 swaps 0 any 5 found 0 trim
+// Register: rd 18/18 wr 9 swaps 0 any 5 found 0 trim
  
  method indexOf(II)I {
   +START:   #1
@@ -626,19 +640,19 @@ class java/lang/String {
  
  method indexOf(I)I {
   +START:   #1
-        return vR0.indexOf@extra(vi1,0);   
+        return vR0.indexOf@this(vi1,0);   
   +END:   #1
  }
 // Register: rd 1/1 wr 0 swaps 0 any 0 found 0 indexOf
  
  method indexOf(Ljava/lang/String;I)I {
   +START:   #1
-        vi3 = (vR0.value.length-(vR1.length@extra()-1));    
+        vi3 = (vR0.value.length-(vR1.length()-1));    
         vi4 = vi2;    
   +B16:   #1
         if vi4>=vi3 goto B41;   
   +B22:   #1
-        if vR0.startsWith@extra(vR1,vi4)==0 goto B35;   
+        if vR0.startsWith@this(vR1,vi4)==0 goto B35;   
   +B32:   #1
         return vi4;   
   +B35:   #1
@@ -652,7 +666,7 @@ class java/lang/String {
  
  method indexOf(Ljava/lang/String;)I {
   +START:   #1
-        return vR0.indexOf@extra(vR1,0);   
+        return vR0.indexOf@this(vR1,0);   
   +END:   #1
  }
 // Register: rd 1/1 wr 0 swaps 0 any 0 found 0 indexOf
@@ -677,7 +691,7 @@ class java/lang/String {
  
  method lastIndexOf(I)I {
   +START:   #1
-        return vR0.lastIndexOf@extra(vi1,0);   
+        return vR0.lastIndexOf@this(vi1,0);   
   +END:   #1
  }
 // Register: rd 1/1 wr 0 swaps 0 any 0 found 0 lastIndexOf
@@ -688,7 +702,7 @@ class java/lang/String {
   +B8:   #1
         if vi3<vi2 goto B30;   
   +B13:   #1
-        if vR0.startsWith@extra(vR1,vi3)==0 goto B24;   
+        if vR0.startsWith@this(vR1,vi3)==0 goto B24;   
   +B22:   #1
         return vi3;   
   +B24:   #1
@@ -702,7 +716,7 @@ class java/lang/String {
  
  method lastIndexOf(Ljava/lang/String;)I {
   +START:   #1
-        return vR0.lastIndexOf@extra(vR1,0);   
+        return vR0.lastIndexOf@this(vR1,0);   
   +END:   #1
  }
 // Register: rd 1/1 wr 0 swaps 0 any 0 found 0 lastIndexOf
@@ -716,24 +730,26 @@ class java/lang/String {
  
  method copyValueOf([C)Ljava/lang/String; {
   +START:   #1
-        return new java/lang/String(vR0);   
+        b0 = new java/lang/String(vR0);    [ R  i][ R . iRR]
+        return b0;   
   +END:   #1
  }
-// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 copyValueOf
+// Register: rd 3/3 wr 2 swaps 0 any 0 found 0 copyValueOf
  
  method copyValueOf([CII)Ljava/lang/String; {
   +START:   #1
-        return new java/lang/String(vR0,vi1,vi2);   
+        b0 = new java/lang/String(vR0,vi1,vi2);    [ R  i][ R . iiiRR]
+        return b0;   
   +END:   #1
  }
-// Register: rd 4/4 wr 1 swaps 0 any 0 found 0 copyValueOf
+// Register: rd 5/5 wr 2 swaps 0 any 0 found 0 copyValueOf
  
  method valueOf(Z)Ljava/lang/String; {
   +START:   #1
         if vi0==0 goto B9;   
   +B4:   #1
         b0 = "true";    
-        goto +B11b0;   forward return[ R  ]
+        goto +B11b0;   [ R  ]
   +B9:   #1
         b0 = "false";    
   +B11b0:   #1 reference
@@ -746,38 +762,43 @@ class java/lang/String {
   +START:   #1
         vR1 = new char[1];    
         vR1[0] = vi0;   
-        return new java/lang/String(vR1);   
+        b0 = new java/lang/String(vR1);    [ R  i.][ R . iRR]
+        return b0;   
   +END:   #1
  }
-// Register: rd 4/4 wr 2 swaps 0 any 1 found 0 valueOf
+// Register: rd 5/5 wr 3 swaps 0 any 1 found 0 valueOf
  
  method valueOf([C)Ljava/lang/String; {
   +START:   #1
-        return new java/lang/String(vR0);   
+        b0 = new java/lang/String(vR0);    [ R  i][ R . iRR]
+        return b0;   
   +END:   #1
  }
-// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 valueOf
+// Register: rd 3/3 wr 2 swaps 0 any 0 found 0 valueOf
  
  method valueOf([CII)Ljava/lang/String; {
   +START:   #1
-        return new java/lang/String(vR0,vi1,vi2);   
+        b0 = new java/lang/String(vR0,vi1,vi2);    [ R  i][ R . iiiRR]
+        return b0;   
   +END:   #1
  }
-// Register: rd 4/4 wr 1 swaps 0 any 0 found 0 valueOf
+// Register: rd 5/5 wr 2 swaps 0 any 0 found 0 valueOf
  
  method valueOf(D)Ljava/lang/String; {
   -START:   #1
-        throw new java/lang/Error();   
+        b0 = new java/lang/Error();    [ R  i][ R  iR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 valueOf
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 valueOf
  
  method valueOf(F)Ljava/lang/String; {
   -START:   #1
-        throw new java/lang/Error();   
+        b0 = new java/lang/Error();    [ R  i][ R  iR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 valueOf
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 valueOf
  
  method valueOf(I)Ljava/lang/String; {
   +START:   #1
@@ -798,7 +819,7 @@ class java/lang/String {
         if vR0!=null goto B9;   
   +B4:   #1
         b0 = "null";    
-        goto +B13b0;   forward return[ R  ]
+        goto +B13b0;   [ R  ]
   +B9:   #1
         b0 = vR0.toString@this();    [ R  R] 
   +B13b0:   #1 reference
@@ -824,10 +845,11 @@ class java/lang/String {
  
  method getChars([CI)V {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getChars
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 getChars
  
  method split(Ljava/lang/String;I)[Ljava/lang/String; {
   +START:   #1
@@ -835,15 +857,15 @@ class java/lang/String {
         if vR1.value.length!=1 goto B27;   
   +B11:   #1
         b0 = ".$|()[{^?*+\";    
-        b1 = vR1.charAt@extra(0);    [i Rc  iR] 
+        b1 = vR1.charAt(0);    [i Rc  iR] 
         vi3 = b1;    
-        if b0.indexOf@extra(b1)==-1 goto B87;   
+        if b0.indexOf(b1)==-1 goto B87;   
   +B27:   #1
-        if vR1.length@extra()!=2 goto B334;   
+        if vR1.length()!=2 goto B334;   
   +B35:   #1
-        if vR1.charAt@extra(0)!=92 goto B334;   
+        if vR1.charAt(0)!=92 goto B334;   
   +B45:   #1
-        b0 = vR1.charAt@extra(1);    [i cc  iR] 
+        b0 = vR1.charAt(1);    [i cc  iR] 
         vi3 = b0;    
         if ((b0-48) | (57-vi3))>=0 goto B334;   
   +B63:   #1
@@ -865,9 +887,10 @@ class java/lang/String {
         b0 = 0;    
   +B114b0:   #1 int
         vi6 = b0;    
-        vR7 = new java/util/ArrayList();    [ ic  i.][ ic  iR]
+        b0 = new java/util/ArrayList();    [ Rc  i.][ Rc  iR]
+        vR7 = b0;    
   +B125:   #1
-        b0 = vR0.indexOf@extra(vi3,vi4);    [iiiiR ic  iiR] 
+        b0 = vR0.indexOf@this(vi3,vi4);    [iiiiR ic  iiR] 
         vi5 = b0;    
         if b0==-1 goto B205;   
   +B139:   #1
@@ -875,11 +898,11 @@ class java/lang/String {
   +B144:   #1
         if vR7.size()>=(vi2-1) goto B178;   
   +B155:   #1
-        vR7.add(vR0.substring@extra(vi4,vi5));   [iiiiR ic i RR.] 
+        vR7.add(vR0.substring@this(vi4,vi5));   [iiiiR ic i RR.] 
         vi4 = (vi5+1);    
         goto +B125;   [iiiiR ic i ...]
   +B178:   #1
-        vR7.add(vR0.substring@extra(vi4,vR0.value.length));   [iiiiR ic ii RR.] 
+        vR7.add(vR0.substring@this(vi4,vR0.value.length));   [iiiiR ic ii RR.] 
         vi4 = vR0.value.length;    
         goto +B205;   [iiiiR ic ii ...]
   +B205:   #2
@@ -893,14 +916,14 @@ class java/lang/String {
   +B224:   #1
         if vR7.size()>=vi2 goto B250;   
   +B233:   #1
-        vR7.add(vR0.substring@extra(vi4,vR0.value.length));   [iiiiR Rc ii RR.] 
+        vR7.add(vR0.substring@this(vi4,vR0.value.length));   [iiiiR Rc ii RR.] 
   +B250:   #1
         vi8 = vR7.size();    [iiiiR Rc .. R..] 
         if vi2!=0 goto B290;   
   +B261:   #1
         if vi8<=0 goto B290;   
   +B266:   #1
-        if (java/lang/String)(vR7.get((vi8-1))).length@extra()!=0 goto B290;   
+        if (java/lang/String)(vR7.get((vi8-1))).length()!=0 goto B290;   
   +B284:   #1
         vi8--;   
         goto +B261;   [iiiiRi Rc .. ...]
@@ -919,45 +942,50 @@ class java/lang/String {
         return 0;   
   +END:   #1
  }
-// Register: rd 59/59 wr 30 swaps 6 any 21 found 1 split
+// Register: rd 60/60 wr 31 swaps 6 any 22 found 1 split
  
  method split(Ljava/lang/String;)[Ljava/lang/String; {
   +START:   #1
-        return vR0.split@extra(vR1,0);   
+        return vR0.split@this(vR1,0);   
   +END:   #1
  }
 // Register: rd 1/1 wr 0 swaps 0 any 0 found 0 split
  
  method subSequence(II)Ljava/lang/CharSequence; {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 subSequence
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 subSequence
  
  method checkBounds([BII)V {
   +START:   #1
         if vi2>=0 goto B13;   
   -B4:   #1
-        throw new java/lang/StringIndexOutOfBoundsException(vi2);   
+        b0 = new java/lang/StringIndexOutOfBoundsException(vi2);    [ R  i][ R . iiR]
+        throw b0;   
   +B13:   #1
         if vi1>=0 goto B26;   
   -B17:   #1
-        throw new java/lang/StringIndexOutOfBoundsException(vi1);   
+        b0 = new java/lang/StringIndexOutOfBoundsException(vi1);    [ R . i..][ R . iiR]
+        throw b0;   
   +B26:   #1
         if vi1<=(vR0.length-vi2) goto B45;   
   -B34:   #1
-        throw new java/lang/StringIndexOutOfBoundsException((vi1+vi2));   
+        b0 = new java/lang/StringIndexOutOfBoundsException((vi1+vi2));    [ R . i..][ R . iiR]
+        throw b0;   
   +B45:   #1
         return;   
   +END:   #1
  }
-// Register: rd 12/12 wr 3 swaps 0 any 3 found 0 checkBounds
+// Register: rd 15/15 wr 6 swaps 0 any 3 found 0 checkBounds
  
  method isEmpty()Z {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 isEmpty
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 isEmpty
 }

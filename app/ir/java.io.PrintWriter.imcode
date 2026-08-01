@@ -59,7 +59,7 @@ class java/io/PrintWriter {
   +START:   #2
         vR0.out.flush();   [   R] 
   +B7:   #1
-        goto +B16;   forward return[   .]
+        goto +B16;   [   .]
   +H10<caught exception>:   #1 reference
         vR1 = <caught exception>;    
         vR0.error = 1;   
@@ -75,7 +75,7 @@ EXCEPTIONHANDLER-TABLE:
   +START:   #2
         vR0.out.close();   [   R] 
   +B7:   #1
-        goto +B16;   forward return[   .]
+        goto +B16;   [   .]
   +H10<caught exception>:   #1 reference
         vR1 = <caught exception>;    
         vR0.error = 1;   
@@ -153,10 +153,11 @@ EXCEPTIONHANDLER-TABLE:
  
  method print(F)V {
   -START:   #1
-        throw new java/lang/Error("not implemented");   
+        b0 = new java/lang/Error("not implemented");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 print
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 print
  
  method print(D)V {
   +START:   #1
@@ -199,7 +200,7 @@ EXCEPTIONHANDLER-TABLE:
         vR0.error = 1;   
   +B42:   #1
         vR1.leave();   
-        goto +B52;   forward return[R R .. ....]
+        goto +B52;   [R R .. ....]
   +H47<caught exception>:   #2 reference
         vR3 = <caught exception>;    
         vR1.leave();   
@@ -223,7 +224,7 @@ EXCEPTIONHANDLER-TABLE:
         vR0.print@this(vi1);   [R R  iR] 
         vR0.println@this();   [R R  R.] 
         vR2.leave();   
-        goto +B26;   forward return[R R  ..]
+        goto +B26;   [R R  ..]
   +H21<caught exception>:   #2 reference
         vR3 = <caught exception>;    
         vR2.leave();   
@@ -246,7 +247,7 @@ EXCEPTIONHANDLER-TABLE:
         vR0.print@this(vi1);   [R R  iR] 
         vR0.println@this();   [R R  R.] 
         vR2.leave();   
-        goto +B26;   forward return[R R  ..]
+        goto +B26;   [R R  ..]
   +H21<caught exception>:   #2 reference
         vR3 = <caught exception>;    
         vR2.leave();   
@@ -269,7 +270,7 @@ EXCEPTIONHANDLER-TABLE:
         vR0.print@this(vl1);   [?R R  ??R] 
         vR0.println@this();   [?R R  R..] 
         vR3.leave();   
-        goto +B28;   forward return[?R R  ...]
+        goto +B28;   [?R R  ...]
   +H21<caught exception>:   #2 reference
         vR4 = <caught exception>;    
         vR3.leave();   
@@ -292,7 +293,7 @@ EXCEPTIONHANDLER-TABLE:
         vR0.print@this(vl1);   [R R  ?R] 
         vR0.println@this();   [R R  R.] 
         vR2.leave();   
-        goto +B26;   forward return[R R  ..]
+        goto +B26;   [R R  ..]
   +H21<caught exception>:   #2 reference
         vR3 = <caught exception>;    
         vR2.leave();   
@@ -315,7 +316,7 @@ EXCEPTIONHANDLER-TABLE:
         vR0.print@this(vd1);   [?R R  ??R] 
         vR0.println@this();   [?R R  R..] 
         vR3.leave();   
-        goto +B28;   forward return[?R R  ...]
+        goto +B28;   [?R R  ...]
   +H21<caught exception>:   #2 reference
         vR4 = <caught exception>;    
         vR3.leave();   
@@ -338,7 +339,7 @@ EXCEPTIONHANDLER-TABLE:
         vR0.print@this(vR1);   [R R  RR] 
         vR0.println@this();   [R R  R.] 
         vR2.leave();   
-        goto +B26;   forward return[R R  ..]
+        goto +B26;   [R R  ..]
   +H21<caught exception>:   #2 reference
         vR3 = <caught exception>;    
         vR2.leave();   
@@ -361,7 +362,7 @@ EXCEPTIONHANDLER-TABLE:
         vR0.print@this(vR1);   [R R  RR] 
         vR0.println@this();   [R R  R.] 
         vR2.leave();   
-        goto +B26;   forward return[R R  ..]
+        goto +B26;   [R R  ..]
   +H21<caught exception>:   #2 reference
         vR3 = <caught exception>;    
         vR2.leave();   
@@ -384,7 +385,7 @@ EXCEPTIONHANDLER-TABLE:
         vR0.print@this(vi1);   [R R  iR] 
         vR0.println@this();   [R R  R.] 
         vR2.leave();   
-        goto +B26;   forward return[R R  ..]
+        goto +B26;   [R R  ..]
   +H21<caught exception>:   #2 reference
         vR3 = <caught exception>;    
         vR2.leave();   
@@ -407,7 +408,7 @@ EXCEPTIONHANDLER-TABLE:
         vR0.print@this(vR1);   [R R  RR] 
         vR0.println@this();   [R R  R.] 
         vR2.leave();   
-        goto +B26;   forward return[R R  ..]
+        goto +B26;   [R R  ..]
   +H21<caught exception>:   #2 reference
         vR3 = <caught exception>;    
         vR2.leave();   
@@ -426,7 +427,7 @@ EXCEPTIONHANDLER-TABLE:
   +START:   #2
         vR0.out.write(vi1);   [   iR] 
   +B8:   #1
-        goto +B17;   forward return[   ..]
+        goto +B17;   [   ..]
   +H11<caught exception>:   #1 reference
         vR2 = <caught exception>;    
         vR0.error = 1;   
@@ -442,7 +443,7 @@ EXCEPTIONHANDLER-TABLE:
   +START:   #2
         vR0.out.write(vR1,vi2,vi3);   [   iiRR] 
   +B10:   #1
-        goto +B20;   forward return[   ....]
+        goto +B20;   [   ....]
   +H13<caught exception>:   #1 reference
         vR4 = <caught exception>;    
         vR0.error = 1;   
@@ -458,7 +459,7 @@ EXCEPTIONHANDLER-TABLE:
   +START:   #2
         vR0.out.write(vR1,vi2,vi3);   [   iiRR] 
   +B10:   #1
-        goto +B20;   forward return[   ....]
+        goto +B20;   [   ....]
   +H13<caught exception>:   #1 reference
         vR4 = <caught exception>;    
         vR0.error = 1;   
@@ -480,7 +481,7 @@ EXCEPTIONHANDLER-TABLE:
  
  method write(Ljava/lang/String;)V {
   +START:   #1
-        vR0.write@this(vR1,0,vR1.length@extra());   [  i iiRR] 
+        vR0.write@this(vR1,0,vR1.length());   [  i iiRR] 
         return;   
   +END:   #1
  }

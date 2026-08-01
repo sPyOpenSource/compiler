@@ -68,7 +68,7 @@ class java/beans/PropertyEditorSupport {
         if vR0.val==null goto B17;   
   +B7:   #1
         b0 = vR0.val.toString();    [ R  R] 
-        goto +B19b0;   forward return[ R  .]
+        goto +B19b0;   [ R  .]
   +B17:   #1
         b0 = "null";    
   +B19b0:   #1 reference
@@ -79,17 +79,18 @@ class java/beans/PropertyEditorSupport {
  
  method setAsText(Ljava/lang/String;)V {
   +START:   #1
-        if vR1.equals@extra("null")==0 goto B17;   
+        if vR1.equals("null")==0 goto B17;   
   +B9:   #1
         vR0.setValue@this(0);   [ R . RR] 
-        goto +B25;   forward return[ R . ..]
+        goto +B25;   [ R . ..]
   -B17:   #1
-        throw new java/lang/IllegalArgumentException();   
+        b0 = new java/lang/IllegalArgumentException();    [ R . i.][ R . iR]
+        throw b0;   
   +B25:   #1
         return;   
   +END:   #1
  }
-// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 setAsText
+// Register: rd 3/3 wr 2 swaps 1 any 0 found 0 setAsText
  
  method getTags()[Ljava/lang/String; {
   +START:   #1

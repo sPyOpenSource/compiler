@@ -6,8 +6,8 @@ class AI/util/PID {
         vR0.kp = vd1;   
         vR0.ki = vd3;   
         vR0.kd = vd5;   
-        vR0.max = jx.classfile.datatypes.BCDouble@1852a3ff;   
-        vR0.min = jx.classfile.datatypes.BCDouble@7203c7ff;   
+        vR0.max = jx.classfile.datatypes.BCDouble@6ad3381f;   
+        vR0.min = jx.classfile.datatypes.BCDouble@53dbe163;   
         vR0.temp = 0;   
         vR0.setpoint = 0;   
         return;   
@@ -49,7 +49,7 @@ class AI/util/PID {
         if compare(vd9,vR0.max)<=0 goto B110;   
   +B101:   #1
         vd9 = vR0.max;    
-        goto +B126;   forward return[?d?d?d   .]
+        goto +B126;   [?d?d?d   .]
   +B110:   #1
         if compare(vd9,vR0.min)>=0 goto B126;   
   +B120:   #1

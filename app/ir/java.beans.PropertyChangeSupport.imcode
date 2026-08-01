@@ -12,18 +12,18 @@ class java/beans/PropertyChangeSupport {
   +B19b0b1:   #1 reference reference
         b0.children = b1;   
         vR1.defaultWriteObject();   [ RR  R] 
-        vR2 = vR0.listeners.elements@extra();    [ RR  R] 
+        vR2 = vR0.listeners.elements();    [ RR  R] 
   +B34:   #1
         if vR2.hasMoreElements()==0 goto B68;   
   +B43:   #1
         vR3 = (java/beans/PropertyChangeListener)(vR2.nextElement());    
         if (vR3 instanceof java/io/Serializable)==0 goto B65;   
   +B60:   #1
-        vR1.writeObject@extra(vR3);   [RR RR . RR] 
+        vR1.writeObject(vR3);   [RR RR . RR] 
   +B65:   #1
         goto +B34;   [RR RR . ..]
   +B68:   #1
-        vR1.writeObject@extra(0);   [RR RR . RR] 
+        vR1.writeObject(0);   [RR RR . RR] 
         return;   
   +END:   #1
  }
@@ -70,7 +70,7 @@ class java/beans/PropertyChangeSupport {
  
  method addPropertyChangeListener(Ljava/beans/PropertyChangeListener;)V {
   +START:   #1
-        vR0.listeners.addElement@extra(vR1);   [   RR] 
+        vR0.listeners.addElement(vR1);   [   RR] 
         return;   
   +END:   #1
  }
@@ -83,17 +83,18 @@ class java/beans/PropertyChangeSupport {
         b0.enter();   
         vR4 = (java/util/Vector)(vR0.propertyListeners.get(vR1));    
   +B20:   #1
-        vR4.addElement@extra(vR2);   [RR R . RR] 
+        vR4.addElement(vR2);   [RR R . RR] 
   +B26:   #1
         goto +B57;   [RR R . ..]
   +H29<caught exception>:   #1 reference
         vR5 = <caught exception>;    
-        vR4 = new java/util/Vector();    [ R . i.][ R . iR]
-        vR4.addElement@extra(vR2);   [RRRR R . RR] 
+        b0 = new java/util/Vector();    [ R . i.][ R . iR]
+        vR4 = b0;    
+        vR4.addElement(vR2);   [RRRR R . RR] 
         vR0.propertyListeners.put(vR1,vR4);   [RRRR R . RRR] 
   +B57:   #1
         vR3.leave();   
-        goto +B69;   forward return[RR R . ...]
+        goto +B69;   [RR R . ...]
   +H62<caught exception>:   #2 reference
         vR6 = <caught exception>;    
         vR3.leave();   
@@ -107,11 +108,11 @@ EXCEPTIONHANDLER-TABLE:
 7 - 59 handler 62 type 0
 62 - 66 handler 62 type 0
  }
-// Register: rd 8/8 wr 7 swaps 0 any 1 found 0 addPropertyChangeListener
+// Register: rd 9/9 wr 8 swaps 0 any 2 found 0 addPropertyChangeListener
  
  method removePropertyChangeListener(Ljava/beans/PropertyChangeListener;)V {
   +START:   #1
-        vR0.listeners.removeElement@extra(vR1);   [   RR] 
+        vR0.listeners.removeElement(vR1);   [   RR] 
         return;   
   +END:   #1
  }
@@ -124,8 +125,8 @@ EXCEPTIONHANDLER-TABLE:
         b0.enter();   
         vR4 = (java/util/Vector)(vR0.propertyListeners.get(vR1));    
   +B20:   #1
-        vR4.removeElement@extra(vR2);   [RR R . RR] 
-        if vR4.size@extra()!=0 goto B44;   
+        vR4.removeElement(vR2);   [RR R . RR] 
+        if vR4.size()!=0 goto B44;   
   +B35:   #1
         vR0.propertyListeners.remove(vR1);   [RR R . RR] 
   +B44:   #2
@@ -134,7 +135,7 @@ EXCEPTIONHANDLER-TABLE:
         vR5 = <caught exception>;    
   +B49:   #1
         vR3.leave();   
-        goto +B61;   forward return[RR R . ..]
+        goto +B61;   [RR R . ..]
   +H54<caught exception>:   #2 reference
         vR6 = <caught exception>;    
         vR3.leave();   
@@ -154,7 +155,7 @@ EXCEPTIONHANDLER-TABLE:
   +START:   #1
         vi2 = 0;    
   +B2:   #1
-        if vi2>=vR0.listeners.size@extra() goto B36;   
+        if vi2>=vR0.listeners.size() goto B36;   
   +B13:   #1
         (java/beans/PropertyChangeListener)(vR0.listeners.elementAt(vi2)).propertyChange(vR1);   [i  . RR.] 
         vi2++;   
@@ -165,7 +166,7 @@ EXCEPTIONHANDLER-TABLE:
   +B55:   #1
         vi3 = 0;    
   +B57:   #1
-        if vi3>=vR2.size@extra() goto B85;   
+        if vi3>=vR2.size() goto B85;   
   +B65:   #1
         (java/beans/PropertyChangeListener)(vR2.elementAt(vi3)).propertyChange(vR1);   [Ri  .. RR.] 
         vi3++;   
@@ -215,12 +216,12 @@ EXCEPTIONHANDLER-TABLE:
  
  method hasListeners(Ljava/lang/String;)Z {
   +START:   #1
-        if vR0.listeners.size@extra()> 0 goto B21;   
+        if vR0.listeners.size()> 0 goto B21;   
   +B10:   #1
         if vR0.propertyListeners.get(vR1)==null goto B25;   
   +B21:   #1
         b0 = 1;    
-        goto +B26b0;   forward return[ i  ..]
+        goto +B26b0;   [ i  ..]
   +B25:   #1
         b0 = 0;    
   +B26b0:   #1 int

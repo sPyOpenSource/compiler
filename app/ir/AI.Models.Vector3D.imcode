@@ -10,13 +10,13 @@ class AI/Models/Vector3D {
  
  method getLength()D {
   +START:   #1
-        if compare((java/lang/Double)(vR0.x).doubleValue@extra(),0)!=0 goto B45;   
+        if compare((java/lang/Double)(vR0.x).doubleValue(),0)!=0 goto B45;   
   +B15:   #1
-        if compare((java/lang/Double)(vR0.y).doubleValue@extra(),0)!=0 goto B45;   
+        if compare((java/lang/Double)(vR0.y).doubleValue(),0)!=0 goto B45;   
   +B30:   #1
-        if compare((java/lang/Double)(vR0.z).doubleValue@extra(),0)==0 goto B99;   
+        if compare((java/lang/Double)(vR0.z).doubleValue(),0)==0 goto B99;   
   +B45:   #2
-        return sqrt@special(((pow@special((java/lang/Double)(vR0.x).doubleValue@extra(),jx.classfile.datatypes.BCDouble@222eb8aa)+pow@special((java/lang/Double)(vR0.y).doubleValue@extra(),jx.classfile.datatypes.BCDouble@222eb8aa))+pow@special((java/lang/Double)(vR0.z).doubleValue@extra(),jx.classfile.datatypes.BCDouble@222eb8aa)));   
+        return sqrt@special(((pow@special((java/lang/Double)(vR0.x).doubleValue(),jx.classfile.datatypes.BCDouble@5a709816)+pow@special((java/lang/Double)(vR0.y).doubleValue(),jx.classfile.datatypes.BCDouble@5a709816))+pow@special((java/lang/Double)(vR0.z).doubleValue(),jx.classfile.datatypes.BCDouble@5a709816)));   
   +B99:   #1
         return 1;   
   +END:   #1
@@ -26,24 +26,26 @@ class AI/Models/Vector3D {
  method getUnitVector()LAI/Models/Vector3D; {
   +START:   #1
         vd1 = vR0.getLength@this();     
-        return new AI/Models/Vector3D(valueOf@special(((java/lang/Double)(vR0.x).doubleValue@extra()/vd1)),valueOf@special(((java/lang/Double)(vR0.y).doubleValue@extra()/vd1)),valueOf@special(((java/lang/Double)(vR0.z).doubleValue@extra()/vd1)));   
+        b0 = new AI/Models/Vector3D(valueOf@special(((java/lang/Double)(vR0.x).doubleValue()/vd1)),valueOf@special(((java/lang/Double)(vR0.y).doubleValue()/vd1)),valueOf@special(((java/lang/Double)(vR0.z).doubleValue()/vd1)));    [ R  i][ R . iRRRR]
+        return b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getUnitVector
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 getUnitVector
  
  method cross(LAI/Models/Vector3D;)LAI/Models/Vector3D; {
   +START:   #1
-        return new AI/Models/Vector3D(valueOf@special((((java/lang/Double)(vR0.y).doubleValue@extra()*(java/lang/Double)(vR1.z).doubleValue@extra())-((java/lang/Double)(vR0.z).doubleValue@extra()*(java/lang/Double)(vR1.y).doubleValue@extra()))),valueOf@special((((java/lang/Double)(vR0.z).doubleValue@extra()*(java/lang/Double)(vR1.x).doubleValue@extra())-((java/lang/Double)(vR0.x).doubleValue@extra()*(java/lang/Double)(vR1.z).doubleValue@extra()))),valueOf@special((((java/lang/Double)(vR0.x).doubleValue@extra()*(java/lang/Double)(vR1.y).doubleValue@extra())-((java/lang/Double)(vR0.y).doubleValue@extra()*(java/lang/Double)(vR1.x).doubleValue@extra()))));   
+        b0 = new AI/Models/Vector3D(valueOf@special((((java/lang/Double)(vR0.y).doubleValue()*(java/lang/Double)(vR1.z).doubleValue())-((java/lang/Double)(vR0.z).doubleValue()*(java/lang/Double)(vR1.y).doubleValue()))),valueOf@special((((java/lang/Double)(vR0.z).doubleValue()*(java/lang/Double)(vR1.x).doubleValue())-((java/lang/Double)(vR0.x).doubleValue()*(java/lang/Double)(vR1.z).doubleValue()))),valueOf@special((((java/lang/Double)(vR0.x).doubleValue()*(java/lang/Double)(vR1.y).doubleValue())-((java/lang/Double)(vR0.y).doubleValue()*(java/lang/Double)(vR1.x).doubleValue()))));    [ R  i][ R . iRRRR]
+        return b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 cross
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 cross
  
  method Normalize()V {
   +START:   #1
         vd1 = vR0.getLength@this();     
-        vR0.x = valueOf@special(((java/lang/Double)(vR0.x).doubleValue@extra()/vd1));   
-        vR0.y = valueOf@special(((java/lang/Double)(vR0.y).doubleValue@extra()/vd1));   
-        vR0.z = valueOf@special(((java/lang/Double)(vR0.z).doubleValue@extra()/vd1));   
+        vR0.x = valueOf@special(((java/lang/Double)(vR0.x).doubleValue()/vd1));   
+        vR0.y = valueOf@special(((java/lang/Double)(vR0.y).doubleValue()/vd1));   
+        vR0.z = valueOf@special(((java/lang/Double)(vR0.z).doubleValue()/vd1));   
         return;   
   +END:   #1
  }
@@ -51,9 +53,9 @@ class AI/Models/Vector3D {
  
  method Sub(LAI/Models/Vector3D;)V {
   +START:   #1
-        vR0.x = valueOf@special(((java/lang/Double)(vR0.x).doubleValue@extra()-(java/lang/Double)(vR1.x).doubleValue@extra()));   
-        vR0.y = valueOf@special(((java/lang/Double)(vR0.y).doubleValue@extra()-(java/lang/Double)(vR1.y).doubleValue@extra()));   
-        vR0.z = valueOf@special(((java/lang/Double)(vR0.z).doubleValue@extra()-(java/lang/Double)(vR1.z).doubleValue@extra()));   
+        vR0.x = valueOf@special(((java/lang/Double)(vR0.x).doubleValue()-(java/lang/Double)(vR1.x).doubleValue()));   
+        vR0.y = valueOf@special(((java/lang/Double)(vR0.y).doubleValue()-(java/lang/Double)(vR1.y).doubleValue()));   
+        vR0.z = valueOf@special(((java/lang/Double)(vR0.z).doubleValue()-(java/lang/Double)(vR1.z).doubleValue()));   
         return;   
   +END:   #1
  }
@@ -61,7 +63,7 @@ class AI/Models/Vector3D {
  
  method Dot(LAI/Models/Vector3D;)D {
   +START:   #1
-        return ((((java/lang/Double)(vR0.x).doubleValue@extra()*(java/lang/Double)(vR1.x).doubleValue@extra())+((java/lang/Double)(vR0.y).doubleValue@extra()*(java/lang/Double)(vR1.y).doubleValue@extra()))+((java/lang/Double)(vR0.z).doubleValue@extra()*(java/lang/Double)(vR1.z).doubleValue@extra()));   
+        return ((((java/lang/Double)(vR0.x).doubleValue()*(java/lang/Double)(vR1.x).doubleValue())+((java/lang/Double)(vR0.y).doubleValue()*(java/lang/Double)(vR1.y).doubleValue()))+((java/lang/Double)(vR0.z).doubleValue()*(java/lang/Double)(vR1.z).doubleValue()));   
   +END:   #1
  }
 // Register: rd 0/0 wr 0 swaps 0 any 0 found 0 Dot

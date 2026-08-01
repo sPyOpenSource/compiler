@@ -8,30 +8,32 @@ class gnu/java/security/DefaultPermissionCollection {
   +B15:   #1
         vR0.permcls = forName@special(vR1);   
   +B23:   #1
-        goto +B39;   forward return[ RR  ..]
+        goto +B39;   [ RR  ..]
   -H26<caught exception>:   #1 reference
         vR2 = <caught exception>;    
-        throw new java/lang/IllegalArgumentException(vR2.getMessage());   
+        b0 = new java/lang/IllegalArgumentException(vR2.getMessage());    [ RR  i.][ RR . iRR]
+        throw b0;   
   +B39:   #1
         return;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
 15 - 23 handler 26 type 26
  }
-// Register: rd 6/6 wr 3 swaps 0 any 0 found 0 <init>
+// Register: rd 7/7 wr 4 swaps 0 any 0 found 0 <init>
  
  method add(Ljava/security/Permission;)V {
   +START:   #1
         if vR0.isReadOnly@this()==0 goto B17;   
   -B7:   #1
-        throw new java/lang/SecurityException("PermissionCollection is read only");   
+        b0 = new java/lang/SecurityException("PermissionCollection is read only");    [ RRR  i][ RRR . iRR]
+        throw b0;   
   +B17:   #1
-        if vR0.permcls.isInstance@extra(vR1)!=0 goto B61;   
+        if vR0.permcls.isInstance(vR1)!=0 goto B61;   
   -B28:   #1
         b0 = new java/lang/IllegalArgumentException;    
         b1 = b0;    
         b2 = new java/lang/StringBuilder();    [ RRR . i..][ RRR . iR.]
-        b1.<init>@special(b2.append@extra("Wrong permission type: ").append@extra(vR1.getClass().getName@extra()).toString@extra());   [ RRR iii. RR.] 
+        b1.<init>@special(b2.append("Wrong permission type: ").append(vR1.getClass().getName()).toString());   [ RRR iii. RR.] 
         throw b0;   
   +B61:   #1
         if vR0.perms.get(vR1.getName())==null goto B105;   
@@ -39,14 +41,14 @@ EXCEPTIONHANDLER-TABLE:
         b0 = new java/lang/IllegalArgumentException;    
         b1 = b0;    
         b2 = new java/lang/StringBuilder();    [ RRR .... i..][ RRR .... iR.]
-        b1.<init>@special(b2.append@extra("Duplicate permission: ").append@extra(vR1.getName()).toString@extra());   [ RRR iii. RR.] 
+        b1.<init>@special(b2.append("Duplicate permission: ").append(vR1.getName()).toString());   [ RRR iii. RR.] 
         throw b0;   
   +B105:   #1
         vR0.perms.put(vR1.getName(),vR1);   [ RRR i... RRR] 
         return;   
   +END:   #1
  }
-// Register: rd 17/17 wr 20 swaps 8 any 2 found 0 add
+// Register: rd 18/18 wr 21 swaps 8 any 2 found 0 add
  
  method implies(Ljava/security/Permission;)Z {
   +START:   #1

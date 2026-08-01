@@ -19,15 +19,15 @@ class jx/zero/verifier/JVMLocalVarsElement {
  method toString()Ljava/lang/String; {
   +START:   #1
         b0 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
-        b0 = b0.append@extra("(");    [ RR i RR] 
+        b0 = b0.append("(");    [ RR i RR] 
         if vR0.bcAddr< 0 goto B29;   
   +B19b0:   #1 reference
         b1 = toHexString@special(vR0.bcAddr);    [ RR i i.]
-        goto +B31b0b1;   forward return[ RR i ..]
+        goto +B31b0b1;   [ RR i ..]
   +B29b0:   #1 reference
         b1 = "init";    
   +B31b0b1:   #1 reference reference
-        return b0.append@extra(b1).append@extra(")").toString@extra();   
+        return b0.append(b1).append(")").toString();   
   +END:   #1
  }
 // Register: rd 5/5 wr 9 swaps 2 any 0 found 0 toString

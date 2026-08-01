@@ -12,18 +12,18 @@ class java/beans/VetoableChangeSupport {
   +B19b0b1:   #1 reference reference
         b0.children = b1;   
         vR1.defaultWriteObject();   [ RR  R] 
-        vR2 = vR0.listeners.elements@extra();    [ RR  R] 
+        vR2 = vR0.listeners.elements();    [ RR  R] 
   +B34:   #1
         if vR2.hasMoreElements()==0 goto B68;   
   +B43:   #1
         vR3 = (java/beans/VetoableChangeListener)(vR2.nextElement());    
         if (vR3 instanceof java/io/Serializable)==0 goto B65;   
   +B60:   #1
-        vR1.writeObject@extra(vR3);   [RR RR . RR] 
+        vR1.writeObject(vR3);   [RR RR . RR] 
   +B65:   #1
         goto +B34;   [RR RR . ..]
   +B68:   #1
-        vR1.writeObject@extra(0);   [RR RR . RR] 
+        vR1.writeObject(0);   [RR RR . RR] 
         return;   
   +END:   #1
  }
@@ -70,7 +70,7 @@ class java/beans/VetoableChangeSupport {
  
  method addVetoableChangeListener(Ljava/beans/VetoableChangeListener;)V {
   +START:   #1
-        vR0.listeners.addElement@extra(vR1);   [   RR] 
+        vR0.listeners.addElement(vR1);   [   RR] 
         return;   
   +END:   #1
  }
@@ -83,17 +83,18 @@ class java/beans/VetoableChangeSupport {
         b0.enter();   
         vR4 = (java/util/Vector)(vR0.propertyListeners.get(vR1));    
   +B20:   #1
-        vR4.addElement@extra(vR2);   [RR R . RR] 
+        vR4.addElement(vR2);   [RR R . RR] 
   +B26:   #1
         goto +B57;   [RR R . ..]
   +H29<caught exception>:   #1 reference
         vR5 = <caught exception>;    
-        vR4 = new java/util/Vector();    [ R . i.][ R . iR]
-        vR4.addElement@extra(vR2);   [RRRR R . RR] 
+        b0 = new java/util/Vector();    [ R . i.][ R . iR]
+        vR4 = b0;    
+        vR4.addElement(vR2);   [RRRR R . RR] 
         vR0.propertyListeners.put(vR1,vR4);   [RRRR R . RRR] 
   +B57:   #1
         vR3.leave();   
-        goto +B69;   forward return[RR R . ...]
+        goto +B69;   [RR R . ...]
   +H62<caught exception>:   #2 reference
         vR6 = <caught exception>;    
         vR3.leave();   
@@ -107,11 +108,11 @@ EXCEPTIONHANDLER-TABLE:
 7 - 59 handler 62 type 0
 62 - 66 handler 62 type 0
  }
-// Register: rd 8/8 wr 7 swaps 0 any 1 found 0 addVetoableChangeListener
+// Register: rd 9/9 wr 8 swaps 0 any 2 found 0 addVetoableChangeListener
  
  method removeVetoableChangeListener(Ljava/beans/VetoableChangeListener;)V {
   +START:   #1
-        vR0.listeners.removeElement@extra(vR1);   [   RR] 
+        vR0.listeners.removeElement(vR1);   [   RR] 
         return;   
   +END:   #1
  }
@@ -124,8 +125,8 @@ EXCEPTIONHANDLER-TABLE:
         b0.enter();   
         vR4 = (java/util/Vector)(vR0.propertyListeners.get(vR1));    
   +B20:   #1
-        vR4.removeElement@extra(vR2);   [RR R . RR] 
-        if vR4.size@extra()!=0 goto B44;   
+        vR4.removeElement(vR2);   [RR R . RR] 
+        if vR4.size()!=0 goto B44;   
   +B35:   #1
         vR0.propertyListeners.remove(vR1);   [RR R . RR] 
   +B44:   #2
@@ -134,7 +135,7 @@ EXCEPTIONHANDLER-TABLE:
         vR5 = <caught exception>;    
   +B49:   #1
         vR3.leave();   
-        goto +B61;   forward return[RR R . ..]
+        goto +B61;   [RR R . ..]
   +H54<caught exception>:   #2 reference
         vR6 = <caught exception>;    
         vR3.leave();   
@@ -154,7 +155,7 @@ EXCEPTIONHANDLER-TABLE:
   +START:   #1
         vi2 = 0;    
   +B2:   #2
-        if vi2>=vR0.listeners.size@extra() goto B36;   
+        if vi2>=vR0.listeners.size() goto B36;   
   +B13:   #1
         (java/beans/VetoableChangeListener)(vR0.listeners.elementAt(vi2)).vetoableChange(vR1);   [i R . RR.] 
         vi2++;   
@@ -163,7 +164,8 @@ EXCEPTIONHANDLER-TABLE:
         goto +B106;   [i R . ...]
   +H39<caught exception>:   #1 reference
         vR3 = <caught exception>;    
-        vR4 = new java/beans/PropertyChangeEvent(vR1.getSource(),vR1.getPropertyName(),vR1.getNewValue(),vR1.getOldValue());    [ R . i..][ R . iRRRRR]
+        b0 = new java/beans/PropertyChangeEvent(vR1.getSource(),vR1.getPropertyName(),vR1.getNewValue(),vR1.getOldValue());    [ R . i..][ R . iRRRRR]
+        vR4 = b0;    
         vi5 = 0;    
   +B68:   #1
         if vi5>=vi2 goto B104;   
@@ -184,19 +186,20 @@ EXCEPTIONHANDLER-TABLE:
   +B125:   #1
         vi2 = 0;    
   +B127:   #1
-        if vi2>=vR3.size@extra() goto B155;   
+        if vi2>=vR3.size() goto B155;   
   +B135:   #1
         (java/beans/VetoableChangeListener)(vR3.elementAt(vi2)).vetoableChange(vR1);   [iR R .. RR....] 
         vi2++;   
         goto +B127;   [iR R .. ......]
   +B155:   #2
-        goto +B267;   forward return[iR R .. ......]
+        goto +B267;   [iR R .. ......]
   +H158<caught exception>:   #1 reference
         vR4 = <caught exception>;    
-        vR5 = new java/beans/PropertyChangeEvent(vR1.getSource(),vR1.getPropertyName(),vR1.getNewValue(),vR1.getOldValue());    [ R .. i.....][ R .. iRRRRR]
+        b0 = new java/beans/PropertyChangeEvent(vR1.getSource(),vR1.getPropertyName(),vR1.getNewValue(),vR1.getOldValue());    [ R .. i.....][ R .. iRRRRR]
+        vR5 = b0;    
         vi6 = 0;    
   +B188:   #1
-        if vi6>=vR0.listeners.size@extra() goto B228;   
+        if vi6>=vR0.listeners.size() goto B228;   
   +B200:   #1
         (java/beans/VetoableChangeListener)(vR0.listeners.elementAt(vi2)).vetoableChange(vR1);   [iRRRi R .. RR....] 
   +B217:   #1
@@ -231,7 +234,7 @@ EXCEPTIONHANDLER-TABLE:
 200 - 217 handler 220 type 108
 237 - 253 handler 256 type 108
  }
-// Register: rd 44/44 wr 32 swaps 1 any 11 found 3 fireVetoableChange
+// Register: rd 46/46 wr 34 swaps 1 any 13 found 3 fireVetoableChange
  
  method fireVetoableChange(Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;)V {
   +START:   #1
@@ -272,12 +275,12 @@ EXCEPTIONHANDLER-TABLE:
  
  method hasListeners(Ljava/lang/String;)Z {
   +START:   #1
-        if vR0.listeners.size@extra()> 0 goto B21;   
+        if vR0.listeners.size()> 0 goto B21;   
   +B10:   #1
         if vR0.propertyListeners.get(vR1)==null goto B25;   
   +B21:   #1
         b0 = 1;    
-        goto +B26b0;   forward return[ i  ..]
+        goto +B26b0;   [ i  ..]
   +B25:   #1
         b0 = 0;    
   +B26b0:   #1 int

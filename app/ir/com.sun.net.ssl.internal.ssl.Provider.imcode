@@ -10,8 +10,9 @@ class com/sun/net/ssl/internal/ssl/Provider {
  
  method Provider()V {
   -START:   #1
-        throw new java/lang/Error("NOT IMPLEMENTED");   
+        b0 = new java/lang/Error("NOT IMPLEMENTED");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 Provider
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 Provider
 }
