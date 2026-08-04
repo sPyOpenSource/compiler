@@ -15,7 +15,6 @@ import de.tu_darmstadt.informatik.rbg.mhartle.sabre.HandlerException;
 import static jx.compspec.StartBuilder.getCompilerOptions;
 import jx.compiler.persistent.*;
 import jx.compiler.execenv.IOSystem;
-import jx.zero.Debug;
 import net.lingala.zip4j.ZipFile;
 
 import java.io.*;
@@ -24,11 +23,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.zip.GZIPOutputStream;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class CompileNative {
     public static void main(String[] args) throws Exception {
+	Msg.info("Native code compiler version 0.7.10-" + StaticCompiler.version());
 	String libdir = "app/isodir/code";
 	if (!libdir.endsWith("/")) libdir = libdir + "/";
 
@@ -61,7 +59,7 @@ public class CompileNative {
             jlns.add(libdir + neededLib + ".jln");
         }
         opts = getCompilerOptions(null, jlns, null, jlnname, jllname, "JC_CONFIG");
-	compile("init2", opts);
+	//compile("init2", opts);
         
         jllname = libdir + "wm.jll";
         jlnname = libdir + "wm.jln";
@@ -72,7 +70,7 @@ public class CompileNative {
             jlns.add(libdir + neededLib + ".jln");
         }
         opts = getCompilerOptions(null, jlns, null, jlnname, jllname, "JC_CONFIG");
-	compile("wm", opts);
+	//compile("wm", opts);
         
         createISO();
     }
@@ -82,16 +80,16 @@ public class CompileNative {
     }
 
     public static void compile(String path, CompilerOptions opts) throws Exception {
-	System.out.println("Native code compiler version 0.7.10-" + StaticCompiler.version());
+	Msg.phase("Compiling domain", opts.getOutputFile());
 
 	ExtendedDataOutputStream codeFile;
 	ExtendedDataOutputStream tableOut;
-	if (opts.doDebug()) Debug.out.println("Compiling domain to " + opts.getOutputFile());       
-	if (opts.doDebug()) Debug.out.println("Writing linker output to " + opts.getLinkerOutputFile());	    
+	Msg.debug("native", "Compiling domain to " + opts.getOutputFile());
+	Msg.debug("native", "Writing linker output to " + opts.getLinkerOutputFile());
 	codeFile = new ExtendedDataOutputStream(opts.getOutputFile());
 	tableOut = new ExtendedDataOutputStream(opts.getLinkerOutputFile());
 	
-	if (opts.doDebug()) Debug.out.println("Reading domain classes from " + opts.getClassFile());
+	Msg.debug("native", "Reading domain classes from " + opts.getClassFile());
 
 
 	String[] domClasses = new String[]{
@@ -185,7 +183,7 @@ public class CompileNative {
         if (links != null) {
            tableIn = new ExtendedDataInputStream[links.size()];
            for(int i = 0; i < links.size(); i++) {
-               if (opts.doDebug()) Debug.out.println("Reading lib linkerinfo from " + (String)links.get(i));
+	       Msg.debug("native", "Reading lib linkerinfo from " + links.get(i));
                tableIn[i] = new ExtendedDataInputStream(new BufferedInputStream(new FileInputStream((String)links.get(i))));
            }
         } else {
@@ -213,6 +211,7 @@ public class CompileNative {
             table.close();
         codeFile.close();
         tableOut.close();
+	Msg.phaseDone();
     }
     
     static void createISO(){
@@ -225,6 +224,7 @@ public class CompileNative {
         //String file7 = "app/isodir/code/wm_impl.jll";
         
         final List<String> srcFiles = Arrays.asList(file1, file2, file3, file4, file5, file6);
+	Msg.phase("Create ISO");
 
         try {
             ZipFile zipFile = new ZipFile("app/isodir/code/uncompressed.zip");
@@ -259,7 +259,7 @@ public class CompileNative {
             root.addFile(f3);
 
             // ISO9660 support
-            System.out.println("ISO9660 support");
+            Msg.info("ISO9660 support");
             ISO9660Config iso9660Config = new ISO9660Config();
             iso9660Config.setInterchangeLevel(1);
             iso9660Config.restrictDirDepthTo8(true);
@@ -274,19 +274,21 @@ public class CompileNative {
 				ElToritoConfig.LOAD_SEGMENT_7C0);
 
             // Joliet support
-            System.out.println("Joliet support");
+            Msg.info("Joliet support");
             JolietConfig jolietConfig = new JolietConfig();
             jolietConfig.setPublisher("X. Wang");
             jolietConfig.setVolumeID("JX");
             jolietConfig.setDataPreparer("X. Wang");
 
-            System.out.println("Create ISO");
+            Msg.info("Create ISO");
             ISOImageFileHandler streamHandler = new ISOImageFileHandler(outfile);
             CreateISO iso = new CreateISO(streamHandler, root);
             iso.process(iso9660Config, rrConfig, jolietConfig, elToritoConfig);
-            System.out.println("Done. File is: " + outfile);
+            Msg.info("Done. File is: " + outfile);
+	    Msg.phaseDone();
         } catch (IOException | ConfigException | HandlerException ex){
-            Logger.getLogger(CompileNative.class.getName()).log(Level.SEVERE, null, ex);
+	    Msg.error("ISO creation failed: " + ex.getMessage());
+	    if (Msg.debugEnabled()) ex.printStackTrace();
         }
     }
 }
