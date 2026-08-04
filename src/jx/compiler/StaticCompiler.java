@@ -40,14 +40,11 @@ import java.net.URL;
 
 import java.util.ArrayList;
 import java.util.Enumeration;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.jar.*;
 
 public class StaticCompiler implements ClassFinder {
     static final boolean dumpAll = false;
     static final boolean verboseFieldLayout = false;
-    static final boolean opt_v = true;
 
     static final boolean addPredefinedObject = true;
 
@@ -187,7 +184,7 @@ public class StaticCompiler implements ClassFinder {
                         if (name.startsWith("java/math")) continue;
                         if (name.startsWith("java/applet")) continue;
                         if (name.startsWith("test/portal/perf")) continue;
-                        System.out.println(name); 
+                        Msg.verbose("classes", name);
                         try (InputStream is = jar.getInputStream(entry)) {
                             ClassData data = new ClassData(new DataInputStream(is));
                             if(i < 0){
@@ -199,7 +196,8 @@ public class StaticCompiler implements ClassFinder {
                     }
                 }
             } catch (NullPointerException e){
-                Logger.getLogger(StaticCompiler.class.getName()).log(Level.SEVERE, null, e);
+                Msg.error("Exception while reading domain zip: " + e.getMessage());
+                if (Msg.debugEnabled()) e.printStackTrace();
             }
 	}
 
@@ -207,14 +205,14 @@ public class StaticCompiler implements ClassFinder {
 
 	// parse classfiles into classes
 	try {
-	    if (opt_v) System.out.println("Adding classes from existing lib");
+	    Msg.verbose("classes", "Adding classes from existing lib");
 	    for(int i = 0; i < libdata.size(); i++) {
 		ClassSource classData = (ClassSource)libdata.get(i); 
 		String className = classData.getClassName();
 
 		if (addPredefinedObject && className.equals("java/lang/Object")) continue;
 
-		if (opt_v) System.out.println("Add class " + className);
+		Msg.verbose("classes", "Add class " + className);
 
 		BCClass oldClass = findClass(className);
 		if (oldClass != null)
@@ -222,7 +220,7 @@ public class StaticCompiler implements ClassFinder {
 		BCClass clazz = new BCClass(classData, className);
 		libClassStore.addClass(className, clazz);
 	    }
-	    if (opt_v) System.out.println("Adding classes from lib");
+	    Msg.verbose("classes", "Adding classes from lib");
 
 	    for(int i = 0; i < domdata.size(); i++) {
 		ClassSource classData = (ClassSource)domdata.get(i); 
@@ -230,18 +228,19 @@ public class StaticCompiler implements ClassFinder {
 
 		if (addPredefinedObject && className.equals("java/lang/Object")) continue;
 
-		if (opt_v) System.out.println("Add class " + className);
+		Msg.verbose("classes", "Add class " + className);
 
 		BCClass oldClass = findClass(className);
 		if (oldClass != null) {
-		    System.out.println("Duplicate class " + className);
+		    Msg.error("Duplicate class " + className);
 		    Debug.throwError("Duplicate class " + className);
 		}
 		BCClass clazz = new BCClass(classData, className);
 		domClassStore.addClass(className, clazz);
 	    }
 	} catch(Exception e) {
-            Logger.getLogger(StaticCompiler.class.getName()).log(Level.SEVERE, null, e);
+	    Msg.error("Exception while reading classes: " + e.getMessage());
+	    if (Msg.debugEnabled()) e.printStackTrace();
 	    Debug.throwError("Exception while reading classes.");
 	}
 
@@ -368,8 +367,9 @@ public class StaticCompiler implements ClassFinder {
 		try {
 		    imOut = new PrintStream(ioSystem.getOutputStream(aClass.getClassName().replace("/", ".") + ".imcode"));	
 		} catch (IOException ex) {
-		    Logger.getLogger(StaticCompiler.class.getName()).log(Level.SEVERE, null, ex); 
-		    Debug.throwError(); 
+		    Msg.error("Could not write imcode file: " + ex.getMessage());
+		    if (Msg.debugEnabled()) ex.printStackTrace();
+		    Debug.throwError();
 		}
 		imOut.println("class " + aClass.getClassName() + " {");
 	    }
@@ -415,18 +415,18 @@ public class StaticCompiler implements ClassFinder {
 		    if (options.doPrintIMCode()) imCode.writeCode(imOut);
 		    info.nativeCode[i] = imCode;
 		} catch (CompileException ex) {
-                    Logger.getLogger(StaticCompiler.class.getName()).log(Level.SEVERE, null, ex); 
 		    if (options.doInlining(aClass, method)) {
-			System.err.println("!! FAIL to inline !!!!!!!!!!!!!!!");
-			if (!options.doVerbose("inline"))
-			    System.err.println("!! " + ex.getClass().getName());
-			System.err.println("!! try without inlining !!!!!!!!!");
+			Msg.warn("Compiling " + aClass.getClassName() + "." + method.getName() + " failed with inlining: " + ex.getClass().getName());
+			Msg.warn("Retrying without inlining");
+			if (Msg.debugEnabled()) ex.printStackTrace();
 			imCode = new jx.compiler.imcode.CodeContainer(execEnvNew, method);
 			imCode.init();
 			imCode.translate();
 			if (options.doPrintIMCode()) imCode.writeCode(imOut);
 			info.nativeCode[i] = imCode;
-		    } else { 
+		    } else {
+			Msg.error("Compiling " + aClass.getClassName() + "." + method.getName() + " failed: " + ex.getMessage());
+			if (Msg.debugEnabled()) ex.printStackTrace();
 			System.exit(1);
 		    }
 		}
@@ -438,8 +438,9 @@ public class StaticCompiler implements ClassFinder {
 		imOut.close();
 	    }
 	} catch (CompileException ex) {
-	    Debug.out.println("Compilation Failed :" + ex.getMessage()); 
-	    Debug.throwError(); 
+	    Msg.error("Compilation failed: " + ex.getMessage());
+	    if (Msg.debugEnabled()) ex.printStackTrace();
+	    Debug.throwError(ex.getMessage());
 	}
     }
     
@@ -527,8 +528,7 @@ public class StaticCompiler implements ClassFinder {
         
 	options.printVerbose("**********Finished compiling!");
 
-	if (options.doVerbose("stat"))
-	    System.out.println(stat.toString());
+	Msg.verbose("stat", stat.toString());
 
 	codeFile.write(out, domClassStore);
 	options.printVerbose("written");
