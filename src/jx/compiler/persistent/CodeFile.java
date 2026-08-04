@@ -11,7 +11,6 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.ArrayList;
 import java.util.Enumeration;
-import java.util.logging.Level;
 
 import sjc.output.HexOut;
 import sjc.ui.SC;

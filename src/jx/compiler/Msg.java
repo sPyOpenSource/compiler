@@ -2,6 +2,7 @@ package jx.compiler;
 
 import java.io.PrintStream;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Central console messaging facade for the compiler.
@@ -18,10 +19,10 @@ public final class Msg {
     public static final int VERBOSE = 3;
     public static final int DEBUG   = 4;
 
-    private static int threshold = INFO;
+    private static volatile int threshold = INFO;
     private static List<String> verboseCats;
     private static List<String> debugCats;
-    private static long phaseStart = -1L;
+    private static volatile long phaseStart = -1L;
 
     private Msg() {}
 
@@ -59,6 +60,11 @@ public final class Msg {
         }
     }
 
+    /**
+     * True when the threshold is at least VERBOSE. Note: this ignores the
+     * verbose category list, so uncategorized detail gated behind it may print
+     * under -v:&lt;cats&gt;. Prefer {@link #verbose(String, String)} when a category is known.
+     */
     public static boolean verboseEnabled() {
         return threshold >= VERBOSE;
     }
@@ -82,7 +88,7 @@ public final class Msg {
         if (threshold >= INFO) {
             if (phaseStart >= 0) {
                 double secs = (System.nanoTime() - phaseStart) / 1e9;
-                System.out.println("-- done (" + String.format("%.1f", secs) + "s)");
+                System.out.println("-- done (" + String.format(Locale.ROOT, "%.1f", secs) + "s)");
                 phaseStart = -1L;
             } else {
                 System.out.println("-- done");
