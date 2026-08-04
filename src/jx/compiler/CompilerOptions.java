@@ -55,7 +55,8 @@ public class CompilerOptions implements CompilerOptionsInterface {
     protected ArrayList profileMethods;
     protected boolean doFastMemoryAccess   = false;
     protected boolean doPrintIMCode;
-    protected boolean doVerbose            = true;
+    protected boolean doVerbose            = false;
+    protected boolean doQuiet              = false;
     protected ArrayList verboseList        = null;
     protected ArrayList optionList         = null;
     protected boolean doRemoveDebug        = false;
@@ -294,7 +295,15 @@ public class CompilerOptions implements CompilerOptionsInterface {
     }
 
     public void printVerbose(String txt) {
-	if (doVerbose) System.out.println(txt);
+	Msg.verbose(txt);
+    }
+
+    protected void applyToMsg() {
+	int level = Msg.INFO;
+	if (doQuiet) level = Msg.WARN;
+	if (debug) level = Msg.DEBUG;
+	else if (doVerbose || verboseList != null) level = Msg.VERBOSE;
+	Msg.init(level, verboseList, debugFlags);
     }
 
     @Override

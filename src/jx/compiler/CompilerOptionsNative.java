@@ -34,6 +34,7 @@ public class CompilerOptionsNative extends CompilerOptions {
 	String[] argv = new String[args.size()];
 	for (int i = 0; i < argv.length; i++) argv[i] = (String)args.get(i);
 	for (int i = 0; i < argv.length;) i += parseOption(argv, i);
+	applyToMsg();
     }
 
     private int parseOption(String[] args, int i) {	
@@ -156,6 +157,8 @@ public class CompilerOptionsNative extends CompilerOptions {
 	    doRemoveDebug = true;
 	} else if (args[i].equals("-nodebug")) {
 	    debug = false;
+	} else if (args[i].equals("-q")) {
+	    doQuiet = true;
 	} else if (args[i].equals("-v")) {
 	    doVerbose = true;
 	} else if (args[i].startsWith("-v:")) {
@@ -338,11 +341,12 @@ public class CompilerOptionsNative extends CompilerOptions {
 		}
 		zipLibFiles = newLib;
 		jlnLibFiles = newInf;
-	    } else {
-		zipLibFiles.trimToSize();
-		jlnLibFiles.trimToSize();
-	    }
+	} else {
+	    zipLibFiles.trimToSize();
+	    jlnLibFiles.trimToSize();
 	}
+    }
+	applyToMsg();
     }
 
     protected void printUsage() {
