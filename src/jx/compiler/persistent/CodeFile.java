@@ -12,7 +12,6 @@ import java.util.Collections;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import sjc.output.HexOut;
 import sjc.ui.SC;
@@ -148,7 +147,7 @@ public class CodeFile {
         String[] vars = meta.getVars();
         out.writeInt(vars.length);
         for (String var : vars) {
-            System.out.println("  " + var + "   = " + meta.getVar(var));
+            Msg.verbose("persist", "  " + var + "   = " + meta.getVar(var));
             out.writeString(var);
             out.writeString(meta.getVar(var));
         }
@@ -190,15 +189,16 @@ public class CodeFile {
 
         out.writeChecksum();
 
-        if (verbose) System.out.println("**********Finished saving!");
+        if (verbose) Msg.verbose("persist", "**********Finished saving!");
         try {
             FileWriter f = new FileWriter(out.toString().replace(".jll", ".json"));
             f.write(object.toString(4));
             f.close();
         } catch (IOException ex) {
-            Logger.getLogger(SC.class.getName()).log(Level.SEVERE, null, ex);
+            Msg.warn("Could not write JSON: " + ex.getMessage());
+            if (Msg.debugEnabled()) ex.printStackTrace();
         }
-        System.out.println(object.toString(4));
+        Msg.verbose("persist", object.toString(4));
     }
 
     /**
@@ -424,7 +424,7 @@ public class CodeFile {
                     if(!entry.isResolved()) {
                         if ((entry instanceof UnresolvedJump)
                             && entry.isRelative()) {
-                            Debug.out.println("ERROR: relative Jump Entry not resolved: Class: " + className + ", Method: " + method);
+                            Msg.error("Unresolved relative jump entry: Class: " + className + ", Method: " + method);
                             entry.dump();
                             Debug.throwError("unresolved jump: " + entry);
                         }
@@ -602,6 +602,6 @@ public class CodeFile {
     }
     
     public void size(){
-        System.out.println("codesize:" + codesize);
+        Msg.verbose("persist", "codesize:" + codesize);
     }
 }

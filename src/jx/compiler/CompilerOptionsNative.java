@@ -6,8 +6,6 @@
 
 package jx.compiler;
 
-import jx.zero.Debug;
-
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
@@ -234,7 +232,7 @@ public class CompilerOptionsNative extends CompilerOptions {
                     break;
             }
 	} else {
-	    Debug.out.print("WARNING: Unknown option " + args[i] + " ignored.");
+	    Msg.warn("Unknown option " + args[i] + " ignored");
 	    return 1;
 	}
 
@@ -243,10 +241,9 @@ public class CompilerOptionsNative extends CompilerOptions {
 
     public void parseArgs(String[] args) {
 	if (debug) {
-	    Debug.out.print("jc ");
-            for (String arg : args)
-                Debug.out.print(arg + " ");
-	    Debug.out.println("\n");
+	    StringBuilder sb = new StringBuilder("jc");
+            for (String arg : args) sb.append(" ").append(arg);
+	    Msg.debug("cli", sb.toString());
 	}
 	
 	/* set defaults */
@@ -285,7 +282,7 @@ public class CompilerOptionsNative extends CompilerOptions {
 		}
 	    }
 	} catch (Exception ex) {
-	    Debug.out.println("\n\ncompiler exception: " + ex.getClass().getName());
+	    Msg.error("compiler exception: " + ex.getClass().getName());
 	    printUsage();
 	    System.exit(-1);
 	}

@@ -10,6 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import jx.compiler.CompilerOptions;
+import jx.compiler.Msg;
 import jx.compiler.CompileNative;
 
 public class StartBuilder {
@@ -167,15 +168,14 @@ public class StartBuilder {
 		    }
 		}
 	    } catch (IOException ex) {
-		System.err.println(ex.getClass().getName());
-		System.err.println("WARNING: Can`t read " + optionFile + " !!!");
+		Msg.warn("Can't read " + optionFile + ": " + ex.getClass().getName());
 	    }
 
-	    System.err.println("WARNING: JCFLAGS not found in " + optionFile + " !!!");
+	    Msg.warn("JCFLAGS not found in " + optionFile);
 	    return opts;
 	}
 
-	System.err.println("WARNING: " + optionFile + " not found !!!");
+	Msg.warn(optionFile + " not found");
 	return opts;
     }
 
