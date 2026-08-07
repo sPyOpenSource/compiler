@@ -4,31 +4,32 @@ class java/lang/invoke/InnerClassLambdaMetafactory {
   +START:   #1
         vR0.<init>@special(vR1,vR2,vR3,vR4,vR5,vR6,vi7,vR8,vR9);   [ ?R  RRiRRRRRRR] 
         vR0.implMethodName = vR0.implInfo.getName();   
-        vR0.implMethodDesc = vR0.implMethodType.toMethodDescriptorString@extra();   
-        vR0.constructorType = vR2.changeReturnType@extra(TYPE);   
+        vR0.implMethodDesc = vR0.implMethodType.toMethodDescriptorString();   
+        vR0.constructorType = vR2.changeReturnType(TYPE);   
         b1 = new java/lang/StringBuilder();    [ ?R i i.........][ ?R i iR........]
-        vR0.lambdaClassName = b1.append@extra(vR0.targetClass.getName@extra().replace@extra(46,47)).append@extra("$$Lambda$").toString@extra();   
-        dumper = 0;   
+        vR0.lambdaClassName = b1.append(vR0.targetClass.getName().replace(46,47)).append("$$Lambda$").toString();   
         vR0.argNames = 0;   
         vR0.argDescs = 0;   
         return;   
   +END:   #1
  }
-// Register: rd 13/13 wr 8 swaps 3 any 0 found 0 <init>
+// Register: rd 12/12 wr 7 swaps 3 any 0 found 0 <init>
  
  method buildCallSite()Ljava/lang/invoke/CallSite; {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 buildCallSite
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 buildCallSite
  
  method spinInnerClass()Ljava/lang/Class; {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 spinInnerClass
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 spinInnerClass
  
  method generateFactory()V {
   +START:   #1
@@ -77,7 +78,7 @@ class java/lang/invoke/InnerClassLambdaMetafactory {
  
  method getOpcodeOffset(Ljava/lang/Class;)I {
   +START:   #1
-        if vR0.isPrimitive@extra()==0 goto B36;   
+        if vR0.isPrimitive@this()==0 goto B36;   
   +B7:   #1
         if vR0!=TYPE goto B16;   
   +B14:   #1

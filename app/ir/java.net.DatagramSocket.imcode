@@ -23,28 +23,30 @@ class java/net/DatagramSocket {
         vR4 = vR0.receiver.receive(vR3,vR0.timeout);    [iR RR i iRR] 
         if vR4!=null goto B61;   
   -B53:   #1
-        throw new java/net/SocketTimeoutException();   
+        b0 = new java/net/SocketTimeoutException();    [ RR . i..][ RR . iR.]
+        throw b0;   
   +B61:   #1
         goto +B76;   [iRR RR . ...]
   +B64:   #1
         vR4 = vR0.receiver.receive(vR3);    [iRR RR . RR.] 
   +B76:   #1
-        vR4 = new jx/net/protocol/udp/UDPFormat(vR3,26);    [ RR . i..][ RR . iiRR]
+        b0 = new jx/net/protocol/udp/UDPFormat(vR3,26);    [ RR . i..][ RR . iiRR]
+        vR4 = b0;    
         b0 = out;    
         b1 = new java/lang/StringBuilder();    [ RR . i...][ RR . iR..]
-        b0.println(b1.append@extra("len: ").append@extra(vR4.getLength()).toString@extra());   [iRR RR iii. RR..] 
+        b0.println(b1.append("len: ").append(vR4.getLength()).toString());   [iRR RR iii. RR..] 
         vR3.copyToByteArray(vR1.buff,0,34,vR4.getLength());   [iRR RR iiiii iiiRR] 
         return;   
   +END:   #1
  }
-// Register: rd 17/17 wr 18 swaps 6 any 1 found 0 receive
+// Register: rd 19/19 wr 20 swaps 6 any 2 found 0 receive
  
  method send(Ljava/net/DatagramPacket;)V {
   +START:   #1
         b1 = vR0.net;    
         b2 = vR0.port;    
         b3 = new jx/net/IPv4Address(vR1.addr.getAddress());    [ ?RiR  i][ ?RiR . iRR]
-        vR0.sender = b1.getUDPSender(b2,b3,vR1.getPort@extra());   
+        vR0.sender = b1.getUDPSender(b2,b3,vR1.getPort());   
         out.println("get udp sender");   [ ?RiR ii. RR..] 
         vi2 = requiresSpace@special();    [ ?RiR ii. ....]
         vR3 = vR0.net.getUDPBuffer(((vi2+vR1.length)+34));    [i ?RiR iii iR..] 

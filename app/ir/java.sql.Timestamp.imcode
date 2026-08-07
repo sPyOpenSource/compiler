@@ -35,7 +35,7 @@ EXCEPTIONHANDLER-TABLE:
  method toString()Ljava/lang/String; {
   +START:   #1
         b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
-        return b0.append@extra(format_sdf.format(vR0)).append@extra(".").append@extra(vR0.getNanos@this()).toString@extra();   
+        return b0.append(format_sdf.format(vR0)).append(".").append(vR0.getNanos@this()).toString();   
   +END:   #1
  }
 // Register: rd 2/2 wr 8 swaps 3 any 0 found 0 toString

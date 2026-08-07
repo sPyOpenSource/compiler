@@ -58,9 +58,9 @@ class java/sql/DriverManager {
  
  method registerDriver(Ljava/sql/Driver;)V {
   +START:   #1
-        if drivers.contains@extra(vR0)!=0 goto B17;   
+        if drivers.contains(vR0)!=0 goto B17;   
   +B10:   #1
-        drivers.addElement@extra(vR0);   [  . RR] 
+        drivers.addElement(vR0);   [  . RR] 
   +B17:   #1
         return;   
   +END:   #1
@@ -69,9 +69,9 @@ class java/sql/DriverManager {
  
  method deregisterDriver(Ljava/sql/Driver;)V {
   +START:   #1
-        if drivers.contains@extra(vR0)==0 goto B18;   
+        if drivers.contains(vR0)==0 goto B18;   
   +B10:   #1
-        drivers.removeElement@extra(vR0);   [  . RR] 
+        drivers.removeElement(vR0);   [  . RR] 
   +B18:   #1
         return;   
   +END:   #1
@@ -80,28 +80,29 @@ class java/sql/DriverManager {
  
  method getDrivers()Ljava/util/Enumeration; {
   +START:   #1
-        vR0 = new java/util/Vector();    [ R  i][ R  iR]
-        vR1 = drivers.elements@extra();    [R R . R.] 
+        b0 = new java/util/Vector();    [ R  i][ R  iR]
+        vR0 = b0;    
+        vR1 = drivers.elements();    [R R . R.] 
         vR2 = currentThread@special().getContextClassLoader();    [RR R . R.] [RR R R ..]
   +B22:   #2
         if vR1.hasMoreElements()==0 goto B63;   
   +B31:   #1
         vR3 = vR1.nextElement();    [RRR R . R.] 
-        if vR3.getClass().getClassLoader@extra().equals(vR2)!=0 goto B55;   
+        if vR3.getClass().getClassLoader().equals(vR2)!=0 goto B55;   
   +B52:   #1
         goto +B22;   [RRRR R .. ..]
   +B55:   #1
-        vR0.addElement@extra(vR3);   [RRRR R .. RR] 
+        vR0.addElement@this(vR3);   [RRRR R .. RR] 
         goto +B22;   [RRRR R .. ..]
   +B63:   #1
-        return vR0.elements@extra();   
+        return vR0.elements@this();   
   +END:   #1
  }
-// Register: rd 5/5 wr 8 swaps 0 any 0 found 0 getDrivers
+// Register: rd 6/6 wr 9 swaps 0 any 1 found 0 getDrivers
  
  method getDriver(Ljava/lang/String;)Ljava/sql/Driver; {
   +START:   #1
-        vR1 = drivers.elements@extra();    [  . R] 
+        vR1 = drivers.elements();    [  . R] 
   +B7:   #1
         if vR1.hasMoreElements()==0 goto B41;   
   +B16:   #1
@@ -127,7 +128,8 @@ class java/sql/DriverManager {
  
  method getConnection(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/sql/Connection; {
   +START:   #1
-        vR3 = new java/util/Properties();    [ R  i][ R  iR]
+        b0 = new java/util/Properties();    [ R  i][ R  iR]
+        vR3 = b0;    
         if vR1==null goto B20;   
   +B12:   #1
         vR3.setProperty("user",vR1);   [R R i RRR] 
@@ -139,7 +141,7 @@ class java/sql/DriverManager {
         return getConnection@special(vR0,vR3);   
   +END:   #1
  }
-// Register: rd 4/4 wr 3 swaps 2 any 2 found 0 getConnection
+// Register: rd 5/5 wr 4 swaps 2 any 3 found 0 getConnection
  
  method getConnection(Ljava/lang/String;Ljava/util/Properties;)Ljava/sql/Connection; {
   +START:   #1
@@ -149,7 +151,7 @@ class java/sql/DriverManager {
         b0 = new java/sql/SQLException;    
         b1 = b0;    
         b2 = new java/lang/StringBuilder();    [ RRR  i][ RRR  iR]
-        b1.<init>@special(b2.append@extra("Driver not found for URL: ").append@extra(vR0).toString@extra());   [R RRR ii. RR.] 
+        b1.<init>@special(b2.append("Driver not found for URL: ").append(vR0).toString());   [R RRR ii. RR.] 
         throw b0;   
   +B36:   #1
         return vR2.connect(vR0,vR1);   
@@ -172,7 +174,8 @@ class java/sql/DriverManager {
         vR0 = 0;    
         if vR0==null goto B49;   
   +B16:   #1
-        vR1 = new java/util/StringTokenizer(vR0);    [ R  i.][ R . iRR]
+        b0 = new java/util/StringTokenizer(vR0);    [ R  i.][ R . iRR]
+        vR1 = b0;    
   +B25:   #1
         if vR1.hasMoreTokens()==0 goto B49;   
   +B32:   #1
@@ -191,5 +194,5 @@ class java/sql/DriverManager {
 EXCEPTIONHANDLER-TABLE:
 37 - 42 handler 45 type 139
  }
-// Register: rd 7/7 wr 6 swaps 0 any 1 found 1 <clinit>
+// Register: rd 8/8 wr 7 swaps 0 any 2 found 1 <clinit>
 }

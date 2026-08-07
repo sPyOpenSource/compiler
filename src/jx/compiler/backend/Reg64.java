@@ -9,10 +9,10 @@ import jx.compiler.imcode.*;
 
 final public class Reg64 implements RegObj, Cloneable {
 
-    static public Reg64 any = new Reg64(Reg.any,Reg.any);
-    static public Reg64 eax = new Reg64(Reg.eax,Reg.edx);
-    static public Reg64 ebx = new Reg64(Reg.ebx,Reg.ecx);
-    static public Reg64 esi = new Reg64(Reg.esi,Reg.edi);
+    static public Reg64 any = new Reg64(Reg.any, Reg.any);
+    static public Reg64 eax = new Reg64(Reg.eax, Reg.edx);
+    static public Reg64 ebx = new Reg64(Reg.ebx, Reg.ecx);
+    static public Reg64 esi = new Reg64(Reg.esi, Reg.edi);
 
     public Reg low;
     public Reg high;
@@ -85,7 +85,7 @@ final public class Reg64 implements RegObj, Cloneable {
 	    nreg = (Reg64)this.clone();
 	} catch (CloneNotSupportedException ex) {
 	    System.err.println("!!!! CloneNotSupportedException !!!!");
-	    nreg = new Reg64(low,high);
+	    nreg = new Reg64(low, high);
 	}
 	return nreg;
     }

@@ -10,17 +10,19 @@ class java/lang/invoke/SimpleMethodHandle {
  
  method make(Ljava/lang/invoke/MethodType;Ljava/lang/invoke/LambdaForm;)Ljava/lang/invoke/BoundMethodHandle; {
   +START:   #1
-        return new java/lang/invoke/SimpleMethodHandle(vR0,vR1);   
+        b0 = new java/lang/invoke/SimpleMethodHandle(vR0,vR1);    [ R  i][ R . iRRR]
+        return b0;   
   +END:   #1
  }
-// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 make
+// Register: rd 4/4 wr 2 swaps 0 any 0 found 0 make
  
  method speciesData()Ljava/lang/invoke/BoundMethodHandle$SpeciesData; {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 speciesData
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 speciesData
  
  method copyWith(Ljava/lang/invoke/MethodType;Ljava/lang/invoke/LambdaForm;)Ljava/lang/invoke/BoundMethodHandle; {
   +START:   #1
@@ -32,58 +34,62 @@ class java/lang/invoke/SimpleMethodHandle {
  method internalProperties()Ljava/lang/String; {
   +START:   #1
         b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
-        return b0.append@extra("
-& Class=").append@extra(vR0.getClass@this().getSimpleName@extra()).toString@extra();   
+        return b0.append("
+& Class=").append(vR0.getClass@this().getSimpleName()).toString();   
   +END:   #1
  }
 // Register: rd 2/2 wr 6 swaps 2 any 0 found 0 internalProperties
  
  method copyWithExtendL(Ljava/lang/invoke/MethodType;Ljava/lang/invoke/LambdaForm;Ljava/lang/Object;)Ljava/lang/invoke/BoundMethodHandle; {
   +START:   #1
-        return bindSingle@special(vR1,vR2,vR3);   
+        return bindSingleL@special(vR1,vR2,vR3);   
   +END:   #1
  }
 // Register: rd 0/0 wr 0 swaps 0 any 0 found 0 copyWithExtendL
  
  method copyWithExtendI(Ljava/lang/invoke/MethodType;Ljava/lang/invoke/LambdaForm;I)Ljava/lang/invoke/BoundMethodHandle; {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 copyWithExtendI
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 copyWithExtendI
  
  method copyWithExtendJ(Ljava/lang/invoke/MethodType;Ljava/lang/invoke/LambdaForm;J)Ljava/lang/invoke/BoundMethodHandle; {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 copyWithExtendJ
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 copyWithExtendJ
  
  method copyWithExtendF(Ljava/lang/invoke/MethodType;Ljava/lang/invoke/LambdaForm;F)Ljava/lang/invoke/BoundMethodHandle; {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 copyWithExtendF
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 copyWithExtendF
  
  method copyWithExtendD(Ljava/lang/invoke/MethodType;Ljava/lang/invoke/LambdaForm;D)Ljava/lang/invoke/BoundMethodHandle; {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 copyWithExtendD
- 
- method internalProperties()Ljava/lang/Object; {
-  +START:   #1
-        return vR0.internalProperties@extra();   
-  +END:   #1
- }
-// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 internalProperties
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 copyWithExtendD
  
  method copyWith(Ljava/lang/invoke/MethodType;Ljava/lang/invoke/LambdaForm;)Ljava/lang/invoke/MethodHandle; {
   +START:   #1
-        return vR0.copyWith@extra(vR1,vR2);   
+        return vR0.copyWith@this(vR1,vR2);   
   +END:   #1
  }
 // Register: rd 1/1 wr 0 swaps 0 any 0 found 0 copyWith
+ 
+ method internalProperties()Ljava/lang/Object; {
+  +START:   #1
+        return vR0.internalProperties@this();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 internalProperties
 }

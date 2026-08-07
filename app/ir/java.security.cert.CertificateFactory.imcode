@@ -20,7 +20,7 @@ class java/security/cert/CertificateFactory {
   +B12:   #1
         b0 = vR1[vi2];    
         b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
-        vR3 = b0.getProperty(b1.append@extra("CertificateFactory.").append@extra(vR0).toString@extra());    [Ri RR ii. RR.] 
+        vR3 = b0.getProperty(b1.append("CertificateFactory.").append(vR0).toString());    [Ri RR ii. RR.] 
         if vR3==null goto B51;   
   +B42:   #1
         return getInstance@special(vR3,vR0,vR1[vi2]);   
@@ -28,45 +28,50 @@ class java/security/cert/CertificateFactory {
         vi2++;   
         goto +B6;   [RiR RR ... ...]
   -B57:   #1
-        throw new java/security/cert/CertificateException(vR0);   
+        b0 = new java/security/cert/CertificateException(vR0);    [ RR ... i..][ RR ... iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 12/12 wr 12 swaps 2 any 3 found 0 getInstance
+// Register: rd 13/13 wr 13 swaps 2 any 3 found 0 getInstance
  
  method getInstance(Ljava/lang/String;Ljava/lang/String;)Ljava/security/cert/CertificateFactory; {
   +START:   #1
         vR2 = getProvider@special(vR1);    [ RR  R]
         if vR2!=null goto B17;   
   -B9:   #1
-        throw new java/security/NoSuchProviderException();   
+        b0 = new java/security/NoSuchProviderException();    [ RR  i][ RR  iR]
+        throw b0;   
   +B17:   #1
         b1 = new java/lang/StringBuilder();    [ RR  i.][ RR  iR]
-        return getInstance@special(vR2.getProperty(b1.append@extra("CertificateFactory.").append@extra(vR0).toString@extra()),vR0,vR2);   
+        return getInstance@special(vR2.getProperty(b1.append("CertificateFactory.").append(vR0).toString()),vR0,vR2);   
   +END:   #1
  }
-// Register: rd 3/3 wr 7 swaps 2 any 1 found 0 getInstance
+// Register: rd 4/4 wr 8 swaps 2 any 1 found 0 getInstance
  
  method getInstance(Ljava/lang/String;Ljava/lang/String;Ljava/security/Provider;)Ljava/security/cert/CertificateFactory; {
   +START:   #4
-        b0 = new java/security/cert/CertificateFactory((java/security/cert/CertificateFactorySpi)(forName@special(vR0).newInstance@extra()),vR2,vR1);    [ R  i][ R .. iRRRR]
+        b0 = new java/security/cert/CertificateFactory((java/security/cert/CertificateFactorySpi)(forName@special(vR0).newInstance()),vR2,vR1);    [ R  i][ R .. iRRRR]
   +B19b0:   #3 reference
         return b0;   
   -H20<caught exception>:   #1 reference
         vR3 = <caught exception>;    
-        throw new java/security/cert/CertificateException("Class not found");   
+        b0 = new java/security/cert/CertificateException("Class not found");    [ R .. i....][ R .. iRR..]
+        throw b0;   
   -H31<caught exception>:   #1 reference
         vR3 = <caught exception>;    
-        throw new java/security/cert/CertificateException("Class instantiation failed");   
+        b0 = new java/security/cert/CertificateException("Class instantiation failed");    [ R .. i....][ R .. iRR..]
+        throw b0;   
   -H42<caught exception>:   #1 reference
         vR3 = <caught exception>;    
-        throw new java/security/cert/CertificateException("Illegal Access");   
+        b0 = new java/security/cert/CertificateException("Illegal Access");    [ R .. i....][ R .. iRR..]
+        throw b0;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
 0 - 19 handler 20 type 77
 0 - 19 handler 31 type 81
 0 - 19 handler 42 type 85
  }
-// Register: rd 8/8 wr 10 swaps 0 any 0 found 0 getInstance
+// Register: rd 11/11 wr 13 swaps 0 any 0 found 0 getInstance
  
  method getProvider()Ljava/security/Provider; {
   +START:   #1

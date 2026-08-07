@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cheat Sheet: jcore Bytecode→Native Pipeline</title>
+<link rel="stylesheet" href="../assets/shared.css">
+</head>
+<body>
+
+<h1>jcore Bytecode → Native Pipeline</h1>
+<p>Compressed map of the four acts. All paths relative to <code>src/jx/compiler/</code>. Lesson: <a href="../lessons/0005-bytecode-to-native-pipeline.html">0005</a>.</p>
+
+<table>
+<thead>
+<tr><th>Act</th><th>What happens</th><th>Key files</th><th>Line anchors</th></tr>
+</thead>
+<tbody>
+<tr>
+    <td><strong>1. Parse</strong><br>bytecode → IM graph</td>
+    <td>Walk bytecode, one IM node per instruction; split into basic blocks; simulate the operand stack to build expression trees.</td>
+    <td><code>imcode/CodeContainer.java</code><br><code>imcode/VirtualOperantenStack.java</code><br><code>imcode/graph/IMBasicBlock.java</code><br><code>imcode/graph/inst/*</code></td>
+    <td><code>readBCInstruction</code> :207<br><code>new IMAdd(...)</code> :527<br><code>oprStack</code> :286<br><code>processStack</code> (IMBinaryOperator) :49</td>
+</tr>
+<tr>
+    <td><strong>2. Optimize</strong><br>graph → graph</td>
+    <td>Constant folding &amp; forwarding; inlining (before translate).</td>
+    <td><code>imcode/CodeContainer.java</code><br><code>imcode/graph/inst/ALU/*</code></td>
+    <td><code>constant_forwarding</code> :1062<br><code>inlineMethods</code> — called from StaticCompiler.java:411<br>e.g. <code>IMAdd.constant_folding</code> IMAdd.java:45</td>
+</tr>
+<tr>
+    <td><strong>3. Select + allocate</strong><br>graph → <code>code.*()</code> calls</td>
+    <td>Each IM node's <code>translate(Reg)</code> chooses instructions, allocates registers, and calls encoder methods. Target-neutral.</td>
+    <td><code>imcode/CodeContainer.java</code><br><code>backend/RegManager.java</code><br><code>imcode/MethodStackFrame.java</code><br><code>imcode/graph/inst/**/*.java</code></td>
+    <td><code>translate()</code> :1079<br><code>node.translate(Reg)</code> :1097<br>e.g. <code>IMAdd.translate</code> IMAdd.java:107</td>
+</tr>
+<tr>
+    <td><strong>4. Encode + relocate</strong><br><code>code.*()</code> calls → bytes</td>
+    <td>Encode instructions into a <code>byte[]</code>; record unresolved addresses as symbol entries; resolve and package into <code>BinaryCode</code>.</td>
+    <td><code>backend/BinaryCodeIA32.java</code> (x86)<br><code>backend/BinaryCodeDynamicARM.java</code> (ARM)<br><code>backend/BinaryCodeDynamicRiscV.java</code><br><code>symbols/*</code>, <code>execenv/BinaryCode.java</code></td>
+    <td>IA32 <code>addl</code> :797/809, <code>incl</code> :661<br>ARM <code>add</code> :464/476, helpers <code>dpr</code> :160 <code>dpi</code> :164</td>
+</tr>
+<tr>
+    <td><strong>5. Persist</strong><br>→ .jll / .jln</td>
+    <td>Store native code + metadata (.jll) and VTable map (.jln) for the runtime loader.</td>
+    <td><code>persistent/CodeFile.java</code><br><code>vtable/Main.java</code></td>
+    <td>See <a href="../lessons/0004-jll-and-jln-formats.html">Lesson 4</a></td>
+</tr>
+</tbody>
+</table>
+
+<h2>The <code>iadd</code> trace (one-liners)</h2>
+<ol>
+    <li>Pass 1: opcode <code>0x60</code> → <code>new IMAdd(...)</code> (CodeContainer.java:527).</li>
+    <li>Pass 3: <code>processStack</code> pops two operands, pushes the tree (IMBinaryOperator.java:49).</li>
+    <li>Optimize: <code>IMAdd.constant_folding</code> folds <code>c+c</code>, swaps to right-constant (IMAdd.java:45).</li>
+    <li>Codegen: <code>IMAdd.translate(Reg)</code> → <code>code.addl(reg, result)</code> or <code>code.addl(value, result)</code> / <code>code.incl(result)</code> (IMAdd.java:107–183).</li>
+    <li>Encode: <code>BinaryCodeIA32.addl</code> writes x86 bytes; ARM twin would be <code>BinaryCodeDynamicARM.add</code> → <code>dpr/dpi(DP_ADD)</code>.</li>
+    <li>Relocate: <code>getOldBinaryCode()</code> resolves symbol entries → <code>BinaryCode</code> → .jll/.jln.</li>
+</ol>
+
+<h2>The seam: the <code>BinaryCode</code> API</h2>
+<p>IM nodes call encoder methods by name. To plug the ARM encoder into <code>CodeContainer</code> it must satisfy this interface:</p>
+<table>
+<thead><tr><th>Called by IM nodes</th><th>IA32 impl</th><th>ARM impl today</th></tr></thead>
+<tbody>
+<tr><td><code>addl</code></td><td>BinaryCodeIA32.java:797/809</td><td><code>add</code> (BinaryCodeDynamicARM.java:464/476) — name differs</td></tr>
+<tr><td><code>incl</code></td><td>BinaryCodeIA32.java:661</td><td>not implemented yet</td></tr>
+<tr><td><code>movl</code></td><td>BinaryCodeIA32.java:1337+</td><td><code>mov</code> — name differs</td></tr>
+<tr><td><code>cmpl</code></td><td>BinaryCodeIA32.java:1040+</td><td><code>cmp</code> — name differs</td></tr>
+<tr><td><code>subl</code> / <code>imull</code> / <code>adcl</code></td><td>BinaryCodeIA32.java:524/599/986</td><td><code>sub</code> done; mul/adc pending</td></tr>
+</tbody>
+</table>
+
+<h2>Glossary pointers</h2>
+<p>IM graph · basic block · instruction selection · register allocation · instruction encoding · relocation/symbol table — see the <a href="glossary.html">glossary</a>.</p>
+
+<h2>64-bit <code>long</code>: where each op is implemented</h2>
+<p>On 32-bit targets a <code>long</code> is a register pair (<code>Reg64</code>). Lesson: <a href="../lessons/0006-implementing-long-64bit-on-32bit.html">0006</a>. The IM layer dispatches by datatype to <code>translate(Reg64)</code> (<code>IMNode.java:297</code>); only the backend differs per pattern.</p>
+<table>
+<thead><tr><th>Operation</th><th>Pattern</th><th>IM node → encoder calls</th><th>ARM status</th></tr></thead>
+<tbody>
+<tr><td>AND / OR / XOR</td><td>word-at-a-time</td><td><code>IMBitAnd.translate(Reg64)</code> IMBitAnd.java:86 → <code>andl</code> per word</td><td><code>and</code> exists; naming seam (<code>andl</code>)</td></tr>
+<tr><td>ADD</td><td>carry chain</td><td><code>IMAdd.translate(Reg64)</code> IMAdd.java:212 → <code>addl</code> + <code>adcl</code></td><td><code>add</code> s=false; <code>adc</code> stub — gap</td></tr>
+<tr><td>SUB</td><td>carry chain</td><td><code>IMSub.translate(Reg64)</code> IMSub.java:196 → <code>subl</code> + <code>sbbl</code></td><td><code>sub</code> s=false; <code>sbc</code> missing — gap</td></tr>
+<tr><td>NEG</td><td>carry chain</td><td><code>IMNeg.translate(Reg64)</code> IMNeg.java:85 → <code>negl</code> + <code>adcl</code></td><td><code>RSB</code> exists; <code>rsc</code> missing — gap</td></tr>
+<tr><td>MUL / DIV / REM</td><td>helper call</td><td><code>execEnv.codeLongMul/Div/Rem</code> ExecEnvironmentIA32.java:1306/1332/1358 → <code>call LongArithmeticSTEntry</code></td><td><code>call</code> (BL) works; <code>codeLong*</code> stubs</td></tr>
+<tr><td>SHL / SHR / USHR</td><td>helper call</td><td><code>codeLongShl/Shr/UShr</code> ExecEnvironmentIA32.java:1411/1385/1437</td><td><code>codeLong*</code> stubs</td></tr>
+<tr><td>LCMP</td><td>helper call</td><td><code>IMCompare</code> IMCompare.java:45 → <code>codeLongCompare</code> ExecEnvironmentIA32.java:1472</td><td><code>codeLongCompare</code> stub</td></tr>
+<tr><td>field/array access</td><td>memory moves</td><td><code>codeGet/Put(Field|Static|Array)Long</code></td><td>stubs</td></tr>
+<tr><td>calls returning long</td><td>ABI</td><td><code>code*(Virtual|Special|Interface|Static)CallLong</code></td><td>stubs</td></tr>
+</tbody>
+</table>
+<p class="sidenote">Caveat: the x86 reference paths have bugs in the carry chain — <code>IMAdd.java:225</code> and <code>IMBitAnd.java:97</code> name the wrong high-word operand. Verify semantics, don't copy.</p>
+
+<hr>
+<p><a href="../lessons/0005-bytecode-to-native-pipeline.html">Lesson 5</a> · <a href="../lessons/0004-jll-and-jln-formats.html">Lesson 4</a> · <a href="../MISSION.md">Mission</a> · <a href="../RESOURCES.md">Resources</a></p>
+
+</body>
+</html>

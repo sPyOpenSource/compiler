@@ -19,7 +19,7 @@ class java/text/Annotation {
  method toString()Ljava/lang/String; {
   +START:   #1
         b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
-        return b0.append@extra(vR0.getClass@this().getName@extra()).append@extra("[value=").append@extra(vR0.attrib.toString()).append@extra("]").toString@extra();   
+        return b0.append(vR0.getClass@this().getName()).append("[value=").append(vR0.attrib.toString()).append("]").toString();   
   +END:   #1
  }
 // Register: rd 3/3 wr 10 swaps 4 any 0 found 0 toString

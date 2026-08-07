@@ -10,43 +10,49 @@ class java/lang/invoke/Invokers {
  
  method linkToTargetMethod(Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/MemberName; {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 linkToTargetMethod
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 linkToTargetMethod
  
  method linkToCallSiteMethod(Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/MemberName; {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 linkToCallSiteMethod
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 linkToCallSiteMethod
  
  method methodHandleInvokeLinkerMethod(Ljava/lang/String;Ljava/lang/invoke/MethodType;[Ljava/lang/Object;)Ljava/lang/invoke/MemberName; {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 methodHandleInvokeLinkerMethod
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 methodHandleInvokeLinkerMethod
  
  method spreadInvoker(I)Ljava/lang/Object; {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 spreadInvoker
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 spreadInvoker
  
  method genericInvoker()Ljava/lang/invoke/MethodHandle; {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 genericInvoker
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 genericInvoker
  
  method exactInvoker()Ljava/lang/invoke/MethodHandle; {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 exactInvoker
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 exactInvoker
 }

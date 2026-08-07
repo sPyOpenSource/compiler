@@ -31,10 +31,11 @@ class java/net/ServerSocket {
         vi2++;   
         goto +B8;   [Ri R  ..]
   +B32:   #1
-        return new java/net/Socket(vR0.tcpSocket.accept(vR1));   
+        b0 = new java/net/Socket(vR0.tcpSocket.accept(vR1));    [ R  i.][ R . iRR]
+        return b0;   
   +END:   #1
  }
-// Register: rd 8/8 wr 4 swaps 0 any 2 found 0 accept
+// Register: rd 9/9 wr 5 swaps 0 any 2 found 0 accept
  
  method close()V {
   +START:   #1

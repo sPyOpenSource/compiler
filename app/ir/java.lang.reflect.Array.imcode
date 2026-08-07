@@ -10,10 +10,11 @@ class java/lang/reflect/Array {
  
  method newInstance(Ljava/lang/Class;I)Ljava/lang/Object; {
   -START:   #1
-        throw new java/lang/Error();   
+        b0 = new java/lang/Error();    [ R  i][ R  iR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 newInstance
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 newInstance
  
  method getLength(Ljava/lang/Object;)I {
   +START:   #1

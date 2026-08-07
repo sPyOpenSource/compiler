@@ -22,7 +22,7 @@ class java/security/SecureClassLoader {
   +B12:   #1
         vR1.checkCreateClassLoader();   [R   R] 
   +B16:   #1
-        vR0.parent = vR0.getClass@this().getClassLoader@extra();   
+        vR0.parent = vR0.getClass@this().getClassLoader();   
         return;   
   +END:   #1
  }
@@ -30,7 +30,8 @@ class java/security/SecureClassLoader {
  
  method defineClass(Ljava/lang/String;[BIILjava/security/CodeSource;)Ljava/lang/Class; {
   +START:   #1
-        vR6 = new java/security/ProtectionDomain(vR5,vR0.getPermissions@this(vR5));    [ R  i][ R . iRRR]
+        b0 = new java/security/ProtectionDomain(vR5,vR0.getPermissions@this(vR5));    [ R  i][ R . iRRR]
+        vR6 = b0;    
   +B17:   #1
         err.println("SecureClassLoader is broken because it is waiting got ClassLoader to be JDK 1.2 compatible");   [R R i. RR..] 
         b0 = 0;    
@@ -43,7 +44,7 @@ class java/security/SecureClassLoader {
 EXCEPTIONHANDLER-TABLE:
 17 - 26 handler 27 type 57
  }
-// Register: rd 4/4 wr 6 swaps 1 any 0 found 0 defineClass
+// Register: rd 5/5 wr 7 swaps 1 any 1 found 0 defineClass
  
  method getPermissions(Ljava/security/CodeSource;)Ljava/security/PermissionCollection; {
   +START:   #1

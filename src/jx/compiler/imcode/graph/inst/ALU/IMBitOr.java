@@ -21,10 +21,12 @@ public class IMBitOr extends IMBitOperator {
     datatype = i & 0x01;
     }
 
+    @Override
     public String toString() {
     return "(" + lOpr.toString() + " | " + rOpr.toString() + ")";
     }
 
+    @Override
     public IMNode constant_folding() throws CompileException {
     super.constant_folding();
 
@@ -61,6 +63,7 @@ public class IMBitOr extends IMBitOperator {
     } 
   
     // IMBitOr
+    @Override
     public void translate(Reg result) throws CompileException {    
     Reg reg;
 
@@ -74,12 +77,13 @@ public class IMBitOr extends IMBitOperator {
 
     // IMBitOr Long
 
+    @Override
     public void translate(Reg64 result) throws CompileException {    
     Reg64 reg;
 
     lOpr.translate(result);
     reg = regs.chooseLongRegister(result);
-    rOpr.translateLong(reg);
+    rOpr.translate(reg);
     
     code.startBC(bcPosition);
     

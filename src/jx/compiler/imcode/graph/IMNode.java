@@ -36,7 +36,7 @@ public class IMNode {
     public static final int RETURN      = 1024;
     public static final int VARIABLE    = 2048;
 
-    public static final boolean verbose = true;
+    public static final boolean verbose = false;
 
     public IMNode prev;
     public IMNode next;
@@ -329,10 +329,6 @@ public class IMNode {
         Debug.out.println(this.getClass().getName());
 	Debug.out.println(this.toString());
 	throw new CompileException(getLineInfo() + " long translation not implemeted!");
-    }
-
-    public final void translateLong(Reg64 result) throws CompileException {
-	translate(result);
     }
 
     public void translate(RegFloat result) throws CompileException {

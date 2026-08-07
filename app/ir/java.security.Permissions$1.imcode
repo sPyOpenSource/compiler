@@ -25,7 +25,7 @@ class java/security/Permissions$1 {
         vR1 = (java/security/PermissionCollection)(vR0.main_enum.nextElement());    
         vR0.sub_enum = vR1.elements();   
   +B51:   #1
-        goto +B79;   forward return[R  . ..]
+        goto +B79;   [R  . ..]
   +H54<caught exception>:   #1 reference
         vR1 = <caught exception>;    
         return 0;   
@@ -46,10 +46,11 @@ EXCEPTIONHANDLER-TABLE:
   +START:   #1
         if vR0.hasMoreElements@this()!=0 goto B15;   
   -B7:   #1
-        throw new java/util/NoSuchElementException();   
+        b0 = new java/util/NoSuchElementException();    [ R  i][ R  iR]
+        throw b0;   
   +B15:   #1
         return vR0.sub_enum.nextElement();   
   +END:   #1
  }
-// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 nextElement
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 nextElement
 }

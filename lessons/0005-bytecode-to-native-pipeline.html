@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bytecode to Native Code: The Pipeline</title>
+    <link rel="stylesheet" href="../assets/shared.css">
+</head>
+<body>
+    <header>
+        <h1>Bytecode → Native Code: The Pipeline</h1>
+        <p>How a stack-based class file becomes register-based machine code — traced through jcore's actual source.</p>
+    </header>
+
+    <section>
+        <h2>One idea first</h2>
+        <p>JVM bytecode is written for a <strong>stack machine</strong>: <code>iadd</code> pops two values, pushes one. Native code is written for a <strong>register machine</strong>: <code>ADD R0, R0, R1</code>. Everything between bytecode and native code is an answer to one question — <em>how do we turn stack discipline into registers?</em> jcore answers it in four acts.</p>
+
+        <figure>
+            <pre><code>bytecode ──1──▶ IM graph ──2──▶ optimized graph ──3──▶ code.<i>mnemonic</i>(...) calls ──4──▶ native bytes
+           (stack machine)        (expression trees)     (instruction selection     (the encoder)
+                                                           + register allocation)   + relocations</code></pre>
+            <figcaption>The four acts. Your ARM work — <code>BinaryCodeDynamicARM</code> — lives in Act 4.</figcaption>
+        </figure>
+    </section>
+
+    <section>
+        <h2>Follow one instruction: <code>iadd</code></h2>
+        <p>Take the body <code>iload_1; iload_2; iadd; istore_3</code>. Watch <code>iadd</code> move through each act.</p>
+
+        <h3>Act 1 — Bytecode → IM graph</h3>
+        <p><code>CodeContainer.readBCInstruction()</code> (CodeContainer.java:207) walks the bytecode stream and creates one <strong>IM node</strong> per instruction. For <code>iadd</code> it builds <code>new IMAdd(this, current, ip)</code> (CodeContainer.java:527). A second pass merges these into <strong>basic blocks</strong> (straight-line runs with one entry and one exit).</p>
+        <p>Then the key step: <code>VirtualOperantenStack</code> (CodeContainer.java:286) <em>simulates</em> the bytecode operand stack. When <code>IMAdd</code>'s <code>processStack()</code> runs, it pops two operands and pushes itself (IMBinaryOperator.java:49):</p>
+        <pre><code>rOpr = stack.pop();   // iload_2
+lOpr = stack.pop();   // iload_1
+stack.push(this);     // now a tree: IMAdd(iload_1, iload_2)</code></pre>
+        <p>The linear bytecode stack has become an expression tree. This is the whole trick of Act 1.</p>
+
+        <h3>Act 2 — Optimize the graph</h3>
+        <p><code>CodeContainer.constant_forwarding()</code> (CodeContainer.java:1062) runs folding and forwarding on every basic block. For <code>IMAdd</code> (IMAdd.java:45) this folds <code>x + 5 + 3</code> into <code>x + 8</code> and swaps operands so a constant lands on the right — a detail Act 3 depends on.</p>
+
+        <h3>Act 3 — Instruction selection + register allocation</h3>
+        <p><code>CodeContainer.translate()</code> (CodeContainer.java:1079) walks the basic blocks and calls <code>node.translate(Reg)</code> on each. This is where the tree is turned into instructions — but note what it <em>emits</em>: it calls methods on a <code>code</code> object, not raw bytes.</p>
+        <pre><code>// IMAdd.translate(Reg result)  — IMAdd.java:107 (abridged)
+lOpr.translate(result);
+reg = regs.chooseIntRegister(result);   // allocate a scratch register
+rOpr.translate(reg);
+code.addl(reg, result);                 // &lt;-- selection: an add instruction
+regs.freeIntRegister(reg);</code></pre>
+        <p><code>RegManager</code> hands out registers; <code>MethodStackFrame</code> decides where locals and temps live. If the right operand is a constant, the same method emits <code>code.addl(value, result)</code> — or <code>code.incl(result)</code> for <code>+1</code> (IMAdd.java:153–161). Small, target-neutral optimizations already live here.</p>
+
+        <h3>Act 4 — The encoder: calls → bytes</h3>
+        <p><code>code</code> is a <code>BinaryCodeIA32</code> (CodeContainer.java:111). Its <code>addl(...)</code> (BinaryCodeIA32.java:797, 809) writes the x86 opcode bytes into a growing <code>byte[]</code>. Its ARM twin is <code>BinaryCodeDynamicARM</code>, where <code>add(Opr, Reg)</code> (BinaryCodeDynamicARM.java:464) emits <code>dpr(C_AL, DP_ADD, …)</code> / <code>dpi(...)</code> — the ARM encodings you have been implementing.</p>
+        <p>Unresolved jumps, method calls and constant-pool references are recorded as <code>SymbolTableEntryBase</code> objects; <code>getOldBinaryCode()</code> resolves them and wraps everything in a <code>BinaryCode</code>. From there it's packaged into the <code>.jll</code>/<code>.jln</code> files you studied in <a href="0004-jll-and-jln-formats.html">Lesson 4</a>.</p>
+    </section>
+
+    <section>
+        <h2>The insight: <code>BinaryCode</code> is the seam</h2>
+        <p>The IM nodes never emit machine code. They call <code>code.addl(...)</code>, <code>code.incl(...)</code>, <code>code.movl(...)</code>, <code>code.cmpl(...)</code> — a <em>method interface</em>, not x86. <code>BinaryCodeIA32</code> happens to implement it with x86 bytes; <code>BinaryCodeDynamicARM</code> is the ARM implementation of the same contract.</p>
+        <p>Two things currently keep the ARM encoder out of the loop:</p>
+        <ol>
+            <li><strong>Names.</strong> The IM nodes call <code>addl</code>/<code>movl</code>/<code>incl</code>; <code>BinaryCodeDynamicARM</code> implements <code>add</code>/<code>mov</code>/… — the method names don't line up yet.</li>
+            <li><strong>Wiring.</strong> <code>CodeContainer</code> hard-codes <code>code = new BinaryCodeIA32()</code> (CodeContainer.java:111). The <code>codeType()</code> switch in <code>StaticCompiler</code> (StaticCompiler.java:84) picks the exec environment, not the encoder.</li>
+        </ol>
+        <p>So plugging ARM in means: match the method interface (or extract a real interface from <code>BinaryCodeIA32</code>), then swap the constructor. Everything before Act 4 — the graph, the optimizations, instruction selection — is architecture-independent already.</p>
+    </section>
+
+    <section>
+        <h2>Check what stuck</h2>
+        <div class="quiz">
+            <p class="q">Which pass turns stack-discipline bytecode into expression trees?</p>
+            <ul class="options">
+                <li><button data-correct="true"  data-explain="VirtualOperantenStack simulates the operand stack; processStack pops operands and builds trees.">VirtualOperantenStack stack simulation</button></li>
+                <li><button data-correct="false" data-explain="Encoding happens in Act 4, long after the trees exist.">BinaryCodeIA32 byte encoding</button></li>
+                <li><button data-correct="false" data-explain="MethodStackFrame lays out locals and temps; it does not build expression trees.">MethodStackFrame prologue building</button></li>
+                <li><button data-correct="false" data-explain="StaticCompiler drives the pipeline; it does not itself do the stack-to-tree rewrite.">StaticCompiler class file parsing</button></li>
+            </ul>
+            <p class="feedback" hidden></p>
+        </div>
+
+        <div class="quiz">
+            <p class="q">Where in the pipeline does your ARM work currently live?</p>
+            <ul class="options">
+                <li><button data-correct="true"  data-explain="BinaryCodeDynamicARM encodes the code.* calls into ARM bytes — Act 4.">instruction encoding stage</button></li>
+                <li><button data-correct="false" data-explain="Instruction selection is the IM nodes' translate() methods, which are target-neutral.">instruction selection stage</button></li>
+                <li><button data-correct="false" data-explain="Parsing is CodeContainer.readBCInstruction — before any machine code is involved.">bytecode parsing stage</button></li>
+                <li><button data-correct="false" data-explain="RegManager handles registers in Act 3, separately from your encoder.">register allocation stage</button></li>
+            </ul>
+            <p class="feedback" hidden></p>
+        </div>
+
+        <div class="quiz">
+            <p class="q">What must BinaryCodeDynamicARM match to plug into CodeContainer?</p>
+            <ul class="options">
+                <li><button data-correct="true"  data-explain="IM nodes call code.addl/movl/incl/...; the ARM encoder must implement that same method interface.">the BinaryCodeIA32 method interface</button></li>
+                <li><button data-correct="false" data-explain="Instruction ordering is decided by the IM nodes in Act 3, not the encoder.">the bytecode instruction ordering</button></li>
+                <li><button data-correct="false" data-explain="Push rules belong to VirtualOperantenStack, which runs before codegen.">the VirtualOperantenStack push rules</button></li>
+                <li><button data-correct="false" data-explain="Frame layout is MethodStackFrame's job; the encoder just receives register operands.">the MethodStackFrame stack size</button></li>
+            </ul>
+            <p class="feedback" hidden></p>
+        </div>
+
+        <div class="quiz">
+            <p class="q">The iadd bytecode becomes which object in pass one?</p>
+            <ul class="options">
+                <li><button data-correct="true"  data-explain="CodeContainer.java:527 — new IMAdd(this, current, ip).">an IMAdd operator node</button></li>
+                <li><button data-correct="false" data-explain="Native bytes come much later, from the encoder in Act 4.">a BinaryCode byte sequence</button></li>
+                <li><button data-correct="false" data-explain="Registers are allocated only in Act 3, during translate().">a RegManager scratch register</button></li>
+                <li><button data-correct="false" data-explain="Basic blocks wrap straight-line runs; iadd itself is an instruction node, not a label.">an IMBasicBlock label entry</button></li>
+            </ul>
+            <p class="feedback" hidden></p>
+        </div>
+    </section>
+
+    <section>
+        <h2>Read next</h2>
+        <p>The authoritative model for Acts 1 and 3 is the stack machine itself: read the JVM Specification, <strong>§2.5.2 The Operand Stack</strong> and the semantics of <code>iadd</code> in <strong>Chapter 6, The Java Virtual Machine Instruction Set</strong>. These define precisely what "pop two, push one" means — the invariant <code>VirtualOperantenStack</code> preserves. <a href="https://docs.oracle.com/en/java/javase/17/docs/specs/jvms/ch2.html" target="_blank" rel="noopener">Read it here</a>.</p>
+        <p>Keep the <a href="../reference/pipeline-map.html">pipeline cheat-sheet</a> handy — it maps every act to files and line numbers so you can navigate without this lesson.</p>
+    </section>
+
+    <footer>
+        <p>Something unclear? Ask your agent — it can open any of these files and trace another instruction with you.</p>
+        <p><a href="0004-jll-and-jln-formats.html">&larr; Lesson 4: jll and jln formats</a> · <a href="0001-jit-vs-aot-the-big-picture.html">Lesson 1: JIT vs AOT</a> · <a href="../reference/glossary.html">Glossary</a></p>
+    </footer>
+
+    <script src="../assets/quiz.js"></script>
+</body>
+</html>

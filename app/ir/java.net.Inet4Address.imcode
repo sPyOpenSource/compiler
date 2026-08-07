@@ -46,21 +46,22 @@ class java/net/Inet4Address {
  
  method writeReplace()Ljava/lang/Object; {
   +START:   #1
-        vR1 = new java/net/InetAddress();    [ R  i][ R  iR]
+        b0 = new java/net/InetAddress();    [ R  i][ R  iR]
+        vR1 = b0;    
         vR1.holder().hostName = vR0.holder@this().getHostName();   
         vR1.holder().address = vR0.holder@this().getAddress();   
         vR1.holder().family = 2;   
         return vR1;   
   +END:   #1
  }
-// Register: rd 9/9 wr 6 swaps 0 any 0 found 0 writeReplace
+// Register: rd 10/10 wr 7 swaps 0 any 1 found 0 writeReplace
  
  method isMulticastAddress()Z {
   +START:   #1
         if (vR0.holder@this().getAddress() & -268435456)!=-536870912 goto B19;   
   +B15:   #1
         b0 = 1;    
-        goto +B20b0;   forward return[ i . .]
+        goto +B20b0;   [ i . .]
   +B19:   #1
         b0 = 0;    
   +B20b0:   #1 int
@@ -74,7 +75,7 @@ class java/net/Inet4Address {
         if vR0.holder@this().getAddress()!=0 goto B14;   
   +B10:   #1
         b0 = 1;    
-        goto +B15b0;   forward return[ i . .]
+        goto +B15b0;   [ i . .]
   +B14:   #1
         b0 = 0;    
   +B15b0:   #1 int
@@ -85,11 +86,11 @@ class java/net/Inet4Address {
  
  method isLoopbackAddress()Z {
   +START:   #1
-        vR1 = vR0.getAddress@extra();    [ i  R] 
+        vR1 = vR0.getAddress@this();    [ i  R] 
         if vR1[0]!=127 goto B17;   
   +B13:   #1
         b0 = 1;    
-        goto +B18b0;   forward return[R i  .]
+        goto +B18b0;   [R i  .]
   +B17:   #1
         b0 = 0;    
   +B18b0:   #1 int
@@ -106,7 +107,7 @@ class java/net/Inet4Address {
         if ((vi1 >>> 16) & 255)!=254 goto B40;   
   +B36:   #1
         b0 = 1;    
-        goto +B41b0;   forward return[i i . .]
+        goto +B41b0;   [i i . .]
   +B40:   #2
         b0 = 0;    
   +B41b0:   #1 int
@@ -129,7 +130,7 @@ class java/net/Inet4Address {
         if ((vi1 >>> 16) & 255)!=168 goto B80;   
   +B76:   #2
         b0 = 1;    
-        goto +B81b0;   forward return[i i . .]
+        goto +B81b0;   [i i . .]
   +B80:   #2
         b0 = 0;    
   +B81b0:   #1 int
@@ -140,7 +141,7 @@ class java/net/Inet4Address {
  
  method isMCGlobal()Z {
   +START:   #1
-        vR1 = vR0.getAddress@extra();    [ i  R] 
+        vR1 = vR0.getAddress@this();    [ i  R] 
         if (vR1[0] & 255)<224 goto B60;   
   +B18:   #1
         if (vR1[0] & 255)>238 goto B60;   
@@ -152,7 +153,7 @@ class java/net/Inet4Address {
         if vR1[2]==0 goto B60;   
   +B56:   #2
         b0 = 1;    
-        goto +B61b0;   forward return[R i  .]
+        goto +B61b0;   [R i  .]
   +B60:   #3
         b0 = 0;    
   +B61b0:   #1 int
@@ -178,7 +179,7 @@ class java/net/Inet4Address {
         if ((vi1 >>> 8) & 255)!=0 goto B48;   
   +B44:   #1
         b0 = 1;    
-        goto +B49b0;   forward return[i i . .]
+        goto +B49b0;   [i i . .]
   +B48:   #3
         b0 = 0;    
   +B49b0:   #1 int
@@ -195,7 +196,7 @@ class java/net/Inet4Address {
         if ((vi1 >>> 16) & 255)!=255 goto B40;   
   +B36:   #1
         b0 = 1;    
-        goto +B41b0;   forward return[i i . .]
+        goto +B41b0;   [i i . .]
   +B40:   #2
         b0 = 0;    
   +B41b0:   #1 int
@@ -214,7 +215,7 @@ class java/net/Inet4Address {
         if ((vi1 >>> 16) & 255)>195 goto B54;   
   +B50:   #1
         b0 = 1;    
-        goto +B55b0;   forward return[i i . .]
+        goto +B55b0;   [i i . .]
   +B54:   #3
         b0 = 0;    
   +B55b0:   #1 int
@@ -234,11 +235,11 @@ class java/net/Inet4Address {
         return vR2;   
   +END:   #1
  }
-// Register: rd 10/10 wr 3 swaps 0 any 0 found 0 getAddress
+// Register: rd 10/10 wr 7 swaps 4 any 0 found 0 getAddress
  
  method getHostAddress()Ljava/lang/String; {
   +START:   #1
-        return numericToTextFormat@special(vR0.getAddress@extra());   
+        return numericToTextFormat@special(vR0.getAddress@this());   
   +END:   #1
  }
 // Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getHostAddress
@@ -259,7 +260,7 @@ class java/net/Inet4Address {
         if (java/net/InetAddress)(vR1).holder().getAddress()!=vR0.holder@this().getAddress() goto B35;   
   +B31:   #1
         b0 = 1;    
-        goto +B36b0;   forward return[ i .. ..]
+        goto +B36b0;   [ i .. ..]
   +B35:   #3
         b0 = 0;    
   +B36b0:   #1 int
@@ -271,7 +272,7 @@ class java/net/Inet4Address {
  method numericToTextFormat([B)Ljava/lang/String; {
   +START:   #1
         b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
-        return b0.append@extra((vR0[0] & 255)).append@extra(".").append@extra((vR0[1] & 255)).append@extra(".").append@extra((vR0[2] & 255)).append@extra(".").append@extra((vR0[3] & 255)).toString@extra();   
+        return b0.append((vR0[0] & 255)).append(".").append((vR0[1] & 255)).append(".").append((vR0[2] & 255)).append(".").append((vR0[3] & 255)).toString();   
   +END:   #1
  }
 // Register: rd 5/5 wr 15 swaps 11 any 0 found 0 numericToTextFormat

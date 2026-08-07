@@ -12,36 +12,41 @@ class java/lang/reflect/Constructor {
  
  method newInstance([Ljava/lang/Object;)Ljava/lang/Object; {
   -START:   #1
-        throw new java/lang/Error("NOT IMPLEMENTED");   
+        b0 = new java/lang/Error("NOT IMPLEMENTED");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 newInstance
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 newInstance
  
  method getDeclaringClass()Ljava/lang/Class; {
   -START:   #1
-        throw new java/lang/Error("NOT IMPLEMENTED");   
+        b0 = new java/lang/Error("NOT IMPLEMENTED");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getDeclaringClass
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 getDeclaringClass
  
  method getExceptionTypes()[Ljava/lang/Class; {
   -START:   #1
-        throw new java/lang/Error("NOT IMPLEMENTED");   
+        b0 = new java/lang/Error("NOT IMPLEMENTED");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getExceptionTypes
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 getExceptionTypes
  
  method getModifiers()I {
   -START:   #1
-        throw new java/lang/Error("NOT IMPLEMENTED");   
+        b0 = new java/lang/Error("NOT IMPLEMENTED");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getModifiers
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 getModifiers
  
  method getParameterTypes()[Ljava/lang/Class; {
   -START:   #1
-        throw new java/lang/Error("NOT IMPLEMENTED");   
+        b0 = new java/lang/Error("NOT IMPLEMENTED");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getParameterTypes
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 getParameterTypes
 }

@@ -3,28 +3,31 @@ class java/security/SignedObject {
  method <init>(Ljava/io/Serializable;Ljava/security/PrivateKey;Ljava/security/Signature;)V {
   +START:   #1
         vR0.<init>@special();   [ R  R] 
-        vR0.thealgorithm = vR3.getAlgorithm@extra();   
-        vR4 = new java/io/ByteArrayOutputStream();    [ R  i][ R  iR]
-        vR5 = new java/io/ObjectOutputStream(vR4);    [ R  i.][ R . iRR]
-        vR5.writeObject@extra(vR1);   [RR R . RR.] 
+        vR0.thealgorithm = vR3.getAlgorithm();   
+        b0 = new java/io/ByteArrayOutputStream();    [ R  i][ R  iR]
+        vR4 = b0;    
+        b0 = new java/io/ObjectOutputStream(vR4);    [ R  i.][ R . iRR]
+        vR5 = b0;    
+        vR5.writeObject(vR1);   [RR R . RR.] 
         vR5.flush();   [RR R . R..] 
         vR0.content = vR4.toByteArray();   
-        vR3.initSign@extra(vR2);   [RR R . RR.] 
-        vR3.update@extra(vR0.content);   [RR R i RR.] 
-        vR0.signature = vR3.sign@extra();   
+        vR3.initSign(vR2);   [RR R . RR.] 
+        vR3.update(vR0.content);   [RR R i RR.] 
+        vR0.signature = vR3.sign();   
         return;   
   +END:   #1
  }
-// Register: rd 14/14 wr 4 swaps 1 any 0 found 0 <init>
+// Register: rd 16/16 wr 6 swaps 1 any 2 found 0 <init>
  
  method getObject()Ljava/lang/Object; {
   +START:   #1
-        vR1 = new java/io/ByteArrayInputStream(vR0.content);    [ R  i][ R . iRR]
+        b0 = new java/io/ByteArrayInputStream(vR0.content);    [ R  i][ R . iRR]
+        vR1 = b0;    
         b0 = new java/io/ObjectInputStream(vR1);    [ R . i..][ R . iRR]
         return b0.readObject();   
   +END:   #1
  }
-// Register: rd 5/5 wr 4 swaps 0 any 0 found 0 getObject
+// Register: rd 6/6 wr 5 swaps 0 any 1 found 0 getObject
  
  method getSignature()[B {
   +START:   #1
@@ -42,9 +45,9 @@ class java/security/SignedObject {
  
  method verify(Ljava/security/PublicKey;Ljava/security/Signature;)Z {
   +START:   #1
-        vR2.initVerify@extra(vR1);   [   RR] 
-        vR2.update@extra(vR0.content);   [  i RR] 
-        return vR2.verify@extra(vR0.signature);   
+        vR2.initVerify(vR1);   [   RR] 
+        vR2.update(vR0.content);   [  i RR] 
+        return vR2.verify(vR0.signature);   
   +END:   #1
  }
 // Register: rd 5/5 wr 2 swaps 2 any 0 found 0 verify

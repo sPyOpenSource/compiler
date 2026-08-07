@@ -14,7 +14,8 @@ class java/security/Permissions {
   +START:   #1
         if vR0.isReadOnly@this()==0 goto B17;   
   -B7:   #1
-        throw new java/lang/SecurityException("PermissionCollection is read only");   
+        b0 = new java/lang/SecurityException("PermissionCollection is read only");    [ RR  i][ RR . iRR]
+        throw b0;   
   +B17:   #1
         if (vR1 instanceof java/security/AllPermission)==0 goto B61;   
   +B24:   #1
@@ -23,30 +24,32 @@ class java/security/Permissions {
         b1 = new gnu/java/security/DefaultPermissionCollection("java.security.AllPermission");    [ RR . i..][ RR . iRR]
         vR0.allPermission = b1;   
         vR0.perms.put("java.security.AllPermission",vR0.allPermission);   [ RR iR RRR] 
-        goto +B153;   forward return[ RR iR ...]
+        goto +B153;   [ RR iR ...]
   +B61:   #1
-        vR2 = vR0.perms.get(vR1.getClass().getName@extra());    [ RR i. RR.] 
+        vR2 = vR0.perms.get(vR1.getClass().getName());    [ RR i. RR.] 
         if vR2==null goto B108;   
   +B80:   #1
         if (vR2 instanceof java/security/PermissionCollection)!=0 goto B97;   
   -B87:   #1
-        throw new java/lang/RuntimeException("Internal error in Permissions");   
+        b0 = new java/lang/RuntimeException("Internal error in Permissions");    [ RR .. i..][ RR .. iRR]
+        throw b0;   
   +B97:   #1
         (java/security/PermissionCollection)(vR2).add(vR1);   [R RR .. RR.] 
-        goto +B153;   forward return[R RR .. ...]
+        goto +B153;   [R RR .. ...]
   +B108:   #1
         vR3 = vR1.newPermissionCollection();    [R RR .. R..] 
         if vR3!=null goto B132;   
   +B117:   #1
-        vR3 = new gnu/java/security/DefaultPermissionCollection(vR1.getClass().getName@extra());    [ RR .. i..][ RR .. iRR]
+        b0 = new gnu/java/security/DefaultPermissionCollection(vR1.getClass().getName());    [ RR .. i..][ RR .. iRR]
+        vR3 = b0;    
   +B132:   #1
         vR3.add(vR1);   [RR RR .. RR.] 
-        vR0.perms.put(vR1.getClass().getName@extra(),vR3);   [RR RR i. RRR] 
+        vR0.perms.put(vR1.getClass().getName(),vR3);   [RR RR i. RRR] 
   +B153:   #3
         return;   
   +END:   #1
  }
-// Register: rd 23/23 wr 15 swaps 3 any 2 found 1 add
+// Register: rd 26/26 wr 18 swaps 3 any 3 found 1 add
  
  method implies(Ljava/security/Permission;)Z {
   +START:   #1
@@ -54,7 +57,7 @@ class java/security/Permissions {
   +B7:   #1
         return 1;   
   +B9:   #1
-        vR2 = vR0.perms.get(vR1.getClass().getName@extra());    [  i RR] 
+        vR2 = vR0.perms.get(vR1.getClass().getName());    [  i RR] 
         if vR2!=null goto B30;   
   +B28:   #1
         return 0;   
@@ -70,8 +73,9 @@ class java/security/Permissions {
  
  method elements()Ljava/util/Enumeration; {
   +START:   #1
-        return new java/security/Permissions$1(vR0);   
+        b0 = new java/security/Permissions$1(vR0);    [ R  i][ R . iRR]
+        return b0;   
   +END:   #1
  }
-// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 elements
+// Register: rd 3/3 wr 2 swaps 0 any 0 found 0 elements
 }

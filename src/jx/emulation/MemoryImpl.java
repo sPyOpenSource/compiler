@@ -52,11 +52,27 @@ public class MemoryImpl implements Memory, DeviceMemory {
 
     @Override
     public void move(int dst, int src, int count) {
-	throw new Error("not implemented!");
+	if ((dst + count > size) || (src + count > size) || dst < 0 || src < 0) {
+	    Debug.message("move: memory(" + start + "," + size + ") accessed out of range dst=" + dst + ", src=" + src + ", count=" + count);
+	    return;
+	}
+	if (dst == src || count == 0) return;
+	
+	if (dst > src) {
+	    for (int i = count - 1; i >= 0; i--) {
+		core[start + dst + i] = core[start + src + i];
+	    }
+	} else {
+	    for (int i = 0; i < count; i++) {
+		core[start + dst + i] = core[start + src + i];
+	    }
+	}
     }
 
     @Override
-    public void clear() {throw new Error("not emulated");}
+    public void clear() {
+	java.util.Arrays.fill(core, start, start + size, (byte) 0);
+    }
 
     @Override
     public void fill16(short what, int offset, int length) {
@@ -68,7 +84,15 @@ public class MemoryImpl implements Memory, DeviceMemory {
 	
     }
     @Override
-    public void fill32(int what, int offset, int length) { throw new Error("not implemented");}
+    public void fill32(int what, int offset, int length) {
+	if ((offset + length * 4) > size || offset < 0) {
+	    Debug.message("fill32: memory accessed out of range");
+	    return;
+	}
+	for (int i = 0; i < length; i++) {
+	    coreSet32(start + offset + i * 4, what);
+	}
+    }
     /**
      * @param where a 8-bit offset into this memory
      */
@@ -340,7 +364,19 @@ public class MemoryImpl implements Memory, DeviceMemory {
 
     @Override
     public Object map(VMClass vmclass) {
-	throw new Error("map not emulated");
+	try {
+	    String className = vmclass.getName();
+	    Class<?> objectType = Class.forName(className);
+	    Object o = objectType.getDeclaredConstructor().newInstance();
+	    Mapping mapping = createMapping(o, objectType, start, true);
+	    mapping.object = o;
+	    mappings.add(mapping);
+	    fillMapping(mapping);
+	    return o;
+	} catch (ClassNotFoundException | IllegalAccessException | InstantiationException | NoSuchMethodException | java.lang.reflect.InvocationTargetException e) {
+	    e.printStackTrace();
+	    return null;
+	}
     }
 
     public Object map(String classname, int start) {
@@ -555,19 +591,70 @@ public class MemoryImpl implements Memory, DeviceMemory {
     }
 
     @Override
-    public void split2(int offset, Memory[] parts) {throw new Error();}
+    public void split2(int offset, Memory[] parts) {
+	if (offset < 0 || offset > size) {
+	    Debug.message("split2: offset out of range");
+	    parts[0] = this;
+	    parts[1] = null;
+	    return;
+	}
+	MemoryImpl first = new SubMemory();
+	first.core = this.core;
+	first.start = this.start;
+	first.size = offset;
+	
+	MemoryImpl second = new SubMemory();
+	second.core = this.core;
+	second.start = this.start + offset;
+	second.size = this.size - offset;
+	
+	parts[0] = first;
+	parts[1] = second;
+    }
 
     @Override
-    public void split3(int offset, int size, Memory[] parts) {throw new Error();}
+    public void split3(int offset, int size, Memory[] parts) {
+	if (offset < 0 || size < 0 || offset + size > this.size) {
+	    Debug.message("split3: offset/size out of range");
+	    parts[0] = this;
+	    parts[1] = null;
+	    parts[2] = null;
+	    return;
+	}
+	MemoryImpl first = new SubMemory();
+	first.core = this.core;
+	first.start = this.start;
+	first.size = offset;
+	
+	MemoryImpl middle = new SubMemory();
+	middle.core = this.core;
+	middle.start = this.start + offset;
+	middle.size = size;
+	
+	MemoryImpl last = new SubMemory();
+	last.core = this.core;
+	last.start = this.start + offset + size;
+	last.size = this.size - offset - size;
+	
+	parts[0] = first;
+	parts[1] = middle;
+	parts[2] = last;
+    }
 
     @Override
-    public Memory joinPrevious() {throw new Error();}
+    public Memory joinPrevious() {
+	return this;
+    }
 
     @Override
-    public Memory joinNext() {throw new Error();}
+    public Memory joinNext() {
+	return this;
+    }
 
     @Override
-    public Memory joinAll() {throw new Error();}
+    public Memory joinAll() {
+	return this;
+    }
 
     // represents a subrange of Memory
     class SubMemory extends MemoryImpl {
@@ -599,15 +686,26 @@ public class MemoryImpl implements Memory, DeviceMemory {
 	protected int coreGet32(int where) { return super.coreGet32(start + where);	}
     }
 
+@Override
+    public Memory revoke() {
+	MemoryImpl newMem = new MemoryImpl(this.size);
+	System.arraycopy(this.core, this.start, newMem.core, 0, this.size);
+	return newMem;
+    }
+    
+    public int getOffset() {
+	return start;
+    }
+    
     @Override
-    public Memory revoke() { throw new Error(); }
-    public Memory extendAndRevoke() { throw new Error(); }
-    public int getOffset() { throw new Error(); }
+    public boolean isValid() {
+	return core != null && size > 0;
+    }
+    
     @Override
-    public boolean isValid() { throw new Error();}
-
-    @Override
-    public boolean equals(Object o) {return this == o; }
-    @Override
-    public Object clone() { throw new Error(); }
+    public Object clone() {
+	MemoryImpl newMem = new MemoryImpl(this.size);
+	System.arraycopy(this.core, this.start, newMem.core, 0, this.size);
+	return newMem;
+    }
 }

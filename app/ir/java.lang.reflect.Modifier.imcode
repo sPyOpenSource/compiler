@@ -10,17 +10,18 @@ class java/lang/reflect/Modifier {
  
  method toString(I)Ljava/lang/String; {
   -START:   #1
-        throw new java/lang/Error("NOT IMPLEMENTED");   
+        b0 = new java/lang/Error("NOT IMPLEMENTED");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 toString
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 toString
  
  method isPublic(I)Z {
   +START:   #1
         if (vi0 & 1)==0 goto B10;   
   +B6:   #1
         b0 = 1;    
-        goto +B11b0;   forward return[ i  ]
+        goto +B11b0;   [ i  ]
   +B10:   #1
         b0 = 0;    
   +B11b0:   #1 int
@@ -34,7 +35,7 @@ class java/lang/reflect/Modifier {
         if (vi0 & 2)==0 goto B10;   
   +B6:   #1
         b0 = 1;    
-        goto +B11b0;   forward return[ i  ]
+        goto +B11b0;   [ i  ]
   +B10:   #1
         b0 = 0;    
   +B11b0:   #1 int
@@ -48,7 +49,7 @@ class java/lang/reflect/Modifier {
         if (vi0 & 4)==0 goto B10;   
   +B6:   #1
         b0 = 1;    
-        goto +B11b0;   forward return[ i  ]
+        goto +B11b0;   [ i  ]
   +B10:   #1
         b0 = 0;    
   +B11b0:   #1 int
@@ -62,7 +63,7 @@ class java/lang/reflect/Modifier {
         if (vi0 & 8)==0 goto B11;   
   +B7:   #1
         b0 = 1;    
-        goto +B12b0;   forward return[ i  ]
+        goto +B12b0;   [ i  ]
   +B11:   #1
         b0 = 0;    
   +B12b0:   #1 int
@@ -76,7 +77,7 @@ class java/lang/reflect/Modifier {
         if (vi0 & 16)==0 goto B11;   
   +B7:   #1
         b0 = 1;    
-        goto +B12b0;   forward return[ i  ]
+        goto +B12b0;   [ i  ]
   +B11:   #1
         b0 = 0;    
   +B12b0:   #1 int
@@ -90,7 +91,7 @@ class java/lang/reflect/Modifier {
         if (vi0 & 32)==0 goto B11;   
   +B7:   #1
         b0 = 1;    
-        goto +B12b0;   forward return[ i  ]
+        goto +B12b0;   [ i  ]
   +B11:   #1
         b0 = 0;    
   +B12b0:   #1 int
@@ -104,7 +105,7 @@ class java/lang/reflect/Modifier {
         if (vi0 & 64)==0 goto B11;   
   +B7:   #1
         b0 = 1;    
-        goto +B12b0;   forward return[ i  ]
+        goto +B12b0;   [ i  ]
   +B11:   #1
         b0 = 0;    
   +B12b0:   #1 int
@@ -118,7 +119,7 @@ class java/lang/reflect/Modifier {
         if (vi0 & 128)==0 goto B12;   
   +B8:   #1
         b0 = 1;    
-        goto +B13b0;   forward return[ i  ]
+        goto +B13b0;   [ i  ]
   +B12:   #1
         b0 = 0;    
   +B13b0:   #1 int
@@ -132,7 +133,7 @@ class java/lang/reflect/Modifier {
         if (vi0 & 256)==0 goto B12;   
   +B8:   #1
         b0 = 1;    
-        goto +B13b0;   forward return[ i  ]
+        goto +B13b0;   [ i  ]
   +B12:   #1
         b0 = 0;    
   +B13b0:   #1 int
@@ -146,7 +147,7 @@ class java/lang/reflect/Modifier {
         if (vi0 & 512)==0 goto B12;   
   +B8:   #1
         b0 = 1;    
-        goto +B13b0;   forward return[ i  ]
+        goto +B13b0;   [ i  ]
   +B12:   #1
         b0 = 0;    
   +B13b0:   #1 int
@@ -160,7 +161,7 @@ class java/lang/reflect/Modifier {
         if (vi0 & 1024)==0 goto B12;   
   +B8:   #1
         b0 = 1;    
-        goto +B13b0;   forward return[ i  ]
+        goto +B13b0;   [ i  ]
   +B12:   #1
         b0 = 0;    
   +B13b0:   #1 int
@@ -174,7 +175,7 @@ class java/lang/reflect/Modifier {
         if (vi0 & 2048)==0 goto B12;   
   +B8:   #1
         b0 = 1;    
-        goto +B13b0;   forward return[ i  ]
+        goto +B13b0;   [ i  ]
   +B12:   #1
         b0 = 0;    
   +B13b0:   #1 int

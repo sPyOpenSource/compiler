@@ -489,7 +489,28 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	    for (int i = (args.length - 1); i >= 0; i--) {
 		int datatype = args[i].getDatatype();
 		if (args[i].isConstant()) {
-		    frame.push(datatype, ((IMConstant)args[i]).getIntValue());
+		    if (datatype == BCBasicDatatype.DOUBLE) {
+			long bits = Double.doubleToLongBits(((IMConstant)args[i]).getDoubleValue());
+			frame.push(datatype, (int)bits);
+			frame.push(datatype, (int)(bits >>> 32));
+		    } else if (datatype == BCBasicDatatype.LONG) {
+			long value = ((IMConstant)args[i]).getLongValue();
+			frame.push(datatype, (int)value);
+			frame.push(datatype, (int)(value >>> 32));
+		    } else {
+			frame.push(datatype, ((IMConstant)args[i]).getIntValue());
+		    }
+		} else if (datatype == BCBasicDatatype.DOUBLE || datatype == BCBasicDatatype.LONG) {
+		    if (opts.isOption("long")) {
+			Reg64 reg = regs.chooseLongRegister();
+			args[i].translate(reg);
+			regs.readLongRegister(reg);
+			frame.push(reg);
+			regs.freeLongRegister(reg);
+		    } else {
+			frame.push(-1, 0);
+			frame.push(-1, 0);
+		    }
 		} else {
 		    Reg reg = regs.chooseIntRegister(null);
 		    args[i].translate(reg);
@@ -1525,7 +1546,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 
 	} else {
             // todo: classname
-            System.out.println(className);
+            //System.out.println(className);
             if(className.equals("[Ljava/lang/Object;")) className = "java/lang/Object";
             if(className.equals("[Ljava/lang/Class;")) className = "java/lang/Object";
             if(className.equals("[Ljava/lang/invoke/MethodHandleImpl$Intrinsic;")) className = "java/lang/Object";
@@ -1664,11 +1685,6 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	BCClassInfo info = aClass.getInfo();
 
 	int index = info.methodTable.getIndex(methodName + interfaceRefCPEntry.getMemberTypeDesc());
-	if (index == 0) {
-	    System.out.println("Interface method index = 0");
-	    info.methodTable.print();
-	    throw new CompileException("Interface method index = 0");
-	}
 
 	if (index < 0) {
 	    info.methodTable.print();
@@ -1913,11 +1929,6 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	BCClassInfo info = aClass.getInfo();
 
 	int index = info.methodTable.getIndex(methodName + interfaceRefCPEntry.getMemberTypeDesc());
-	if (index == 0) {
-	    System.out.println("Interface method index = 0");
-	    info.methodTable.print();
-	    throw new CompileException("Interface method index = 0");
-	}
 
 	if (index < 0) {
 	    info.methodTable.print();

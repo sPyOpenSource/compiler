@@ -41,7 +41,7 @@ class java/lang/reflect/InvocationTargetException {
         if vR0.targetException!=null goto B14;   
   +B7:   #1
         vR0.printStackTrace@special();   [   R] 
-        goto +B21;   forward return[   .]
+        goto +B21;   [   .]
   +B14:   #1
         vR0.targetException.printStackTrace();   [   R] 
   +B21:   #1
@@ -55,7 +55,7 @@ class java/lang/reflect/InvocationTargetException {
         if vR0.targetException!=null goto B15;   
   +B7:   #1
         vR0.printStackTrace@special(vR1);   [   RR] 
-        goto +B23;   forward return[   ..]
+        goto +B23;   [   ..]
   +B15:   #1
         vR0.targetException.printStackTrace(vR1);   [   RR] 
   +B23:   #1

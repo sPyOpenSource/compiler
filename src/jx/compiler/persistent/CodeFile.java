@@ -197,7 +197,7 @@ public class CodeFile {
             Msg.warn("Could not write JSON: " + ex.getMessage());
             if (Msg.debugEnabled()) ex.printStackTrace();
         }
-        Msg.verbose("persist", object.toString(4));
+        //Msg.verbose("persist", object.toString(4));
     }
 
     /**

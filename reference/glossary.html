@@ -79,6 +79,45 @@
 
 <dt><strong>.jln (Java Linker Notification)</strong></dt>
 <dd>Binary file containing resolved VTable information for a domain. Used by the runtime linker to map virtual method calls to their native implementations. <a href="../lessons/0004-jll-and-jln-formats.html">Lesson 4</a></dd>
+
+<dt><strong>IM graph (intermediate code graph)</strong></dt>
+<dd>The tree of IM nodes (e.g., <code>IMAdd</code>) produced from bytecode. A stack machine flattened into expression trees. Built by <code>CodeContainer.readBCInstruction</code> and the <code>VirtualOperantenStack</code>. <a href="../lessons/0005-bytecode-to-native-pipeline.html">Lesson 5</a></dd>
+
+<dt><strong>Basic block</strong></dt>
+<dd>A straight-line run of instructions with one entry and one exit — the unit the code generator walks. <a href="../lessons/0005-bytecode-to-native-pipeline.html">Lesson 5</a></dd>
+
+<dt><strong>VirtualOperantenStack</strong></dt>
+<dd>jcore's simulation of the JVM operand stack. Its <code>processStack</code> method pops operands and builds expression trees during the parse pass. <a href="../lessons/0005-bytecode-to-native-pipeline.html">Lesson 5</a></dd>
+
+<dt><strong>Instruction selection</strong></dt>
+<dd>The stage where each IM node's <code>translate(Reg)</code> decides which machine instructions to emit — as calls like <code>code.addl(...)</code>. Target-neutral in jcore. <a href="../lessons/0005-bytecode-to-native-pipeline.html">Lesson 5</a></dd>
+
+<dt><strong>Register allocation</strong></dt>
+<dd>Deciding which physical CPU registers hold which values. In jcore this is <code>RegManager</code>, driving the <code>translate(Reg)</code> calls. <a href="../lessons/0005-bytecode-to-native-pipeline.html">Lesson 5</a></dd>
+
+<dt><strong>Instruction encoding</strong></dt>
+<dd>Turning <code>code.*()</code> calls into raw machine bytes. <code>BinaryCodeIA32</code> encodes x86; <code>BinaryCodeDynamicARM</code> encodes ARM. This is where the ARM backend work lives. <a href="../lessons/0005-bytecode-to-native-pipeline.html">Lesson 5</a></dd>
+
+<dt><strong>Relocation (symbol table entry)</strong></dt>
+<dd>An unresolved address (jump target, call, constant-pool ref) recorded during encoding and patched later. <code>SymbolTableEntryBase</code> subclasses in jcore. <a href="../lessons/0005-bytecode-to-native-pipeline.html">Lesson 5</a></dd>
+
+<dt><strong>Register pair (Reg64)</strong></dt>
+<dd>Two 32-bit registers holding the low and high halves of one 64-bit value. <code>Reg64.low</code> / <code>Reg64.high</code>; jcore's predefined pairs are eax/edx, ebx/ecx, esi/edi. The codegen form of a two-slot JVM type. <a href="../lessons/0006-implementing-long-64bit-on-32bit.html">Lesson 6</a></dd>
+
+<dt><strong>Carry flag</strong></dt>
+<dd>The condition-code bit that records overflow out of the low word of an addition (and borrow in subtraction). It is the bridge between words in multi-word arithmetic. <a href="../lessons/0006-implementing-long-64bit-on-32bit.html">Lesson 6</a></dd>
+
+<dt><strong>Carry-chained arithmetic</strong></dt>
+<dd>Computing with words larger than the register: low word first (sets the carry flag), then high word(s) with an add-with-carry (<code>adcl</code>/<code>ADC</code>) or subtract-with-borrow (<code>sbbl</code>/<code>SBC</code>) instruction. jcore uses this for <code>long</code> add, sub, negate. <a href="../lessons/0006-implementing-long-64bit-on-32bit.html">Lesson 6</a></dd>
+
+<dt><strong>Word-at-a-time operation</strong></dt>
+<dd>A 64-bit operation that runs the same 32-bit instruction on each word independently, with no carry or ordering dependency — e.g. bitwise AND/OR/XOR. <a href="../lessons/0006-implementing-long-64bit-on-32bit.html">Lesson 6</a></dd>
+
+<dt><strong>S bit (ARM condition-code flag)</strong></dt>
+<dd>Bit 20 of an ARM data-processing instruction. On x86 every ALU op sets flags; on ARM flags update only when S is set (<code>ADDS</code> vs <code>ADD</code>). This is the trap when porting x86 carry chains to ARM. <a href="../lessons/0006-implementing-long-64bit-on-32bit.html">Lesson 6</a></dd>
+
+<dt><strong>LongArithmeticSTEntry</strong></dt>
+<dd>jcore's symbol-table entry for the runtime long-arithmetic helper (MUL, DIV, REM, SHL, SHR, USHR, CMP). The IA32 backend pushes operands and <code>call</code>s it instead of inlining these complex ops. <a href="../lessons/0006-implementing-long-64bit-on-32bit.html">Lesson 6</a></dd>
 </dl>
 
 <hr>

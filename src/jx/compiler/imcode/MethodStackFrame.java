@@ -10,7 +10,7 @@ import jx.compiler.imcode.graph.IMNode;
 
 public class MethodStackFrame {
 
-    private final int     EXTRA_FRAME_SPACE = 500;
+    private final int EXTRA_FRAME_SPACE = 500;
 
     private final int MAX_TYPES = 5;
     private final int ARGS      = 0;
@@ -75,16 +75,16 @@ public class MethodStackFrame {
 
     curr = stack[VARS];
     csize = curr.size();
-    for (int j=0;j<csize;j++) {
+    for (int j = 0; j < csize; j++) {
         LocalVariable slot = curr.elementAt(j);
         if (slot.isDatatype(BCBasicDatatype.REFERENCE)) {
         int offset = getOffset(slot);
-        if (offset==0) throw new Error("zero offset");
+        if (offset == 0) throw new Error("zero offset");
         if (!initECX) {
-            initECX=true;
-            code.xorl(Reg.ecx,Reg.ecx);
+            initECX = true;
+            code.xorl(Reg.ecx, Reg.ecx);
         }
-        code.movl(Reg.ecx,Ref.ebp.disp(offset));
+        code.movl(Reg.ecx, Ref.ebp.disp(offset));
         }
     }
 
@@ -94,12 +94,12 @@ public class MethodStackFrame {
         LocalVariable slot = curr.elementAt(j);
         if (slot.isDatatype(BCBasicDatatype.REFERENCE)) {
         int offset = getOffset(slot);
-        if (offset==0) throw new Error("zero offset");
+        if (offset == 0) throw new Error("zero offset");
         if (!initECX) {
-            initECX=true;
+            initECX = true;
             code.xorl(Reg.ecx,Reg.ecx);
         }
-        code.movl(Reg.ecx,Ref.ebp.disp(offset));
+        code.movl(Reg.ecx, Ref.ebp.disp(offset));
         }
     }    
     }

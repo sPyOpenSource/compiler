@@ -184,7 +184,7 @@ public class StaticCompiler implements ClassFinder {
                         if (name.startsWith("java/math")) continue;
                         if (name.startsWith("java/applet")) continue;
                         if (name.startsWith("test/portal/perf")) continue;
-                        Msg.verbose("classes", name);
+                        //Msg.verbose("classes", name);
                         try (InputStream is = jar.getInputStream(entry)) {
                             ClassData data = new ClassData(new DataInputStream(is));
                             if(i < 0){
@@ -541,7 +541,6 @@ public class StaticCompiler implements ClassFinder {
 
 	tableOut.close();
 	options.printVerbose("table closed");
-
     }
 
     private void computeObjectAndClassLayout(ClassStore classStore) {

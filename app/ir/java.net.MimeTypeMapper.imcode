@@ -10,14 +10,14 @@ class java/net/MimeTypeMapper {
  
  method getContentTypeFor(Ljava/lang/String;)Ljava/lang/String; {
   +START:   #1
-        vi2 = vR1.lastIndexOf@extra(".");    [  i RR] 
+        vi2 = vR1.lastIndexOf(".");    [  i RR] 
         if vi2==-1 goto B31;   
   +B12:   #1
-        if vi2!=vR1.length@extra() goto B23;   
+        if vi2!=vR1.length() goto B23;   
   +B20:   #1
         return "application/octet-stream";   
   +B23:   #1
-        vR1 = vR1.substring@extra((vi2+1));    [i  i iR] 
+        vR1 = vR1.substring((vi2+1));    [i  i iR] 
   +B31:   #1
         vR3 = (java/lang/String)(mime_types.get(vR1));    
         if vR3!=null goto B49;   

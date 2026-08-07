@@ -38,57 +38,66 @@ class java/net/InetAddress {
   +START:   #1
         if vR0==null goto B48;   
   +B4:   #1
-        if vR0.length@extra()<=0 goto B48;   
+        if vR0.length@this()<=0 goto B48;   
   +B11:   #1
-        if vR0.charAt@extra(0)!=91 goto B48;   
+        if vR0.charAt@this(0)!=91 goto B48;   
   +B21:   #1
-        if vR0.charAt@extra((vR0.length@extra()-1))!=93 goto B48;   
+        if vR0.charAt@this((vR0.length@this()-1))!=93 goto B48;   
   +B36:   #1
-        vR0 = vR0.substring@extra(1,(vR0.length@extra()-1));    [ R i iiR] 
+        vR0 = vR0.substring@this(1,(vR0.length@this()-1));    [ R i iiR] 
   +B48:   #4
         if vR1==null goto B62;   
   +B52:   #1
-        return new java/net/Inet4Address(vR0,vR1);   
+        b0 = new java/net/Inet4Address(vR0,vR1);    [ R . i..][ R . iRRR]
+        return b0;   
   -B62:   #1
-        throw new java/net/UnknownHostException("addr is of illegal length");   
+        b0 = new java/net/UnknownHostException("addr is of illegal length");    [ R . i...][ R . iRR.]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 12/12 wr 5 swaps 2 any 2 found 0 getByAddress
+// Register: rd 14/14 wr 7 swaps 2 any 2 found 0 getByAddress
  
  method getLocalHost()Ljava/net/InetAddress; {
   +START:   #1
-        return new java/net/InetAddress(localIP);   
+        b0 = new java/net/InetAddress(localIP);    [ R  i][ R . iRR]
+        return b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getLocalHost
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 getLocalHost
  
  method getByName(Ljava/lang/String;)Ljava/net/InetAddress; {
   +START:   #1
         if vR0!=null goto B14;   
   -B4:   #1
-        throw new java/net/UnknownHostException("hostname is null");   
+        b0 = new java/net/UnknownHostException("hostname is null");    [ RRR  i][ RRR . iRR]
+        throw b0;   
   +B14:   #1
-        if vR0.equals@extra("faui45")==0 goto B34;   
+        if vR0.equals@this("faui45")==0 goto B34;   
   +B23:   #1
-        return new java/net/InetAddress(faui45IP);   
+        b0 = new java/net/InetAddress(faui45IP);    [ RRR . i..][ RRR . iRR]
+        return b0;   
   +B34:   #1
-        if vR0.equals@extra("faui40p")==0 goto B54;   
+        if vR0.equals@this("faui40p")==0 goto B54;   
   +B43:   #1
-        return new java/net/InetAddress(faui40pIP);   
+        b0 = new java/net/InetAddress(faui40pIP);    [ RRR . i..][ RRR . iRR]
+        return b0;   
   +B54:   #1
-        if vR0.equals@extra("localhost")==0 goto B74;   
+        if vR0.equals@this("localhost")==0 goto B74;   
   +B63:   #1
-        return new java/net/InetAddress(localIP);   
+        b0 = new java/net/InetAddress(localIP);    [ RRR . i..][ RRR . iRR]
+        return b0;   
   +B74:   #1
-        if vR0.equals@extra("laptop")==0 goto B94;   
+        if vR0.equals@this("laptop")==0 goto B94;   
   +B83:   #1
-        return new java/net/InetAddress(laptop);   
+        b0 = new java/net/InetAddress(laptop);    [ RRR . i..][ RRR . iRR]
+        return b0;   
   +B94:   #1
-        if vR0.equals@extra("home")==0 goto B114;   
+        if vR0.equals@this("home")==0 goto B114;   
   +B103:   #1
-        return new java/net/InetAddress(home);   
+        b0 = new java/net/InetAddress(home);    [ RRR . i..][ RRR . iRR]
+        return b0;   
   +B114:   #1
-        if vR0.equals@extra("all")==0 goto B150;   
+        if vR0.equals@this("all")==0 goto B150;   
   +B123:   #1
         b0 = new java/net/InetAddress;    
         b1 = b0;    
@@ -97,17 +106,17 @@ class java/net/InetAddress {
         b2[1] = -1;   
         b2[2] = -1;   
         b2[3] = -1;   
-        b1.<init>@special(b2);   [ RRR . RR.] 
+        b1.<init>@special(b2);   [ RRR iii? RR.] 
         return b0;   
   -B150:   #1
         b0 = new java/net/UnknownHostException;    
         b1 = b0;    
-        b2 = new java/lang/StringBuilder();    [ RRR . i..][ RRR . iR.]
-        b1.<init>@special(b2.append@extra("unknown host ").append@extra(vR0).toString@extra());   [ RRR ii. RR.] 
+        b2 = new java/lang/StringBuilder();    [ RRR .... i..][ RRR .... iR.]
+        b1.<init>@special(b2.append("unknown host ").append(vR0).toString());   [ RRR ii.. RR.] 
         throw b0;   
   +END:   #1
  }
-// Register: rd 25/25 wr 22 swaps 8 any 3 found 0 getByName
+// Register: rd 31/31 wr 32 swaps 11 any 3 found 0 getByName
  
  method isAnyLocalAddress()Z {
   +START:   #1
@@ -191,7 +200,7 @@ class java/net/InetAddress {
  method toString()Ljava/lang/String; {
   +START:   #1
         b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
-        return b0.append@extra("").append@extra(i@special(vR0.addr[0])).append@extra(".").append@extra(i@special(vR0.addr[1])).append@extra(".").append@extra(i@special(vR0.addr[2])).append@extra(".").append@extra(i@special(vR0.addr[3])).toString@extra();   
+        return b0.append("").append(i@special(vR0.addr[0])).append(".").append(i@special(vR0.addr[1])).append(".").append(i@special(vR0.addr[2])).append(".").append(i@special(vR0.addr[3])).toString();   
   +END:   #1
  }
 // Register: rd 5/5 wr 21 swaps 8 any 0 found 0 toString
@@ -260,5 +269,5 @@ class java/net/InetAddress {
         return;   
   +END:   #1
  }
-// Register: rd 34/34 wr 8 swaps 0 any 0 found 6 <clinit>
+// Register: rd 34/34 wr 28 swaps 15 any 0 found 6 <clinit>
 }

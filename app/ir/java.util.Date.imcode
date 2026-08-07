@@ -5,11 +5,11 @@ class java/util/Date {
         if vi0<=10 goto B28;   
   +B6:   #1
         b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
-        b0 = b0.append@extra("").append@extra(vi0).toString@extra();    [ R i.. R..] [ R iR. iR.] [ R iRR iRR] 
-        goto +B47b0;   forward return[ R i.. ...]
+        b0 = b0.append("").append(vi0).toString();    [ R i.. R..] [ R iR. iR.] [ R iRR iRR] 
+        goto +B47b0;   [ R i.. ...]
   +B28:   #1
         b0 = new java/lang/StringBuilder();    [ R ... i..][ R ... iR.]
-        b0 = b0.append@extra("0").append@extra(vi0).toString@extra();    [ R i.. R..] [ R iR. iR.] [ R iRR iRR] 
+        b0 = b0.append("0").append(vi0).toString();    [ R i.. R..] [ R iR. iR.] [ R iRR iRR] 
   +B47b0:   #1 reference
         return b0;   
   +END:   #1
@@ -285,12 +285,13 @@ class java/util/Date {
  
  method UTC(IIIIII)J {
   +START:   #1
-        vR6 = new java/util/Date(vi0,vi1,vi2,vi3,vi4,vi5);    [ R  i][ R . iiiiiiiR]
+        b0 = new java/util/Date(vi0,vi1,vi2,vi3,vi4,vi5);    [ R  i][ R . iiiiiiiR]
+        vR6 = b0;    
         vR6.isGMT = 1;   
         return vR6.getTime();   
   +END:   #1
  }
-// Register: rd 8/8 wr 2 swaps 0 any 0 found 0 UTC
+// Register: rd 9/9 wr 3 swaps 0 any 1 found 0 UTC
  
  method hashCode()I {
   +START:   #1
@@ -311,7 +312,7 @@ class java/util/Date {
         if vR0.isdst==0 goto B28;   
   +B23b0:   #1 int
         b1 = 60;    
-        goto +B29b0b1;   forward return[ ii  .]
+        goto +B29b0b1;   [ ii  .]
   +B28b0:   #1 int
         b1 = 0;    
   +B29b0b1:   #1 int int
@@ -324,16 +325,16 @@ class java/util/Date {
   +START:   #1
         vR0.refresh_components@special();   [ RRi  R] 
         b0 = new java/lang/StringBuilder();    [ RRi  i][ RRi  iR]
-        b0 = b0.append@extra(days[vR0.day]).append@extra(" ").append@extra(months[vR0.month]).append@extra(" ").append@extra(fixed_int@special(vR0.date)).append@extra(" ").append@extra(fixed_int@special(vR0.hrs)).append@extra(":").append@extra(fixed_int@special(vR0.min)).append@extra(":").append@extra(fixed_int@special(vR0.sec)).append@extra(" ");    [ RRi i.iii..iii..iii..iii..ii..i RR...........] [ RRi iRiii..iii..iii..iii..ii..i RRR..........] [ RRi iRiiiR.iii..iii..iii..ii..i RRRR.........] [ RRi iRiiiRRiii..iii..iii..ii..i RRRRR........] [ RRi iRiiiRRiiiR.iii..iii..ii..i RRRRRR.......] [ RRi iRiiiRRiiiRRiii..iii..ii..i RRRRRRR......] [ RRi iRiiiRRiiiRRiiiR.iii..ii..i RRRRRRRR.....] [ RRi iRiiiRRiiiRRiiiRRiii..ii..i RRRRRRRRR....] [ RRi iRiiiRRiiiRRiiiRRiiiR.ii..i RRRRRRRRRR...] [ RRi iRiiiRRiiiRRiiiRRiiiRRii..i RRRRRRRRRRR..] [ RRi iRiiiRRiiiRRiiiRRiiiRRiiR.i RRRRRRRRRRRR.] [ RRi iRiiiRRiiiRRiiiRRiiiRRiiRRi RRRRRRRRRRRRR] 
+        b0 = b0.append(days[vR0.day]).append(" ").append(months[vR0.month]).append(" ").append(fixed_int@special(vR0.date)).append(" ").append(fixed_int@special(vR0.hrs)).append(":").append(fixed_int@special(vR0.min)).append(":").append(fixed_int@special(vR0.sec)).append(" ");    [ RRi i.iii..iii..iii..iii..ii..i RR...........] [ RRi iRiii..iii..iii..iii..ii..i RRR..........] [ RRi iRiiiR.iii..iii..iii..ii..i RRRR.........] [ RRi iRiiiRRiii..iii..iii..ii..i RRRRR........] [ RRi iRiiiRRiiiR.iii..iii..ii..i RRRRRR.......] [ RRi iRiiiRRiiiRRiii..iii..ii..i RRRRRRR......] [ RRi iRiiiRRiiiRRiiiR.iii..ii..i RRRRRRRR.....] [ RRi iRiiiRRiiiRRiiiRRiii..ii..i RRRRRRRRR....] [ RRi iRiiiRRiiiRRiiiRRiiiR.ii..i RRRRRRRRRR...] [ RRi iRiiiRRiiiRRiiiRRiiiRRii..i RRRRRRRRRRR..] [ RRi iRiiiRRiiiRRiiiRRiiiRRiiR.i RRRRRRRRRRRR.] [ RRi iRiiiRRiiiRRiiiRRiiiRRiiRRi RRRRRRRRRRRRR] 
         b1 = tzname;    
         if vR0.isdst==0 goto B117;   
   +B113b0b1:   #1 reference reference
         b2 = 1;    
-        goto +B118b0b1b2;   forward return[ RRi ........................... .............]
+        goto +B118b0b1b2;   [ RRi ........................... .............]
   +B117b0b1:   #1 reference reference
         b2 = 0;    
   +B118b0b1b2:   #1 reference reference int
-        return b0.append@extra(b1[b2]).append@extra(" ").append@extra((vR0.year+1900)).toString@extra();   
+        return b0.append(b1[b2]).append(" ").append((vR0.year+1900)).toString();   
   +END:   #1
  }
 // Register: rd 13/13 wr 37 swaps 15 any 0 found 0 toString
@@ -342,16 +343,17 @@ class java/util/Date {
   +START:   #1
         if vR0.isGMT!=0 goto B29;   
   +B7:   #1
-        vR1 = new java/util/Date(vR0.millis);    [ R  i][ R . il_R]
+        b0 = new java/util/Date(vR0.millis);    [ R  i][ R . il_R]
+        vR1 = b0;    
         vR1.isGMT = 1;   
         return vR1.toGMTString();   
   +B29:   #1
         vR0.refresh_components@special();   [R R . R._.] 
         b0 = new java/lang/StringBuilder();    [ R . i._.][ R . iR_.]
-        return b0.append@extra(vR0.date).append@extra(" ").append@extra(months[vR0.month]).append@extra(" ").append@extra((vR0.year+1900)).append@extra(" ").append@extra(fixed_int@special(vR0.hrs)).append@extra(":").append@extra(fixed_int@special(vR0.min)).append@extra(":").append@extra(fixed_int@special(vR0.sec)).append@extra(" GMT").toString@extra();   
+        return b0.append(vR0.date).append(" ").append(months[vR0.month]).append(" ").append((vR0.year+1900)).append(" ").append(fixed_int@special(vR0.hrs)).append(":").append(fixed_int@special(vR0.min)).append(":").append(fixed_int@special(vR0.sec)).append(" GMT").toString();   
   +END:   #1
  }
-// Register: rd 13/13 wr 30 swaps 12 any 0 found 0 toGMTString
+// Register: rd 14/14 wr 31 swaps 12 any 1 found 0 toGMTString
  
  method toLocaleString()Ljava/lang/String; {
   +START:   #1
@@ -365,7 +367,7 @@ class java/util/Date {
         if compare(vR0.getTime@this(),vR1.getTime())<=0 goto B16;   
   +B12:   #1
         b0 = 1;    
-        goto +B17b0;   forward return[ i  .]
+        goto +B17b0;   [ i  .]
   +B16:   #1
         b0 = 0;    
   +B17b0:   #1 int
@@ -379,7 +381,7 @@ class java/util/Date {
         if compare(vR0.getTime@this(),vR1.getTime())>=0 goto B16;   
   +B12:   #1
         b0 = 1;    
-        goto +B17b0;   forward return[ i  .]
+        goto +B17b0;   [ i  .]
   +B16:   #1
         b0 = 0;    
   +B17b0:   #1 int
@@ -393,7 +395,7 @@ class java/util/Date {
         if compare(vR0.getTime@this(),(java/util/Date)(vR1).getTime())!=0 goto B19;   
   +B15:   #1
         b0 = 1;    
-        goto +B20b0;   forward return[ i  .]
+        goto +B20b0;   [ i  .]
   +B19:   #1
         b0 = 0;    
   +B20b0:   #1 int
@@ -588,10 +590,11 @@ class java/util/Date {
  
  method compareTo(Ljava/util/Date;)I {
   -START:   #1
-        throw new java/util/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/util/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 compareTo
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 compareTo
  
  method <clinit>()V {
   +START:   #1

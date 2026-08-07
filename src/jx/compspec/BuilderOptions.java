@@ -28,13 +28,13 @@ class BuilderOptions extends CompilerOptionsNative {
         doEventLoging        = false;
         doFastMemoryAccess   = false;
         doFastStatics        = false;
-        doPrintIMCode        = true;
+        doPrintIMCode        = false;
         doStackTrace         = false;
         doUsePackedArrays    = false;     // old Compiler allways use 32 Bit
 
         replaceInterfaceWithClass = null; // substitute a classname for an interface name when loading
 
-        debug        = false;
+        debug        = true;
         makeLib      = true;
         libPath      = null;
 

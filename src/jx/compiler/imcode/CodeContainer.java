@@ -1087,7 +1087,7 @@ public class CodeContainer implements NativeCodeContainer {
 
         if (opts.isOption("fast_thisptr") &&
             method.getName().equals("read")) {
-            Debug.out.println(method.getClassName());
+            //Debug.out.println(method.getClassName());
         }
 
         while (node != null) {

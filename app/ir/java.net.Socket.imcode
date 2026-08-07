@@ -45,12 +45,13 @@ class java/net/Socket {
   -H101<caught exception>:   #1 reference
         vR4 = <caught exception>;    
         out.println("Socket: TCPSocket reported invalid IPAddress");   [RR RR i.. RR..] 
-        throw new java/lang/Error("");   
+        b0 = new java/lang/Error("");    [ RR i.. i...][ RR i.. iRR.]
+        throw b0;   
   -H121<caught exception>:   #1 reference
         vR4 = <caught exception>;    
         b0 = out;    
         b1 = new java/lang/StringBuilder();    [ RR ... i...][ RR ... iR..]
-        b0.println(b1.append@extra("Socket: TCPSocket reported IOException ").append@extra(vR4.getMessage()).toString@extra());   [RR RR iii. RR..] 
+        b0.println(b1.append("Socket: TCPSocket reported IOException ").append(vR4.getMessage()).toString());   [RR RR iii. RR..] 
         throw vR4;   
   +B155:   #1
         b1 = new jx/net/TCPInputStream(vR0.tcpSocket);    [ RR .... i...][ RR .... iRR.]
@@ -63,7 +64,7 @@ EXCEPTIONHANDLER-TABLE:
 87 - 98 handler 101 type 84
 87 - 98 handler 121 type 104
  }
-// Register: rd 30/30 wr 23 swaps 5 any 2 found 0 <init>
+// Register: rd 31/31 wr 24 swaps 5 any 2 found 0 <init>
  
  method getOutputStream()Ljava/io/OutputStream; {
   +START:   #1
@@ -103,8 +104,9 @@ EXCEPTIONHANDLER-TABLE:
  
  method setSoTimeout(I)V {
   -START:   #1
-        throw new java/lang/Error("no setsotimout");   
+        b0 = new java/lang/Error("no setsotimout");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 setSoTimeout
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 setSoTimeout
 }

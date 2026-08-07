@@ -4,22 +4,30 @@ import java.util.ArrayList;
 import java.util.Enumeration; 
 import java.util.Collections;
 
+import jx.classfile.datatypes.BCBasicDatatype;
 import jx.classfile.constantpool.ClassCPEntry;
 import jx.classfile.constantpool.FieldRefCPEntry;
 import jx.classfile.constantpool.InterfaceMethodRefCPEntry;
 import jx.classfile.constantpool.MethodRefCPEntry;
 import jx.classfile.constantpool.StringCPEntry;
+import jx.classfile.constantpool.ConstantPool;
 
 import jx.compiler.CompileException;
 import jx.compiler.execenv.BCClass;
 import jx.compiler.execenv.BCMethod;
+import jx.compiler.BCClassInfo;
+import jx.compiler.CompilerOptions;
 import jx.compiler.execenv.CompilerOptionsInterface;
+import jx.compiler.imcode.MethodStackFrame;
+import jx.compiler.ClassFinder;
 import jx.compiler.imcode.CodeContainer;
 import jx.compiler.imcode.ExecEnvironmentInterface;
 import jx.compiler.imcode.graph.IMNode;
 import jx.compiler.imcode.graph.IMOperant;
+import jx.compiler.imcode.graph.inst.IMConstant;
 
 import jx.compiler.symbols.*;
+import jx.compiler.persistent.*;
 import jx.zero.Debug;
 import sjc.backend.arm.ARM7;
 
@@ -56,8 +64,37 @@ public final class BinaryCodeDynamicARM extends ARM7 implements ExecEnvironmentI
      * contains the native exception handlers
      */ 
     private final ArrayList<NCExceptionHandler> exceptionHandlers;
+    
+    // Execution environment state (like IA32 ExecEnvironmentIA32)
+    private CodeContainer    container;
+    private ConstantPool     cPool;
+    private RegManager       regs;
+    private MethodStackFrame frame;
+    private BCMethod         method;
+    private ClassFinder      classStore;
+    private BCClass          bcClass;
+    private CompilerOptions  opts;
+    private final ArrayList  exceptionStore;
+
+    private final int arrayLengthOffset = 8;
+    private final int arrayDataStart    = 12;
+    private final int arrayElementSize  = 4;
+
+    private final int memoryLengthOffset = 0;
+    private final int memoryDataStart    = 4;
+
+    private final int     OBJECT_MAGIC_OFF  = -4;
+    private final int     OBJECT_MAGIC      = 0xbebeceee;
+    private final int     classDescOffset   = -4;
 
     public BinaryCodeDynamicARM() {
+        this(null, null);
+    }
+    
+    public BinaryCodeDynamicARM(ClassFinder classStore, CompilerOptions opts) {
+        this.classStore = classStore;
+        this.opts = opts;
+        exceptionStore = new ArrayList();
         code = new byte[INITSIZE];
         ip = 0;
         symbolTable = new ArrayList();
@@ -137,8 +174,19 @@ public final class BinaryCodeDynamicARM extends ARM7 implements ExecEnvironmentI
 
     private static final int C_EQ = 0x0;
     private static final int C_NE = 0x1;
-    private static final int C_MI = 0x4;
-    private static final int C_AL = 0xE;
+    private static final int C_HS = 0x2;  // unsigned >=
+    private static final int C_LO = 0x3;  // unsigned <
+    private static final int C_MI = 0x4;  // negative
+    private static final int C_PL = 0x5;  // positive or zero
+    private static final int C_VS = 0x6;  // overflow
+    private static final int C_VC = 0x7;  // no overflow
+    private static final int C_HI = 0x8;  // unsigned >
+    private static final int C_LS = 0x9;  // unsigned <=
+    private static final int C_GE = 0xA;  // signed >=
+    private static final int C_LT = 0xB;  // signed <
+    private static final int C_GT = 0xC;  // signed >
+    private static final int C_LE = 0xD;  // signed <=
+    private static final int C_AL = 0xE;  // always
 
     private void emitWord(int instr) {
         realloc(4);
@@ -690,29 +738,114 @@ public final class BinaryCodeDynamicARM extends ARM7 implements ExecEnvironmentI
         emitWord((cond << 28) | 0x0A000000 | ((rel - 8) / 4 & 0xFFFFFF));
     }
 
+    // ----- ARM Load/Store helpers -----
+    
+    private void emitLDR(int cond, int rd, int rn, int offset) {
+        // LDR rd, [rn, #offset]
+        if (offset >= 0 && offset <= 4095) {
+            emitWord((cond << 28) | 0x05100000 | (rn << 16) | (rd << 12) | offset);
+        } else if (offset >= -4095 && offset <= 0) {
+            emitWord((cond << 28) | 0x05100000 | (rn << 16) | (rd << 12) | 0x00400000 | (-offset));
+        } else {
+            throw new UnsupportedOperationException("LDR offset out of range: " + offset);
+        }
+    }
+    
+    private void emitSTR(int cond, int rd, int rn, int offset) {
+        // STR rd, [rn, #offset]
+        if (offset >= 0 && offset <= 4095) {
+            emitWord((cond << 28) | 0x04100000 | (rn << 16) | (rd << 12) | offset);
+        } else if (offset >= -4095 && offset <= 0) {
+            emitWord((cond << 28) | 0x04100000 | (rn << 16) | (rd << 12) | 0x00400000 | (-offset));
+        } else {
+            throw new UnsupportedOperationException("STR offset out of range: " + offset);
+        }
+    }
+    
+    private void emitLDRB(int cond, int rd, int rn, int offset) {
+        // LDRB rd, [rn, #offset]
+        if (offset >= 0 && offset <= 4095) {
+            emitWord((cond << 28) | 0x05500000 | (rn << 16) | (rd << 12) | offset);
+        } else if (offset >= -4095 && offset <= 0) {
+            emitWord((cond << 28) | 0x05500000 | (rn << 16) | (rd << 12) | 0x00400000 | (-offset));
+        } else {
+            throw new UnsupportedOperationException("LDRB offset out of range: " + offset);
+        }
+    }
+    
+    private void emitSTRB(int cond, int rd, int rn, int offset) {
+        // STRB rd, [rn, #offset]
+        if (offset >= 0 && offset <= 4095) {
+            emitWord((cond << 28) | 0x04500000 | (rn << 16) | (rd << 12) | offset);
+        } else if (offset >= -4095 && offset <= 0) {
+            emitWord((cond << 28) | 0x04500000 | (rn << 16) | (rd << 12) | 0x00400000 | (-offset));
+        } else {
+            throw new UnsupportedOperationException("STRB offset out of range: " + offset);
+        }
+    }
+    
+    private void emitLDRH(int cond, int rd, int rn, int offset) {
+        // LDRH rd, [rn, #offset]
+        if (offset >= 0 && offset <= 4095) {
+            emitWord((cond << 28) | 0x001000B0 | (rn << 16) | (rd << 12) | offset);
+        } else if (offset >= -4095 && offset <= 0) {
+            emitWord((cond << 28) | 0x005000B0 | (rn << 16) | (rd << 12) | (-offset));
+        } else {
+            throw new UnsupportedOperationException("LDRH offset out of range: " + offset);
+        }
+    }
+    
+    private void emitSTRH(int cond, int rd, int rn, int offset) {
+        // STRH rd, [rn, #offset]
+        if (offset >= 0 && offset <= 4095) {
+            emitWord((cond << 28) | 0x000000B0 | (rn << 16) | (rd << 12) | offset);
+        } else if (offset >= -4095 && offset <= 0) {
+            emitWord((cond << 28) | 0x004000B0 | (rn << 16) | (rd << 12) | (-offset));
+        } else {
+            throw new UnsupportedOperationException("STRH offset out of range: " + offset);
+        }
+    }
+    
+    // ARM register constants
+    private static final int REG_SP = 13;
+    private static final int REG_LR = 14;
+    private static final int REG_PC = 15;
+    private static final int REG_FP = 11;
+
     public void je(int rel) { emitBranch(C_EQ, rel); }
 
     public void je(SymbolTableEntryBase entry) {
-        throw new UnsupportedOperationException("Not supported yet.");
+	// Emit conditional branch with placeholder offset (0)
+	// Will be resolved later via symbol table
+	realloc(4);
+	entry.initNCIndexRelative(ip, 4, ip + 4);
+	symbolTable.add(entry);
+	emitWord((C_EQ << 28) | 0x0A000000); // B.EQ with 0 offset
     }
 
     public void jne(int rel) { emitBranch(C_NE, rel); }
 
     public void jne(SymbolTableEntryBase entry) {
-        throw new UnsupportedOperationException("Not supported yet.");
+	realloc(4);
+	entry.initNCIndexRelative(ip, 4, ip + 4);
+	symbolTable.add(entry);
+	emitWord((C_NE << 28) | 0x0A000000); // B.NE with 0 offset
     }
 
     public void jnae(SymbolTableEntryBase entry) {
-        throw new UnsupportedOperationException("Not supported yet.");
+	throw new UnsupportedOperationException("Not supported yet.");
     }
 
     public void jl(int rel) { emitBranch(C_MI, rel); }
     public void jl(SymbolTableEntryBase entry) {
-        throw new UnsupportedOperationException("Not supported yet.");
+	realloc(4);
+	entry.initNCIndexRelative(ip, 4, ip + 4);
+	symbolTable.add(entry);
+	emitWord((C_MI << 28) | 0x0A000000); // B.MI with 0 offset
     }
 
     public void jge(SymbolTableEntryBase entry) {
-        throw new UnsupportedOperationException("Not supported yet.");
+	throw new UnsupportedOperationException("Not supported yet.");
     }
 
     public void jg(int rel) { emitBranch(C_MI, rel); }
@@ -729,7 +862,11 @@ public final class BinaryCodeDynamicARM extends ARM7 implements ExecEnvironmentI
     }
 
     public void jae(SymbolTableEntryBase entry) {
-        throw new UnsupportedOperationException("Not supported yet.");
+	// C_HS = 0x2 (unsigned >=)
+	realloc(4);
+	entry.initNCIndexRelative(ip, 4, ip + 4);
+	symbolTable.add(entry);
+	emitWord((C_HS << 28) | 0x0A000000);
     }
 
     public void js(int rel) { emitBranch(C_MI, rel); }
@@ -1057,281 +1194,1028 @@ public final class BinaryCodeDynamicARM extends ARM7 implements ExecEnvironmentI
 
     @Override
     public void setCodeContainer(CodeContainer container) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+	this.container  = container;
+	this.cPool      = container.getConstantPool();
+	// this.code is the byte array (from ARM7), code generation methods are on 'this'
+	this.regs       = container.getRegManager();
+	this.frame      = container.getMethodStackFrame();
+	this.method     = container.getBCMethod();
     }
 
     @Override
     public void setCurrentlyCompiling(BCClass aClass) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+	this.bcClass = aClass;
     }
 
     @Override
     public BCMethod getBCMethod(MethodRefCPEntry methodRefCPEntry) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+	if (methodRefCPEntry == null) return null;
+
+	BCClass aClass = classStore.findClass(methodRefCPEntry.getClassName());
+	if (aClass != null) {
+	    BCClassInfo info = aClass.getInfo();
+
+	    String name = methodRefCPEntry.getMemberName();
+	    String sig  = methodRefCPEntry.getMemberTypeDesc();
+
+            for (BCMethod method : info.methods) {
+                if (method.getName().equals(name) &&
+                        method.getSignature().equals(sig)) {
+                    return method;
+                }
+            }
+	}
+	
+	return null;
     }
 
     @Override
     public boolean doOptimize(int level) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+	return opts.doOptimize();
     }
 
     @Override
     public CompilerOptionsInterface getCompilerOptions() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+	return opts;
     }
 
     @Override
     public int getExtraStackSpace() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return 0;
+    }
+
+    @Override
+    public void codeProlog() {	
+	// Save old frame pointer
+	// PUSH {FP, LR}
+	emitWord(0xE92D0000 | (1 << REG_FP) | (1 << REG_LR));
+	// MOV FP, SP
+	dpr(C_AL, DP_MOV, false, REG_FP, 0, REG_SP);
     }
 
     @Override
     public void codeEpilog() throws CompileException {
-        super.codeEpilog(null);
+        // Restore frame pointer and return
+        // MOV SP, FP
+        dpr(C_AL, DP_MOV, false, REG_SP, 0, REG_FP);
+        // POP {FP, PC}
+        emitWord(0xE8BD0000 | (1 << REG_FP) | (1 << REG_PC));
     }
 
     @Override
     public void codeCheckReference(IMNode node, Reg reg, int bcPosition) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+	if (opts.doNullChecks()) {	    
+	    // CMP reg, #0
+	    dpi(C_AL, DP_CMP, true, 0, reg.value, rotImm8(0));
+	    // BEQ exception
+	    UnresolvedJump jump = createExceptionCall(-2, bcPosition);
+	    this.je(jump);
+	}
+	if (opts.doMagicChecks()) {
+	    // CMP [reg + OBJECT_MAGIC_OFF], #OBJECT_MAGIC
+	    emitLDR(C_AL, 0, reg.value, OBJECT_MAGIC_OFF);  // R0 = [reg + OFF]
+	    dpi(C_AL, DP_CMP, true, 0, 0, rotImm8(OBJECT_MAGIC));
+	    UnresolvedJump jump = createExceptionCall(-7, bcPosition);
+	    this.jne(jump);
+	}
     }
 
     @Override
     public void codeCheckMagic(IMNode node, Reg reg, int bcPosition) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+	if (opts.doMagicChecks()) {
+	    UnresolvedJump jumpForward = new UnresolvedJump();
+	    // CMP reg, #0
+	    dpi(C_AL, DP_CMP, true, 0, reg.value, rotImm8(0));
+	    // BEQ skip
+	    this.je(jumpForward);
+	    // CMP [reg + OBJECT_MAGIC_OFF], #OBJECT_MAGIC
+	    emitLDR(C_AL, 0, reg.value, OBJECT_MAGIC_OFF);
+	    dpi(C_AL, DP_CMP, true, 0, 0, rotImm8(OBJECT_MAGIC));
+	    UnresolvedJump jump = createExceptionCall(-7, bcPosition);
+	    this.jne(jump);
+	    addJumpTarget(jumpForward);
+	}
     }
 
     @Override
     public void codeCheckDivZero(IMNode node, Reg reg, int bcPosition) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+	if (opts.doZeroDivChecks()) {	    
+	    // CMP reg, #0
+	    dpi(C_AL, DP_CMP, true, 0, reg.value, rotImm8(0));
+	    UnresolvedJump jump = createExceptionCall(-6, bcPosition);
+	    this.je(jump);
+	}
     }
 
     @Override
     public void codeCheckArrayRange(IMNode node, Reg array, int index, int bcPosition) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+	if (opts.doBoundsChecks()) {
+	    Reg len = regs.chooseIntRegister(array);
+	    codeGetArrayLength(node, array, len);
+	    regs.readIntRegister(len);
+	    // CMP len, #index
+	    dpi(C_AL, DP_CMP, true, 0, len.value, rotImm8(index));
+	    UnresolvedJump jump = createExceptionCall(-10, bcPosition);
+	    this.jae(jump); // unsigned >=
+	    regs.freeIntRegister(len);
+	}
     }
 
     @Override
     public void codeCheckArrayRange(IMNode node, Reg array, Reg index, int bcPosition) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+	if (opts.doBoundsChecks()) {
+	    Reg len = regs.chooseIntRegister(array, index);
+	    codeGetArrayLength(node, array, len);
+	    regs.readIntRegister(index);
+	    regs.readIntRegister(len);
+	    // CMP len, index
+	    dpr(C_AL, DP_CMP, true, 0, len.value, index.value);
+	    UnresolvedJump jump = createExceptionCall(-10, bcPosition);
+	    this.jae(jump);
+	    regs.freeIntRegister(len);
+	}
     }
 
     @Override
     public void codeNewObject(IMNode node, ClassCPEntry classCPEntry, Reg result) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+	this.startBC(node.getBCPosition());
+	regs.saveIntRegister();
+	frame.push(BCBasicDatatype.INT, new ClassSTEntry(classCPEntry.getClassName()));
+	int ip = this.getCurrentIP();
+	this.call(new AllocObjectSTEntry());
+	regs.clearActives();
+	codeStackMap(node, ip);
+	frame.pop(Reg.ecx);
+	regs.allocIntRegister(result, Reg.eax, BCBasicDatatype.REFERENCE);	
+	if (result.value != 0) {
+	    this.mov(result, Reg.eax);
+	}
+	this.endBC();
     }
 
     @Override
     public void codeCompactNew(IMNode node, ClassCPEntry classCPEntry, MethodRefCPEntry methodRefCPEntry, IMOperant[] args, Reg result) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
+	int ip;
+	this.startBC(node.getBCPosition());
+	regs.saveIntRegister();
+	int offset = frame.start();
+	frame.push(BCBasicDatatype.INT, new ClassSTEntry(classCPEntry.getClassName()));
+	ip = this.getCurrentIP();
+	this.call(new AllocObjectSTEntry());
+	regs.clearActives();
+	codeStackMap(node, ip);
+	if (opts.doClearStack()) {
+	    frame.clearStack(1);
+	}
+	Reg objRef = regs.getIntRegister(Reg.eax);
+	regs.allocIntRegister(objRef, BCBasicDatatype.REFERENCE);
+	if (args.length > 0) {
+	    regs.saveIntRegister();
+	    for (int i = (args.length - 1); i >= 0; i--) {
+		int datatype = args[i].getDatatype();
+		if (args[i].isConstant()) {
+		    if (datatype == BCBasicDatatype.DOUBLE || datatype == BCBasicDatatype.LONG) {
+			frame.push(datatype, 0);
+			frame.push(datatype, 0);
+		    } else {
+			frame.push(datatype, ((IMConstant)args[i]).getIntValue());
+		    }
+		} else if (datatype == BCBasicDatatype.DOUBLE || datatype == BCBasicDatatype.LONG) {
+		    frame.push(-1, 0);
+		    frame.push(-1, 0);
+		} else {
+		    Reg reg = regs.chooseIntRegister(null);
+		    args[i].translate(reg);
+		    frame.push(datatype, reg);
+		    regs.freeIntRegister(reg);
+		}
+	    }
+	}
+	regs.readIntRegister(objRef);
+	frame.push(BCBasicDatatype.REFERENCE, objRef);
+	regs.freeIntRegister(objRef);
+	regs.saveIntRegister();
+	DirectMethodCallSTEntry target = new DirectMethodCallSTEntry(methodRefCPEntry.getClassName(),
+								 methodRefCPEntry.getMemberName(),
+								 methodRefCPEntry.getMemberTypeDesc());
+	ip = this.getCurrentIP();
+	this.call(target);
+	regs.clearActives();
+	codeStackMap(node, ip);
+	regs.allocIntRegister(result, BCBasicDatatype.REFERENCE);
+	frame.pop(result);
+	frame.cleanup(offset);
+	this.endBC();
+    }  
+   
     @Override
-    public void codeNewArray(IMNode node, int type, IMOperant size, Reg result) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void codeNewArray(IMNode node, int type, IMOperant size, Reg result) throws CompileException {	
+	Reg asize = regs.chooseIntRegister(null);
+	size.translate(asize);
+	regs.freeIntRegister(asize);
+	regs.saveIntRegister();
+	this.startBC(node.getBCPosition());
+	int offset = frame.start();
+	frame.push(BCBasicDatatype.INT, asize);
+	frame.push(BCBasicDatatype.INT, new PrimitiveClassSTEntry(type));
+	int ip = this.getCurrentIP();
+	this.call(new AllocArraySTEntry());
+	regs.clearActives();
+	codeStackMap(node, ip);
+	frame.cleanup(offset);
+	regs.allocIntRegister(result, Reg.eax, BCBasicDatatype.REFERENCE);
+	if (result.value != 0) {
+	    this.mov(result, Reg.eax);
+	}
+	this.endBC();
     }
 
     @Override
     public void codeNewObjectArray(IMNode node, ClassCPEntry classCPEntry, IMOperant size, Reg result) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+	Reg asize = regs.chooseIntRegister(null);
+	size.translate(asize);
+	regs.freeIntRegister(asize);
+	regs.saveIntRegister();
+	this.startBC(node.getBCPosition());
+	int offset = frame.start();
+	frame.push(BCBasicDatatype.INT, asize);
+	frame.push(BCBasicDatatype.INT, new ClassSTEntry(classCPEntry.getClassName()));
+	int ip = this.getCurrentIP();
+	this.call(new AllocArraySTEntry());
+	regs.clearActives();
+	codeStackMap(node, ip);
+	frame.cleanup(offset);
+	regs.allocIntRegister(result, Reg.eax, BCBasicDatatype.REFERENCE);
+	if (result.value != 0) {
+	    this.mov(result, Reg.eax);
+	}
+	this.endBC();
     }
 
     @Override
     public void codeGetArrayField(IMNode node, Reg array, int datatype, int index, Reg result, int bcPosition) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
+        regs.readIntRegister(array);
+        regs.allocIntRegister(result, datatype);
+        int offset = arrayDataStart + (index * 4);
+        switch (datatype) {
+            case BCBasicDatatype.BYTE:
+                emitLDRB(C_AL, result.value, array.value, offset);
+                break;
+            case BCBasicDatatype.CHAR:
+            case BCBasicDatatype.SHORT:
+                emitLDRH(C_AL, result.value, array.value, offset);
+                break;
+            case BCBasicDatatype.INT:
+            case BCBasicDatatype.REFERENCE:
+                emitLDR(C_AL, result.value, array.value, offset);
+                break;
+            default:
+                throw new CompileException("Unsupported array datatype: " + datatype);
+        }
+    }   
+    
     @Override
     public void codeGetArrayField(IMNode node, Reg array, int datatype, Reg index, Reg result, int bcPosition) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        regs.readIntRegister(index);
+        regs.readIntRegister(array);
+        regs.allocIntRegister(result, datatype);
+        // Calculate address: array + arrayDataStart + index * 4
+        // We need to do: result = array + arrayDataStart + (index << 2)
+        // For simplicity, use a temporary register
+        Reg tmp = regs.chooseIntRegister(array, index);
+        // LSL tmp, index, #2
+        shiftReg(DP_MOV, 2, index); // This modifies index, so use tmp
+        // Better: MOV tmp, index, LSL #2
+        dpr(C_AL, DP_MOV, false, tmp.value, 0, (2 << 7) | (1 << 5) | index.value);
+        // ADD tmp, array, tmp
+        dpr(C_AL, DP_ADD, false, tmp.value, array.value, tmp.value);
+        // ADD tmp, tmp, #arrayDataStart
+        int sh = rotImm8(arrayDataStart);
+        if (sh >= 0) {
+            dpi(C_AL, DP_ADD, false, tmp.value, tmp.value, sh);
+        } else {
+            // Use literal pool for large offsets
+            throw new CompileException("arrayDataStart offset too large");
+        }
+        switch (datatype) {
+            case BCBasicDatatype.BYTE:
+                emitLDRB(C_AL, result.value, tmp.value, 0);
+                break;
+            case BCBasicDatatype.CHAR:
+            case BCBasicDatatype.SHORT:
+                emitLDRH(C_AL, result.value, tmp.value, 0);
+                break;
+            case BCBasicDatatype.INT:
+            case BCBasicDatatype.REFERENCE:
+                emitLDR(C_AL, result.value, tmp.value, 0);
+                break;
+            default:
+                throw new CompileException("Unsupported array datatype: " + datatype);
+        }
+        regs.freeIntRegister(tmp);
     }
 
     @Override
     public void codeGetArrayFieldLong(IMNode node, Reg array, int datatype, Reg index, Reg64 result, int bcPosition) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        regs.readIntRegister(index);
+        regs.readIntRegister(array);
+        regs.allocLongRegister(result);
+        Reg tmp = regs.chooseIntRegister(array, index);
+        dpr(C_AL, DP_MOV, false, tmp.value, 0, (2 << 7) | (1 << 5) | index.value);
+        dpr(C_AL, DP_ADD, false, tmp.value, array.value, tmp.value);
+        int sh = rotImm8(arrayDataStart);
+        if (sh >= 0) {
+            dpi(C_AL, DP_ADD, false, tmp.value, tmp.value, sh);
+        }
+        // Load low word
+        emitLDR(C_AL, result.low.value, tmp.value, 0);
+        // Load high word
+        emitLDR(C_AL, result.high.value, tmp.value, 4);
+        regs.freeIntRegister(tmp);
     }
 
     @Override
     public void codePutArrayField(IMNode node, Reg array, int datatype, int index, Reg value, int bcPosition) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        regs.readIntRegister(array);
+        regs.readIntRegister(value);
+        int offset = arrayDataStart + (index * 4);
+        switch (datatype) {
+            case BCBasicDatatype.BYTE:
+                emitSTRB(C_AL, value.value, array.value, offset);
+                break;
+            case BCBasicDatatype.CHAR:
+            case BCBasicDatatype.SHORT:
+                emitSTRH(C_AL, value.value, array.value, offset);
+                break;
+            case BCBasicDatatype.INT:
+            case BCBasicDatatype.REFERENCE:
+                emitSTR(C_AL, value.value, array.value, offset);
+                break;
+            default:
+                throw new CompileException("Unsupported array datatype: " + datatype);
+        }
     }
 
     @Override
     public void codePutArrayField(IMNode node, Reg array, int datatype, Reg index, Reg value, int bcPosition) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        regs.readIntRegister(index);
+        regs.readIntRegister(array);
+        regs.readIntRegister(value);
+        Reg tmp = regs.chooseIntRegister(array, index);
+        dpr(C_AL, DP_MOV, false, tmp.value, 0, (2 << 7) | (1 << 5) | index.value);
+        dpr(C_AL, DP_ADD, false, tmp.value, array.value, tmp.value);
+        int sh = rotImm8(arrayDataStart);
+        if (sh >= 0) {
+            dpi(C_AL, DP_ADD, false, tmp.value, tmp.value, sh);
+        }
+        switch (datatype) {
+            case BCBasicDatatype.BYTE:
+                emitSTRB(C_AL, value.value, tmp.value, 0);
+                break;
+            case BCBasicDatatype.CHAR:
+            case BCBasicDatatype.SHORT:
+                emitSTRH(C_AL, value.value, tmp.value, 0);
+                break;
+            case BCBasicDatatype.INT:
+            case BCBasicDatatype.REFERENCE:
+                emitSTR(C_AL, value.value, tmp.value, 0);
+                break;
+            default:
+                throw new CompileException("Unsupported array datatype: " + datatype);
+        }
+        regs.freeIntRegister(tmp);
     }
 
     @Override
     public void codeNewMultiArray(IMNode node, ClassCPEntry type, IMOperant[] oprs, Reg result) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+	throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public void codeGetArrayLength(IMNode node, Reg array, Reg result) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+	regs.allocIntRegister(result, node.getDatatype());
+	regs.readIntRegister(array);
+	// LDR result, [array, #arrayLengthOffset]
+	emitLDR(C_AL, result.value, array.value, arrayLengthOffset);
     }
 
     @Override
     public void codeThrow(IMNode node, int exception, int bcPosition) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+	this.startBC(bcPosition);
+	regs.saveIntRegister();	
+	int offset = frame.start();
+	frame.push(BCBasicDatatype.INT, exception);
+	this.call(new ExceptionHandlerSTEntry());
+	frame.cleanup(offset);
+	this.endBC();
     }
 
     @Override
     public void codeThrow(IMNode node, IMOperant exception, int bcPosition) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+	Reg exRef = regs.chooseIntRegister(null);
+	exception.translate(exRef);
+	regs.freeIntRegister(exRef);
+	this.startBC(bcPosition);
+	regs.saveIntRegister();
+	int offset = frame.start();
+	frame.push(BCBasicDatatype.REFERENCE, exRef);
+	this.call(new ExceptionHandlerSTEntry());
+	frame.cleanup(offset);
+	this.endBC();
     }
 
     @Override
     public void codeCheckCast(IMNode node, ClassCPEntry classCPEntry, Reg objRef, int bcPosition) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+	this.startBC(bcPosition);
+	if (opts.isOption("noCheckCast")) return;
+	regs.saveIntRegister();
+	int offset = frame.start();
+	frame.push(-1, new ClassSTEntry(classCPEntry.getClassName()));
+	frame.push(BCBasicDatatype.REFERENCE, objRef);
+	this.call(new VMSupportSTEntry(VMSupportSTEntry.VM_CHECKCAST));
+	frame.cleanup(offset);
+	regs.readIntRegister(objRef);
+	this.endBC();
     }
 
     @Override
     public void codeInstanceOf(IMNode node, ClassCPEntry classCPEntry, Reg objRef, Reg regEAX, int bcPosition) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+	this.startBC(bcPosition);
+	regs.saveIntRegister();
+	int offset = frame.start();
+	frame.push(-1, new ClassSTEntry(classCPEntry.getClassName()));
+	frame.push(BCBasicDatatype.REFERENCE, objRef);
+	this.call(new VMSupportSTEntry(VMSupportSTEntry.VM_INSTANCEOF));
+	frame.cleanup(offset);
+	regs.allocIntRegister(regEAX, Reg.eax, BCBasicDatatype.BOOLEAN);
+	if (regEAX.value != 0) {
+	    this.mov(regEAX, Reg.eax);
+	}
+	this.endBC();
     }
 
     @Override
     public void codeMonitorEnter(IMNode node, IMOperant obj, int bcPosition) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+	if (opts.monitorClass() != null) {
+	    this.startBC(bcPosition);
+	    int datatype = obj.getDatatype();
+	    if (obj.isConstant()) {
+		frame.push(datatype, ((IMConstant)obj).getIntValue());
+	    } else {
+		Reg reg = regs.chooseIntRegister(null);
+		obj.translate(reg);
+		frame.push(datatype, reg);
+		regs.freeIntRegister(reg);
+	    }
+	    DirectMethodCallSTEntry target = new DirectMethodCallSTEntry(opts.monitorClass(),
+									 "enter",
+									 "(Ljava/lang/Object;)V");
+	    int ip = this.getCurrentIP();
+	    this.call(target);
+	    codeStackMap(node, ip);
+	    regs.clearActives();
+	    this.endBC();
+	}
     }
 
     @Override
     public void codeMonitorLeave(IMNode node, IMOperant obj, int bcPosition) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+	if (opts.monitorClass() != null) {
+	    this.startBC(bcPosition);
+	    int datatype = obj.getDatatype();
+	    if (obj.isConstant()) {
+		frame.push(datatype, ((IMConstant)obj).getIntValue());
+	    } else {
+		Reg reg = regs.chooseIntRegister(null);
+		obj.translate(reg);
+		frame.push(datatype, reg);
+		regs.freeIntRegister(reg);
+	    }
+	    DirectMethodCallSTEntry target = new DirectMethodCallSTEntry(opts.monitorClass(),
+									 "exit",
+									 "(Ljava/lang/Object;)V");
+	    int ip = this.getCurrentIP();
+	    this.call(target);
+	    codeStackMap(node, ip);
+	    regs.clearActives();
+	    this.endBC();
+	}
     }
 
     @Override
     public SymbolTableEntryBase getStringRef(StringCPEntry cpEntry) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+	return new StringSTEntry(cpEntry.value());
+    } 
 
     @Override
     public void codeLoadStringRef(StringCPEntry cpEntry, Reg result, int bcPosition) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+	regs.allocIntRegister(result, BCBasicDatatype.REFERENCE);
+	this.mov(new StringSTEntry(cpEntry.value()), result);
+    }
+
+    private int getFieldOffset(FieldRefCPEntry fieldRefCPEntry) throws CompileException {
+	String className = fieldRefCPEntry.getClassName();
+	BCClass aClass = classStore.findClass(className);
+	BCClassInfo info = aClass.getInfo();
+	int offset = info.classLayout.getFieldOffset(fieldRefCPEntry.getMemberName());
+	if (offset == -1) {
+	    throw new CompileException("Cannot find field " + fieldRefCPEntry.getMemberName() + " in class " + className);
+	}
+	return offset;
     }
 
     @Override
     public void codeGetField(IMNode node, FieldRefCPEntry fieldRefCPEntry, Reg objRef, Reg result, int bcPosition) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+	int offset = getFieldOffset(fieldRefCPEntry);
+	regs.allocIntRegister(result, node.getDatatype());
+	regs.readIntRegister(objRef);
+	emitLDR(C_AL, result.value, objRef.value, offset);
     }
 
     @Override
     public void codeGetStaticField(IMNode node, FieldRefCPEntry fieldRefCpEntry, Reg result, int bcPosition) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+	String className = fieldRefCpEntry.getClassName();
+	BCClass aClass = classStore.findClass(className);
+	BCClassInfo info = aClass.getInfo();
+	int offset = info.classLayout.getFieldOffset(fieldRefCpEntry.getMemberName());
+	if (offset == -1) {
+	    throw new CompileException("Cannot find field " + fieldRefCpEntry.getMemberName() + " in class " + className);
+	}
+	Reg addr = regs.chooseIntRegister(result);
+	// Get static field address: call VM_GETSTATICS_ADDR2
+	regs.saveIntRegister();
+	int foff = frame.start();
+	frame.push(-1, new ClassSTEntry(className));
+	this.call(new VMSupportSTEntry(VMSupportSTEntry.VM_GETSTATICS_ADDR2));
+	frame.cleanup(foff);
+	regs.allocIntRegister(addr, node.getDatatype());
+	// LEA addr, [eax + offset]
+	// MOV addr, eax; ADD addr, #offset
+	this.mov(addr, Reg.eax);
+	int sh = rotImm8(offset);
+	if (sh >= 0) {
+	    dpi(C_AL, DP_ADD, false, addr.value, addr.value, sh);
+	} else {
+	    this.add(new StaticFieldSTEntry(className, StaticFieldSTEntry.TOTAL_OFFSET, offset), addr);
+	}
+	regs.allocIntRegister(result, node.getDatatype());
+	emitLDR(C_AL, result.value, addr.value, 0);
+	regs.freeIntRegister(addr);
     }
 
     @Override
-    public void codePutField(IMNode node, FieldRefCPEntry fieldRefCPEntry, Reg objRef, Reg value, int bcPosition) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void codePutField(IMNode node, FieldRefCPEntry fieldRefCPEntry, Reg objRef, Reg value, int bcPosition) throws CompileException {	
+	int offset = getFieldOffset(fieldRefCPEntry);
+	regs.readIntRegister(objRef);
+	regs.readIntRegister(value);
+	emitSTR(C_AL, value.value, objRef.value, offset);
     }
 
     @Override
-    public void codePutStaticField(IMNode node, FieldRefCPEntry fieldRefCpEntry, Reg result, int bcPosition) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void codePutStaticField(IMNode node, FieldRefCPEntry fieldRefCpEntry, Reg value, int bcPosition) throws CompileException {
+	String className = fieldRefCpEntry.getClassName();
+	BCClass aClass = classStore.findClass(className);
+	BCClassInfo info = aClass.getInfo();
+	int offset = info.classLayout.getFieldOffset(fieldRefCpEntry.getMemberName());
+	if (offset == -1) {
+	    throw new CompileException("Cannot find field " + fieldRefCpEntry.getMemberName() + " in class " + className);
+	}
+	Reg addr = regs.chooseIntRegister(value);
+	regs.saveIntRegister();
+	int foff = frame.start();
+	frame.push(-1, new ClassSTEntry(className));
+	this.call(new VMSupportSTEntry(VMSupportSTEntry.VM_GETSTATICS_ADDR2));
+	frame.cleanup(foff);
+	regs.allocIntRegister(addr, node.getDatatype());
+	this.mov(addr, Reg.eax);
+	int sh = rotImm8(offset);
+	if (sh >= 0) {
+	    dpi(C_AL, DP_ADD, false, addr.value, addr.value, sh);
+	}
+	regs.readIntRegister(value);
+	emitSTR(C_AL, value.value, addr.value, 0);
+	regs.freeIntRegister(addr);
     }
 
     @Override
     public void codeGetFieldLong(IMNode node, FieldRefCPEntry fieldRefCPEntry, Reg objRef, Reg64 result, int bcPosition) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+	int offset = getFieldOffset(fieldRefCPEntry);
+	regs.allocLongRegister(result);
+	regs.readIntRegister(objRef);
+	emitLDR(C_AL, result.low.value, objRef.value, offset);
+	emitLDR(C_AL, result.high.value, objRef.value, offset + 4);
     }
 
     @Override
     public void codeGetStaticFieldLong(IMNode node, FieldRefCPEntry fieldRefCpEntry, Reg64 result, int bcPosition) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+	String className = fieldRefCpEntry.getClassName();
+	BCClass aClass = classStore.findClass(className);
+	BCClassInfo info = aClass.getInfo();
+	int offset = info.classLayout.getFieldOffset(fieldRefCpEntry.getMemberName());
+	if (offset == -1) {
+	    throw new CompileException("Cannot find field " + fieldRefCpEntry.getMemberName() + " in class " + className);
+	}
+	Reg addr = regs.chooseIntRegister(result.low, result.high);
+	regs.saveIntRegister();
+	int foff = frame.start();
+	frame.push(-1, new ClassSTEntry(className));
+	this.call(new VMSupportSTEntry(VMSupportSTEntry.VM_GETSTATICS_ADDR2));
+	frame.cleanup(foff);
+	regs.allocIntRegister(addr, node.getDatatype());
+	this.mov(addr, Reg.eax);
+	int sh = rotImm8(offset);
+	if (sh >= 0) {
+	    dpi(C_AL, DP_ADD, false, addr.value, addr.value, sh);
+	}
+	regs.allocLongRegister(result);
+	emitLDR(C_AL, result.low.value, addr.value, 0);
+	emitLDR(C_AL, result.high.value, addr.value, 4);
+	regs.freeIntRegister(addr);
     }
 
     @Override
-    public void codePutFieldLong(IMNode node, FieldRefCPEntry fieldRefCPEntry, Reg objRef, Reg64 value, int bcPosition) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void codePutFieldLong(IMNode node, FieldRefCPEntry fieldRefCPEntry, Reg objRef, Reg64 value, int bcPosition) throws CompileException {	
+	int offset = getFieldOffset(fieldRefCPEntry);
+	regs.readIntRegister(objRef);
+	regs.readLongRegister(value);
+	emitSTR(C_AL, value.low.value, objRef.value, offset);
+	emitSTR(C_AL, value.high.value, objRef.value, offset + 4);
     }
 
     @Override
     public void codePutStaticFieldLong(IMNode node, FieldRefCPEntry fieldRefCpEntry, Reg64 value, int bcPosition) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+	String className = fieldRefCpEntry.getClassName();
+	BCClass aClass = classStore.findClass(className);
+	BCClassInfo info = aClass.getInfo();
+	int offset = info.classLayout.getFieldOffset(fieldRefCpEntry.getMemberName());
+	if (offset == -1) {
+	    throw new CompileException("Cannot find field " + fieldRefCpEntry.getMemberName() + " in class " + className);
+	}
+	Reg addr = regs.chooseIntRegister(value.high, value.low);
+	regs.saveIntRegister();
+	int foff = frame.start();
+	frame.push(-1, new ClassSTEntry(className));
+	this.call(new VMSupportSTEntry(VMSupportSTEntry.VM_GETSTATICS_ADDR2));
+	frame.cleanup(foff);
+	regs.allocIntRegister(addr, node.getDatatype());
+	this.mov(addr, Reg.eax);
+	int sh = rotImm8(offset);
+	if (sh >= 0) {
+	    dpi(C_AL, DP_ADD, false, addr.value, addr.value, sh);
+	}
+	regs.readLongRegister(value);
+	emitSTR(C_AL, value.low.value, addr.value, 0);
+	emitSTR(C_AL, value.high.value, addr.value, 4);
+	regs.freeIntRegister(addr);
     }
 
     @Override
     public void codeLongMul(IMNode node, IMOperant lOpr, IMOperant rOpr, Reg64 result, int bcPosition) throws CompileException {
-       // insMulLong(IC_AL, IOML_UMULL, result.high.value, result.low.value, lOpr., rOpr.);
+	Reg64 reg = regs.getLongRegister(Reg64.eax);
+	lOpr.translate(reg);
+	int offset = frame.start();
+	frame.push(reg);
+	regs.freeLongRegister(reg);
+	reg = regs.getLongRegister(Reg64.eax);
+	rOpr.translate(reg);
+	frame.push(reg);
+	regs.freeLongRegister(reg);
+	regs.saveIntRegister();
+	this.call(new LongArithmeticSTEntry(LongArithmeticSTEntry.MUL));
+	frame.cleanup(offset);
+	regs.allocLongRegister(result, Reg64.eax);
+	if (!result.equals(Reg64.eax)) {
+	    this.mov(result.low, Reg64.eax.low);
+	    this.mov(result.high, Reg64.eax.high);
+	}	
     }
 
     @Override
     public void codeLongDiv(IMNode node, IMOperant lOpr, IMOperant rOpr, Reg64 result, int bcPosition) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+	Reg64 reg = regs.getLongRegister(Reg64.eax);
+	lOpr.translate(reg);
+	int offset = frame.start();
+	frame.push(reg);
+	regs.freeLongRegister(reg);
+	reg = regs.getLongRegister(Reg64.eax);
+	rOpr.translate(reg);
+	frame.push(reg);
+	regs.freeLongRegister(reg);
+	regs.saveIntRegister();
+	this.call(new LongArithmeticSTEntry(LongArithmeticSTEntry.DIV));
+	frame.cleanup(offset);
+	regs.allocLongRegister(result, Reg64.eax);
+	if (!result.equals(Reg64.eax)) {
+	    this.mov(result.low, Reg64.eax.low);
+	    this.mov(result.high, Reg64.eax.high);
+	}	
     }
 
     @Override
     public void codeLongRem(IMNode node, IMOperant lOpr, IMOperant rOpr, Reg64 result, int bcPosition) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+	Reg64 reg = regs.getLongRegister(Reg64.eax);
+	lOpr.translate(reg);
+	int offset = frame.start();
+	frame.push(reg);
+	regs.freeLongRegister(reg);
+	reg = regs.getLongRegister(Reg64.eax);
+	rOpr.translate(reg);
+	frame.push(reg);
+	regs.freeLongRegister(reg);
+	regs.saveIntRegister();
+	this.call(new LongArithmeticSTEntry(LongArithmeticSTEntry.REM));
+	frame.cleanup(offset);
+	regs.allocLongRegister(result, Reg64.eax);
+	if (!result.equals(Reg64.eax)) {
+	    this.mov(result.low, Reg64.eax.low);
+	    this.mov(result.high, Reg64.eax.high);
+	}	
     }
 
     @Override
     public void codeLongShr(IMNode node, IMOperant lOpr, IMOperant rOpr, Reg64 result, int bcPosition) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+	Reg64 reg64 = regs.getLongRegister(Reg64.eax);
+	lOpr.translate(reg64);
+	int offset = frame.start();
+	frame.push(reg64);
+	regs.freeLongRegister(reg64);
+	Reg reg = regs.chooseIntRegister();
+	rOpr.translate(reg);
+	frame.push(reg);
+	regs.freeIntRegister(reg);
+	regs.saveIntRegister();
+	this.call(new LongArithmeticSTEntry(LongArithmeticSTEntry.SHR));
+	frame.cleanup(offset);
+	regs.allocLongRegister(result, Reg64.eax);
+	if (!result.equals(Reg64.eax)) {
+	    this.mov(result.low, Reg64.eax.low);
+	    this.mov(result.high, Reg64.eax.high);
+	}	
     }
 
     @Override
     public void codeLongShl(IMNode node, IMOperant lOpr, IMOperant rOpr, Reg64 result, int bcPosition) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+	Reg64 reg64 = regs.getLongRegister(Reg64.eax);
+	lOpr.translate(reg64);
+	int offset = frame.start();
+	frame.push(reg64);
+	regs.freeLongRegister(reg64);
+	Reg reg = regs.chooseIntRegister();
+	rOpr.translate(reg);
+	frame.push(reg);
+	regs.freeIntRegister(reg);
+	regs.saveIntRegister();
+	this.call(new LongArithmeticSTEntry(LongArithmeticSTEntry.SHL));
+	frame.cleanup(offset);
+	regs.allocLongRegister(result, Reg64.eax);
+	if (!result.equals(Reg64.eax)) {
+	    this.mov(result.low, Reg64.eax.low);
+	    this.mov(result.high, Reg64.eax.high);
+	}	
     }
 
     @Override
     public void codeLongUShr(IMNode node, IMOperant lOpr, IMOperant rOpr, Reg64 result, int bcPosition) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+	Reg64 reg64 = regs.getLongRegister(Reg64.eax);
+	lOpr.translate(reg64);
+	int offset = frame.start();
+	frame.push(reg64);
+	regs.freeLongRegister(reg64);
+	Reg reg = regs.chooseIntRegister();
+	rOpr.translate(reg);
+	frame.push(reg);
+	regs.freeIntRegister(reg);
+	regs.saveIntRegister();
+	this.call(new LongArithmeticSTEntry(LongArithmeticSTEntry.USHR));
+	frame.cleanup(offset);
+	regs.allocLongRegister(result, Reg64.eax);
+	if (!result.high.equals(Reg64.eax.high)) {
+		this.mov(result.high, Reg64.eax.high);
+	}
+	if (!result.low.equals(Reg64.eax.low)) {
+		this.mov(result.low, Reg64.eax.low);
+	}
     }
 
     @Override
     public void codeLongCompare(IMNode node, IMOperant lOpr, IMOperant rOpr, Reg result, int bcPosition) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+	Reg64 reg = regs.getLongRegister(Reg64.eax);
+	lOpr.translate(reg);
+	int offset = frame.start();
+	frame.push(reg);
+	regs.freeLongRegister(reg);
+	reg = regs.getLongRegister(Reg64.eax);
+	rOpr.translate(reg);
+	frame.push(reg);
+	regs.freeLongRegister(reg);
+	regs.saveIntRegister();
+	this.call(new LongArithmeticSTEntry(LongArithmeticSTEntry.CMP));
+	frame.cleanup(offset);
+	regs.allocIntRegister(result, Reg.eax, BCBasicDatatype.BOOLEAN);
+	if (!result.equals(Reg.eax))
+	    this.mov(result, Reg.eax);
+    }
+
+    // Helper method for pushing arguments
+    private int codeStaticPushArgs(IMOperant[] args) throws CompileException {
+	int offset = frame.start();
+	for (int i = (args.length - 1); i >= 0; i--) {
+	    int datatype = args[i].getDatatype();
+	    if (args[i].isConstant()) {
+		if (datatype == BCBasicDatatype.DOUBLE) {
+		    long bits = Double.doubleToLongBits(((IMConstant)args[i]).getDoubleValue());
+		    frame.push(datatype, (int)bits);
+		    frame.push(datatype, (int)(bits >>> 32));
+		} else if (datatype == BCBasicDatatype.LONG) {
+		    long value = ((IMConstant)args[i]).getLongValue();
+		    frame.push(datatype, (int)value);
+		    frame.push(datatype, (int)(value >>> 32));
+		} else {
+		    frame.push(datatype, ((IMConstant)args[i]).getIntValue());
+		}
+	    } else if (datatype == BCBasicDatatype.DOUBLE || datatype == BCBasicDatatype.LONG) {
+		Reg64 reg = regs.chooseLongRegister();
+		args[i].translate(reg);
+		regs.readLongRegister(reg);
+		frame.push(reg);
+		regs.freeLongRegister(reg);
+	    } else {
+		Reg reg = regs.chooseIntRegister(null);
+		args[i].translate(reg);
+		frame.push(datatype, reg);
+		regs.freeIntRegister(reg);
+	    }
+	}
+	return offset;
+    }
+    
+    private int codeVirtualPushArgs(IMOperant obj, IMOperant[] args, Reg objRef, int bcPosition) throws CompileException {
+        int offset = frame.start();
+        for (int i = (args.length - 1); i >= 0; i--) {
+            int datatype = args[i].getDatatype();
+            if (args[i].isConstant()) {
+                if (datatype == BCBasicDatatype.DOUBLE) {
+                    long bits = Double.doubleToLongBits(((IMConstant)args[i]).getDoubleValue());
+                    frame.push(datatype, (int)bits);
+                    frame.push(datatype, (int)(bits >>> 32));
+                } else if (datatype == BCBasicDatatype.LONG) {
+                    long value = ((IMConstant)args[i]).getLongValue();
+                    frame.push(datatype, (int)value);
+                    frame.push(datatype, (int)(value >>> 32));
+                } else {
+                    frame.push(datatype, ((IMConstant)args[i]).getIntValue());
+                }
+            } else if (datatype == BCBasicDatatype.DOUBLE || datatype == BCBasicDatatype.LONG) {
+                Reg64 reg = regs.chooseLongRegister();
+                args[i].translate(reg);
+                regs.readLongRegister(reg);
+                frame.push(reg);
+                regs.freeLongRegister(reg);
+            } else {
+                Reg reg = regs.chooseIntRegister(null);
+                args[i].translate(reg);
+                frame.push(datatype, reg);
+                regs.freeIntRegister(reg);
+            }
+        }
+        obj.translate(objRef);
+        frame.push(BCBasicDatatype.REFERENCE, objRef);
+        return offset;
+    }
+    
+    private void codeStackCleanup(int offset, Reg result, int datatype) throws CompileException {
+        frame.cleanup(offset);
+        if (result != null && result.value != -1) {
+            if (datatype == BCBasicDatatype.LONG || datatype == BCBasicDatatype.DOUBLE) {
+                frame.pop(Reg64.eax.low);
+                frame.pop(Reg64.eax.high);
+                // For long/double, result should be Reg64, but we're passed Reg
+                // Cast or create Reg64 from result
+                Reg64 reg64Result = Reg64.extendLowRegister(result);
+                if (reg64Result != null) {
+                    this.mov(reg64Result.low, Reg64.eax.low);
+                    this.mov(reg64Result.high, Reg64.eax.high);
+                }
+            } else {
+                frame.pop(Reg.eax);
+                this.mov(result, Reg.eax);
+            }
+        }
     }
 
     @Override
     public void codeVirtualCall(IMNode node, MethodRefCPEntry methodRefCPEntry, IMOperant obj, IMOperant[] args, int datatype, Reg result, int bcPosition) throws CompileException {
-        genCallConst(null, 0);
+	Reg objRef = regs.chooseIntRegister(null);
+	int offset = codeVirtualPushArgs(obj, args, objRef, bcPosition);
+	this.startBC(bcPosition);
+	if (obj.checkReference())
+	    codeCheckReference(node, objRef, bcPosition);
+	regs.saveOtherIntRegister(objRef);
+	Reg vtable = regs.chooseAndAllocIntRegister(objRef, -1);
+	this.mov(vtable, objRef.ref());
+	// Get method from vtable - need method index
+	// For now, use a direct call
+	this.call(vtable);
+	regs.freeIntRegister(vtable);
+	regs.clearActives();
+	codeStackMap(node, this.getCurrentIP());
+	codeStackCleanup(offset, result, node.getDatatype());
+	this.endBC();
     }
 
     @Override
     public void codeSpecialCall(IMNode node, MethodRefCPEntry methodRefCPEntry, IMOperant obj, IMOperant[] args, int datatype, Reg result, int bcPosition) throws CompileException {
-        genCallConst(null, 0);
+	Reg objRef = regs.chooseIntRegister(null);
+	int offset = codeVirtualPushArgs(obj, args, objRef, bcPosition);
+	this.startBC(bcPosition);
+	if (obj.checkReference())
+	    codeCheckReference(node, objRef, bcPosition);
+	regs.saveOtherIntRegister(objRef);
+	DirectMethodCallSTEntry target = new DirectMethodCallSTEntry(methodRefCPEntry.getClassName(),
+								 methodRefCPEntry.getMemberName(),
+								 methodRefCPEntry.getMemberTypeDesc());
+	this.call(target);
+	regs.clearActives();
+	codeStackMap(node, this.getCurrentIP());
+	codeStackCleanup(offset, result, node.getDatatype());
+	this.endBC();
     }
 
     @Override
     public void codeInterfaceCall(IMNode node, InterfaceMethodRefCPEntry interfaceRefCPEntry, IMOperant obj, IMOperant[] args, int datatype, Reg result, int bcPosition) throws CompileException {
-        genCallConst(null, 0);
+	Reg objRef = regs.chooseIntRegister(null);
+	int offset = codeVirtualPushArgs(obj, args, objRef, bcPosition);
+	this.startBC(bcPosition);
+	if (obj.checkReference())
+	    codeCheckReference(node, objRef, bcPosition);
+	regs.saveOtherIntRegister(objRef);
+	// Interface call via interface method table
+	// For now, use direct call
+	DirectMethodCallSTEntry target = new DirectMethodCallSTEntry(interfaceRefCPEntry.getClassName(),
+								 interfaceRefCPEntry.getMemberName(),
+								 interfaceRefCPEntry.getMemberTypeDesc());
+	this.call(target);
+	regs.clearActives();
+	codeStackMap(node, this.getCurrentIP());
+	codeStackCleanup(offset, result, node.getDatatype());
+	this.endBC();
     }
 
     @Override
     public void codeStaticCall(IMNode node, MethodRefCPEntry methodRefCPEntry, IMOperant[] args, int datatype, Reg result, int bcPosition) throws CompileException {
-        genCallConst(null, 0);
+	int offset = codeStaticPushArgs(args);
+	this.startBC(bcPosition);
+	regs.saveIntRegister();
+	DirectMethodCallSTEntry target = new DirectMethodCallSTEntry(methodRefCPEntry.getClassName(),
+								 methodRefCPEntry.getMemberName(),
+								 methodRefCPEntry.getMemberTypeDesc());
+	this.call(target);
+	regs.clearActives();
+	codeStackMap(node, this.getCurrentIP());
+	codeStackCleanup(offset, result, node.getDatatype());
+	this.endBC();
     }
 
     @Override
     public void codeVirtualCallLong(IMNode node, MethodRefCPEntry methodRefCPEntry, IMOperant obj, IMOperant[] args, int datatype, Reg64 result, int bcPosition) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+	// Similar to codeVirtualCall but with Reg64 result
+	throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public void codeSpecialCallLong(IMNode node, MethodRefCPEntry methodRefCPEntry, IMOperant obj, IMOperant[] args, int datatype, Reg64 result, int bcPosition) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+	throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public void codeInterfaceCallLong(IMNode node, InterfaceMethodRefCPEntry interfaceRefCPEntry, IMOperant obj, IMOperant[] args, int datatype, Reg64 result, int bcPosition) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+	throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public void codeStaticCallLong(IMNode node, MethodRefCPEntry methodRefCPEntry, IMOperant[] args, int datatype, Reg64 result, int bcPosition) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+	throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public void codeStackMap(IMNode node, int InstructionPointer) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+	// Record stack map for GC/exception handling
+	node.addDebugInfo(frame.stackMapToString(node));
+	// Add symbol table entry for stack map
+	symbolTable.add(new StackMapSTEntry(node, InstructionPointer, frame));
     }
 
     @Override
     public UnresolvedJump createExceptionCall(int exception, int bcPosition) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+	return createExceptionCall(exception, bcPosition, new UnresolvedJump());
+    }
+    
+    public UnresolvedJump createExceptionCall(int exception, int bcPosition, UnresolvedJump jump) {
+	// Generate exception call code
+	// Push exception code
+	// Call exception handler
+	// This is a simplified version
+	jump.setJump(ip, ip + 4);
+	return jump;
     }
 }

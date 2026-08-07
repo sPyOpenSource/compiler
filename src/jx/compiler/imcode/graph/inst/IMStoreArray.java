@@ -91,23 +91,23 @@ final public class IMStoreArray extends IMOperant  {
 	code.startBC(bcPosition);
 
 	if (aOpr.checkReference())
-	    execEnv.codeCheckReference(this,array,bcPosition);
+	    execEnv.codeCheckReference(this, array, bcPosition);
 
-	if (false && iOpr.isConstant() && (((IMConstant)iOpr).getIntValue()<128)) {
+	if (false && iOpr.isConstant() && (((IMConstant)iOpr).getIntValue() < 128)) {
 	    int index = ((IMConstant)iOpr).getIntValue();
 	    if (aOpr.checkArrayRange(index)) 
-		execEnv.codeCheckArrayRange(this,array,index,bcPosition);
-	    execEnv.codePutArrayField(this,array,datatype,index,result,bcPosition);
+		execEnv.codeCheckArrayRange(this, array, index, bcPosition);
+	    execEnv.codePutArrayField(this, array, datatype, index, result, bcPosition);
 	} else {
-	    Reg indx  = regs.chooseIntRegister(result,array);
+	    Reg indx  = regs.chooseIntRegister(result, array);
 	    iOpr.translate(indx);
 	    if (aOpr.checkArrayRange(iOpr)) 
-		execEnv.codeCheckArrayRange(this,array,indx,bcPosition);
+		execEnv.codeCheckArrayRange(this, array, indx, bcPosition);
 
-	    if (datatype==BCBasicDatatype.REFERENCE) 
-		execEnv.codeCheckMagic(this,result,bcPosition);
+	    if (datatype == BCBasicDatatype.REFERENCE) 
+		execEnv.codeCheckMagic(this, result, bcPosition);
 
-	    execEnv.codePutArrayField(this,array,datatype,indx,result,bcPosition);
+	    execEnv.codePutArrayField(this, array, datatype, indx, result, bcPosition);
 	    regs.freeIntRegister(indx);
 	}
 
@@ -119,32 +119,46 @@ final public class IMStoreArray extends IMOperant  {
     // IMStoreArray
     @Override
     public void translate(Reg64 result) throws CompileException {
-	Debug.out.println("warn: IMStoreArray.tanslateLong not impl");
-	/*
-	    rvalue.translate(result);
+	//Debug.out.println("warn: IMStoreArray.tanslateLong not impl");
+	
+        rvalue.translate(result);
 
-	    Reg array = regs.chooseIntRegister(result);
-	    aOpr.translate(array);
+        Reg arrayh = regs.chooseIntRegister(result.high);
+        Reg arrayl = regs.chooseIntRegister(result.low);
+        aOpr.translate(arrayh);
+        aOpr.translate(arrayl);
 
-	    code.startBC(bcPosition);
+        code.startBC(bcPosition);
 
-	    if (aOpr.checkReference())
-		    execEnv.codeCheckReference(this,array,bcPosition);
+        if (aOpr.checkReference()){
+            execEnv.codeCheckReference(this, arrayh, bcPosition);
+            execEnv.codeCheckReference(this, arrayl, bcPosition);
+        }
 
-	    Reg indx  = regs.chooseIntRegister(result,array);
-	    iOpr.translate(indx);
-	    if (aOpr.checkArrayRange(iOpr)) 
-		    execEnv.codeCheckArrayRange(this,array,indx,bcPosition);
+        Reg indxh = regs.chooseIntRegister(result.high, arrayh);
+        iOpr.translate(indxh);
+        if (aOpr.checkArrayRange(iOpr)) 
+                execEnv.codeCheckArrayRange(this, arrayh, indxh, bcPosition);
 
-	    if (datatype==BCBasicDatatype.REFERENCE) 
-		    execEnv.codeCheckMagic(this,result,bcPosition);
+        if (datatype == BCBasicDatatype.REFERENCE) 
+                execEnv.codeCheckMagic(this, result.high, bcPosition);
 
-	    execEnv.codePutArrayField(this,array,datatype,indx,result,bcPosition);
-	    regs.freeIntRegister(indx);
+        execEnv.codePutArrayField(this, arrayh, datatype, indxh, result.high, bcPosition);
+        regs.freeIntRegister(indxh);
 
-	    code.endBC();
+        Reg indxl = regs.chooseIntRegister(result.low, arrayl);
+        iOpr.translate(indxl);
+        if (aOpr.checkArrayRange(iOpr)) 
+                execEnv.codeCheckArrayRange(this, arrayl, indxl, bcPosition);
 
-	    regs.freeIntRegister(array);
-	 */
-    } 
+        if (datatype == BCBasicDatatype.REFERENCE) 
+                execEnv.codeCheckMagic(this, result.low, bcPosition);
+
+        execEnv.codePutArrayField(this, arrayl, datatype, indxl, result.low, bcPosition);
+        regs.freeIntRegister(indxl);
+        code.endBC();
+
+        regs.freeIntRegister(arrayh);
+        regs.freeIntRegister(arrayl);
+    }
 }

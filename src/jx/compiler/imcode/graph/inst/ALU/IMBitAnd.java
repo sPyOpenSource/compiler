@@ -32,13 +32,12 @@ public class IMBitAnd extends IMBitOperator {
 
     if (datatype == BCBasicDatatype.INT) {
         if (rOpr.isConstant() && lOpr.isConstant()) {
-        IMConstant lcOpr = lOpr.nodeToConstant();
-        IMConstant rcOpr = rOpr.nodeToConstant();
-        int value = 0;
-        if (opts.doVerbose("cf")) Debug.out.println("++ folding c&c "+toString());
-        value = lcOpr.getIntValue() & rcOpr.getIntValue();
-        lcOpr.setIntValue(value);
-        return lcOpr;
+            IMConstant lcOpr = lOpr.nodeToConstant();
+            IMConstant rcOpr = rOpr.nodeToConstant();
+            if (opts.doVerbose("cf")) Debug.out.println("++ folding c&c "+toString());
+            int value = lcOpr.getIntValue() & rcOpr.getIntValue();
+            lcOpr.setIntValue(value);
+            return lcOpr;
         }
 
         if (lOpr.isConstant()) {
@@ -49,14 +48,14 @@ public class IMBitAnd extends IMBitOperator {
 
         if (rOpr.isConstant()) {
             int value = rOpr.nodeToConstant().getIntValue();         
-                if (value == 0) {
-          if (opts.doVerbose("cf")) Debug.out.println("++ folding c&0 "+toString());    
-                  return rOpr;
-                }
-        if (value == 0xffffffff) {
-          if (opts.doVerbose("cf")) Debug.out.println("++ folding c&c "+toString());
-          return lOpr; 
-                }
+            if (value == 0) {
+                if (opts.doVerbose("cf")) Debug.out.println("++ folding c&0 "+toString());    
+                return rOpr;
+            }
+            if (value == 0xffffffff) {
+                if (opts.doVerbose("cf")) Debug.out.println("++ folding c&c "+toString());
+                return lOpr; 
+            }
         }
     }
 
@@ -88,7 +87,7 @@ public class IMBitAnd extends IMBitOperator {
 
     lOpr.translate(result);
     reg = regs.chooseLongRegister(result);
-    rOpr.translateLong(reg);
+    rOpr.translate(reg);
 
     code.startBC(bcPosition);
 

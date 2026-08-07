@@ -3,7 +3,7 @@
 ## Knowledge
 
 - [JVM Specification: The Java Virtual Machine](https://docs.oracle.com/en/java/javase/17/docs/specs/jvms/)
-  The ultimate authority on bytecode, the operand stack, and type representation. Use for: understanding the "two-slot" rule for longs/doubles.
+  The ultimate authority on bytecode, the operand stack, and type representation. Use for: understanding the "two-slot" rule for longs/doubles, and §2.5.2 (operand stack) + Ch.6 instruction semantics for bytecode→native (Lesson 5).
 - [IEEE 754 Standard for Floating-Point Arithmetic](https://ieeexplore.ieee.org/document/8766229)
   The standard for how `float` and `double` are actually stored in bits. Use for: understanding sign/exponent/mantissa.
 - [Wikipedia: Ahead-of-time compilation](https://en.wikipedia.org/wiki/Ahead-of-time_compilation)
@@ -22,6 +22,10 @@
   Practical Java-focused comparison with jaotc and GraalVM examples. Use for: concrete flow diagrams.
 - [Blog: "Java GraalVM Native Image: The Complete Guide to AOT Compilation in 2026" — Angel Oprea](https://www.angeloprea.com/blog/java-in-2026-the-complete-guide-to-enterprises-most-enduring-programming-language/java-graalvm-native-image-the-complete-guide-to-aot-compilation-in-2026)
   Modern summary with comparative table. Use for: quick reference on tradeoff dimensions.
+- [ARM Architecture Reference Manual (ARMv7-A/R) — DDI 0406](https://developer.arm.com/documentation/ddi0406/latest)
+  The authoritative CPU spec. Use for: data-processing instruction semantics — ADC/SBC opcodes, the S bit (flags are opt-in on ARM), condition codes. The ground truth for the ARM encoder work (Lesson 6).
+- [Hacker's Delight, Ch. 2 "Basics" — H. S. Warren](https://en.wikipedia.org/wiki/Hacker%27s_Delight)
+  Classic treatment of multi-word arithmetic, overflow, and carries. Use for: understanding carry chains generally before writing ARM long-arithmetic helpers (Lesson 6).
 
 ## Wisdom (Communities)
 

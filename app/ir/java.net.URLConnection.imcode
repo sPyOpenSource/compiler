@@ -4,13 +4,14 @@ class java/net/URLConnection {
   +START:   #1
         if factory==null goto B16;   
   -B6:   #1
-        throw new java/lang/Error("The ContentHandlerFactory is already set");   
+        b0 = new java/lang/Error("The ContentHandlerFactory is already set");    [ R  i][ R . iRR]
+        throw b0;   
   +B16:   #1
         factory = vR0;   
         return;   
   +END:   #1
  }
-// Register: rd 3/3 wr 1 swaps 0 any 0 found 1 setContentHandlerFactory
+// Register: rd 4/4 wr 2 swaps 0 any 0 found 1 setContentHandlerFactory
  
  method getDefaultAllowUserInteraction()Z {
   +START:   #1
@@ -29,14 +30,14 @@ class java/net/URLConnection {
  
  method getDefaultRequestProperty(Ljava/lang/String;)Ljava/lang/String; {
   +START:   #1
-        return (java/lang/String)(def_req_props.get(vR0.toLowerCase@extra()));   
+        return (java/lang/String)(def_req_props.get(vR0.toLowerCase@this()));   
   +END:   #1
  }
 // Register: rd 2/2 wr 3 swaps 1 any 0 found 0 getDefaultRequestProperty
  
  method setDefaultRequestProperty(Ljava/lang/String;Ljava/lang/String;)V {
   +START:   #1
-        def_req_props.put(vR0.toLowerCase@extra(),vR1);   [  i. RRR] 
+        def_req_props.put(vR0.toLowerCase@this(),vR1);   [  i. RRR] 
         return;   
   +END:   #1
  }
@@ -44,7 +45,7 @@ class java/net/URLConnection {
  
  method guessContentTypeFromName(Ljava/lang/String;)Ljava/lang/String; {
   +START:   #1
-        return fileNameMap.getContentTypeFor(vR0.toLowerCase@extra());   
+        return fileNameMap.getContentTypeFor(vR0.toLowerCase@this());   
   +END:   #1
  }
 // Register: rd 1/1 wr 2 swaps 1 any 0 found 0 guessContentTypeFromName
@@ -185,14 +186,14 @@ class java/net/URLConnection {
  
  method getRequestProperty(Ljava/lang/String;)Ljava/lang/String; {
   +START:   #1
-        return (java/lang/String)(vR0.req_props.get(vR1.toLowerCase@extra()));   
+        return (java/lang/String)(vR0.req_props.get(vR1.toLowerCase()));   
   +END:   #1
  }
 // Register: rd 3/3 wr 2 swaps 1 any 0 found 0 getRequestProperty
  
  method setRequestProperty(Ljava/lang/String;Ljava/lang/String;)V {
   +START:   #1
-        vR0.req_props.put(vR1.toLowerCase@extra(),vR2);   [  i RRR] 
+        vR0.req_props.put(vR1.toLowerCase(),vR2);   [  i RRR] 
         return;   
   +END:   #1
  }
@@ -238,7 +239,7 @@ class java/net/URLConnection {
         vR1 = vR0.getHeaderField@this("content-type");    [  i RR] 
         if vR1!=null goto B22;   
   +B11:   #1
-        vR1 = guessContentTypeFromName@special(vR0.getURL@this().getFile@extra());    [R  R R.]
+        vR1 = guessContentTypeFromName@special(vR0.getURL@this().getFile());    [R  R R.]
   +B22:   #1
         return vR1;   
   +END:   #1
@@ -289,7 +290,7 @@ class java/net/URLConnection {
   +B12:   #1
         return 0;   
   +B14:   #1
-        if vR3.toLowerCase@extra().equals@extra(vR1.toLowerCase@extra())==0 goto B34;   
+        if vR3.toLowerCase().equals(vR1.toLowerCase())==0 goto B34;   
   +B28:   #1
         return vR0.getHeaderField@this(vi2);   
   +B34:   #1
@@ -306,7 +307,8 @@ class java/net/URLConnection {
   +B12:   #1
         return vl2;   
   +B14:   #1
-        vR5 = new java/util/Date(vR4);    [ R  i.][ R . iRR]
+        b0 = new java/util/Date(vR4);    [ R  i.][ R . iRR]
+        vR5 = b0;    
         if vR5!=null goto B32;   
   +B30:   #1
         return vl2;   
@@ -314,7 +316,7 @@ class java/net/URLConnection {
         return (vR5.getTime()/1000);   
   +END:   #1
  }
-// Register: rd 5/5 wr 3 swaps 0 any 2 found 0 getHeaderFieldDate
+// Register: rd 6/6 wr 4 swaps 0 any 3 found 0 getHeaderFieldDate
  
  method getHeaderFieldInt(Ljava/lang/String;I)I {
   +START:   #1
@@ -327,7 +329,7 @@ class java/net/URLConnection {
   +B15:   #1
         vi4 = parseInt@special(vR3);    [Ri   R.]
   +B21:   #1
-        goto +B28;   forward return[Ri   ..]
+        goto +B28;   [Ri   ..]
   +H24<caught exception>:   #1 reference
         vR5 = <caught exception>;    
         return vi2;   
@@ -341,10 +343,11 @@ EXCEPTIONHANDLER-TABLE:
  
  method getPermission()Ljava/security/Permission; {
   +START:   #1
-        return new java/security/AllPermission();   
+        b0 = new java/security/AllPermission();    [ R  i][ R  iR]
+        return b0;   
   +END:   #1
  }
-// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getPermission
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getPermission
  
  method getContent()Ljava/lang/Object; {
   +START:   #1
@@ -359,11 +362,12 @@ EXCEPTIONHANDLER-TABLE:
         return vR2.getContent(vR0);   
   +B33:   #4
         b0 = new java/lang/StringBuilder();    [ R . i.][ R . iR]
-        vR3 = forName@special(b0.append@extra("gnu.java.net.content.").append@extra(vR1.replace@extra(47,46)).toString@extra());    [RR R Rii. R..]
-        vR4 = vR3.newInstance@extra();    [RRR R Rii. R..] 
+        vR3 = forName@special(b0.append("gnu.java.net.content.").append(vR1.replace(47,46)).toString());    [RR R Rii. R..]
+        vR4 = vR3.newInstance();    [RRR R Rii. R..] 
         if (vR4 instanceof java/net/ContentHandler)!=0 goto B86;   
   -B77:   #1
-        throw new java/net/UnknownServiceException(vR1);   
+        b0 = new java/net/UnknownServiceException(vR1);    [ R .... i..][ R .... iRR]
+        throw b0;   
   +B86:   #1
         vR2 = (java/net/ContentHandler)(vR4);    
         b0 = vR2.getContent(vR0);    [RRRR R .... RR.] 
@@ -378,18 +382,19 @@ EXCEPTIONHANDLER-TABLE:
   +H106<caught exception>:   #1 reference
         vR3 = <caught exception>;    
   -B107:   #2
-        throw new java/net/UnknownServiceException(vR1);   
+        b0 = new java/net/UnknownServiceException(vR1);    [ R .... i..][ R .... iRR]
+        throw b0;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
 33 - 97 handler 98 type 207
 33 - 97 handler 102 type 209
 33 - 97 handler 106 type 211
  }
-// Register: rd 15/15 wr 19 swaps 2 any 2 found 1 getContent
+// Register: rd 17/17 wr 21 swaps 2 any 2 found 1 getContent
  
  method toString()Ljava/lang/String; {
   +START:   #1
-        return vR0.url.toString@extra();   
+        return vR0.url.toString();   
   +END:   #1
  }
 // Register: rd 1/1 wr 0 swaps 0 any 0 found 0 toString

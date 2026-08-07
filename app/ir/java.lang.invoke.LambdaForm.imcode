@@ -10,50 +10,57 @@ class java/lang/invoke/LambdaForm {
  
  method arguments(ILjava/lang/invoke/MethodType;)[Ljava/lang/invoke/LambdaForm$Name; {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 arguments
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 arguments
  
  method editor()Ljava/lang/invoke/LambdaFormEditor; {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 editor
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 editor
  
  method expressionCount()I {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 expressionCount
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 expressionCount
  
  method uncustomize()Ljava/lang/invoke/LambdaForm; {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 uncustomize
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 uncustomize
  
  method prepare()V {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 prepare
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 prepare
  
  method compileToBytecode()Ljava/lang/invoke/MemberName; {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 compileToBytecode
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 compileToBytecode
  
  method customize(Ljava/lang/invoke/MethodHandle;)Ljava/lang/invoke/LambdaForm; {
   -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+        b0 = new java/lang/UnsupportedOperationException("Not supported yet.");    [ R  i][ R . iRR]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 customize
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 customize
 }

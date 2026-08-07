@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Implementing long: 64-bit on 32-bit hardware</title>
+    <link rel="stylesheet" href="../assets/shared.css">
+</head>
+<body>
+    <header>
+        <h1>Implementing <code>long</code>: 64-bit on 32-bit Hardware</h1>
+        <p>The ARM encoder has <code>codeLong*</code> stubs everywhere. Here's the mental model that turns them into real code — one 64-bit value, three ways to compute with it.</p>
+    </header>
+
+    <section>
+        <h2>One idea first</h2>
+        <p>Your target (32-bit ARM) has no 64-bit registers. So a <code>long</code> — which you already know is a <em>two-slot</em> JVM type (<a href="0002-numeric-types-and-the-stack.html">Lesson 2</a>) — must live in <strong>two 32-bit words</strong>. jcore calls this pair a <code>Reg64</code>, with a <code>low</code> and a <code>high</code> half (<code>Reg64.java:17-18</code>):</p>
+        <pre><code>value = [ high word ][ low word ]      // two 32-bit registers
+        // Reg64.eax = { low: eax, high: edx }   (Reg64.java:13)
+        // Reg64.ebx = { low: ebx, high: ecx }</code></pre>
+        <p>Now the hard part. A 32-bit CPU computes with one word at a time. When the low words add and overflow, the overflow has to reach the high words. The CPU's <strong>carry flag</strong> is the bridge — and everything about <code>long</code> support is really about how each operation treats that bridge.</p>
+    </section>
+
+    <section>
+        <h2>The three decomposition patterns</h2>
+        <p>Every long operation in jcore is one of three patterns. Find the pattern, and you know how to write it on ARM.</p>
+
+        <h3>Pattern 1 — Word-at-a-time: bitwise ops (no carry)</h3>
+        <p>AND/OR/XOR process each bit independently. No word depends on another, so you just run the 32-bit instruction twice — order doesn't even matter. <code>IMBitAnd.translate(Reg64)</code> (<code>IMBitAnd.java:86-102</code>):</p>
+        <pre><code>lOpr.translate(result);
+reg = regs.chooseLongRegister(result);     // scratch pair
+rOpr.translate(reg);
+code.andl(reg.low,  result.low);           // low  word: result.low  &amp;= reg.low
+code.andl(reg.high, reg.high);             // &lt;-- see the bug-hunt below</code></pre>
+
+        <h3>Pattern 2 — Carry-chained: add, sub, negate</h3>
+        <p>The core idea of all multi-word arithmetic:</p>
+        <figure>
+            <pre><code>   a = [ a_hi ][ a_lo ]      b = [ b_hi ][ b_lo ]
+                                        │
+                   low word first       │
+        ADD  a_lo, b_lo ───────────────▶│ sets carry (overflow)
+                                        ▼
+                   high word second  ADC a_hi, b_hi ── reads carry
+                   (add-with-carry)</code></pre>
+            <figcaption>One extra flag-consuming instruction per word. This generalizes to 3, 4, … N words — the only thing that changes is how many ADCs you emit.</figcaption>
+        </figure>
+        <p><code>IMAdd.translate(Reg64)</code> (<code>IMAdd.java:212-230</code>) does exactly this:</p>
+        <pre><code>code.addl(reg.low,  result.low);     // low  words add  → sets carry
+code.adcl(reg.high, reg.high);       // &lt;-- and here's the other bug-hunt</code></pre>
+        <p>Subtraction is the same shape with borrow: <code>SUBS</code> then <code>SBC</code> (<code>IMSub.java:196-214</code>, calls <code>subl</code>/<code>sbbl</code>). Negation is <code>negl lo; adcl 0, hi; negl hi</code> (<code>IMNeg.java:85-97</code>).</p>
+
+        <h3>Pattern 3 — Runtime helper call: mul, div, rem, shifts, lcmp</h3>
+        <p>These are too expensive to inline (64×64 multiply is four 32-bit multiplies plus carries; division is a whole algorithm). The IA32 backend sidesteps entirely — it <em>calls a helper routine</em>. <code>ExecEnvironmentIA32.codeLongMul</code> (<code>ExecEnvironmentIA32.java:1306</code>):</p>
+        <pre><code>lOpr.translate(reg); frame.push(reg);          // push first long arg
+rOpr.translate(reg); frame.push(reg);          // push second long arg
+regs.saveIntRegister();
+code.call(new LongArithmeticSTEntry(LongArithmeticSTEntry.MUL));   // runtime helper
+// result comes back in the eax/edx pair (Reg64.eax)</code></pre>
+        <p>The same shape appears for DIV, REM, SHL, SHR, USHR and LCMP (<code>ExecEnvironmentIA32.java:1332, 1358, 1385, 1411, 1437, 1472</code>). The helper is a runtime routine (<code>LongArithmeticSTEntry.java:10</code>) — jcore writes the value onto the frame stack, calls, reads the pair back.</p>
+    </section>
+
+    <section>
+        <h2>The ARM twist: flags are opt-in</h2>
+        <p>Here is the trap that makes a copy-paste port fail. On x86, <em>every</em> ALU instruction writes the flags. On ARM, a data-processing instruction writes the flags <strong>only if the S bit (bit 20) is set</strong> — <code>ADDS</code> sets carry, plain <code>ADD</code> does not.</p>
+        <p>Now read your encoder again. <code>add</code> and <code>sub</code> pass <code>s=false</code> (<code>BinaryCodeDynamicARM.java:464-487</code>). The low-word add of a 64-bit chain must set the carry — so it needs a flag-setting variant. And the carry-consuming instructions are <strong>separate opcodes</strong>, not the same opcode reading a flag:</p>
+        <table>
+            <thead><tr><th>Operation</th><th>x86 (what IM nodes call)</th><th>ARM encoding needed</th><th>Encoder today</th></tr></thead>
+            <tbody>
+                <tr><td>low-word add</td><td><code>addl</code></td><td><code>ADDS</code> (S bit set)</td><td><code>add</code>, s=false — <strong>gap</strong></td></tr>
+                <tr><td>high-word add</td><td><code>adcl</code></td><td><code>ADC</code> (op 0x5, reads carry)</td><td><code>DP_ADC</code> defined :135, <code>adc</code> is a stub :615 — <strong>gap</strong></td></tr>
+                <tr><td>low-word sub</td><td><code>subl</code></td><td><code>SUBS</code> (S bit set)</td><td><code>sub</code>, s=false — <strong>gap</strong></td></tr>
+                <tr><td>high-word sub</td><td><code>sbbl</code></td><td><code>SBC</code> (op 0x6, reads borrow)</td><td>not present — <strong>gap</strong></td></tr>
+                <tr><td>negate pair</td><td><code>negl</code>+<code>adcl</code></td><td><code>RSBS</code>+<code>RSC</code> (ops 0x3/0x7)</td><td><code>DP_RSB</code> exists, no <code>rsc</code> — <strong>gap</strong></td></tr>
+            </tbody>
+        </table>
+        <p>Meanwhile the helper-call pattern needs no new arithmetic opcodes at all — <code>call(SymbolTableEntryBase)</code> already emits a relocatable <code>BL</code> (<code>BinaryCodeDynamicARM.java:247</code>). Pattern 3's real cost is writing the ARM-side long-arithmetic routines.</p>
+    </section>
+
+    <section>
+        <h2>Before you write a line: bug-hunt the reference</h2>
+        <p>Two calls above have a suspicious operand. Read them in context:</p>
+        <ul>
+            <li><code>IMAdd.java:225</code> — <code>code.adcl(reg.high, reg.high)</code>. <code>adcl(src, des)</code> means <code>des += src + carry</code> (<code>BinaryCodeIA32.java:986</code>). So this adds <code>reg.high</code> to itself and never touches <code>result.high</code>. The high word of the addend is lost. It should be <code>adcl(reg.high, result.high)</code>.</li>
+            <li><code>IMBitAnd.java:97</code> — <code>code.andl(reg.high, reg.high)</code> is a no-op (<code>x &amp;= x</code>), dropping <code>result.high</code>. Should be <code>andl(reg.high, result.high)</code>. <code>IMBitOr</code>/<code>IMBitXor</code> are likely the same.</li>
+        </ul>
+        <p>These are in the <em>reference</em> x86 backend — so 64-bit path has clearly never been exercised there, and you cannot trust it as a source of truth. When you port the carry chain to ARM, verify the semantics yourself with a 2-3 line test program rather than copying.</p>
+    </section>
+
+    <section>
+        <h2>What "implement long support" means here</h2>
+        <p>Everything before Act 4 already works — the IM nodes dispatch by datatype to <code>translate(Reg64)</code>, which reaches your <code>codeLong*</code> stubs or the inline <code>addl</code>/<code>adcl</code>/… calls (<code>IMNode.java:297-322</code>). Your job is the encoder, in this order:</p>
+        <ol>
+            <li><strong>Close the naming seam</strong> (from <a href="0005-bytecode-to-native-pipeline.html">Lesson 5</a>): the IM nodes call x86 names — <code>addl</code>, <code>adcl</code>, <code>subl</code>, <code>sbbl</code>. Add those method names to <code>BinaryCodeDynamicARM</code> (thin shims over <code>add</code>/<code>adc</code>/…).</li>
+            <li><strong>Add flag-setting low words</strong>: the carry chain needs <code>ADDS</code>/<code>SUBS</code> for the low word — currently <code>add</code>/<code>sub</code> pass <code>s=false</code>.</li>
+            <li><strong>Implement <code>adc</code> and <code>sbc</code></strong>: <code>DP_ADC</code> already exists (:135); add <code>DP_SBC = 0x6</code> and the <code>sbc</code> method.</li>
+            <li><strong>For the helper-call ops</strong> (mul/div/rem/shifts/lcmp): wire your <code>codeLong*</code> stubs to the existing <code>call</code>/stack ABI, and write the ARM long-arithmetic routines.</li>
+        </ol>
+    </section>
+
+    <section>
+        <h2>Check what stuck</h2>
+        <div class="quiz">
+            <p class="q">A JVM long on your 32-bit ARM target lives in…</p>
+            <ul class="options">
+                <li><button data-correct="true"  data-explain="Reg64 = { low, high } — two 32-bit registers holding the halves of one 64-bit value.">a pair of 32-bit registers</button></li>
+                <li><button data-correct="false" data-explain="ARMv7 has no 64-bit GPRs — that's exactly why the pair exists.">one single wide 64-bit register</button></li>
+                <li><button data-correct="false" data-explain="Words can be any two registers; Reg64.pair just names them.">two fully separate 32-bit words</button></li>
+                <li><button data-correct="false" data-explain="The JVM stack has two slots, but at codegen the value is register-resident.">four fully independent stack slots</button></li>
+            </ul>
+            <p class="feedback" hidden></p>
+        </div>
+
+        <div class="quiz">
+            <p class="q">Which long operations need the carry chain?</p>
+            <ul class="options">
+                <li><button data-correct="true"  data-explain="Low word sets carry, high word consumes it: addl+adcl, subl+sbbl.">addition and subtraction</button></li>
+                <li><button data-correct="false" data-explain="jcore calls a runtime helper for these instead (codeLongMul etc.).">multiplication and division</button></li>
+                <li><button data-correct="false" data-explain="Bitwise ops are word-at-a-time — each bit is independent, no carry.">bitwise and or xor</button></li>
+                <li><button data-correct="false" data-explain="Loads and stores just move both words; no flags involved.">loads and stores only</button></li>
+            </ul>
+            <p class="feedback" hidden></p>
+        </div>
+
+        <div class="quiz">
+            <p class="q">The ARM carry chain for a 64-bit add is…</p>
+            <ul class="options">
+                <li><button data-correct="true"  data-explain="ADDS (S bit sets carry) then ADC (op 0x5, reads carry).">ADDS low ADC high</button></li>
+                <li><button data-correct="false" data-explain="Plain ADD doesn't set flags on ARM — the S bit is missing.">ADD low ADC high</button></li>
+                <li><button data-correct="false" data-explain="High word must come second so the carry from the low word is ready.">ADC low ADDS high</button></li>
+                <li><button data-correct="false" data-explain="ADD never reads the carry — that's what ADC is for.">ADD low then ADD</button></li>
+            </ul>
+            <p class="feedback" hidden></p>
+        </div>
+
+        <div class="quiz">
+            <p class="q">Which long ops does jcore implement by helper calls?</p>
+            <ul class="options">
+                <li><button data-correct="true"  data-explain="ExecEnvironmentIA32.codeLongMul/Div/Rem/Shr/Shl/UShr/Compare all call LongArithmeticSTEntry.">multiply divide shifts</button></li>
+                <li><button data-correct="false" data-explain="Add/sub are inline carry chains; bitwise is inline word-at-a-time.">add subtract bitwise</button></li>
+                <li><button data-correct="false" data-explain="These move both words directly, no runtime call.">loads stores casts</button></li>
+                <li><button data-correct="false" data-explain="Bitwise is inline; negate is an inline carry chain.">bitwise add negate</button></li>
+            </ul>
+            <p class="feedback" hidden></p>
+        </div>
+
+        <div class="quiz">
+            <p class="q">Plain ARM add won't chain a carry because…</p>
+            <ul class="options">
+                <li><button data-correct="true"  data-explain="ARM writes flags only when bit 20 (S) is set — you need ADDS, not ADD.">flags set only with S</button></li>
+                <li><button data-correct="false" data-explain="The carry is available — ARM just doesn't set flags by default.">carry flag is not preserved</button></li>
+                <li><button data-correct="false" data-explain="ADD has the same two-operand-plus-result shape; that's not the issue.">add takes only two registers</button></li>
+                <li><button data-correct="false" data-explain="SUB is the same as ADD here: flags only update with the S bit.">sub never sets the carry</button></li>
+            </ul>
+            <p class="feedback" hidden></p>
+        </div>
+    </section>
+
+    <section>
+        <h2>Read next</h2>
+        <p>The definitive source is the CPU manual: the <strong>ARM Architecture Reference Manual (ARMv7-A/R)</strong>, the data-processing chapter — read the encoding and semantics of <code>ADC</code>, <code>SBC</code>, and the S-bit rule for the carry flag. <a href="https://developer.arm.com/documentation/ddi0406/latest" target="_blank" rel="noopener">Find it at ARM's developer site</a>. The other half of the contract is the JVM: <strong>JVMS §6.5</strong> defines what <code>ladd</code>/<code>lsub</code>/<code>lcmp</code> must do with the two slots. <a href="https://docs.oracle.com/en/java/javase/17/docs/specs/jvms/ch6.html" target="_blank" rel="noopener">Read it here</a>.</p>
+        <p>Keep the <a href="../reference/pipeline-map.html">pipeline cheat-sheet</a> handy — it now has a "long support" map of every op to its pattern and file.</p>
+    </section>
+
+    <footer>
+        <p>Something unclear — or you want to trace one op end-to-end? Ask your agent; it can open any of these files with you.</p>
+        <p><a href="0005-bytecode-to-native-pipeline.html">&larr; Lesson 5: bytecode → native pipeline</a> · <a href="0002-numeric-types-and-the-stack.html">Lesson 2: numeric types and the stack</a> · <a href="../reference/glossary.html">Glossary</a></p>
+    </footer>
+
+    <script src="../assets/quiz.js"></script>
+</body>
+</html>

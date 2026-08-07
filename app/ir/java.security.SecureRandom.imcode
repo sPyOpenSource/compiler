@@ -22,7 +22,7 @@ class java/security/SecureRandom {
         if vR6.hasMoreElements()==0 goto B113;   
   +B77:   #1
         vR2 = (java/lang/String)(vR6.nextElement());    
-        if vR2.startsWith@extra("SecureRandom.")==0 goto B67;   
+        if vR2.startsWith("SecureRandom.")==0 goto B67;   
   +B97:   #1
         b0 = vR1[vi4].getProperty(vR2);    [RRRiiR R . RR] 
         vR3 = b0;    
@@ -37,16 +37,16 @@ class java/security/SecureRandom {
         vi4++;   
         goto +B51;   [RRRiiR R . ..]
   +B126:   #5
-        vR0.secureRandomSpi = (java/security/SecureRandomSpi)(forName@special(vR3).newInstance@extra());   
+        vR0.secureRandomSpi = (java/security/SecureRandomSpi)(forName@special(vR3).newInstance());   
         vR0.provider = vR1[vi4];   
   +B148:   #3
-        goto +B163;   forward return[RRRiiR R . ..]
+        goto +B163;   [RRRiiR R . ..]
   +H151<caught exception>:   #1 reference
         vR7 = <caught exception>;    
-        goto +B163;   forward return[RRRiiRR R . ..]
+        goto +B163;   [RRRiiRR R . ..]
   +H156<caught exception>:   #1 reference
         vR7 = <caught exception>;    
-        goto +B163;   forward return[RRRiiRR R . ..]
+        goto +B163;   [RRRiiRR R . ..]
   +H161<caught exception>:   #1 reference
         vR7 = <caught exception>;    
   +B163:   #3
@@ -88,7 +88,8 @@ EXCEPTIONHANDLER-TABLE:
  method getInstance(Ljava/lang/String;)Ljava/security/SecureRandom; {
   +START:   #1
         vR1 = getProviders@special();    [ R  ]
-        vR2 = new java/lang/StringBuffer("SecureRandom.");    [ R  i][ R . iRR]
+        b0 = new java/lang/StringBuffer("SecureRandom.");    [ R  i][ R . iRR]
+        vR2 = b0;    
         vR2.append(vR0);   [RR R . RR.] 
         vR3 = 0;    
         vi4 = 0;    
@@ -106,61 +107,71 @@ EXCEPTIONHANDLER-TABLE:
   +B57:   #2
         if vR3!=null goto B69;   
   -B61:   #1
-        throw new java/security/NoSuchAlgorithmException();   
+        b0 = new java/security/NoSuchAlgorithmException();    [ R . i..][ R . iR.]
+        throw b0;   
   +B69:   #4
-        b0 = new java/security/SecureRandom((java/security/SecureRandomSpi)(forName@special(vR3).newInstance@extra()),vR1[vi4]);    [ R . i..][ R .. iRRR]
+        b0 = new java/security/SecureRandom((java/security/SecureRandomSpi)(forName@special(vR3).newInstance()),vR1[vi4]);    [ R . i..][ R .. iRRR]
   +B90b0:   #3 reference
         return b0;   
   -H91<caught exception>:   #1 reference
         vR5 = <caught exception>;    
-        throw new java/security/NoSuchAlgorithmException("Class not found");   
+        b0 = new java/security/NoSuchAlgorithmException("Class not found");    [ R .. i...][ R .. iRR.]
+        throw b0;   
   -H103<caught exception>:   #1 reference
         vR5 = <caught exception>;    
-        throw new java/security/NoSuchAlgorithmException("Class instantiation failed");   
+        b0 = new java/security/NoSuchAlgorithmException("Class instantiation failed");    [ R .. i...][ R .. iRR.]
+        throw b0;   
   -H115<caught exception>:   #1 reference
         vR5 = <caught exception>;    
-        throw new java/security/NoSuchAlgorithmException("Illegal Access");   
+        b0 = new java/security/NoSuchAlgorithmException("Illegal Access");    [ R .. i...][ R .. iRR.]
+        throw b0;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
 69 - 90 handler 91 type 81
 69 - 90 handler 103 type 83
 69 - 90 handler 115 type 85
  }
-// Register: rd 19/19 wr 19 swaps 1 any 5 found 0 getInstance
+// Register: rd 24/24 wr 24 swaps 1 any 6 found 0 getInstance
  
  method getInstance(Ljava/lang/String;Ljava/lang/String;)Ljava/security/SecureRandom; {
   +START:   #1
         vR2 = getProvider@special(vR1);    [ R  R]
         if vR2!=null goto B17;   
   -B9:   #1
-        throw new java/security/NoSuchProviderException();   
+        b0 = new java/security/NoSuchProviderException();    [ R  i][ R  iR]
+        throw b0;   
   +B17:   #1
-        vR3 = new java/lang/StringBuffer("SecureRandom.");    [ R  i.][ R . iRR]
+        b0 = new java/lang/StringBuffer("SecureRandom.");    [ R  i.][ R . iRR]
+        vR3 = b0;    
         vR3.append(vR0);   [RR R . RR.] 
         vR4 = vR2.getProperty(vR3.toString());    [RR R i RR.] 
         if vR4!=null goto B56;   
   -B48:   #1
-        throw new java/security/NoSuchAlgorithmException();   
+        b0 = new java/security/NoSuchAlgorithmException();    [ R . i..][ R . iR.]
+        throw b0;   
   +B56:   #4
-        b0 = new java/security/SecureRandom((java/security/SecureRandomSpi)(forName@special(vR4).newInstance@extra()),vR2);    [ R . i..][ R .. iRRR]
+        b0 = new java/security/SecureRandom((java/security/SecureRandomSpi)(forName@special(vR4).newInstance()),vR2);    [ R . i..][ R .. iRRR]
   +B75b0:   #3 reference
         return b0;   
   -H76<caught exception>:   #1 reference
         vR5 = <caught exception>;    
-        throw new java/security/NoSuchAlgorithmException("Class not found");   
+        b0 = new java/security/NoSuchAlgorithmException("Class not found");    [ R .. i...][ R .. iRR.]
+        throw b0;   
   -H88<caught exception>:   #1 reference
         vR5 = <caught exception>;    
-        throw new java/security/NoSuchAlgorithmException("Class instantiation failed");   
+        b0 = new java/security/NoSuchAlgorithmException("Class instantiation failed");    [ R .. i...][ R .. iRR.]
+        throw b0;   
   -H100<caught exception>:   #1 reference
         vR5 = <caught exception>;    
-        throw new java/security/NoSuchAlgorithmException("Illegal Access");   
+        b0 = new java/security/NoSuchAlgorithmException("Illegal Access");    [ R .. i...][ R .. iRR.]
+        throw b0;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
 56 - 75 handler 76 type 81
 56 - 75 handler 88 type 83
 56 - 75 handler 100 type 85
  }
-// Register: rd 13/13 wr 15 swaps 1 any 2 found 0 getInstance
+// Register: rd 19/19 wr 21 swaps 1 any 3 found 0 getInstance
  
  method getProvider()Ljava/security/Provider; {
   +START:   #1
@@ -189,11 +200,11 @@ EXCEPTIONHANDLER-TABLE:
         b0[6] = (byte)(int)(255 & (vl1 >> 8));   
         b0[7] = (byte)(int)(255 & vl1);   
         vR3 = b0;    
-        vR0.secureRandomSpi.engineSetSeed(vR3);   [?R R . RR] 
+        vR0.secureRandomSpi.engineSetSeed(vR3);   [?R R iiiiiii? RR] 
         return;   
   +END:   #1
  }
-// Register: rd 10/10 wr 10 swaps 0 any 1 found 0 setSeed
+// Register: rd 10/10 wr 18 swaps 7 any 1 found 0 setSeed
  
  method nextBytes([B)V {
   +START:   #1

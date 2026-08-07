@@ -5,14 +5,15 @@ class java/net/URL {
         if factory!=null goto B13;   
   +B6:   #1
         factory = vR0;   
-        goto +B23;   forward return[ R  .]
+        goto +B23;   [ R  .]
   -B13:   #1
-        throw new java/lang/Error("URLStreamHandlerFactory alread set");   
+        b0 = new java/lang/Error("URLStreamHandlerFactory alread set");    [ R  i][ R . iRR]
+        throw b0;   
   +B23:   #1
         return;   
   +END:   #1
  }
-// Register: rd 3/3 wr 1 swaps 0 any 0 found 1 setURLStreamHandlerFactory
+// Register: rd 4/4 wr 2 swaps 0 any 0 found 1 setURLStreamHandlerFactory
  
  method getProtocolHandler(Ljava/lang/String;)Ljava/net/URLStreamHandler; {
   +START:   #1
@@ -26,7 +27,8 @@ class java/net/URL {
         vR1 = factory.createURLStreamHandler(vR0);    [?R R . RR] 
         if vR1!=null goto B50;   
   -B41:   #1
-        throw new java/net/MalformedURLException(vR0);   
+        b0 = new java/net/MalformedURLException(vR0);    [ R . i.][ R . iRR]
+        throw b0;   
   +B50:   #1
         if cache_handlers==0 goto B68;   
   +B56:   #1
@@ -34,22 +36,24 @@ class java/net/URL {
   +B68:   #1
         return vR1;   
   +B70:   #1
-        vR2 = new java/util/StringTokenizer(ph_search_path,"|");    [ R .. i..][ R .. iRRR]
+        b0 = new java/util/StringTokenizer(ph_search_path,"|");    [ R .. i..][ R .. iRRR]
+        vR2 = b0;    
   +B83:   #1
         if vR2.hasMoreTokens()==0 goto B125;   
   +B90:   #1
         b0 = new java/lang/StringBuilder();    [ R .. i...][ R .. iR..]
-        vR3 = b0.append@extra(vR2.nextToken()).append@extra(".").append@extra(vR0).append@extra(".Handler").toString@extra();    [RR R ii....i R....] [RR R iiR...i RR...] [RR R iiRR..i RRR..] [RR R iiRRR.i RRRR.] [RR R iiRRRRi RRRRR] 
+        vR3 = b0.append(vR2.nextToken()).append(".").append(vR0).append(".Handler").toString();    [RR R ii....i R....] [RR R iiR...i RR...] [RR R iiRR..i RRR..] [RR R iiRRR.i RRRR.] [RR R iiRRRRi RRRRR] 
         goto +B83;   [RRR R ii....i .....]
   -B125:   #1
-        throw new java/net/MalformedURLException(vR0);   
+        b0 = new java/net/MalformedURLException(vR0);    [ R ....... i....][ R ....... iRR..]
+        throw b0;   
   +END:   #1
  }
-// Register: rd 13/13 wr 20 swaps 4 any 2 found 0 getProtocolHandler
+// Register: rd 16/16 wr 23 swaps 4 any 3 found 0 getProtocolHandler
  
  method <init>(Ljava/lang/String;Ljava/lang/String;ILjava/lang/String;)V {
   +START:   #1
-        vR0.<init>@special(vR1.toLowerCase@extra(),vR2,vi3,vR4,0);   [  i RRiRRR] 
+        vR0.<init>@special(vR1.toLowerCase(),vR2,vi3,vR4,0);   [  i RRiRRR] 
         return;   
   +END:   #1
  }
@@ -57,7 +61,7 @@ class java/net/URL {
  
  method <init>(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V {
   +START:   #1
-        vR0.<init>@special(vR1.toLowerCase@extra(),vR2,-1,vR3,0);   [  i RRiRRR] 
+        vR0.<init>@special(vR1.toLowerCase(),vR2,-1,vR3,0);   [  i RRiRRR] 
         return;   
   +END:   #1
  }
@@ -67,7 +71,7 @@ class java/net/URL {
   +START:   #1
         vR0.<init>@special();   [ ?R  R] 
         vR0.port = -1;   
-        vR0.protocol = vR1.toLowerCase@extra();   
+        vR0.protocol = vR1.toLowerCase();   
         vR0.host = vR2;   
         vR0.port = vi3;   
         vR0.file = vR4;   
@@ -84,7 +88,7 @@ class java/net/URL {
   +B71:   #1
         vR0.ph = getProtocolHandler@special(vR1);   
   +B79:   #1
-        vR0.hashCode = vR0.toString@extra().hashCode@extra();   
+        vR0.hashCode = vR0.toString@this().hashCode();   
         return;   
   +END:   #1
  }
@@ -103,8 +107,8 @@ class java/net/URL {
         vR0.<init>@special();   [ RR  R] 
         vR0.port = -1;   
         vi5 = -1;    
-        vi6 = vR2.indexOf@extra(":");    [?i RR i RR] 
-        vi7 = vR2.indexOf@extra("/");    [?ii RR ii RR] 
+        vi6 = vR2.indexOf(":");    [?i RR i RR] 
+        vi7 = vR2.indexOf("/");    [?ii RR ii RR] 
         if vi6==-1 goto B70;   
   +B34:   #1
         if vi7==-1 goto B53;   
@@ -113,25 +117,26 @@ class java/net/URL {
   +B46:   #1
         if vi6>=vi7 goto B70;   
   +B53:   #1
-        vR0.protocol = vR2.substring@extra(0,vi6);   
+        vR0.protocol = vR2.substring(0,vi6);   
         vi5 = (vi6+1);    
   +B70:   #3
         if vR0.protocol!=null goto B98;   
   +B77:   #1
         if vR1!=null goto B90;   
   -B81:   #1
-        throw new java/net/MalformedURLException(vR2);   
+        b0 = new java/net/MalformedURLException(vR2);    [ RR .. i..][ RR .. iRR]
+        throw b0;   
   +B90:   #1
-        vR0.protocol = vR1.getProtocol@extra();   
+        vR0.protocol = vR1.getProtocol();   
   +B98:   #1
-        vR0.protocol = vR0.protocol.toLowerCase@extra();   
+        vR0.protocol = vR0.protocol.toLowerCase();   
         if vR1==null goto B167;   
   +B113:   #1
-        if vR1.getProtocol@extra().toLowerCase@extra().equals@extra(vR0.protocol)==0 goto B167;   
+        if vR1.getProtocol().toLowerCase().equals(vR0.protocol)==0 goto B167;   
   +B130:   #1
-        vR0.host = vR1.getHost@extra();   
-        vR0.port = vR1.getPort@extra();   
-        vR0.file = vR1.getFile@extra();   
+        vR0.host = vR1.getHost();   
+        vR0.port = vR1.getPort();   
+        vR0.file = vR1.getFile();   
         if vR0.file!=null goto B167;   
   +B161:   #1
         vR0.file = "";   
@@ -153,40 +158,40 @@ class java/net/URL {
   +B220:   #1
         vi5 = 0;    
   +B223:   #1
-        vi4 = vR2.indexOf@extra("#");    [?iiiR RR i.. RR.] 
+        vi4 = vR2.indexOf("#");    [?iiiR RR i.. RR.] 
         if vi4!=-1 goto B243;   
   +B237:   #1
-        vi4 = vR2.length@extra();    [iiiiR RR ... R..] 
+        vi4 = vR2.length();    [iiiiR RR ... R..] 
   +B243:   #1
-        if vi4==vR2.length@extra() goto B264;   
+        if vi4==vR2.length() goto B264;   
   +B252:   #1
-        vR0.ref = vR2.substring@extra((vi4+1));   
+        vR0.ref = vR2.substring((vi4+1));   
   +B264:   #1
         if vR1!=null goto B284;   
   +B268:   #1
         vR0.ph.parseURL(vR0,vR2,vi5,vi4);   [iiiiR RR ... iiRRR] 
         goto +B384;   [iiiiR RR ... .....]
   +B284:   #1
-        vi8 = vR0.file.lastIndexOf@extra("/");    [iiiiR RR i.. RR...] 
+        vi8 = vR0.file.lastIndexOf("/");    [iiiiR RR i.. RR...] 
         if vi8!=-1 goto B309;   
   +B301:   #1
         vR0.file = vR2;   
         goto +B384;   [iiiii RR ... .....]
   +B309:   #1
-        if vi8!=(vR0.file.length@extra()-1) goto B351;   
+        if vi8!=(vR0.file.length()-1) goto B351;   
   +B323:   #1
         b1 = new java/lang/StringBuilder();    [ RR ... i....][ RR ... iR...]
-        vR0.file = b1.append@extra(vR0.file).append@extra(vR2).toString@extra();   
+        vR0.file = b1.append(vR0.file).append(vR2).toString();   
         goto +B384;   [iiiii RR i.. .....]
   +B351:   #1
         b1 = new java/lang/StringBuilder();    [ RR ... i....][ RR ... iR...]
-        vR0.file = b1.append@extra(vR0.file.substring@extra(0,(vi8+1))).append@extra(vR2).toString@extra();   
+        vR0.file = b1.append(vR0.file.substring(0,(vi8+1))).append(vR2).toString();   
   +B384:   #3
-        vR0.hashCode = vR0.toString@extra().hashCode@extra();   
+        vR0.hashCode = vR0.toString@this().hashCode();   
         return;   
   +END:   #1
  }
-// Register: rd 68/68 wr 30 swaps 9 any 15 found 2 <init>
+// Register: rd 69/69 wr 31 swaps 9 any 15 found 2 <init>
  
  method <init>(Ljava/lang/String;)V {
   +START:   #1
@@ -254,18 +259,18 @@ class java/net/URL {
         return 0;   
   +B15:   #1
         vR2 = (java/net/URL)(vR1);    
-        if vR0.sameFile@extra(vR2)!=0 goto B30;   
+        if vR0.sameFile@this(vR2)!=0 goto B30;   
   +B28:   #1
         return 0;   
   +B30:   #1
-        vR3 = vR2.getRef@extra();    [R   R.] 
+        vR3 = vR2.getRef();    [R   R.] 
         if vR3==null goto B61;   
   +B39:   #1
-        if vR3.equals@extra(vR0.getRef@extra())!=0 goto B52;   
+        if vR3.equals(vR0.getRef@this())!=0 goto B52;   
   +B50:   #1
         return 0;   
   +B52:   #1
-        if vR0.getRef@extra()==null goto B61;   
+        if vR0.getRef@this()==null goto B61;   
   +B59:   #1
         return 0;   
   +B61:   #2
@@ -280,40 +285,40 @@ class java/net/URL {
   +B4:   #1
         return 0;   
   +B6:   #1
-        vR2 = vR1.getProtocol@extra();    [   R] 
+        vR2 = vR1.getProtocol();    [   R] 
         if vR2==null goto B37;   
   +B15:   #1
-        if vR2.equals@extra(vR0.getProtocol@extra())!=0 goto B28;   
+        if vR2.equals(vR0.getProtocol@this())!=0 goto B28;   
   +B26:   #1
         return 0;   
   +B28:   #1
-        if vR0.getProtocol@extra()==null goto B37;   
+        if vR0.getProtocol@this()==null goto B37;   
   +B35:   #1
         return 0;   
   +B37:   #2
-        vR2 = vR1.getHost@extra();    [R  . R.] 
+        vR2 = vR1.getHost();    [R  . R.] 
         if vR2==null goto B68;   
   +B46:   #1
-        if vR2.equals@extra(vR0.getHost@extra())!=0 goto B59;   
+        if vR2.equals(vR0.getHost@this())!=0 goto B59;   
   +B57:   #1
         return 0;   
   +B59:   #1
-        if vR0.getHost@extra()==null goto B68;   
+        if vR0.getHost@this()==null goto B68;   
   +B66:   #1
         return 0;   
   +B68:   #2
-        if vR1.getPort@extra()==vR0.getPort@extra() goto B81;   
+        if vR1.getPort()==vR0.getPort@this() goto B81;   
   +B79:   #1
         return 0;   
   +B81:   #1
-        vR2 = vR1.getFile@extra();    [R  . R.] 
+        vR2 = vR1.getFile();    [R  . R.] 
         if vR2==null goto B112;   
   +B90:   #1
-        if vR2.equals@extra(vR0.getFile@extra())!=0 goto B103;   
+        if vR2.equals(vR0.getFile@this())!=0 goto B103;   
   +B101:   #1
         return 0;   
   +B103:   #1
-        if vR0.getFile@extra()==null goto B112;   
+        if vR0.getFile@this()==null goto B112;   
   +B110:   #1
         return 0;   
   +B112:   #2
@@ -331,7 +336,7 @@ class java/net/URL {
  
  method toString()Ljava/lang/String; {
   +START:   #1
-        return vR0.toExternalForm@extra();   
+        return vR0.toExternalForm@this();   
   +END:   #1
  }
 // Register: rd 1/1 wr 0 swaps 0 any 0 found 0 toString
@@ -345,14 +350,14 @@ class java/net/URL {
  
  method openStream()Ljava/io/InputStream; {
   +START:   #1
-        return vR0.openConnection@extra().getInputStream();   
+        return vR0.openConnection@this().getInputStream();   
   +END:   #1
  }
 // Register: rd 1/1 wr 1 swaps 0 any 0 found 0 openStream
  
  method getContent()Ljava/lang/Object; {
   +START:   #1
-        return vR0.openConnection@extra().getContent();   
+        return vR0.openConnection@this().getContent();   
   +END:   #1
  }
 // Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getContent
@@ -380,8 +385,8 @@ class java/net/URL {
         if ph_search_path==null goto B64;   
   +B37:   #1
         b0 = new java/lang/StringBuilder();    [ R . i.][ R . iR]
-        ph_search_path = b0.append@extra(ph_search_path).append@extra("|gnu.java.net.protocol").toString@extra();   
-        goto +B69;   forward return[R R i..i ...]
+        ph_search_path = b0.append(ph_search_path).append("|gnu.java.net.protocol").toString();   
+        goto +B69;   [R R i..i ...]
   +B64:   #1
         ph_search_path = "gnu.java.net.protocol";   
   +B69:   #1

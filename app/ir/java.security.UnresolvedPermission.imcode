@@ -32,15 +32,15 @@ class java/security/UnresolvedPermission {
         return 0;   
   +B9:   #1
         vR2 = (java/security/UnresolvedPermission)(vR1);    
-        if vR0.getName@this().equals@extra(vR2.getName())!=0 goto B30;   
+        if vR0.getName@this().equals(vR2.getName())!=0 goto B30;   
   +B28:   #1
         return 0;   
   +B30:   #1
-        if vR0.getActions@this().equals@extra(vR2.getActions())!=0 goto B46;   
+        if vR0.getActions@this().equals(vR2.getActions())!=0 goto B46;   
   +B44:   #1
         return 0;   
   +B46:   #1
-        if vR0.type.equals@extra(vR2.type)!=0 goto B62;   
+        if vR0.type.equals(vR2.type)!=0 goto B62;   
   +B60:   #1
         return 0;   
   +B62:   #1
@@ -63,7 +63,7 @@ class java/security/UnresolvedPermission {
  method toString()Ljava/lang/String; {
   +START:   #1
         b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
-        return b0.append@extra("(unresolved ").append@extra(vR0.type).append@extra(" ").append@extra(vR0.getName@this()).append@extra(" ").append@extra(vR0.getActions@this()).append@extra(")").toString@extra();   
+        return b0.append("(unresolved ").append(vR0.type).append(" ").append(vR0.getName@this()).append(" ").append(vR0.getActions@this()).append(")").toString();   
   +END:   #1
  }
 // Register: rd 4/4 wr 15 swaps 7 any 0 found 0 toString

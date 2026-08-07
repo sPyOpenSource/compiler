@@ -37,7 +37,7 @@ public class CompileNative {
 	String jlnname = libdir + "zero.jln";
         
         CompilerOptions opts = getCompilerOptions(null, jlns, null, jlnname, jllname, "JC_CONFIG");
-        compile("zero", opts);
+        //compile("zero", opts);
         
 	jllname = libdir + "jdk0.jll";
         jlnname = libdir + "jdk0.jln";
@@ -59,7 +59,7 @@ public class CompileNative {
             jlns.add(libdir + neededLib + ".jln");
         }
         opts = getCompilerOptions(null, jlns, null, jlnname, jllname, "JC_CONFIG");
-	//compile("init2", opts);
+	compile("init2", opts);
         
         jllname = libdir + "wm.jll";
         jlnname = libdir + "wm.jln";
@@ -231,7 +231,7 @@ public class CompileNative {
             for (String srcFile : srcFiles) {
                 File fileToZip = new File(srcFile);
                 zipFile.addFile(fileToZip);
-            }
+                }
             FileInputStream fis = new FileInputStream("app/isodir/code/uncompressed.zip");
             FileOutputStream fos = new FileOutputStream("app/isodir/code/code.zip");
             GZIPOutputStream gzipOS = new GZIPOutputStream(fos);
