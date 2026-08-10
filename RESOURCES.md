@@ -1,36 +1,82 @@
-# AOT Compilation Resources
+# Performance Optimization Resources
 
 ## Knowledge
 
-- [JVM Specification: The Java Virtual Machine](https://docs.oracle.com/en/java/javase/17/docs/specs/jvms/)
-  The ultimate authority on bytecode, the operand stack, and type representation. Use for: understanding the "two-slot" rule for longs/doubles, and §2.5.2 (operand stack) + Ch.6 instruction semantics for bytecode→native (Lesson 5).
-- [IEEE 754 Standard for Floating-Point Arithmetic](https://ieeexplore.ieee.org/document/8766229)
-  The standard for how `float` and `double` are actually stored in bits. Use for: understanding sign/exponent/mantissa.
-- [Wikipedia: Ahead-of-time compilation](https://en.wikipedia.org/wiki/Ahead-of-time_compilation)
-  Canonical reference. Covers definitions, trade-offs, storage/performance analysis. Use for: grounding every AOT concept.
-- [Article: "Understanding GraalVM, AOT & JIT" — Marco Behler](https://www.marcobehler.com/guides/graalvm-aot-jit)
-  Clear walkthrough from javac bytecode through JIT profiling to GraalVM native-image. Use for: the Java-specific pipeline, understanding how AOT/JIT coexist.
-- [Dissertation: "Ahead-of-Time compilation in a language-independent environment" — Georgiy Krylov (UNB, 2024)](https://unbscholar.lib.unb.ca/items/86fc3a4c-d16f-4267-960d-3a95d377b7d0)
-  Academic treatment of AOT vs JIT tradeoffs using Eclipse OMR. Use for: deeper dive into AOT architecture patterns.
-- [Article: "Revolutionizing Java with GraalVM Native Image" — Alina Yurenko (InfoQ)](https://www.infoq.com/articles/native-java-graalvm)
-  Industry perspective on AOT for cloud-native Java. Use for: real-world tradeoffs (startup, memory, peak throughput).
-- [Research Square: "AOT vs JIT Compilation Trade-offs: Empirical performance studies" (2025)](https://www.researchsquare.com/article/rs-7915532/v1.pdf?c=1761138941000)
-  Benchmark data: AOT startup 40-70% faster, JIT steady-state 10-25% faster. Use for: quantitative comparison.
-- [GraalVM Native Image Reference Manual](https://www.graalvm.org/latest/reference-manual/native-image/)
-  Primary source for closed-world assumption, points-to analysis, Substrate VM. Use for: authoritative technical detail on AOT for JVM languages.
-- [Article: "AOT vs JIT: Understanding the Java Compiling Processes" — CodeStringers](https://www.codestringers.com/insights/aot-vs-jit/)
-  Practical Java-focused comparison with jaotc and GraalVM examples. Use for: concrete flow diagrams.
-- [Blog: "Java GraalVM Native Image: The Complete Guide to AOT Compilation in 2026" — Angel Oprea](https://www.angeloprea.com/blog/java-in-2026-the-complete-guide-to-enterprises-most-enduring-programming-language/java-graalvm-native-image-the-complete-guide-to-aot-compilation-in-2026)
-  Modern summary with comparative table. Use for: quick reference on tradeoff dimensions.
-- [ARM Architecture Reference Manual (ARMv7-A/R) — DDI 0406](https://developer.arm.com/documentation/ddi0406/latest)
-  The authoritative CPU spec. Use for: data-processing instruction semantics — ADC/SBC opcodes, the S bit (flags are opt-in on ARM), condition codes. The ground truth for the ARM encoder work (Lesson 6).
-- [Hacker's Delight, Ch. 2 "Basics" — H. S. Warren](https://en.wikipedia.org/wiki/Hacker%27s_Delight)
-  Classic treatment of multi-word arithmetic, overflow, and carries. Use for: understanding carry chains generally before writing ARM long-arithmetic helpers (Lesson 6).
+### Books — Fundamentals
+
+- [Computer Systems: A Programmer's Perspective, 3rd Ed. — Bryant & O'Hallaron](https://csapp.cs.cmu.edu/)
+  The definitive textbook on how programs run on hardware. Covers memory hierarchy, linking, exceptions, virtual memory, network programming. Use for: understanding what actually happens when your code runs (Lesson 1+).
+- [Optimizing Software in C++ — Agner Fog](https://www.agner.org/optimize/optimizing_cpp.pdf)
+  Free, comprehensive guide to C++ optimization. Covers pipeline, cache, branch prediction, vectorization, specific CPU microarchitectures. Use for: practical C++ optimization techniques, microarchitecture details.
+- [The Art of Computer Programming, Vol 4A: Combinatorial Algorithms — Knuth](https://www-cs-faculty.stanford.edu/~knuth/taocp.html)
+  Deep treatment of algorithms. Use for: algorithmic optimization, understanding complexity tradeoffs at a fundamental level.
+
+### Books — Advanced / Specialized
+
+- [Performance Analysis and Tuning on Modern CPUs — Denis Bakhvalov](https://dendibakh.github.io/perf-book/)
+  Modern CPU microarchitecture, perf tools, profiling methodologies. Use for: advanced profiling, understanding CPU pipelines, PMU counters.
+- [Systems Performance: Enterprise and the Cloud — Brendan Gregg](https://www.brendangregg.com/systems-performance-book.html)
+  Performance analysis methodology, tools, case studies. Use for: systematic performance investigation, Linux perf tooling.
+- [High Performance Browser Networking — Ilya Grigorik](https://hpbn.co/)
+  Network performance, TCP, TLS, HTTP/2, HTTP/3. Use for: network-aware optimization (if relevant).
+
+### Articles & References — CPU Architecture
+
+- [Agner Fog's Optimization Manuals](https://www.agner.org/optimize/)
+  Microarchitecture guides for Intel/AMD CPUs, instruction tables, calling conventions. Use for: instruction latency/throughput, pipeline details, vectorization.
+- [Intel 64 and IA-32 Architectures Optimization Reference Manual](https://www.intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html)
+  Official Intel optimization guide. Use for: authoritative instruction reference, micro-op fusion, loop stream detector.
+- [CPU Cache — Wikipedia](https://en.wikipedia.org/wiki/CPU_cache)
+  Good overview of cache hierarchy, associativity, prefetching, false sharing. Use for: cache optimization fundamentals.
+
+### Articles & References — Profiling & Measurement
+
+- [Linux Perf Tutorial — Brendan Gregg](https://www.brendangregg.com/perf.html)
+  Comprehensive perf tool guide: flame graphs, PMU events, profiling modes. Use for: learning to profile effectively (Lesson 2).
+- [perf Examples — Brendan Gregg](https://www.brendangregg.com/perf.html#Examples)
+  Real-world perf command examples. Use for: practical profiling commands.
+- [Google Benchmark Library](https://github.com/google/benchmark)
+  Microbenchmarking framework. Use for: writing reliable microbenchmarks (Lesson 3).
+- [How to Write a Good Benchmark — Andrei Alexandrescu](https://www.youtube.com/watch?v=zZC4nZ2NfVM)
+  Talk on benchmarking pitfalls. Use for: avoiding measurement errors.
+
+### Articles & References — Compiler Optimization
+
+- [LLVM Optimization Passes](https://llvm.org/docs/Passes.html)
+  Catalog of LLVM optimization passes. Use for: understanding what the compiler does automatically.
+- [GCC Optimization Options](https://gcc.gnu.org/onlinedocs/gcc/Optimize-Options.html)
+  GCC -O levels and specific flags. Use for: controlling compiler optimization.
+- [Profile-Guided Optimization (PGO) — LLVM](https://llvm.org/docs/ProfileGuidedOptimization.html)
+  Using runtime profiles to guide optimization. Use for: understanding PGO workflow.
+
+### Articles & References — Memory & Data Layout
+
+- [Data-Oriented Design — Mike Acton](https://www.dataorienteddesign.com/)
+  Philosophy and techniques for cache-friendly data layout. Use for: struct layout, SoA vs AoS, cache line optimization.
+- [What Every Programmer Should Know About Memory — Ulrich Drepper](https://people.freebsd.org/~lstewart/articles/cpumemory.pdf)
+  Deep dive into memory subsystem, NUMA, cache coherency. Use for: advanced memory optimization.
+
+### Articles & References — Concurrency & Parallelism
+
+- [The Art of Multiprocessor Programming — Herlihy & Shavit](https://www.elsevier.com/books/the-art-of-multiprocessor-programming/herlihy/978-0-12-370591-4)
+  Lock-free algorithms, concurrent data structures. Use for: lock-free optimization, contention reduction.
+- [Concurrency in Practice — Goetz et al.](https://jcip.net/)
+  Java concurrency, but principles apply broadly. Use for: thread-safe optimization patterns.
 
 ## Wisdom (Communities)
 
-- [GraalVM Slack](https://graalvm.slack.com/)
-  Active community of GraalVM contributors and users. Use for: troubleshooting AOT compilation issues, closed-world assumption edge cases.
-- [r/java](https://reddit.com/r/java)
-  General Java community with occasional AOT/GraalVM discussions. Use for: staying current on ecosystem trends.
+- [Performance Matters — Discord/Slack](https://performancematters.dev/)
+  Community of performance engineers. Use for: discussing real optimization challenges, tool recommendations.
+- [r/PerformanceOptimization](https://reddit.com/r/PerformanceOptimization)
+  Reddit community for optimization discussions. Use for: case studies, tool discussions.
+- [LLVM Discourse](https://discourse.llvm.org/)
+  Compiler optimization discussions. Use for: understanding compiler internals, proposing optimizations.
+- [CppCon / CppNow YouTube channels](https://www.youtube.com/c/CppCon)
+  Talks on C++ performance, modern C++, compiler optimization. Use for: staying current, deep dives.
 
+## Video Courses
+
+- [MIT 6.172 Performance Engineering of Software Systems](https://ocw.mit.edu/courses/6-172-performance-engineering-of-software-systems-fall-2018/)
+  Full course on performance engineering. Use for: structured academic approach to the topic.
+- [CPPCon: "Optimizing C++" — various speakers](https://www.youtube.com/results?search_query=cppcon+optimization)
+  Annual conference talks. Use for: modern C++ optimization techniques.

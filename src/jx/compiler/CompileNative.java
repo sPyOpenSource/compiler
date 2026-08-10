@@ -70,7 +70,7 @@ public class CompileNative {
             jlns.add(libdir + neededLib + ".jln");
         }
         opts = getCompilerOptions(null, jlns, null, jlnname, jllname, "JC_CONFIG");
-	//compile("wm", opts);
+	compile("wm", opts);
         
         createISO();
     }

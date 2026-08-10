@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profiling Quick Reference</title>
+  <link rel="stylesheet" href="../assets/shared.css">
+</head>
+<body>
+  <h1>Profiling Quick Reference</h1>
+
+  <h2>perf — Sampling Profiler</h2>
+
+  <h3>Basic Recording</h3>
+  <pre><code>perf record -g ./program                    # Record with call graph (dwarf)
+perf record -g --call-graph dwarf ./program # Explicit dwarf unwinding
+perf record -F 99 -g ./program              # 99 Hz sampling (default ~1000-4000)
+perf record -e cycles:u -g ./program        # User-space cycles only
+perf record -e cache-misses -g ./program    # Profile cache misses specifically</code></pre>
+
+  <h3>Analysis</h3>
+  <pre><code>perf report                    # Interactive TUI
+perf report --stdio            # Plain text
+perf report --sort=symbol      # Flat profile by symbol
+perf report --sort=dso,symbol  # Group by library then symbol
+perf script                    # Raw samples (for flame graphs)
+perf annotate                  # Annotated assembly (needs -g)</code></pre>
+
+  <h3>Hardware Counters (perf stat)</h3>
+  <pre><code>perf stat ./program                          # Default: cycles, instructions, cache, branches
+perf stat -e cycles,instructions,cache-references,cache-misses,branch-instructions,branch-misses ./program
+perf stat -e r10,r11,r12,r13 ./program         # Raw event codes (see 'perf list')
+perf stat --repeat 10 ./program                # Run 10x for statistics</code></pre>
+
+  <h3>Common Hardware Events</h3>
+  <table>
+    <thead><tr><th>Event</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td>cycles</td><td>CPU cycles (core clock)</td></tr>
+      <tr><td>instructions</td><td>Instructions retired</td></tr>
+      <tr><td>cache-references</td><td>LLC (L3) cache accesses</td></tr>
+      <tr><td>cache-misses</td><td>LLC cache misses</td></tr>
+      <tr><td>branch-instructions</td><td>Branch instructions retired</td></tr>
+      <tr><td>branch-misses</td><td>Mispredicted branches</td></tr>
+      <tr><td>L1-dcache-loads</td><td>L1 data cache loads</td></tr>
+      <tr><td>L1-dcache-load-misses</td><td>L1 data cache load misses</td></tr>
+      <tr><td>stalled-cycles-frontend</td><td>Cycles stalled in frontend (fetch/decode)</td></tr>
+      <tr><td>stalled-cycles-backend</td><td>Cycles stalled in backend (execution)</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Google Benchmark — Microbenchmarking</h2>
+
+  <h3>Basic Template</h3>
+  <pre><code>#include <benchmark/benchmark.h>
+
+static void BM_Name(benchmark::State& state) {
+  // Setup (outside timing loop)
+  for (auto _ : state) {
+    // Measured code here
+    benchmark::DoNotOptimize(result);
+    benchmark::ClobberMemory();  // If measuring memory effects
+  }
+}
+BENCHMARK(BM_Name)->Arg(64)->Arg(1024)->Arg(16384);
+
+BENCHMARK_MAIN();</code></pre>
+
+  <h3>Useful Methods</h3>
+  <table>
+    <thead><tr><th>Method</th><th>Purpose</th></tr></thead>
+    <tbody>
+      <tr><td><code>state.range(0)</code></td><td>Get current argument value</td></tr>
+      <tr><td><code>state.SetBytesProcessed(n)</code></td><td>Report throughput (bytes/sec)</td></tr>
+      <tr><td><code>state.SetItemsProcessed(n)</code></td><td>Report throughput (items/sec)</td></tr>
+      <tr><td><code>benchmark::DoNotOptimize(x)</code></td><td>Prevent dead-code elimination</td></tr>
+      <tr><td><code>benchmark::ClobberMemory()</code></td><td>Force memory writes to be visible</td></tr>
+      <tr><td><code>state.PauseTiming()</code> / <code>ResumeTiming()</code></td><td>Exclude setup/teardown from timing</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Run Options</h3>
+  <pre><code>./bench --benchmark_repetitions=10           # Statistical significance
+./bench --benchmark_min_time=1.0                 # Run each bench ≥1 sec
+./bench --benchmark_format=csv                   # CSV output
+./bench --benchmark_out=results.json --benchmark_out_format=json
+./bench --benchmark_filter="BM_String.*"         # Regex filter</code></pre>
+
+  <h2>Flame Graphs</h2>
+  <pre><code># Generate
+perf script | flamegraph.pl > profile.svg
+
+# Filtered (e.g., only your code)
+perf script | grep -v "libc\|kernel\|ld-" | flamegraph.pl > profile.svg
+
+# Differential (compare two profiles)
+perf script | flamegraph.pl --diff=other.perf --negate=d > diff.svg</code></pre>
+
+  <h2>Compilation Flags for Profiling</h2>
+  <table>
+    <thead><tr><th>Flag</th><th>Purpose</th></tr></thead>
+    <tbody>
+      <tr><td><code>-g</code></td><td>Debug symbols (function names, line numbers)</td></tr>
+      <tr><td><code>-fno-omit-frame-pointer</code></td><td>Preserve frame pointers for stack unwinding</td></tr>
+      <tr><td><code>-O2</code> or <code>-O3</code></td><td>Optimize (profile optimized code!)</td></tr>
+      <tr><td><code>-march=native</code></td><td>Use host CPU features (for real-world perf)</td></tr>
+    </tbody>
+  </table>
+
+  <h2>CPU Frequency Control (for stable benchmarks)</h2>
+  <pre><code># Check current governor
+cpupower frequency-info
+
+# Set performance mode (requires root)
+sudo cpupower frequency-set -g performance
+
+# Or via sysfs
+echo performance | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
+
+# Disable turbo boost for absolute stability
+echo 1 | sudo tee /sys/devices/system/cpu/intel_pstate/no_turbo</code></pre>
+
+  <h2>Useful Aliases</h2>
+  <pre><code># Add to ~/.bashrc or ~/.zshrc
+alias perf-record='perf record -g --call-graph dwarf'
+alias perf-report='perf report --stdio'
+alias perf-stat='perf stat -e cycles,instructions,cache-references,cache-misses,branch-instructions,branch-misses'
+alias perf-flame='perf script | flamegraph.pl > profile.svg && xdg-open profile.svg'</code></pre>
+
+  <hr style="margin: 2rem 0; border-color: #d4d4d4;">
+  <p class="sidenote"><strong>Source:</strong> <a href="https://www.brendangregg.com/perf.html">Brendan Gregg's perf tutorial</a> | <a href="https://github.com/google/benchmark">Google Benchmark docs</a></p>
+  <p class="sidenote"><strong>Back to:</strong> <a href="../lessons/0001-measure-before-you-optimize.html">Lesson 1: Measure Before You Optimize</a></p>
+</body>
+</html>

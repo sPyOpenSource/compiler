@@ -1,23 +1,31 @@
-# Mission: Ahead-of-Time Compilation
+# Mission: Code Performance Optimization
 
 ## Why
 
-You work on a Java bytecode→x86 JIT compiler for armOS. You want to understand the AOT compilation model — how the pipeline differs from JIT, what tradeoffs exist, and where AOT techniques could apply to your own compiler work. The goal is a clear mental model, not a production implementation.
+You are a software engineer working on a Java bytecode→x86 JIT compiler for armOS. You want to learn code/performance optimization techniques to write faster, more efficient code — both in your compiler work and in general software engineering. The goal is to build a practical mental model of how to identify bottlenecks, measure performance, and apply optimization techniques effectively.
 
 ## Success looks like
 
-- You can explain to someone else how AOT and JIT pipelines differ at every stage
-- You can look at a feature in your JIT compiler and say "here AOT would do this differently"
-- You know what closed-world assumption means and why it matters
-- You know what PGO is and how it bridges the AOT/JIT gap
+- You can profile code and identify the actual bottlenecks (not guess)
+- You understand CPU architecture fundamentals: cache, branch prediction, SIMD, memory hierarchy
+- You know when to optimize vs. when to stop (diminishing returns)
+- You can apply algorithmic optimization, micro-optimizations, and compiler-friendly patterns
+- You understand what the compiler does for you and what you must do manually
+- You can read assembly and reason about performance at the instruction level
 
 ## Constraints
 
 - Self-directed, self-paced learning alongside compiler development
-- No requirement to produce a working AOT compiler — conceptual understanding is the goal
+- Focus on practical techniques applicable to systems programming (C/C++/Java/Rust)
+- Measurements over intuition — always profile first
 
 ## Out of scope
 
-- Parsing and lexing (you already have compiler front-end knowledge)
-- Specific GraalVM / native-image workflow details (too tool-specific for now)
-- Garbage collection internals for AOT runtimes
+- Premature optimization without profiling
+- Microbenchmarks that don't reflect real workloads
+- Specific framework/library optimization (e.g., Spring, React) — focus on fundamentals
+- GPU/CUDA optimization (separate domain)
+
+## Primary Language Focus
+
+C/C++ (compiler work), Java (JVM optimization), with principles applicable broadly

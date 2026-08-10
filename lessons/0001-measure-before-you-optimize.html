@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson 1: Measure Before You Optimize</title>
+  <link rel="stylesheet" href="../assets/shared.css">
+</head>
+<body>
+  <h1>Lesson 1: Measure Before You Optimize</h1>
+
+  <p class="sidenote"><strong>Mission tie-in:</strong> You're building a JIT compiler. Profiling is how you know which optimizations actually matter — and whether your compiler's output is faster.</p>
+
+  <h2>Why This Lesson</h2>
+
+  <p>The single biggest mistake in performance optimization is <strong>optimizing without measuring</strong>. Human intuition about bottlenecks is notoriously wrong — even experts guess incorrectly >50% of the time. Before you change a single line of code, you need data.</p>
+
+  <div class="callout tip">
+    <strong>Golden Rule:</strong> Profile first. Optimize second. Verify third.
+  </div>
+
+  <h2>What Profiling Tells You</h2>
+
+  <p>A profiler answers three questions:</p>
+  <ol>
+    <li><strong>Where</strong> is time spent? (Which functions, lines, instructions)</li>
+    <li><strong>Why</strong> is it slow? (Cache misses, branch mispredictions, memory bandwidth, lock contention)</li>
+    <li><strong>How much</strong> can it improve? (Upper bound on speedup via Amdahl's Law)</li>
+  </ol>
+
+  <h2>Types of Profiling</h2>
+
+  <table>
+    <thead>
+      <tr><th>Type</th><th>What it measures</th><th>Overhead</th><th>Best for</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Sampling</strong> (perf, VTune)</td><td>Statistical PC samples at intervals</td><td>Low (~1-5%)</td><td>Finding hot functions in production</td></tr>
+      <tr><td><strong>Instrumentation</strong> (gprof, -finstrument-functions)</td><td>Exact call counts, precise timing</td><td>High (10-100x)</td><td>Call graphs, small functions</td></tr>
+      <tr><td><strong>Hardware Counters</strong> (perf stat, PAPI)</td><td>Cache misses, branches, instructions retired</td><td>Very low</td><td>Understanding <em>why</em> it's slow</td></tr>
+      <tr><td><strong>Microbenchmarking</strong> (Google Benchmark)</td><td>Single function throughput/latency</td><td>Controlled</td><td>Comparing algorithm variants</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Your First Profile: <code>perf</code></h2>
+
+  <p>On Linux, <code>perf</code> is the standard sampling profiler. Here's the workflow:</p>
+
+  <pre><code># 1. Compile with debug symbols (no -O3 yet — we want readable profiles)
+gcc -O2 -g -fno-omit-frame-pointer my_program.c -o my_program
+
+# 2. Record a profile (run for ~10-30 seconds)
+perf record -g --call-graph dwarf ./my_program
+
+# 3. Analyze
+perf report          # TUI: navigate with arrows, Enter to expand
+perf report --stdio  # Text output for scripts
+perf script          # Raw samples for FlameGraphs</code></pre>
+
+  <div class="callout warn">
+    <strong>Critical:</strong> Always compile with <code>-fno-omit-frame-pointer</code> and <code>-g</code>. Without frame pointers, <code>perf</code> can't unwind the stack — you'll see <code>???</code> instead of function names.
+  </div>
+
+  <h2>Reading a <code>perf report</code></h2>
+
+  <p>Key columns:</p>
+  <ul>
+    <li><strong>Overhead %</strong> — percentage of samples in this function</li>
+    <li><strong>Children %</strong> — percentage in this function <em>plus</em> its callees</li>
+    <li><strong>Self %</strong> — percentage <em>only</em> in this function (not callees)</li>
+  </ul>
+
+  <p>Focus on high <strong>Self %</strong> — that's where the CPU actually executes your instructions.</p>
+
+  <h2>Hardware Counters: The "Why"</h2>
+
+  <p>Sampling tells you <em>where</em>. Hardware counters tell you <em>why</em>:</p>
+
+  <pre><code># Overall pipeline health
+perf stat ./my_program
+
+# Specific events
+perf stat -e cache-misses,cache-references,branch-misses,branch-instructions ./my_program
+
+# Per-function breakdown
+perf record -e cache-misses -g ./my_program
+perf report</code></pre>
+
+  <p>Key metrics to watch:</p>
+
+  <table>
+    <thead>
+      <tr><th>Metric</th><th>Healthy</th><th>Concerning</th><th>Likely Cause</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>IPC (Instructions Per Cycle)</td><td>> 1.0 (modern CPUs)</td><td>< 0.5</td><td>Stalls: cache misses, dependencies</td></tr>
+      <tr><td>Branch miss rate</td><td>< 1%</td><td>> 5%</td><td>Unpredictable branches</td></tr>
+      <tr><td>LLC miss rate</td><td>< 5%</td><td>> 20%</td><td>Working set > cache, poor locality</td></tr>
+      <tr><td>Cycles stalled (frontend/backend)</td><td>Low</td><td>High</td><td>Frontend: decode/ICache; Backend: data deps</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Microbenchmarking: Comparing Alternatives</h2>
+
+  <p>When you have a hot function and want to test a faster version, use <a href="https://github.com/google/benchmark">Google Benchmark</a>:</p>
+
+  <pre><code>#include <benchmark/benchmark.h>
+
+static void BM_StringCopy(benchmark::State& state) {
+  std::string src(state.range(0), 'x');
+  for (auto _ : state) {
+    std::string dst = src;  // measured operation
+    benchmark::DoNotOptimize(dst);
+  }
+}
+BENCHMARK(BM_StringCopy)->Arg(16)->Arg(256)->Arg(4096);
+
+BENCHMARK_MAIN();</code></pre>
+
+  <div class="callout tip">
+    <strong>Key benchmark practices:</strong>
+    <ul>
+      <li><code>DoNotOptimize</code> prevents the compiler from deleting your work</li>
+      <li>Use <code>Arg</code> / <code>Range</code> to test multiple input sizes</li>
+      <li>Run with <code>--benchmark_repetitions=10</code> for statistical significance</li>
+      <li>Pin CPU frequency: <code>sudo cpupower frequency-set -g performance</code></li>
+    </ul>
+  </div>
+
+  <h2>Flame Graphs: Visualizing the Stack</h2>
+
+  <p>Flame graphs turn <code>perf script</code> output into an intuitive visualization:</p>
+
+  <pre><code># Install flamegraph.pl (from Brendan Gregg's repo)
+git clone https://github.com/brendangregg/FlameGraph
+export PATH=$PATH:$(pwd)/FlameGraph
+
+# Generate SVG
+perf script | flamegraph.pl > profile.svg</code></pre>
+
+  <p>Reading flame graphs:</p>
+  <ul>
+    <li><strong>X-axis</strong> = stack depth (not time!), sorted alphabetically</li>
+    <li><strong>Width</strong> = proportion of samples</li>
+    <li><strong>Wide plateau at top</strong> = hot function</li>
+    <li><strong>Color</strong> = usually random/hue by function name (helps visually group)</li>
+  </ul>
+
+  <h2>Quick Quiz</h2>
+
+  <div class="quiz">
+    <p class="q">You profile a program and see Function A at 40% Self overhead, Function B at 30% Self overhead. Function A calls Function B. Where should you optimize first?</p>
+    <ul class="options">
+      <li><button data-correct="true" data-explain="Self overhead means time spent in that function's own instructions. A has 40% vs B's 30%, so optimizing A gives more potential speedup.">Function A — it has higher Self %</button></li>
+      <li><button data-correct="false" data-explain="Children % includes callees. Optimizing based on Children % double-counts.">Function B — it's called by A so it's on the critical path</button></li>
+      <li><button data-correct="false" data-explain="You need data, not guesses. The profiler already gave you the data: Self % tells you exactly where CPU cycles go.">Either — you need to read the assembly first</button></li>
+    </ul>
+    <p class="feedback" hidden></p>
+  </div>
+
+  <div class="quiz">
+    <p class="q">Your <code>perf stat</code> output shows IPC = 0.3 and high "backend stalled cycles". What's the most likely bottleneck?</p>
+    <ul class="options">
+      <li><button data-correct="false" data-explain="Frontend stalls mean the decoder can't fetch/decode instructions fast enough (I$ misses, complex instructions). Backend stalls mean execution units are waiting for data/dependencies.">Instruction cache misses (frontend bottleneck)</button></li>
+      <li><button data-correct="true" data-explain="Backend stalls = execution units waiting. Common causes: cache misses (data not ready), long dependency chains (e.g., pointer chasing), resource conflicts.">Data cache misses or long dependency chains</button></li>
+      <li><button data-correct="false" data-explain="Branch mispredictions cause frontend pipeline flushes, but they show up as high branch-miss rate, not specifically backend stalls.">Branch mispredictions</button></li>
+    </ul>
+    <p class="feedback" hidden></p>
+  </div>
+
+  <h2>Exercise: Profile Something Real</h2>
+
+  <ol>
+    <li>Pick a small C/C++ program you've written (or write one: e.g., matrix multiply, string parsing, sorting)</li>
+    <li>Compile: <code>gcc -O2 -g -fno-omit-frame-pointer prog.c -o prog</code></li>
+    <li>Run: <code>perf record -g ./prog</code></li>
+    <li>Run: <code>perf report --stdio | head -50</code></li>
+    <li>Identify the top 3 functions by Self %</li>
+    <li>Run: <code>perf stat ./prog</code> and note IPC, cache-miss rate, branch-miss rate</li>
+  </ol>
+
+  <div class="callout">
+    <strong>Next lesson:</strong> <a href="0002-cpu-architecture-fundamentals.html">CPU Architecture Fundamentals</a> — understanding cache hierarchies, pipelines, and why your code runs at the speed it does.
+  </div>
+
+  <hr style="margin: 2rem 0; border-color: #d4d4d4;">
+
+  <p class="sidenote"><strong>Primary source:</strong> <a href="https://www.brendangregg.com/perf.html">Linux Perf Tutorial — Brendan Gregg</a>. The definitive practical guide to perf.</p>
+
+  <p class="sidenote"><strong>Reference:</strong> <a href="../reference/profiling-quickref.html">Profiling Quick Reference</a> — command cheat sheet for perf, benchmarks, and flame graphs.</p>
+
+  <p class="sidenote"><strong>Questions?</strong> Ask your teacher agent — it can clarify anything unclear, walk through your perf output, or suggest what to profile next.</p>
+
+  <script src="../assets/quiz.js"></script>
+</body>
+</html>
