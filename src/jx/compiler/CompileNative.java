@@ -70,7 +70,7 @@ public class CompileNative {
             jlns.add(libdir + neededLib + ".jln");
         }
         opts = getCompilerOptions(null, jlns, null, jlnname, jllname, "JC_CONFIG");
-	compile("wm", opts);
+	//compile("wm", opts);
         
         createISO();
     }
@@ -98,34 +98,34 @@ public class CompileNative {
         String[] libClasses = new String[0];
         if(path.endsWith("init2")){
             domClasses = new String[]{
-                new URL("jar:https://github.com/sPyOpenSource/applications/raw/simulator/APP/dist/testOS.jar!/").toString(),
-                new URL("jar:https://github.com/sPyOpenSource/applications/raw/simulator/FS/dist/testFS.jar!/").toString(),
-                new URL("jar:https://github.com/sPyOpenSource/applications/raw/simulator/HCI/dist/testHCI.jar!/").toString(),
-                new URL("jar:https://github.com/sPyOpenSource/applications/raw/simulator/NET/dist/testNET.jar!/").toString(),
-                new URL("jar:https://github.com/sPyOpenSource/applications/raw/simulator/WM/dist/JavaWM.jar!/").toString(),
-                new URL("https://github.com/sPyOpenSource/applications/raw/simulator/APP/META").toString()
+                new URL("jar:https://github.com/sPyOpenSource/applications/raw/new-gui/APP/dist/testOS.jar!/").toString(),
+                new URL("jar:https://github.com/sPyOpenSource/applications/raw/new-gui/FS/dist/testFS.jar!/").toString(),
+                new URL("jar:https://github.com/sPyOpenSource/applications/raw/new-gui/HCI/dist/testHCI.jar!/").toString(),
+                new URL("jar:https://github.com/sPyOpenSource/applications/raw/new-gui/NET/dist/testNET.jar!/").toString(),
+                new URL("jar:https://github.com/sPyOpenSource/applications/raw/new-gui/WM/dist/JavaWM.jar!/").toString(),
+                new URL("https://github.com/sPyOpenSource/applications/raw/new-gui/APP/META").toString()
             };
             libClasses = new String[]{
                 new URL("jar:https://github.com/sPyOpenSource/zero/raw/jar/dist/Zero.jar!/").toString(), 
                 new URL("jar:https://github.com/sPyOpenSource/os/raw/dev/dist/OS.jar!/").toString(), 
                 new URL("jar:https://github.com/sPyOpenSource/AIZero/raw/master/dist/AIZero.jar!/").toString(),
-                new URL("jar:https://github.com/sPyOpenSource/applications/raw/simulator/ifOS/dist/ifOS.jar!/").toString()
+                new URL("jar:https://github.com/sPyOpenSource/applications/raw/new-gui/ifOS/dist/ifOS.jar!/").toString()
             };
         } else if(path.endsWith("wm")){
             domClasses = new String[]{
-                new URL("jar:https://github.com/sPyOpenSource/applications/raw/simulator/WM/dist/JavaWM.jar!/").toString()
+                new URL("jar:https://github.com/sPyOpenSource/applications/raw/new-gui/WM/dist/JavaWM.jar!/").toString()
             };
             libClasses = new String[]{
                 new URL("jar:https://github.com/sPyOpenSource/zero/raw/jar/dist/Zero.jar!/").toString(),
                 new URL("jar:https://github.com/sPyOpenSource/os/raw/dev/dist/OS.jar!/").toString(),
-                new URL("jar:https://github.com/sPyOpenSource/applications/raw/simulator/ifOS/dist/ifOS.jar!/").toString(),
-                new URL("jar:https://github.com/sPyOpenSource/applications/raw/simulator/HCI/dist/testHCI.jar!/").toString(),
-                new URL("jar:https://github.com/sPyOpenSource/applications/raw/simulator/APP/dist/testOS.jar!/").toString()
+                new URL("jar:https://github.com/sPyOpenSource/applications/raw/new-gui/ifOS/dist/ifOS.jar!/").toString(),
+                new URL("jar:https://github.com/sPyOpenSource/applications/raw/new-gui/HCI/dist/testHCI.jar!/").toString(),
+                new URL("jar:https://github.com/sPyOpenSource/applications/raw/new-gui/APP/dist/testOS.jar!/").toString()
             };
         } else if(path.endsWith("os")){
             domClasses = new String[]{
                 new URL("jar:https://github.com/sPyOpenSource/os/raw/dev/dist/OS.jar!/").toString(),
-                new URL("jar:https://github.com/sPyOpenSource/applications/raw/simulator/ifOS/dist/ifOS.jar!/").toString(),
+                new URL("jar:https://github.com/sPyOpenSource/applications/raw/dev/ifOS/dist/ifOS.jar!/").toString(),
                 new URL("jar:https://github.com/sPyOpenSource/AIZero/raw/master/dist/AIZero.jar!/").toString(),
                 new URL("https://github.com/sPyOpenSource/os/raw/dev/META").toString()
             };
@@ -145,7 +145,7 @@ public class CompileNative {
                 "../test/HCI/dist/testHCI.jar",
                 "../test/NET/dist/testNET.jar",
                 //"../test/WM/dist/JavaWM.jar",
-                new URL("https://github.com/sPyOpenSource/applications/raw/simulator/APP/META").toString()
+                new URL("https://github.com/sPyOpenSource/applications/raw/new-gui/APP/META").toString()
             };
             libClasses = new String[]{
                 "../Zero/dist/Zero.jar", 
@@ -156,7 +156,7 @@ public class CompileNative {
         } else if(path.endsWith("wm")){
             domClasses = new String[]{
                 "../test/WM/dist/JavaWM.jar",
-                new URL("https://github.com/sPyOpenSource/applications/raw/simulator/WM/META").toString()
+                new URL("https://github.com/sPyOpenSource/applications/raw/new-gui/WM/META").toString()
             };
             libClasses = new String[]{
                 "../Zero/dist/Zero.jar",
