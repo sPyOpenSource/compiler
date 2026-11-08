@@ -346,7 +346,7 @@ public class CodeContainer implements NativeCodeContainer {
 
         if (inode.isBlockVariable() && inode.next != null) optPatternBlockVar((IMStoreBlockVariable)inode);
 
-        if (experimentalCode && opts.doOptimize()) {
+        if (opts.doOptimize()) {
           if (inode instanceof IMGoto igoto) {
             IMBasicBlock targets[] = igoto.getTargets();
             
@@ -790,7 +790,7 @@ public class CodeContainer implements NativeCodeContainer {
         bvar.next = bvar.next.next;
         bvar.next.prev = bvar;
         
-        if (experimentalCode && opts.doOptimize()) {
+        if (opts.doOptimize()) {
             
             /*
               b0 = new ..()
