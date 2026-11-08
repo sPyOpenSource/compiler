@@ -76,7 +76,6 @@ public class CodeContainer implements NativeCodeContainer {
 
     private boolean          smallMethod      = true;
     private boolean          leafMethod       = true;
-    private boolean          experimentalCode = true;
 
     private ExceptionHandlerData[] handlers;
     private IMBasicBlock[]         expHandlerList;
