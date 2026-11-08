@@ -37,7 +37,7 @@ public class CompileNative {
 	String jlnname = libdir + "zero.jln";
         
         CompilerOptions opts = getCompilerOptions(null, jlns, null, jlnname, jllname, "JC_CONFIG");
-        //compile("zero", opts);
+        compile("zero", opts);
         
 	jllname = libdir + "jdk0.jll";
         jlnname = libdir + "jdk0.jln";
@@ -70,7 +70,7 @@ public class CompileNative {
             jlns.add(libdir + neededLib + ".jln");
         }
         opts = getCompilerOptions(null, jlns, null, jlnname, jllname, "JC_CONFIG");
-	//compile("wm", opts);
+	compile("wm", opts);
         
         createISO();
     }
@@ -113,7 +113,8 @@ public class CompileNative {
             };
         } else if(path.endsWith("wm")){
             domClasses = new String[]{
-                new URL("jar:https://github.com/sPyOpenSource/applications/raw/new-gui/WM/dist/JavaWM.jar!/").toString()
+                new URL("jar:https://github.com/sPyOpenSource/applications/raw/new-gui/WM/dist/JavaWM.jar!/").toString(),
+                new URL("https://github.com/sPyOpenSource/applications/raw/new-gui/WM/META").toString()
             };
             libClasses = new String[]{
                 new URL("jar:https://github.com/sPyOpenSource/zero/raw/jar/dist/Zero.jar!/").toString(),
@@ -145,9 +146,7 @@ public class CompileNative {
                 "../test/FS/dist/testFS.jar",
                 "../test/HCI/dist/testHCI.jar",
                 "../test/NET/dist/testNET.jar",
-                //"../test/WM/dist/JavaWM.jar",
                 "../test/APP/META"
-                //new URL("https://github.com/sPyOpenSource/applications/raw/new-gui/APP/META").toString()
             };
             libClasses = new String[]{
                 "../Zero/dist/Zero.jar", 
@@ -159,7 +158,6 @@ public class CompileNative {
             domClasses = new String[]{
                 "../test/WM/dist/JavaWM.jar",
                 "../test/WM/META"
-                //new URL("https://github.com/sPyOpenSource/applications/raw/new-gui/WM/META").toString()
             };
             libClasses = new String[]{
                 "../Zero/dist/Zero.jar",
@@ -175,7 +173,6 @@ public class CompileNative {
                 "../test/ifOS/dist/ifOS.jar",
                 "../AIZero/dist/AIZero.jar",
                 "../OS/META"
-                //new URL("https://github.com/sPyOpenSource/os/raw/dev/META").toString()
             };
             libClasses = new String[]{
                 "../Zero/dist/Zero.jar"
@@ -225,7 +222,6 @@ public class CompileNative {
         String file4 = "app/isodir/code/zero.jll";
         String file5 = "app/isodir/code/realmode";
         String file6 = "app/isodir/code/boot.rc";
-        //String file7 = "app/isodir/code/wm_impl.jll";
         
         final List<String> srcFiles = Arrays.asList(file1, file2, file3, file4, file5, file6);
 	Msg.phase("Create ISO");
