@@ -387,29 +387,29 @@ public class CodeContainer implements NativeCodeContainer {
             basicBlock = (IMBasicBlock)inode;
         } else if (inode.isInstruction() && inode.next != null) {
             if (opts.doOptExecPath() || opts.isOption("path_" + method.getClassName() + "." + method.getName())) {
-            if (inode.isEndOfBasicBlock() &&
-                inode.isBranch() &&
-                inode.next.isLowPriorityPath()) {
-                if (inode instanceof IMConditionalBranch bnode) {
-                IMBasicBlock succ[] = bnode.getTargets();
+                if (inode.isEndOfBasicBlock() &&
+                    inode.isBranch() &&
+                    inode.next.isLowPriorityPath()) {
+                    if (inode instanceof IMConditionalBranch bnode) {
+                        IMBasicBlock succ[] = bnode.getTargets();
 
-                if (opts.doVerbose("path"))
-                    Debug.out.println("o:" + bnode.toString());
+                        if (opts.doVerbose("path"))
+                            Debug.out.println("o:" + bnode.toString());
 
-                try {
-                    bnode.addDebugInfo("swap jump " + succ[0].toLabel() + " " + succ[1].toLabel());
-                } catch (Exception ex) {
-                    bnode.addDebugInfo("swap jump");
+                        try {
+                            bnode.addDebugInfo("swap jump " + succ[0].toLabel() + " " + succ[1].toLabel());
+                        } catch (Exception ex) {
+                            bnode.addDebugInfo("swap jump");
+                        }
+
+                        moveBasicBlockToEnd(succ[0]);
+
+                        bnode.swapJumpTargets();
+
+                        if (opts.doVerbose("path"))
+                            Debug.out.println("n:" + bnode.toString());
+                    }
                 }
-
-                moveBasicBlockToEnd(succ[0]);
-
-                bnode.swapJumpTargets();
-
-                if (opts.doVerbose("path"))
-                    Debug.out.println("n:" + bnode.toString());
-                }
-            }
             }
         }
         inode = inode.next;
