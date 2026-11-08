@@ -253,7 +253,7 @@ public class CompilerOptionsNative extends CompilerOptions {
 	doStackSizeCheck     = true;
 	doExceptions         = true;
 	doMemoryRangeChecks  = true;
-	doOptimize           = false;
+	doOptimize           = true;
 	doInlining           = false;
 	doProfiling          = false;
         doEventLoging        = false;
