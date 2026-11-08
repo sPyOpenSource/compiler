@@ -134,9 +134,10 @@ public class CompileNative {
             };
         }
         
-        /*domClasses = new String[]{
-            "../Zero/dist/Zero.jar"
-        };*/
+        domClasses = new String[]{
+            "../Zero/dist/Zero.jar",
+            "../Zero/META"
+        };
         libClasses = new String[0];
         if(path.endsWith("init2")){
             domClasses = new String[]{
@@ -145,7 +146,8 @@ public class CompileNative {
                 "../test/HCI/dist/testHCI.jar",
                 "../test/NET/dist/testNET.jar",
                 //"../test/WM/dist/JavaWM.jar",
-                new URL("https://github.com/sPyOpenSource/applications/raw/new-gui/APP/META").toString()
+                "../test/APP/META"
+                //new URL("https://github.com/sPyOpenSource/applications/raw/new-gui/APP/META").toString()
             };
             libClasses = new String[]{
                 "../Zero/dist/Zero.jar", 
@@ -156,7 +158,8 @@ public class CompileNative {
         } else if(path.endsWith("wm")){
             domClasses = new String[]{
                 "../test/WM/dist/JavaWM.jar",
-                new URL("https://github.com/sPyOpenSource/applications/raw/new-gui/WM/META").toString()
+                "../test/WM/META"
+                //new URL("https://github.com/sPyOpenSource/applications/raw/new-gui/WM/META").toString()
             };
             libClasses = new String[]{
                 "../Zero/dist/Zero.jar",
@@ -171,7 +174,8 @@ public class CompileNative {
                 "../OS/dist/OS.jar",
                 "../test/ifOS/dist/ifOS.jar",
                 "../AIZero/dist/AIZero.jar",
-                new URL("https://github.com/sPyOpenSource/os/raw/dev/META").toString()
+                "../OS/META"
+                //new URL("https://github.com/sPyOpenSource/os/raw/dev/META").toString()
             };
             libClasses = new String[]{
                 "../Zero/dist/Zero.jar"

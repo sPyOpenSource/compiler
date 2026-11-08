@@ -159,7 +159,7 @@ public class StaticCompiler implements ClassFinder {
                 JarFile jar = null;
                 if(in.startsWith("jar")){
                 JarURLConnection con = (JarURLConnection)(new URL(in)).openConnection();
-                 jar = con.getJarFile();
+                jar = con.getJarFile();
                 } else {
                     jar = new JarFile(in);
                 }
