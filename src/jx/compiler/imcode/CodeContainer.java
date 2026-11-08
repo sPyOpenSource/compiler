@@ -972,7 +972,7 @@ public class CodeContainer implements NativeCodeContainer {
         node = node.next;
     }
 
-    if (opts.isOption("cfor")) constant_forwarding();
+    if (opts.doOptimize()) constant_forwarding();
     }
 
     /** 
