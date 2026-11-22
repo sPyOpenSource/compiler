@@ -17,15 +17,15 @@ InstallNaming        = jx/InitialNaming
 #StartClass   = jx/devices/pci/PCIGod
 
 #[Component Framebuffer]
-#StartClass   = jx/fb/StartFBDevice
-#InitLib      = fb_devices.jll
+StartClass   = jx/fb/StartFBDevice
+InitLib      = wm.jll
 #Args         = FB, jx/devices/fb/vmware/VMWareSVGAFinder, fb_vmware.jll, null, jx/devices/fb/emulation/EmulFBFinder, fb_emul.jll, 279, null, jx/devices/fb/mga/MGA200Finder, mga_hw.jll, null
-#Args         = FB, jx/devices/fb/emulation/EmulFBFinder, fb_emul.jll, 279, null
+Args         = FB, jx/devices/fb/emulation/EmulFBFinder, wm.jll, 279, null
 
 #[Component KeyboardMouse]
-#StartClass   = jx/keyboard/Main
-#InitLib      = keyboard_pc.jll
-#Args         = WindowManager
+StartClass   = jx/keyboard/Main
+InitLib      = wm.jll
+Args         = WindowManager
 
 #[Component KeyboardMouseEmul]
 #StartClass   = jx/devices/fb/emulation/InputEmul

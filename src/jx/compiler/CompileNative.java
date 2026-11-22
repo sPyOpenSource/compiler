@@ -37,7 +37,7 @@ public class CompileNative {
 	String jlnname = libdir + "zero.jln";
         
         CompilerOptions opts = getCompilerOptions(null, jlns, null, jlnname, jllname, "JC_CONFIG");
-        compile("zero", opts);
+        //compile("zero", opts);
         
 	jllname = libdir + "jdk0.jll";
         jlnname = libdir + "jdk0.jln";
@@ -48,7 +48,7 @@ public class CompileNative {
             jlns.add(libdir + neededLib + ".jln");
         }
         opts = getCompilerOptions(null, jlns, null, jlnname, jllname, "JC_CONFIG");
-	compile("os", opts);
+	//compile("os", opts);
         
 	jllname = libdir + "init2.jll";
         jlnname = libdir + "init2.jln";
@@ -90,7 +90,6 @@ public class CompileNative {
 	tableOut = new ExtendedDataOutputStream(opts.getLinkerOutputFile());
 	
 	Msg.debug("native", "Reading domain classes from " + opts.getClassFile());
-
 
 	String[] domClasses = new String[]{
             new URL("jar:https://github.com/sPyOpenSource/zero/raw/jar/dist/Zero.jar!/").toString()
@@ -222,8 +221,10 @@ public class CompileNative {
         String file4 = "app/isodir/code/zero.jll";
         String file5 = "app/isodir/code/realmode";
         String file6 = "app/isodir/code/boot.rc";
+        String file7 = "app/isodir/code/std.keymap";
+        String file8 = "app/isodir/code/default.fon";
         
-        final List<String> srcFiles = Arrays.asList(file1, file2, file3, file4, file5, file6);
+        final List<String> srcFiles = Arrays.asList(file1, file2, file3, file4, file5, file6, file7, file8);
 	Msg.phase("Create ISO");
 
         try {
