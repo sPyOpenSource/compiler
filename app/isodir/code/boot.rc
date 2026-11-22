@@ -16,13 +16,13 @@ InstallNaming        = jx/InitialNaming
 #InitLib      = pci_pc.jll
 #StartClass   = jx/devices/pci/PCIGod
 
-#[Component Framebuffer]
+[Component Framebuffer]
 StartClass   = jx/fb/StartFBDevice
 InitLib      = wm.jll
 #Args         = FB, jx/devices/fb/vmware/VMWareSVGAFinder, fb_vmware.jll, null, jx/devices/fb/emulation/EmulFBFinder, fb_emul.jll, 279, null, jx/devices/fb/mga/MGA200Finder, mga_hw.jll, null
 Args         = FB, jx/devices/fb/emulation/EmulFBFinder, wm.jll, 279, null
 
-#[Component KeyboardMouse]
+[Component KeyboardMouse]
 StartClass   = jx/keyboard/Main
 InitLib      = wm.jll
 Args         = WindowManager
@@ -51,6 +51,6 @@ Name         = AllDomain
 CodeSize     = 100000
 #Components   = PCI, Framebuffer, KeyboardMouseEmul,  WindowManager, AWTTest
 #Components   = Framebuffer, PCI, KeyboardMouse,  WindowManager, AWTTest
-Components = WindowManager
+Components = WindowManager, KeyboardMouse
 GarbageCollector = copying
 HeapSize     = 20000000
