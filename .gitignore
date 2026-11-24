@@ -2,7 +2,7 @@
 /build/
 /nbproject/private/
 /dist/
-/app/isodir/code/uncompressed.zip
 *.bin
 *.table
-app/MyOS.iso
+/app/MyOS.iso
+/app/isodir/code/uncompressed.zip
