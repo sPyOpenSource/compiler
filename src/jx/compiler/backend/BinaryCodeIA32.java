@@ -115,6 +115,7 @@ public final class BinaryCodeIA32 {
      */
     public void addss(RegFloat src, RegFloat des) {
 	realloc();
+	insertByte(0xF3);
 	insertByte(0x0F);
 	insertByte(0x58);
 	insertModRM(des.value, src);
@@ -143,6 +144,7 @@ public final class BinaryCodeIA32 {
 
     public void mulss(RegFloat src, RegFloat des) {
 	realloc();
+	insertByte(0xF3);
 	insertByte(0x0F);
 	insertByte(0x59);
 	insertModRM(des.value, src);
@@ -234,8 +236,33 @@ public final class BinaryCodeIA32 {
 
     public void cvtsi2ss(Reg src, RegFloat des) {
 	realloc();
+	insertByte(0xF3);
 	insertByte(0x0F);
-	insertByte(0x28);
+	insertByte(0x2A);
+	insertModRM(des.value, src);
+    }
+
+    public void movss(Opr src, RegFloat des) {
+	realloc();
+	insertByte(0xF3);
+	insertByte(0x0F);
+	insertByte(0x10);
+	insertModRM(des.value, src);
+    }
+
+    public void movss(RegFloat src, Ref des) {
+	realloc();
+	insertByte(0xF3);
+	insertByte(0x0F);
+	insertByte(0x11);
+	insertModRM(src.value, des);
+    }
+
+    public void movd(Reg src, RegFloat des) {
+	realloc();
+	insertByte(0x66);
+	insertByte(0x0F);
+	insertByte(0x6E);
 	insertModRM(des.value, src);
     }
 
