@@ -304,13 +304,20 @@ public class IMBasicBlock extends IMNode {
             //System.err.println(node.toReadableString());
             switch (node.getDatatype()) {
                 case BCBasicDatatype.FLOAT:
+                    {
+                    RegFloat rf = regs.chooseFloatRegister();
+                    node.translate(rf);
+                    regs.freeFloatRegister(rf);
+                    }
+                    break;
                 case BCBasicDatatype.DOUBLE:
-                    if(opts.isOption("long")){
-                    RegDouble rd = regs.chooseDoubleRegister();
-                    node.translate(rd);
-                    regs.freeDoubleRegister(rd);
-                    } else code.nop();
-                    //execEnv.codeThrow(this,-11,bcPosition);
+                    if (opts.isOption("long")) {
+                        RegDouble rd = regs.chooseDoubleRegister();
+                        node.translate(rd);
+                        regs.freeDoubleRegister(rd);
+                    } else {
+                        code.nop();
+                    }
                     break;
                 case BCBasicDatatype.LONG: 
                     if (opts.isOption("long")) {
