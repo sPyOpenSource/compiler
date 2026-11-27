@@ -1574,10 +1574,48 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
                 System.out.println("Can't find ClassInfo for " + className);
             }
 	    BCClassInfo info = aClass.getInfo();
+	    BCMethod bcMethod = getBCMethod(methodRefCPEntry);
+	    Reg objRef = regs.chooseIntRegister(null);
+	    if (bcMethod.isNative()) {
+                // Native method: no bytecode in this classpath. Push a default
+                // return value instead of doing a vtable lookup (which would
+                // fail since native methods are not in the method table).
+	        int offset = codeVirtualPushArgs(obj, args, objRef, bcPosition);
+		code.startBC(bcPosition);
+		regs.saveIntRegister();
+		switch (datatype) {
+		    case BCBasicDatatype.REFERENCE:
+			code.xorl(Reg.eax, Reg.eax);
+			break;
+		    case BCBasicDatatype.FLOAT:
+			code.xorl(Reg.eax, Reg.eax);
+			code.movd(Reg.eax, RegFloat.xmm0);
+			break;
+		    case BCBasicDatatype.DOUBLE:
+			code.xorl(Reg.eax, Reg.eax);
+			code.movd(Reg.eax, RegDouble.xmm0);
+			break;
+		    case BCBasicDatatype.LONG:
+			if (opts.isOption("long")) {
+			    code.xorl(Reg.eax, Reg.eax);
+			    code.xorl(Reg.edx, Reg.edx);
+			} else {
+			    code.xorl(Reg.eax, Reg.eax);
+			}
+			break;
+		    default:
+			code.xorl(Reg.eax, Reg.eax);
+			break;
+		}
+		if (!result.equals(Reg.eax)) {
+		    code.movl(Reg.eax, result);
+		}
+		frame.cleanup(offset);
+		code.endBC();
+		return;
+	    }
 	    int index = info.methodTable.getIndex(methodRefCPEntry.getMemberName() + methodRefCPEntry.getMemberTypeDesc());	    
 
-	    Reg objRef = regs.chooseIntRegister(null);
-	    
 	    int offset = codeVirtualPushArgs(obj, args, objRef, bcPosition);
 	    
 	    code.startBC(bcPosition);
@@ -1774,6 +1812,45 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	CompilerPlugin plugin; 
 	if ((plugin = findPlugin(className))!=null) {
 	    if (plugin.code(node, regs, code, methodRefCPEntry,null,args,datatype,result,bcPosition)) return;
+	}
+
+	BCMethod bcMethod = getBCMethod(methodRefCPEntry);
+	if (bcMethod.isNative()) {
+            // Native static method: no bytecode in this classpath. Push a
+            // default return value instead of doing a method table lookup.
+	    int offset = frame.start();
+	    code.startBC(bcPosition);
+	    regs.saveIntRegister();
+	    switch (datatype) {
+		case BCBasicDatatype.REFERENCE:
+		    code.xorl(Reg.eax, Reg.eax);
+		    break;
+		case BCBasicDatatype.FLOAT:
+		    code.xorl(Reg.eax, Reg.eax);
+		    code.movd(Reg.eax, RegFloat.xmm0);
+		    break;
+		case BCBasicDatatype.DOUBLE:
+		    code.xorl(Reg.eax, Reg.eax);
+		    code.movd(Reg.eax, RegDouble.xmm0);
+		    break;
+		case BCBasicDatatype.LONG:
+		    if (opts.isOption("long")) {
+			code.xorl(Reg.eax, Reg.eax);
+			code.xorl(Reg.edx, Reg.edx);
+		    } else {
+			code.xorl(Reg.eax, Reg.eax);
+		    }
+		    break;
+		default:
+		    code.xorl(Reg.eax, Reg.eax);
+		    break;
+	    }
+	    if (!result.equals(Reg.eax)) {
+		code.movl(Reg.eax, result);
+	    }
+	    frame.cleanup(offset);
+	    code.endBC();
+	    return;
 	}
 
 	if (className.equals("jx/zero/InitialNaming")) {
