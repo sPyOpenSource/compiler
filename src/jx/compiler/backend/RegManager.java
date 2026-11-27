@@ -387,6 +387,14 @@ public class RegManager {
 	    if (reg.slot != null) {
 		active.append(reg);
 		readIntRegisterFromSlot(reg.slot, reg, reg.slot.getDatatype());
+	    } else if (reg.value != -1) {
+		// reg holds a physical register value (e.g. eax) that was cleared
+		// from active by clearActives() inside a nested call. Re-add to
+		// active without loading - the value is already in the register.
+		active.append(reg);
+		reg.unfree();
+		reg.valid = true;
+		return;
 	    } else {
 		if (dbg_msg) System.err.println(active);
 		throw new CompileException("unknown register " + reg);

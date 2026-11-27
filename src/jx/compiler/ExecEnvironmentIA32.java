@@ -1576,7 +1576,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	    BCClassInfo info = aClass.getInfo();
 	    BCMethod bcMethod = getBCMethod(methodRefCPEntry);
 	    Reg objRef = regs.chooseIntRegister(null);
-	    if (bcMethod.isNative()) {
+	    if (bcMethod == null || bcMethod.isNative()) {
                 // Native method: no bytecode in this classpath. Push a default
                 // return value instead of doing a vtable lookup (which would
                 // fail since native methods are not in the method table).
@@ -1609,6 +1609,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 		}
 		if (!result.equals(Reg.eax)) {
 		    code.movl(Reg.eax, result);
+		    if (result.any()) regs.setAnyIntRegister(result, Reg.eax);
 		}
 		frame.cleanup(offset);
 		code.endBC();
@@ -1815,7 +1816,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	}
 
 	BCMethod bcMethod = getBCMethod(methodRefCPEntry);
-	if (bcMethod.isNative()) {
+	if (bcMethod == null || bcMethod.isNative()) {
             // Native static method: no bytecode in this classpath. Push a
             // default return value instead of doing a method table lookup.
 	    int offset = frame.start();
@@ -1847,6 +1848,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	    }
 	    if (!result.equals(Reg.eax)) {
 		code.movl(Reg.eax, result);
+		if (result.any()) regs.setAnyIntRegister(result, Reg.eax);
 	    }
 	    frame.cleanup(offset);
 	    code.endBC();

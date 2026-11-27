@@ -7,6 +7,7 @@ import jx.classfile.*;
 
 import jx.compiler.*;
 import jx.compiler.imcode.CodeContainer;
+import jx.compiler.imcode.LocalVariable;
 import jx.compiler.imcode.VirtualOperantenStack;
 import jx.compiler.imcode.graph.IMBasicBlock;
 import jx.compiler.imcode.graph.IMNode;
@@ -217,6 +218,18 @@ final public class IMConstant extends IMOperant {
 
     @Override
     public void translate(RegDouble result) throws CompileException {
-	throw new CompileException(getLineInfo() + " double translation not implemented!");
+	code.startBC(bcPosition);
+	long bits = cpEntry == null ? Double.doubleToLongBits((double)value)
+	    : Double.doubleToLongBits(getDoubleValue());
+	LocalVariable slot = frame.getFreeTempSlot(BCBasicDatatype.DOUBLE);
+	int offset = frame.getOffset(slot);
+	Reg tmp = regs.getIntRegister(Reg.any);
+	code.movl((int)(bits & 0xffffffff), tmp);
+	code.movl(tmp, Ref.ebp.disp(offset));
+	code.movl((int)((bits >>> 32) & 0xffffffff), tmp);
+	code.movl(tmp, Ref.ebp.disp(offset + 4));
+	code.movsd(Ref.ebp.disp(offset), result);
+	regs.freeIntRegister(tmp);
+	code.endBC();
     }
 }
