@@ -234,7 +234,7 @@ public class CompileNative {
                 zipFile.addFile(fileToZip);
                 }
             FileInputStream fis = new FileInputStream("app/isodir/code/uncompressed.zip");
-            FileOutputStream fos = new FileOutputStream("app/isodir/code/code.zip");
+            FileOutputStream fos = new FileOutputStream("app/isodir/code.zip");
             GZIPOutputStream gzipOS = new GZIPOutputStream(fos);
             byte[] buffer = new byte[1024];
             int len;
@@ -246,13 +246,14 @@ public class CompileNative {
             gzipOS.close();
             fos.close();
             fis.close();
+            new File("app/isodir/code/uncompressed.zip").delete();
             
             File outfile = new File("ISOTest6.iso");
             
             // Directory hierarchy, starting from the root
             ISO9660RootDirectory.MOVED_DIRECTORIES_STORE_NAME = "rr_moved";
             ISO9660RootDirectory root = new ISO9660RootDirectory();
-            ISO9660File f1 = new ISO9660File("app/isodir/code/code.zip");
+            ISO9660File f1 = new ISO9660File("app/isodir/code.zip");
             root.addFile(f1);
             ISO9660File f2 = new ISO9660File("app/isodir/jxcore");
             root.addFile(f2);
