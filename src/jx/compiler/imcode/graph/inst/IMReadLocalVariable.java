@@ -161,6 +161,18 @@ final public class IMReadLocalVariable extends IMVarAccess {
     }
 
     @Override
+    public void translate(RegFloat result) throws CompileException {
+	code.startBC(bcPosition);
+	regs.readFloatRegisterFromSlot(lvar, result);
+	code.endBC();
+    }
+
+    @Override
+    public void translate(RegDouble result) throws CompileException {
+	throw new CompileException(getLineInfo() + " double translation not implemented!");
+    }
+
+    @Override
     public void translate(Reg64 result) throws CompileException {
 	code.startBC(bcPosition);
 	regs.readLongRegisterFromSlot(lvar,result);
