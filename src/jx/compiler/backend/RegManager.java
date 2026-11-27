@@ -568,6 +568,13 @@ public class RegManager {
 	reg.slot = slot;
     }
 
+    public void readDoubleRegisterFromSlot(LocalVariable slot, RegDouble reg) throws CompileException {
+	int offset = frame.getOffset(slot);
+	if (offset == 0) throw new Error("zero offset");
+	code.movsd(Ref.ebp.disp(offset), reg);
+	reg.slot = slot;
+    }
+
     /**
        writeIntToSlot(value,slot)
 

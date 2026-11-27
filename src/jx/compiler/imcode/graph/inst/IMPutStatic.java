@@ -90,7 +90,20 @@ final public class IMPutStatic extends IMOperant  {
 
     @Override
     public void translate(RegFloat result) throws CompileException {
-	translate(Reg.eax);
+	RegFloat fvalue = regs.chooseFloatRegister();
+	vOpr.translate(fvalue);
+
+	code.startBC(bcPosition);
+
+	Reg ivalue = regs.getIntRegister(Reg.any);
+	regs.allocIntRegister(ivalue, BCBasicDatatype.INT);
+	code.movd(fvalue, ivalue);
+
+	execEnv.codePutStaticField(this, cpEntry, ivalue, bcPosition);
+	code.endBC();
+
+	regs.freeFloatRegister(fvalue);
+	regs.freeIntRegister(ivalue);
     }
 
     @Override

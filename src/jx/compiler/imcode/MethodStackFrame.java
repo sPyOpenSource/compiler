@@ -192,7 +192,10 @@ public class MethodStackFrame {
 
         for (int j = 0; j < csize; j++) {
         LocalVariable slot = curr.elementAt(j);
-        size += slot.size;
+        // count one entry per slot, plus one extra for wide (size==2) types,
+        // matching how getStackMap() writes entries
+        size += 1;
+        if (slot.size == 2) size += 1;
         }
     }
     return size;
@@ -209,7 +212,8 @@ public class MethodStackFrame {
         else csize = numberOfOperants;
         for (int j = 0; j < csize; j++) {
         LocalVariable slot = curr.elementAt(j);
-        size += slot.size;
+        size += 1;
+        if (slot.size == 2) size += 1;
         }
     }
 
@@ -225,7 +229,8 @@ public class MethodStackFrame {
     csize = curr.size();
     for (int j = 0; j < csize; j++) {
         LocalVariable slot = curr.elementAt(j);
-        size += slot.size;
+        size += 1;
+        if (slot.size == 2) size += 1;
     }
 
     return size;
@@ -238,7 +243,8 @@ public class MethodStackFrame {
     VarVector curr = stack[OPRS];
     for (int j = 0; j < numberOfOperants; j++) {
         LocalVariable slot = curr.elementAt(j);
-        size += curr.elementAt(j).size;
+        size += 1;
+        if (slot.size == 2) size += 1;
     }
 
     return size;

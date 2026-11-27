@@ -183,10 +183,10 @@ public class IMInvoke extends IMMultiOperant {
 
     @Override
     public void translate(RegFloat result) throws CompileException {
-	// Float-returning invoke: callee returns in xmm0. Drive the normal
-	// (int-reg) call path with a dummy int register, then move xmm0 -> result.
-	Reg dummy = Reg.eax;
-	translate(dummy);
+	// Float-returning invoke: callee returns in xmm0 (x86 calling convention).
+	// Execute the call via the int-reg path (float return goes to xmm0),
+	// then move xmm0 -> result.
+	execEnv.codeVirtualCall(this, cpEntry, obj, args, datatype, Reg.eax, bcPosition);
 	code.movss(RegFloat.xmm0, result);
     }
 

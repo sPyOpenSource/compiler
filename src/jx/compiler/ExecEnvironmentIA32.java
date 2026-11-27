@@ -2256,6 +2256,11 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	  if (!result.equals(Reg.eax)) {
 	    code.movl(Reg.eax,result);
 	  }
+	  // Save result to a temp slot so it survives clearActives() which
+	  // is called after codeVirtualPushArgs returns. Without this, a
+	  // nested call's clearActives would clear the result register and
+	  // the outer pushArgs couldn't read it back.
+	  regs.saveIntRegister();
 	}
     }
 
@@ -2266,6 +2271,8 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 		code.movl(Reg64.eax.low,result.low);
                 code.movl(Reg64.eax.high,result.high);
 	}
+	// Save result to temp slot so it survives clearActives()
+	regs.saveIntRegister();
     }
 
     /** 

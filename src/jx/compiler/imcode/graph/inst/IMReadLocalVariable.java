@@ -174,7 +174,9 @@ final public class IMReadLocalVariable extends IMVarAccess {
 
     @Override
     public void translate(RegDouble result) throws CompileException {
-	throw new CompileException(getLineInfo() + " double translation not implemented!");
+	code.startBC(bcPosition);
+	regs.readDoubleRegisterFromSlot(lvar, result);
+	code.endBC();
     }
 
     @Override

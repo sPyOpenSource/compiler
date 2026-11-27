@@ -164,7 +164,32 @@ final public class IMStoreArray extends IMOperant  {
 
     @Override
     public void translate(RegFloat result) throws CompileException {
-        translate(Reg.eax);
+        RegFloat fvalue = regs.chooseFloatRegister();
+        rvalue.translate(fvalue);
+        Reg array = regs.chooseIntRegister(null);
+        aOpr.translate(array);
+
+        code.startBC(bcPosition);
+
+        if (aOpr.checkReference())
+            execEnv.codeCheckReference(this, array, bcPosition);
+
+        Reg indx = regs.chooseIntRegister(null);
+        iOpr.translate(indx);
+        if (aOpr.checkArrayRange(iOpr))
+            execEnv.codeCheckArrayRange(this, array, indx, bcPosition);
+
+        Reg ivalue = regs.getIntRegister(Reg.any);
+        regs.allocIntRegister(ivalue, BCBasicDatatype.INT);
+        code.movd(fvalue, ivalue);
+
+        execEnv.codePutArrayField(this, array, datatype, indx, ivalue, bcPosition);
+        regs.freeIntRegister(indx);
+        code.endBC();
+
+        regs.freeFloatRegister(fvalue);
+        regs.freeIntRegister(array);
+        regs.freeIntRegister(ivalue);
     }
 
     @Override
