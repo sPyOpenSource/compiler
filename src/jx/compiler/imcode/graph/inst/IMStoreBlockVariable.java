@@ -112,6 +112,21 @@ final public class IMStoreBlockVariable extends IMVarAccess {
 	code.endBC();
     } 
 
+    @Override
+    public void translate(RegFloat result) throws CompileException {
+	int varOffset = frame.getOffset(lvar);
+	lvar.setDatatype(BCBasicDatatype.FLOAT);
+	operant.translate(result);
+	code.startBC(bcPosition);
+	regs.writeFloatRegisterToSlot(result,lvar);
+	code.endBC();
+    }
+
+    @Override
+    public void translate(RegDouble result) throws CompileException {
+	throw new CompileException(getLineInfo() + " double translation not implemented!");
+    }
+
     public IMReadBlockVariable getReadOperation() {
 	//if (container==null) System.err.println("container == null");
     	return new IMReadBlockVariable(container,this,number,datatype,bcPosition);

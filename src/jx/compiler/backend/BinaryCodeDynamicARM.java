@@ -1843,6 +1843,16 @@ public final class BinaryCodeDynamicARM extends ARM7 implements ExecEnvironmentI
     }
 
     @Override
+    public void codeGetFieldDouble(IMNode node, FieldRefCPEntry fieldRefCPEntry, Reg objRef, RegDouble result, int bcPosition) throws CompileException {
+	throw new CompileException("double field access not implemented on ARM");
+    }
+
+    @Override
+    public void codePutFieldDouble(IMNode node, FieldRefCPEntry fieldRefCPEntry, Reg objRef, RegDouble value, int bcPosition) throws CompileException {
+	throw new CompileException("double field access not implemented on ARM");
+    }
+
+    @Override
     public void codePutStaticFieldLong(IMNode node, FieldRefCPEntry fieldRefCpEntry, Reg64 value, int bcPosition) throws CompileException {
 	String className = fieldRefCpEntry.getClassName();
 	BCClass aClass = classStore.findClass(className);

@@ -1000,6 +1000,16 @@ public final class BinaryCodeDynamicRiscV implements ExecEnvironmentInterface {
     }
 
     @Override
+    public void codeGetFieldDouble(IMNode node, FieldRefCPEntry fieldRefCPEntry, Reg objRef, RegDouble result, int bcPosition) throws CompileException {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void codePutFieldDouble(IMNode node, FieldRefCPEntry fieldRefCPEntry, Reg objRef, RegDouble value, int bcPosition) throws CompileException {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
     public void codePutStaticFieldLong(IMNode node, FieldRefCPEntry fieldRefCpEntry, Reg64 value, int bcPosition) throws CompileException {
         throw new UnsupportedOperationException("Not supported yet.");
     }

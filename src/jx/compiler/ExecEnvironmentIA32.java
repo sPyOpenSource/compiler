@@ -1139,6 +1139,13 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	code.movl(objRef.rdisp(offset+4),result.high);
     }
 
+    @Override
+    public void codeGetFieldDouble(IMNode node,FieldRefCPEntry fieldRefCPEntry,Reg objRef,RegDouble result,int bcPosition) throws CompileException {
+	int offset = getFieldOffset(fieldRefCPEntry);
+	regs.writeDoubleRegister(result);
+	code.movsd(objRef.rdisp(offset), result);
+    }
+
     private void codeGetStaticFieldAddr(IMNode node,
 		    String className, int fieldOffset, Reg addr) throws CompileException {
 
@@ -1248,6 +1255,12 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	int offset = getFieldOffset(fieldRefCPEntry);
 	code.movl(value.low,objRef.rdisp(offset));
 	code.movl(value.high,objRef.rdisp(offset+4));
+    }
+
+    @Override
+    public void codePutFieldDouble(IMNode node,FieldRefCPEntry fieldRefCPEntry,Reg objRef,RegDouble value,int bcPosition) throws CompileException {
+	int offset = getFieldOffset(fieldRefCPEntry);
+	code.movsd(value,objRef.rdisp(offset));
     }
 
     @Override
@@ -2152,6 +2165,11 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	    int datatype = args[i].getDatatype();
 	    switch (datatype) {
 	    case BCBasicDatatype.FLOAT:
+		if (!(args[i].isConstant() || args[i].isVariable())) {
+		    results[i] = regs.chooseFloatRegister();
+		    args[i].translate(results[i]);
+		}
+		break;
 	    case BCBasicDatatype.DOUBLE:
 		code.nop();
 		break;
@@ -2186,7 +2204,17 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	    int datatype = args[i].getDatatype();
 	    switch (datatype) {
                 case BCBasicDatatype.FLOAT:
-                    frame.push(-1, 0);
+                    if (!(args[i].isConstant() || args[i].isVariable())) {
+                        Reg tmp = regs.getIntRegister(Reg.any);
+                        code.movd((RegFloat)results[i], tmp);
+                        frame.push(BCBasicDatatype.FLOAT, tmp);
+                        regs.freeIntRegister(tmp);
+                    } else if (args[i].isConstant()) {
+                        float fv = ((IMConstant)args[i]).getFloatValue();
+                        frame.push(BCBasicDatatype.FLOAT, Float.floatToRawIntBits(fv));
+                    } else {
+                        ((IMReadLocalVariable)args[i]).codePushFloat();
+                    }
                     break;
                 case BCBasicDatatype.DOUBLE:
                     frame.push(-1, 0);

@@ -116,4 +116,17 @@ final public class IMReadArray extends IMOperant {
 
 	regs.freeIntRegister(array);
     }
+
+    @Override
+    public void translate(RegFloat result) throws CompileException {
+	Reg r = regs.chooseIntRegister(null);
+	translate(r);
+	code.movd(r, result);
+	regs.freeIntRegister(r);
+    }
+
+    @Override
+    public void translate(RegDouble result) throws CompileException {
+	throw new CompileException(getLineInfo() + " double translation not implemented!");
+    }
 }

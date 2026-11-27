@@ -87,4 +87,14 @@ final public class IMPutStatic extends IMOperant  {
 
 	regs.freeLongRegister(value);
     }
+
+    @Override
+    public void translate(RegFloat result) throws CompileException {
+	translate(Reg.eax);
+    }
+
+    @Override
+    public void translate(RegDouble result) throws CompileException {
+	throw new CompileException(getLineInfo() + " double translation not implemented!");
+    }
 }

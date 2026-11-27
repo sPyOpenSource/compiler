@@ -71,4 +71,30 @@ final public class IMGetField extends IMUnaryOperator {
 
 	regs.freeIntRegister(objRef);			     
     }
+
+    @Override
+    public void translate(RegFloat result) throws CompileException {
+	Reg r = regs.chooseIntRegister(null);
+	translate(r);
+	code.movd(r, result);
+	regs.freeIntRegister(r);
+    }
+
+    @Override
+    public void translate(RegDouble result) throws CompileException {
+	if (datatype != BCBasicDatatype.DOUBLE && datatype != BCBasicDatatype.LONG) throw new CompileException("wrong datatype");
+
+	Reg objRef = regs.chooseIntRegister(null);	
+	operant.translate(objRef);
+	code.startBC(bcPosition);
+
+	if (operant.checkReference()) {
+		execEnv.codeCheckReference(this,objRef,bcPosition);
+        }
+
+	execEnv.codeGetFieldDouble(this,cpEntry,objRef,result,bcPosition);
+	code.endBC();
+
+	regs.freeIntRegister(objRef);			     
+    }
 }

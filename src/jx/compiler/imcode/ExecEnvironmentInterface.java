@@ -60,8 +60,10 @@ public interface ExecEnvironmentInterface {
     public void codePutStaticField(IMNode node,FieldRefCPEntry fieldRefCpEntry,Reg result,int bcPosition) throws CompileException;
 
     public void codeGetFieldLong(IMNode node,FieldRefCPEntry fieldRefCPEntry,Reg objRef,Reg64 result,int bcPosition) throws CompileException ;
+    public void codeGetFieldDouble(IMNode node,FieldRefCPEntry fieldRefCPEntry,Reg objRef,RegDouble result,int bcPosition) throws CompileException ;
     public void codeGetStaticFieldLong(IMNode node,FieldRefCPEntry fieldRefCpEntry,Reg64 result,int bcPosition) throws CompileException;
     public void codePutFieldLong(IMNode node,FieldRefCPEntry fieldRefCPEntry,Reg objRef,Reg64 value,int bcPosition) throws CompileException;
+    public void codePutFieldDouble(IMNode node,FieldRefCPEntry fieldRefCPEntry,Reg objRef,RegDouble value,int bcPosition) throws CompileException;
     public void codePutStaticFieldLong(IMNode node,FieldRefCPEntry fieldRefCpEntry,Reg64 value,int bcPosition) throws CompileException;
 
     public void codeLongMul(IMNode node,IMOperant lOpr,IMOperant rOpr,Reg64 result,int bcPosition) throws CompileException;

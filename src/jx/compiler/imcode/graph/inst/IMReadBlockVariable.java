@@ -64,4 +64,16 @@ final public class IMReadBlockVariable extends IMVarAccess {
 	regs.readLongRegisterFromSlot(lvar,result);
 	code.endBC();
     }
+
+    @Override
+    public void translate(RegFloat result) throws CompileException {
+	code.startBC(bcPosition);
+	regs.readFloatRegisterFromSlot(lvar, result);
+	code.endBC();
+    }
+
+    @Override
+    public void translate(RegDouble result) throws CompileException {
+	throw new CompileException(getLineInfo() + " double translation not implemented!");
+    }
 }

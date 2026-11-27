@@ -129,6 +129,11 @@ final public class IMReadLocalVariable extends IMVarAccess {
 	frame.push(datatype,Reg.ebp.rdisp(offset));
     }
 
+    public void codePushFloat() throws CompileException {
+	int offset = frame.getOffset(lvar);
+	frame.push(BCBasicDatatype.FLOAT, Reg.ebp.rdisp(offset));
+    }
+
     @Override
     public boolean checkReference() {
 	if (lvar.isChecked(ownBasicBlock)==true) return false;
