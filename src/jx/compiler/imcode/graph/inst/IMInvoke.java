@@ -181,6 +181,20 @@ public class IMInvoke extends IMMultiOperant {
     }
     }
 
+    @Override
+    public void translate(RegFloat result) throws CompileException {
+	// Float-returning invoke: callee returns in xmm0. Drive the normal
+	// (int-reg) call path with a dummy int register, then move xmm0 -> result.
+	Reg dummy = Reg.eax;
+	translate(dummy);
+	code.movss(RegFloat.xmm0, result);
+    }
+
+    @Override
+    public void translate(RegDouble result) throws CompileException {
+	throw new CompileException(getLineInfo() + " double translation not implemented!");
+    }
+
     private IMNode inlineSmallMethod(BCMethodWithCode bcMethod, CodeContainer inlineCode,CodeVector iCode,int depth) throws CompileException {
 
     stat.tryinline();
