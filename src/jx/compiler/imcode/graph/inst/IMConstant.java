@@ -188,4 +188,35 @@ final public class IMConstant extends IMOperant {
 	}
 	code.endBC();
     }
+
+    @Override
+    public void translate(RegFloat result) throws CompileException {
+	code.startBC(bcPosition);
+	if (cpEntry == null) {
+	    // fconst_0/1/2: value is small int 0/1/2
+	    Reg r = regs.getIntRegister(Reg.any);
+	    code.movl(value, r);
+	    code.cvtsi2ss(r, result);
+	    regs.freeIntRegister(r);
+	} else {
+	    float fv = getFloatValue();
+	    if (fv == (float)(int)fv) {
+		Reg r = regs.getIntRegister(Reg.any);
+		code.movl((int)fv, r);
+		code.cvtsi2ss(r, result);
+		regs.freeIntRegister(r);
+	    } else {
+		Reg r = regs.getIntRegister(Reg.any);
+		code.movl(Float.floatToRawIntBits(fv), r);
+		code.movd(r, result);
+		regs.freeIntRegister(r);
+	    }
+	}
+	code.endBC();
+    }
+
+    @Override
+    public void translate(RegDouble result) throws CompileException {
+	throw new CompileException(getLineInfo() + " double translation not implemented!");
+    }
 }
