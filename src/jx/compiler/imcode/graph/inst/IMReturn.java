@@ -139,4 +139,20 @@ final public class IMReturn extends IMBranch  {
 	  code.jmp(epilog.getNewJumpTarget());
 	}
     }
+
+    @Override
+    public void translate(RegFloat result) throws CompileException {
+	if (retValue != null) {
+	    retValue.translate(RegFloat.xmm0);
+	}
+	if (!ownBasicBlock.isLastBasicBlock()) {
+	    IMBasicBlock epilog = container.getEpilog();
+	    code.jmp(epilog.getNewJumpTarget());
+	}
+    }
+
+    @Override
+    public void translate(RegDouble result) throws CompileException {
+	throw new CompileException(getLineInfo() + " double translation not implemented!");
+    }
 }
