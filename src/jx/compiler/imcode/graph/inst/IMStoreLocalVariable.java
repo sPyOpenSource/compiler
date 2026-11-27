@@ -168,4 +168,17 @@ final public class IMStoreLocalVariable extends IMVarAccess  {
         regs.writeLongRegisterToSlot(result, lvar);
         code.endBC();
     } 
+
+    @Override
+    public void translate(RegFloat result) throws CompileException {
+	operant.translate(result);
+	code.startBC(bcPosition);
+	regs.writeFloatRegisterToSlot(result, lvar);
+	code.endBC();
+    }
+
+    @Override
+    public void translate(RegDouble result) throws CompileException {
+	throw new CompileException(getLineInfo() + " double translation not implemented!");
+    }
 }
