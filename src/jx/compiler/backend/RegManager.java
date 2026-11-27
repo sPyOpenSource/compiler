@@ -561,6 +561,13 @@ public class RegManager {
 	reg.valid = true;
     }
 
+    public void readFloatRegisterFromSlot(LocalVariable slot, RegFloat reg) throws CompileException {
+	int offset = frame.getOffset(slot);
+	if (offset == 0) throw new Error("zero offset");
+	code.movss(Ref.ebp.disp(offset), reg);
+	reg.slot = slot;
+    }
+
     /**
        writeIntToSlot(value,slot)
 
@@ -604,7 +611,13 @@ public class RegManager {
 	reg.slot = slot;
     }
 
- 
+    public void writeFloatRegisterToSlot(RegFloat reg, LocalVariable slot) throws CompileException {
+	int offset = frame.getOffset(slot);
+	if (offset == 0) throw new Error("zero offset");
+	code.movss(reg, Ref.ebp.disp(offset));
+    }
+
+  
     /**
        writeLongRegisterToSlot
 
