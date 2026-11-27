@@ -387,14 +387,6 @@ public class RegManager {
 	    if (reg.slot != null) {
 		active.append(reg);
 		readIntRegisterFromSlot(reg.slot, reg, reg.slot.getDatatype());
-	    } else if (!reg.any()) {
-		// register holds a value in a physical reg but was cleared from
-		// active tracking (e.g. after a nested call); assume value is
-		// still in the physical register and re-activate it.
-		if (dbg_msg) System.err.println("     reactivate " + reg);
-		active.append(reg);
-		reg.unfree();
-		return;
 	    } else {
 		if (dbg_msg) System.err.println(active);
 		throw new CompileException("unknown register " + reg);
