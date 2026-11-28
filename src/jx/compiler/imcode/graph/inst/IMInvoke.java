@@ -183,16 +183,26 @@ public class IMInvoke extends IMMultiOperant {
 
     @Override
     public void translate(RegFloat result) throws CompileException {
-	// Float-returning invoke: callee returns in xmm0. Drive the normal
-	// (int-reg) call path with a dummy int register, then move xmm0 -> result.
-	Reg dummy = Reg.eax;
-	translate(dummy);
+	// Float-returning invoke: callee returns in xmm0 (x86 calling convention).
+	// Static methods use codeStaticCall, virtual methods use codeVirtualCall.
+	// Both return the float result in xmm0.
+	if (bytecode == Opcodes.INVOKESTATIC) {
+	    execEnv.codeStaticCall(this, cpEntry, args, datatype, Reg.eax, bcPosition);
+	} else {
+	    execEnv.codeVirtualCall(this, cpEntry, obj, args, datatype, Reg.eax, bcPosition);
+	}
 	code.movss(RegFloat.xmm0, result);
     }
 
     @Override
     public void translate(RegDouble result) throws CompileException {
-	throw new CompileException(getLineInfo() + " double translation not implemented!");
+	// Double-returning invoke: callee returns in xmm0.
+	if (bytecode == Opcodes.INVOKESTATIC) {
+	    execEnv.codeStaticCall(this, cpEntry, args, datatype, Reg.eax, bcPosition);
+	} else {
+	    execEnv.codeVirtualCall(this, cpEntry, obj, args, datatype, Reg.eax, bcPosition);
+	}
+	code.movsd(RegDouble.xmm0, result);
     }
 
     private IMNode inlineSmallMethod(BCMethodWithCode bcMethod, CodeContainer inlineCode,CodeVector iCode,int depth) throws CompileException {

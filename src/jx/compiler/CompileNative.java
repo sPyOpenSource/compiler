@@ -24,6 +24,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.zip.GZIPOutputStream;
 
+
 public class CompileNative {
     public static void main(String[] args) throws Exception {
 	Msg.info("Native code compiler version 0.7.10-" + StaticCompiler.version());
@@ -37,7 +38,7 @@ public class CompileNative {
 	String jlnname = libdir + "zero.jln";
         
         CompilerOptions opts = getCompilerOptions(null, jlns, null, jlnname, jllname, "JC_CONFIG");
-        //compile("zero", opts);
+        compile("zero", opts);
         
 	jllname = libdir + "jdk0.jll";
         jlnname = libdir + "jdk0.jln";

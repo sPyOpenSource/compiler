@@ -274,6 +274,14 @@ public final class BinaryCodeIA32 {
 	insertModRM(src.value, des);
     }
 
+    public void movd(Reg src, RegDouble des) {
+	realloc();
+	insertByte(0x66);
+	insertByte(0x0F);
+	insertByte(0x6E);
+	insertModRM(des.value, src);
+    }
+
     public void movsd(Opr src, RegDouble des) {
 	realloc();
 	insertByte(0xF2);

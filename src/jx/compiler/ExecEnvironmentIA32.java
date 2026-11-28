@@ -108,18 +108,26 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	if (methodRefCPEntry == null) return null;
 
 	BCClass aClass = classStore.findClass(methodRefCPEntry.getClassName());
-	if (aClass != null) {
+
+	String name = methodRefCPEntry.getMemberName();
+	String sig  = methodRefCPEntry.getMemberTypeDesc();
+
+	// A method reference may name a subclass while the method itself is
+	// declared in one of its superclasses (e.g. Inet4Address.holder() is
+	// declared by InetAddress).  The vtable would find it there, so the
+	// native-method fallback must not be used for such calls either.
+	while (aClass != null) {
 	    BCClassInfo info = aClass.getInfo();
+	    if (info == null || info.methods == null) break;
 
-	    String name = methodRefCPEntry.getMemberName();
-	    String sig  = methodRefCPEntry.getMemberTypeDesc();
+	    for (BCMethod method : info.methods) {
+		if (method.getName().equals(name) &&
+			method.getSignature().equals(sig)) {
+		    return method;
+		}
+	    }
 
-            for (BCMethod method : info.methods) {
-                if (method.getName().equals(name) &&
-                        method.getSignature().equals(sig)) {
-                    return method;
-                }
-            }
+	    aClass = info.superClass;
 	}
 	
 	return null;
@@ -497,6 +505,13 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 			long value = ((IMConstant)args[i]).getLongValue();
 			frame.push(datatype, (int)value);
 			frame.push(datatype, (int)(value >>> 32));
+		    } else if (datatype == BCBasicDatatype.REFERENCE) {
+			// Reference constants (e.g. String literals) cannot be pushed via
+			// getIntValue() - that returns 0 for non-integer constants.
+			Reg reg = regs.chooseIntRegister(null);
+			args[i].translate(reg);
+			frame.push(datatype, reg);
+			regs.freeIntRegister(reg);
 		    } else {
 			frame.push(datatype, ((IMConstant)args[i]).getIntValue());
 		    }
@@ -1008,7 +1023,16 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	    
 	    int datatype = obj.getDatatype();
 	    if (obj.isConstant()) {
-		frame.push(datatype,((IMConstant)obj).getIntValue());
+		if (datatype == BCBasicDatatype.REFERENCE) {
+		    // Reference constants (e.g. String literals) cannot be pushed via
+		    // getIntValue() - that returns 0 for non-integer constants.
+		    Reg reg = regs.chooseIntRegister(null);
+		    obj.translate(reg);
+		    frame.push(datatype, reg);
+		    regs.freeIntRegister(reg);
+		} else {
+		    frame.push(datatype,((IMConstant)obj).getIntValue());
+		}
 	    } else {
 		Reg reg = regs.chooseIntRegister(null);
 		obj.translate(reg);
@@ -1051,7 +1075,16 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	    
 	    int datatype = obj.getDatatype();
 	    if (obj.isConstant()) {
-		frame.push(datatype,((IMConstant)obj).getIntValue());
+		if (datatype == BCBasicDatatype.REFERENCE) {
+		    // Reference constants (e.g. String literals) cannot be pushed via
+		    // getIntValue() - that returns 0 for non-integer constants.
+		    Reg reg = regs.chooseIntRegister(null);
+		    obj.translate(reg);
+		    frame.push(datatype, reg);
+		    regs.freeIntRegister(reg);
+		} else {
+		    frame.push(datatype,((IMConstant)obj).getIntValue());
+		}
 	    } else {
 		Reg reg = regs.chooseIntRegister(null);
 		obj.translate(reg);
@@ -1574,10 +1607,57 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
                 System.out.println("Can't find ClassInfo for " + className);
             }
 	    BCClassInfo info = aClass.getInfo();
-	    int index = info.methodTable.getIndex(methodRefCPEntry.getMemberName() + methodRefCPEntry.getMemberTypeDesc());	    
+	    BCMethod bcMethod = getBCMethod(methodRefCPEntry);
+	    int index = info.methodTable.findIndex(methodRefCPEntry.getMemberName()
+						   + methodRefCPEntry.getMemberTypeDesc());
+	    if (index < 0 && (bcMethod == null || bcMethod.isNative())) {
+                // The method is absent from the vtable and has no bytecode.
+                // Only then is a default return value appropriate.  Methods
+                // that are in the vtable must still dispatch normally, even
+                // if the declaring class describes them as native.
+	        Reg objRef = regs.chooseIntRegister(null);
+	        int offset = codeVirtualPushArgs(obj, args, objRef, bcPosition);
+		code.startBC(bcPosition);
+		regs.saveIntRegister();
+		switch (datatype) {
+		    case BCBasicDatatype.REFERENCE:
+			code.xorl(Reg.eax, Reg.eax);
+			break;
+		    case BCBasicDatatype.FLOAT:
+			code.xorl(Reg.eax, Reg.eax);
+			code.movd(Reg.eax, RegFloat.xmm0);
+			break;
+		    case BCBasicDatatype.DOUBLE:
+			code.xorl(Reg.eax, Reg.eax);
+			code.movd(Reg.eax, RegDouble.xmm0);
+			break;
+		    case BCBasicDatatype.LONG:
+			if (opts.isOption("long")) {
+			    code.xorl(Reg.eax, Reg.eax);
+			    code.xorl(Reg.edx, Reg.edx);
+			} else {
+			    code.xorl(Reg.eax, Reg.eax);
+			}
+			break;
+		    default:
+			code.xorl(Reg.eax, Reg.eax);
+			break;
+		}
+		if (!result.equals(Reg.eax)) {
+		    code.movl(Reg.eax, result);
+		    if (result.any()) regs.setAnyIntRegister(result, Reg.eax);
+		}
+		frame.cleanup(offset);
+		code.endBC();
+		return;
+	    }
+	    if (index < 0) {
+		Debug.throwError("Method " + methodRefCPEntry.getMemberName()
+				 + methodRefCPEntry.getMemberTypeDesc()
+				 + " not found in methodtable of class " + className);
+	    }
 
 	    Reg objRef = regs.chooseIntRegister(null);
-	    
 	    int offset = codeVirtualPushArgs(obj, args, objRef, bcPosition);
 	    
 	    code.startBC(bcPosition);
@@ -1774,6 +1854,46 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	CompilerPlugin plugin; 
 	if ((plugin = findPlugin(className))!=null) {
 	    if (plugin.code(node, regs, code, methodRefCPEntry,null,args,datatype,result,bcPosition)) return;
+	}
+
+	BCMethod bcMethod = getBCMethod(methodRefCPEntry);
+	if (bcMethod == null || bcMethod.isNative()) {
+            // Native static method: no bytecode in this classpath. Push a
+            // default return value instead of doing a method table lookup.
+	    int offset = frame.start();
+	    code.startBC(bcPosition);
+	    regs.saveIntRegister();
+	    switch (datatype) {
+		case BCBasicDatatype.REFERENCE:
+		    code.xorl(Reg.eax, Reg.eax);
+		    break;
+		case BCBasicDatatype.FLOAT:
+		    code.xorl(Reg.eax, Reg.eax);
+		    code.movd(Reg.eax, RegFloat.xmm0);
+		    break;
+		case BCBasicDatatype.DOUBLE:
+		    code.xorl(Reg.eax, Reg.eax);
+		    code.movd(Reg.eax, RegDouble.xmm0);
+		    break;
+		case BCBasicDatatype.LONG:
+		    if (opts.isOption("long")) {
+			code.xorl(Reg.eax, Reg.eax);
+			code.xorl(Reg.edx, Reg.edx);
+		    } else {
+			code.xorl(Reg.eax, Reg.eax);
+		    }
+		    break;
+		default:
+		    code.xorl(Reg.eax, Reg.eax);
+		    break;
+	    }
+	    if (!result.equals(Reg.eax)) {
+		code.movl(Reg.eax, result);
+		if (result.any()) regs.setAnyIntRegister(result, Reg.eax);
+	    }
+	    frame.cleanup(offset);
+	    code.endBC();
+	    return;
 	}
 
 	if (className.equals("jx/zero/InitialNaming")) {
@@ -2081,7 +2201,16 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	    int datatype = args[i].getDatatype();
 	    switch (datatype) {
                 case BCBasicDatatype.FLOAT:
-                    frame.push(-1,0);
+                    if (!(args[i].isConstant() || args[i].isVariable())) {
+                        Reg tmp = regs.chooseIntRegister(null);
+                        code.movd((RegFloat)results[i], tmp);
+                        frame.push(BCBasicDatatype.FLOAT, tmp);
+                        regs.freeIntRegister(tmp);
+                    } else if (args[i].isConstant()) {
+                        frame.push(BCBasicDatatype.FLOAT, Float.floatToRawIntBits(((IMConstant)args[i]).getFloatValue()));
+                    } else {
+                        ((IMReadLocalVariable)args[i]).codePushFloat();
+                    }
                     break;
                 case BCBasicDatatype.DOUBLE:
                     frame.push(-1,0);
@@ -2101,9 +2230,26 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
                 case BCBasicDatatype.CHAR:
                 case BCBasicDatatype.SHORT:
                 case BCBasicDatatype.BYTE:
-                case BCBasicDatatype.REFERENCE:
                     if (args[i].isConstant()) {
                         frame.push(datatype,((IMConstant)args[i]).getIntValue());
+                    } else if (args[i].isVariable()) {
+                        ((IMReadLocalVariable)args[i]).codePush();
+                    } else {
+                        regs.readIntRegister((Reg)results[i]);
+                        frame.push(results[i]);		    
+                    }
+                    break;
+                case BCBasicDatatype.REFERENCE:
+                    if (args[i].isConstant()) {
+                        // A reference constant (e.g. a String literal) cannot be
+                        // pushed via getIntValue() - that returns 0 for non-integer
+                        // constants, which would pass a null reference instead of
+                        // the actual object. Translate it to a register so that
+                        // StringCPEntry constants load their real object reference.
+                        Reg tmp = regs.chooseIntRegister(null);
+                        args[i].translate(tmp);
+                        frame.push(BCBasicDatatype.REFERENCE, tmp);
+                        regs.freeIntRegister(tmp);
                     } else if (args[i].isVariable()) {
                         ((IMReadLocalVariable)args[i]).codePush();
                     } else {
@@ -2205,7 +2351,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	    switch (datatype) {
                 case BCBasicDatatype.FLOAT:
                     if (!(args[i].isConstant() || args[i].isVariable())) {
-                        Reg tmp = regs.getIntRegister(Reg.any);
+                        Reg tmp = regs.chooseIntRegister(null);
                         code.movd((RegFloat)results[i], tmp);
                         frame.push(BCBasicDatatype.FLOAT, tmp);
                         regs.freeIntRegister(tmp);
@@ -2234,9 +2380,26 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
                 case BCBasicDatatype.CHAR:
                 case BCBasicDatatype.SHORT:
                 case BCBasicDatatype.BYTE:
-                case BCBasicDatatype.REFERENCE:
                     if (args[i].isConstant()) {
                         frame.push(datatype, ((IMConstant)args[i]).getIntValue());
+                    } else if (args[i].isVariable()) {
+                        ((IMReadLocalVariable)args[i]).codePush();
+                    } else {
+                        regs.readIntRegister((Reg)results[i]);
+                        frame.push(results[i]);		    
+                    }
+                    break;
+                case BCBasicDatatype.REFERENCE:
+                    if (args[i].isConstant()) {
+                        // A reference constant (e.g. a String literal) cannot be
+                        // pushed via getIntValue() - that returns 0 for non-integer
+                        // constants, which would pass a null reference instead of
+                        // the actual object. Translate it to a register so that
+                        // StringCPEntry constants load their real object reference.
+                        Reg tmp = regs.chooseIntRegister(null);
+                        args[i].translate(tmp);
+                        frame.push(BCBasicDatatype.REFERENCE, tmp);
+                        regs.freeIntRegister(tmp);
                     } else if (args[i].isVariable()) {
                         ((IMReadLocalVariable)args[i]).codePush();
                     } else {

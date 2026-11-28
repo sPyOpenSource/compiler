@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 
 import sjc.output.HexOut;
-import sjc.ui.SC;
 import org.json.JSONArray;
 import org.json.JSONObject;
 

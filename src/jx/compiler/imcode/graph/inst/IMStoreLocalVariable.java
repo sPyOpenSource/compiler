@@ -135,16 +135,28 @@ final public class IMStoreLocalVariable extends IMVarAccess  {
     int varOffset = frame.getOffset(lvar);
 
     if (operant.isConstant()) {
-        int value = ((IMConstant)operant).getIntValue();
-        
-        code.startBC(bcPosition);
-
-        if (value==0 && regs.hasFreeIntRegister()) {
-        regs.allocIntRegister(result,datatype);
-        code.xorl(result,result);
-        regs.writeIntRegisterToSlot(result,lvar);
+        if (datatype == BCBasicDatatype.REFERENCE) {
+            // Reference constants (e.g. String literals) cannot be pushed via
+            // getIntValue() - that returns 0 for non-integer constants, which
+            // would store a null reference instead of the actual object.
+            // Translate the operand to a register to load the real reference,
+            // then store that register to the local variable slot.
+            operant.translate(result);
+            code.startBC(bcPosition);
+            execEnv.codeCheckMagic(this,result,bcPosition);
+            regs.writeIntRegisterToSlot(result, lvar);
         } else {
-        regs.writeIntToSlot(value,lvar);
+            int value = ((IMConstant)operant).getIntValue();
+            
+            code.startBC(bcPosition);
+
+            if (value==0 && regs.hasFreeIntRegister()) {
+            regs.allocIntRegister(result,datatype);
+            code.xorl(result,result);
+            regs.writeIntRegisterToSlot(result,lvar);
+            } else {
+            regs.writeIntToSlot(value,lvar);
+            }
         }
     } else {        
         operant.translate(result);

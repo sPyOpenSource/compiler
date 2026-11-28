@@ -222,7 +222,7 @@ final  public class IMAdd extends IMBinaryOperator {
 
     regs.writeLongRegister(result);
     code.addl(reg.low,result.low);
-    code.adcl(reg.high,reg.high);
+    code.adcl(reg.high,result.high);
 
     regs.freeLongRegister(reg);
 

@@ -116,7 +116,28 @@ final public class IMPutField extends IMOperant  {
 
     @Override
     public void translate(RegFloat result) throws CompileException {
-	translate(Reg.eax);
+	// Float field store: translate rvalue into a float register, then move
+	// the float bits to an int register for storage via codePutField.
+	RegFloat fvalue = regs.chooseFloatRegister();
+	rvalue.translate(fvalue);
+	Reg refObj = regs.chooseIntRegister(null);
+	obj.translate(refObj);
+
+	code.startBC(bcPosition);
+
+	if (obj.checkReference())
+	    execEnv.codeCheckReference(this, refObj, bcPosition);
+
+	Reg ivalue = regs.getIntRegister(Reg.any);
+	regs.allocIntRegister(ivalue, BCBasicDatatype.INT);
+	code.movd(fvalue, ivalue);
+
+	execEnv.codePutField(this, cpEntry, refObj, ivalue, bcPosition);
+	code.endBC();
+
+	regs.freeFloatRegister(fvalue);
+	regs.freeIntRegister(refObj);
+	regs.freeIntRegister(ivalue);
     }
 
     @Override

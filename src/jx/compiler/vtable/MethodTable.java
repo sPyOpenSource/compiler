@@ -41,6 +41,16 @@ public class MethodTable {
 	}
     }
 
+    /**
+     * Look up a vtable index without throwing.  A negative result means the
+     * method is not present in this method table.
+     */
+    public int findIndex(String nameAndType) {
+	Method m = (Method)mfinder.get(nameAndType);
+	if (m == null || m.indices == null || m.indices.isEmpty()) return -1;
+	return ((Integer)m.indices.get(0)).intValue();
+    }
+
     public int getIndex(String nameAndType) {
 	Method m = (Method)mfinder.get(nameAndType);
 	if (m == null)

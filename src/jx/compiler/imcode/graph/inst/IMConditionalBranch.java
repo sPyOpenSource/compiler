@@ -3,6 +3,7 @@ package jx.compiler.imcode.graph.inst;
 
 import java.util.ArrayList;
 import jx.classfile.*;
+import jx.classfile.datatypes.*;
 import jx.zero.Debug;
 
 import jx.compiler.*;
@@ -94,6 +95,10 @@ final  public class IMConditionalBranch extends IMBranch  {
 		case Opcodes.IFNULL:
 		    {
 			    if (opts.doVerbose("cf")) Debug.out.println("++ folding "+toString());
+			    if (clOpr.getDatatype() == BCBasicDatatype.REFERENCE) {
+				    // Reference constant cannot be null - cannot fold, bail out
+				    break;
+			    }
 			    if (clOpr.getIntValue()==0) {
 				    IMGoto ngoto = new IMGoto(container,bcPosition,targets[1],jumpTarget);
 				    if (opts.doVerbose("cf")) Debug.out.println("++ true => "+ngoto.toString());
@@ -108,6 +113,10 @@ final  public class IMConditionalBranch extends IMBranch  {
 		case Opcodes.IFNONNULL:
 		    {
 			    if (opts.doVerbose("cf")) Debug.out.println("++ folding "+toString());
+			    if (clOpr.getDatatype() == BCBasicDatatype.REFERENCE) {
+				    // Reference constant cannot be null - cannot fold, bail out
+				    break;
+			    }
 			    if (clOpr.getIntValue()!=0) {
 				    IMGoto ngoto = new IMGoto(container,bcPosition,targets[1],jumpTarget);
 				    if (opts.doVerbose("cf")) Debug.out.println("++ true => "+ngoto.toString());
@@ -358,11 +367,20 @@ final  public class IMConditionalBranch extends IMBranch  {
 	    code_condjump(bytecode-Opcodes.IF_ICMPEQ);
 	} else if (bytecode < Opcodes.IFNULL) {
 	    if (rOpr.isRealConstant()) {
-		int value = ((IMConstant)rOpr).getIntValue();
-		if (value==0) {
-		    code.test(result,result);
+		if (((IMConstant)rOpr).getDatatype() == BCBasicDatatype.REFERENCE) {
+		    // Reference constant (e.g. String literal) - translate to a
+		    // register to load the real object reference, then compare.
+		    Reg rtmp = regs.chooseIntRegister(result);
+		    rOpr.translate(rtmp);
+		    regs.readIntRegister(result);
+		    code.cmpl(rtmp,result);
 		} else {
-		    code.cmpl(value,result);
+		    int value = ((IMConstant)rOpr).getIntValue();
+		    if (value==0) {
+			code.test(result,result);
+		    } else {
+			code.cmpl(value,result);
+		    }
 		}
 	    } else {
 		Reg rtmp = regs.chooseIntRegister(result);

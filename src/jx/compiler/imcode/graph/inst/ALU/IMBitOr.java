@@ -89,7 +89,7 @@ public class IMBitOr extends IMBitOperator {
     
     regs.writeLongRegister(result);
     code.orl(reg.low, result.low);
-    code.orl(reg.high, reg.high);
+    code.orl(reg.high, result.high);
 
     code.endBC();
 

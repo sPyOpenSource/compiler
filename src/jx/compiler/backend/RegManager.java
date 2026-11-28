@@ -158,6 +158,11 @@ public class RegManager {
 	
 	choose = choose.getClone();
 	choose.id = uniID++;
+	// The physical register list retains the datatype from its last use.
+	// A fresh integer register must not inherit FLOAT/DOUBLE here, because
+	// IMNode.translate(RegObj) dispatches on the result datatype and would
+	// emit an unsupported-bytecode throw for ordinary int operations.
+	choose.setDatatype(BCBasicDatatype.INT);
 	
 	if (dbg_msg) {	    
 	    System.err.println("     choose " + choose);
@@ -387,6 +392,14 @@ public class RegManager {
 	    if (reg.slot != null) {
 		active.append(reg);
 		readIntRegisterFromSlot(reg.slot, reg, reg.slot.getDatatype());
+	    } else if (reg.value != -1) {
+		// reg holds a physical register value (e.g. eax) that was cleared
+		// from active by clearActives() inside a nested call. Re-add to
+		// active without loading - the value is already in the register.
+		active.append(reg);
+		reg.unfree();
+		reg.valid = true;
+		return;
 	    } else {
 		if (dbg_msg) System.err.println(active);
 		throw new CompileException("unknown register " + reg);
@@ -565,6 +578,13 @@ public class RegManager {
 	int offset = frame.getOffset(slot);
 	if (offset == 0) throw new Error("zero offset");
 	code.movss(Ref.ebp.disp(offset), reg);
+	reg.slot = slot;
+    }
+
+    public void readDoubleRegisterFromSlot(LocalVariable slot, RegDouble reg) throws CompileException {
+	int offset = frame.getOffset(slot);
+	if (offset == 0) throw new Error("zero offset");
+	code.movsd(Ref.ebp.disp(offset), reg);
 	reg.slot = slot;
     }
 

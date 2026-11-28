@@ -82,7 +82,7 @@ public class IMBitXor extends IMBitOperator {
 
     regs.writeLongRegister(result);
     code.xorl(reg.low, result.low);
-    code.xorl(reg.high, reg.high);
+    code.xorl(reg.high, result.high);
 
     code.endBC();
     

@@ -7,6 +7,7 @@ import jx.classfile.*;
 
 import jx.compiler.*;
 import jx.compiler.imcode.CodeContainer;
+import jx.compiler.imcode.LocalVariable;
 import jx.compiler.imcode.VirtualOperantenStack;
 import jx.compiler.imcode.graph.IMBasicBlock;
 import jx.compiler.imcode.graph.IMNode;
@@ -195,6 +196,9 @@ final public class IMConstant extends IMOperant {
 	if (cpEntry == null) {
 	    // fconst_0/1/2: value is small int 0/1/2
 	    Reg r = regs.getIntRegister(Reg.any);
+	    // Reg.any is only a placeholder (value == -1). It must be bound to a
+	    // physical register before being encoded as an instruction operand.
+	    regs.allocIntRegister(r, BCBasicDatatype.INT);
 	    code.movl(value, r);
 	    code.cvtsi2ss(r, result);
 	    regs.freeIntRegister(r);
@@ -202,11 +206,13 @@ final public class IMConstant extends IMOperant {
 	    float fv = getFloatValue();
 	    if (fv == (float)(int)fv) {
 		Reg r = regs.getIntRegister(Reg.any);
+		regs.allocIntRegister(r, BCBasicDatatype.INT);
 		code.movl((int)fv, r);
 		code.cvtsi2ss(r, result);
 		regs.freeIntRegister(r);
 	    } else {
 		Reg r = regs.getIntRegister(Reg.any);
+		regs.allocIntRegister(r, BCBasicDatatype.INT);
 		code.movl(Float.floatToRawIntBits(fv), r);
 		code.movd(r, result);
 		regs.freeIntRegister(r);
@@ -217,6 +223,19 @@ final public class IMConstant extends IMOperant {
 
     @Override
     public void translate(RegDouble result) throws CompileException {
-	throw new CompileException(getLineInfo() + " double translation not implemented!");
+	code.startBC(bcPosition);
+	long bits = cpEntry == null ? Double.doubleToLongBits((double)value)
+	    : Double.doubleToLongBits(getDoubleValue());
+	LocalVariable slot = frame.getFreeTempSlot(BCBasicDatatype.DOUBLE);
+	int offset = frame.getOffset(slot);
+	Reg tmp = regs.getIntRegister(Reg.any);
+	regs.allocIntRegister(tmp, BCBasicDatatype.INT);
+	code.movl((int)(bits & 0xffffffff), tmp);
+	code.movl(tmp, Ref.ebp.disp(offset));
+	code.movl((int)((bits >>> 32) & 0xffffffff), tmp);
+	code.movl(tmp, Ref.ebp.disp(offset + 4));
+	code.movsd(Ref.ebp.disp(offset), result);
+	regs.freeIntRegister(tmp);
+	code.endBC();
     }
 }

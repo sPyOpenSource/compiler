@@ -5,6 +5,7 @@ import jx.classfile.*;
 import jx.compiler.*;
 import jx.compiler.backend.*;
 import java.util.ArrayList;
+import jx.classfile.datatypes.BCBasicDatatype;
 import jx.compiler.imcode.*;
 import jx.compiler.imcode.graph.*;
 
@@ -104,11 +105,18 @@ final public class IMReturn extends IMBranch  {
 	if (retValue!=null) {
 	    Reg retval = regs.getIntRegister(Reg.eax);
 	    if (retValue.isConstant()) {
-		int value = ((IMConstant)retValue).getIntValue();
-		if (value==0) {
-		    code.xorl(retval,retval);
+		if (retValue.getDatatype() == BCBasicDatatype.REFERENCE) {
+		    // Reference constants (e.g. String literals) cannot be returned via
+		    // getIntValue() - that returns 0 for non-integer constants, which
+		    // would return a null reference instead of the actual object.
+		    retValue.translate(retval);
 		} else {
-		    code.movl(value,retval);
+		    int value = ((IMConstant)retValue).getIntValue();
+		    if (value==0) {
+			code.xorl(retval,retval);
+		    } else {
+			code.movl(value,retval);
+		    }
 		}
 	    } else {
 	      retValue.translate(retval);
